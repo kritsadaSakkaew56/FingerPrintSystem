@@ -1,0 +1,1 @@
+delete from tb_branch DBCC CHECKIDENT(tb_branch,reseed,0)
