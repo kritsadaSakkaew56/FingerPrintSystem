@@ -28,7 +28,7 @@
         <div class="form-group form-horizontal col-md-12">
             <div class="col-lg-4">
                 <hr />
-                <asp:CheckBox ID="chkscan" Text="ทำการสแกนลายนิ้วมือ" runat="server" AutoPostBack="true" Font-Size="Larger" OnCheckedChanged="chkscan_CheckedChanged" />
+                <asp:CheckBox ID="chkscan" Text="ทำการสแกนลายนิ้วมือ " runat="server" AutoPostBack="true" Font-Size="Larger" OnCheckedChanged="chkscan_CheckedChanged" />
                 <hr />
 
             </div>
