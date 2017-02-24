@@ -15,20 +15,33 @@
             </header>
         </section>
     </div>
-    <div class="form-group form-horizontal col-md-12">
-        <div class="col-lg-4">
-            <hr />
-            <h4>สแกนลายนิ้วมือ</h4>
-            <hr />
+    <div class="row">
+        <div class="form-group form-horizontal col-md-12">
+            <div class="col-lg-4">
+               
+                <h4>สแกนลายนิ้วมือ</h4>
+                <hr />
+            </div>
         </div>
-        <br />
-        <br />
-        <br />
+    </div>
+    <div class="row">
+        <div class="form-group form-horizontal col-md-12">
+            <div class="col-lg-4">
+                <hr />
+                <asp:CheckBox ID="chkscan" Text="ทำการสแกนลายนิ้วมือ" runat="server" AutoPostBack="true" Font-Size="Larger" OnCheckedChanged="chkscan_CheckedChanged" />
+                <hr />
+
+            </div>
+        </div>
+    </div>
+    <div class="form-group form-horizontal col-md-12" >
+        <div class="col-lg-4">
+        </div>
         <div class="col-lg-4">
             <div class="row">
-                <div class="form-group form-horizontal col-md-8">
+                <div class="form-group form-horizontal col-md-12">
                     <div class="col-lg-4">
-                        <asp:TextBox runat="server" ID="txtusername" CssClass="form-control input-sm" placeholder="ผู้ใช้งานคนขับรถรับส่ง" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txtusername" CssClass="form-control input-sm" placeholder="ผู้ใช้งานคนขับรถรับส่ง" Width="250" Height="40" Font-Size="Larger" Visible="false" ></asp:TextBox>
                     </div>
 
                 </div>
@@ -36,29 +49,29 @@
             <div class="row">
                 <div class="form-group form-horizontal col-md-4">
                     <div class="col-lg-4">
-                        <asp:TextBox runat="server" ID="txtpassword" CssClass="form-control input-sm" placeholder="รหัสผ่าน" TextMode="Password" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txtpassword" CssClass="form-control input-sm" placeholder="รหัสผ่าน" TextMode="Password" Width="250" Height="40" Font-Size="Larger" Visible="false"></asp:TextBox>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="form-group form-horizontal col-md-8">
-                    <div class="col-lg-8">
-                    </div>
+                <div class="form-group form-horizontal col-md-12">
+
                     <div class="col-lg-4">
-                        <asp:Button ID="bthlogin" runat="server" class="btn btn-warning" Text="LOGIN" Width="120" Height="40" OnClick="bthlogin_Click" />
+                        <asp:Button ID="bthlogin" runat="server" class="btn btn-warning" Text="LOGIN" Width="120" Height="40" OnClick="bthlogin_Click" Visible="false" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <hr />
-    <div class="form-group form-horizontal col-md-12">
-        <div class="col-lg-4">
-            <hr />
-            <h4>ต้องการสแกนทีหลังจร้า</h4>
-            <hr />
+    <div class="row">
+        <div class="form-group form-horizontal col-md-12">
+            <div class="col-lg-4">
+                <hr />
+                <asp:CheckBox ID="chknoscan" Text="ต้องการสแกนลายนิ้วมือทีหลัง" runat="server" AutoPostBack="true" Font-Size="Larger" OnCheckedChanged="chknoscan_CheckedChanged" />
+                <hr />
+            </div>
         </div>
     </div>
-
 
 </asp:Content>
