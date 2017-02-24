@@ -55,7 +55,7 @@
     <div class="form-group form-horizontal col-md-12">
         <div class="col-lg-4">
             <hr />
-            <h4>ต้องการสแกนทีหลัง</h4>
+            <h4>ต้องการสแกนทีหลังจร้า</h4>
             <hr />
         </div>
     </div>
