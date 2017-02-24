@@ -68,7 +68,7 @@
         <div class="form-group form-horizontal col-md-12">
             <div class="col-lg-4">
                 <hr />
-                <asp:CheckBox ID="chknoscan" Text="ต้องการสแกนลายนิ้วมือทีหลัง" runat="server" AutoPostBack="true" Font-Size="Larger" OnCheckedChanged="chknoscan_CheckedChanged" />
+                <asp:CheckBox ID="chknoscan" Text="ยังไม่ทำการสแกนลายนิ้วมือ" runat="server" AutoPostBack="true" Font-Size="Larger" OnCheckedChanged="chknoscan_CheckedChanged" />
                 <hr />
             </div>
         </div>
