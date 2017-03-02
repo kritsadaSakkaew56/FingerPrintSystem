@@ -26,85 +26,74 @@
             </div>
         </div>
     </div>--%>
-    <div class="form-group form-horizontal col-md-12">
-        <div class="col-lg-4">
+    <div class="row">
+        <div class="form-group form-horizontal col-md-4">
         </div>
-        <div class="col-lg-4">
-            <hr />
-            <h4>สมัครเข้าสู่ระบบ</h4>
-            <hr />
+        <div class="form-group form-horizontal col-md-6">
             <div class="row">
-                <div class="form-group form-horizontal col-md-8">
-                    <div class="col-lg-4">
-                        <asp:TextBox runat="server" ID="txtusername" CssClass="form-control input-sm" placeholder="ผู้ใช้งาน" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
-                    </div>
+                <div class="col-md-12">
+                    <hr />
+                    <h4>สมัครเข้าสู่ระบบ</h4>
+                    <hr />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <asp:TextBox runat="server" ID="txtusername" CssClass="form-control input-sm" placeholder="ผู้ใช้งาน" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                </div>
+            </div>
+            <br />
+            <div class="row">
 
+                <div class="col-md-6">
+                    <asp:TextBox runat="server" ID="txtpassword" CssClass="form-control input-sm" placeholder="รหัสผ่าน" TextMode="Password" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
                 </div>
             </div>
+            <br />
             <div class="row">
-                <div class="form-group form-horizontal col-md-4">
-                    <div class="col-lg-4">
-                        <asp:TextBox runat="server" ID="txtpassword" CssClass="form-control input-sm" placeholder="รหัสผ่าน" TextMode="Password" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group form-horizontal col-md-4">
-                    <div class="col-lg-4">
-                        <asp:TextBox runat="server" ID="txtConfirmPassword" CssClass="form-control input-sm" TextMode="Password" placeholder="ยืนยันรหัสผ่าน" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
-                    </div>
+                <div class="col-md-6">
+                    <asp:TextBox runat="server" ID="txtConfirmPassword" CssClass="form-control input-sm" TextMode="Password" placeholder="ยืนยันรหัสผ่าน" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
                 </div>
             </div>
             <hr />
             <h4>ข้อมูลส่วนตัว</h4>
+            <hr />
             <div class="row">
-                <div class="form-group form-horizontal col-md-4">
-                    <div class="col-lg-10">
+                <div class=" col-md-6">
                         <asp:TextBox runat="server" ID="txtid" CssClass="form-control input-sm" placeholder="เลขที่" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
-                    </div>
-
                 </div>
             </div>
-
+            <br />
             <div class="row">
-                <div class="form-group form-horizontal col-md-4">
-                    <div class="col-lg-2">
+                <div class="col-md-6">
                         <asp:TextBox runat="server" ID="txtfullname" CssClass="form-control input-sm" placeholder="ชื่อ-นามสกุล" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
-                    </div>
                 </div>
             </div>
-
+            <br />
             <div class="row">
-                <div class="form-group form-horizontal col-md-4">
-                    <div class="col-lg-10">
+                <div class="col-md-6">
                         <asp:TextBox runat="server" ID="txtschool" CssClass="form-control input-sm" placeholder="กำลังศึกษา" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
-                    </div>
                 </div>
             </div>
+            <br />
             <div class="row">
-                <div class="form-group form-horizontal col-md-4">
-                    <div class="col-lg-2">
+                <div class="col-md-6">
                         <asp:TextBox runat="server" ID="txtfullnameparent" CssClass="form-control input-sm" placeholder="ชื่อผู้ปกครอง" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
-                    </div>
                 </div>
             </div>
-
+            <br />
             <div class="row">
-                <div class="form-group form-horizontal col-md-4">
-                    <div class="col-lg-10">
+                <div class="col-md-6">
                         <asp:TextBox runat="server" ID="txttel" CssClass="form-control input-sm" placeholder="เบอร์โทรศัพท์ติดต่อฉุกเฉิน" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
-                    </div>
-
                 </div>
             </div>
+            <br />
             <div class="row">
-                <div class="form-group form-horizontal col-md-4">
-                    <div class="col-lg-2">
+                <div class="col-md-6">
                         <asp:TextBox runat="server" ID="txtemail" CssClass="form-control input-sm" placeholder="E-mail" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
-                    </div>
                 </div>
             </div>
-           <%-- <div class="row">
+            <%-- <div class="row">
                 <div class="form-group form-horizontal col-md-4">
                     <div class="col-lg-4">
                         <asp:TextBox runat="server" ID="TxtAddress" CssClass="form-control input-sm" placeholder="คลิ๊กเพิ่มที่อยู่ที่ปุ่ม'เพิ่มที่อยู่'" Enabled="false" MaxLength="300" TextMode="MultiLine" Width="300" Height="90" Font-Size="Small"></asp:TextBox>
@@ -118,13 +107,13 @@
                     </div>
                 </div>
             </div>--%>
-            
-           
-           <hr />
+
+
+            <hr />
             <asp:LinkButton runat="server" ID="bthnext" class="btn btn-warning" Width="250" Height="40" OnClick="bthnext_Click">ถัดไป</asp:LinkButton>
 
-        </div>
-        
-    </div>
 
+
+        </div>
+    </div>
 </asp:Content>

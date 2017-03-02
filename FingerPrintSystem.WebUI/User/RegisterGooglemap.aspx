@@ -50,7 +50,7 @@
         <br />
         <div class="row">
             <section class="panel">
-                <div class="form-group form-horizontal col-md-8">
+                <div class="form-group form-horizontal col-md-12">
                     <div class="col-lg-12">
                         <header class="panel-heading" style="background-color: #F5DEB3">
                             <h4> ขั้นตอนที่ 2 --> เพิ่มที่อยู่ปัจจุบัน</h4>
@@ -62,7 +62,7 @@
         <div class="row">
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-4">
-                    <asp:TextBox runat="server" ID="address" CssClass="form-control input-sm" placeholder="ค้นหาที่อยู่" Width="800" Height="40" Font-Size="Larger"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="address" CssClass="form-control input-sm" placeholder="ค้นหาที่อยู่" Width="950" Height="40" Font-Size="Larger"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -71,14 +71,14 @@
         <div class="row">
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-4">
-                    <asp:TextBox ID="txtcomment" TextMode="MultiLine" placeholder="ระบุที่อยู่เพิ่มเติม" Height="55px" Width="800" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtcomment" TextMode="MultiLine" placeholder="ระบุที่อยู่เพิ่มเติม" Height="55px" Width="950" runat="server"></asp:TextBox>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-4">
-                    <div id="map_canvas" style="width: 800px; height: 400px;"></div>
+                    <div id="map_canvas" style="width: 950px; height: 400px;"></div>
                 </div>
             </div>
         </div>

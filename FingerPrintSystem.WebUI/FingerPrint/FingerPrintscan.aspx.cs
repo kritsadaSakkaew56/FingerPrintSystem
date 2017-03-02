@@ -5,13 +5,46 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using System.IO;
+
+
+
 namespace FingerPrintSystem.WebUI.FingerPrint
 {
-    public partial class FingerPrintscan : System.Web.UI.Page
+    public partial class FingerPrintscan : PageBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
 
+                
+
+
+            }
+        }
+
+     
+        protected void btnshow_Click(object sender, EventArgs e)
+        {
+
+            if (FileUpload1.HasFile)
+            {
+
+                string FileName = "image.png";
+                //string FileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
+                string imagepath = Server.MapPath("~/UploadImage/" + FileName);
+                FileUpload1.SaveAs(imagepath);
+                Imgstudent.ImageUrl = "~/UploadImage/" + FileName;
+                laberroe.Text = "";
+
+            }
+            else
+            {
+
+                laberroe.Text = "Please select file.";
+
+            }
         }
     }
 }

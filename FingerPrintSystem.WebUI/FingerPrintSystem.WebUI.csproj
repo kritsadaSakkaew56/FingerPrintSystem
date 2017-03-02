@@ -260,6 +260,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\" />
+    <Folder Include="UploadImage\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
