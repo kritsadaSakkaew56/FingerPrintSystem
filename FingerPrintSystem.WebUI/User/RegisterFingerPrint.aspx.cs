@@ -25,7 +25,7 @@ namespace FingerPrintSystem.WebUI.User
         {
             if (chkscan.Checked==true)
             {
-
+                bthfinish.Visible = false;
                 txtusername.Visible = true;
                 txtpassword.Visible = true;
                 bthlogin.Visible = true;
@@ -36,6 +36,7 @@ namespace FingerPrintSystem.WebUI.User
 
            if(chkscan.Checked == false)
             {
+                bthfinish.Visible = false;
                 txtusername.Visible = false;
                 txtpassword.Visible = false;
                 bthlogin.Visible = false;
@@ -49,13 +50,30 @@ namespace FingerPrintSystem.WebUI.User
 
             if(chknoscan.Checked==true)
             {
-
+                bthfinish.Visible = true;
                 txtusername.Visible = false;
                 txtpassword.Visible = false;
                 bthlogin.Visible = false;
                 chkscan.Checked = false;
             }
            
+
+        }
+
+        protected void bthfinish_Click(object sender, EventArgs e)
+        {
+
+
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalSave", "$('#myModalSave').modal();", true);
+
+
+        }
+
+        protected void bthOKSave_Click(object sender, EventArgs e)
+        {
+
+
+            Response.Redirect("../Login.aspx");
 
         }
     }

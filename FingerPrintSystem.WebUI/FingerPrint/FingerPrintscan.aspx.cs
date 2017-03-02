@@ -18,7 +18,7 @@ namespace FingerPrintSystem.WebUI.FingerPrint
             if (!IsPostBack)
             {
 
-                
+                Imgfingerprint.ImageUrl= "~/Images/false.png";
 
 
             }

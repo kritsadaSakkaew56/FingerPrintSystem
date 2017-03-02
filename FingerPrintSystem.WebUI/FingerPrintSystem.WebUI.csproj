@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FingerPrint\FingerPrintscan.aspx" />
+    <Content Include="js\jquery.min.js" />
     <Content Include="User\RegisterFingerPrint.aspx" />
     <Content Include="User\RegisterGooglemap.aspx" />
     <Content Include="User\RegisterUser.aspx" />

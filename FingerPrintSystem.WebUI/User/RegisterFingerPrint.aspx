@@ -4,6 +4,11 @@
 <%@ Register Src="~/UserControls/PagingControl.ascx" TagPrefix="uc1" TagName="PagingControl" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -16,9 +21,9 @@
         </section>
     </div>
     <div class="row">
-        <div class="form-group form-horizontal col-md-4">
+        <div class="form-group form-horizontal col-md-1">
         </div>
-        <div class="form-group form-horizontal col-md-8">
+        <div class="form-group form-horizontal col-md-11">
             <div class="row">
                 <div class="col-md-12">
                     <hr />
@@ -26,6 +31,13 @@
                     <hr />
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="form-group form-horizontal col-md-4">
+        </div>
+        <div class="form-group form-horizontal col-md-8">
             <div class="row">
                 <div class="col-md-6">
                     <asp:TextBox runat="server" ID="txtusername" CssClass="form-control input-sm" placeholder="ผู้ใช้งานคนขับรถรับส่ง" Width="250" Height="40" Font-Size="Larger" Visible="false"></asp:TextBox>
@@ -43,17 +55,57 @@
                     <asp:Button ID="bthlogin" runat="server" class="btn btn-warning" Text="LOGIN" Width="120" Height="40" OnClick="bthlogin_Click" Visible="false" />
                 </div>
             </div>
-            <br />
+        </div>
 
-            <hr />
+    </div>
+
+    <div class="row">
+        <div class="form-group form-horizontal col-md-1">
+        </div>
+        <div class="form-group form-horizontal col-md-11">
             <div class="row">
                 <div class="col-md-12">
                     <hr />
                     <asp:CheckBox ID="chknoscan" Text="ยังไม่ทำการสแกนลายนิ้วมือ" runat="server" AutoPostBack="true" Font-Size="Larger" OnCheckedChanged="chknoscan_CheckedChanged" />
                     <hr />
                 </div>
+                <hr />
+                <hr />
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="form-group form-horizontal col-md-7">
+        </div>
+        <div class="form-group form-horizontal col-md-5">
+            <div class="row">
+                <div class="col-md-12">
+                
+                    <asp:LinkButton runat="server" ID="bthfinish" class="btn btn-warning" Width="250" Height="40" Visible="false" OnClick="bthfinish_Click">เสร็จสิ้น</asp:LinkButton>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModalSave" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">บันทึกรายการ</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>ต้องการบันทึกรายการนี้หรือไม่</h5>
+                </div>
+                <div class="modal-footer">
+                    <asp:LinkButton runat="server" ID="bthOKSave" CssClass="btn btn-info" OnClick="bthOKSave_Click"> OK</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bthclse" CssClass="btn btn-info"> Close</asp:LinkButton>
+
+                </div>
+            </div>
+        </div>
+    </div>
+   
 
 </asp:Content>

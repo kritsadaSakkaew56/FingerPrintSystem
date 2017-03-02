@@ -4,6 +4,13 @@
 <%@ Register Src="~/UserControls/PagingControl.ascx" TagPrefix="uc1" TagName="PagingControl" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -32,7 +39,6 @@
         <div class="form-group form-horizontal col-md-6">
             <div class="row">
                 <div class="col-md-12">
-                    <hr />
                     <h4>สมัครเข้าสู่ระบบ</h4>
                     <hr />
                 </div>
@@ -108,8 +114,8 @@
                 </div>
             </div>--%>
 
-
-            <hr />
+            <br />
+      
             <asp:LinkButton runat="server" ID="bthnext" class="btn btn-warning" Width="250" Height="40" OnClick="bthnext_Click">ถัดไป</asp:LinkButton>
 
 

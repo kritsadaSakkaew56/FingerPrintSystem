@@ -5,6 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+
+
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDBGK8nRj24Jh6GVQRtgaoISecBPAHfHDA"></script>
     <script src="../js/jquery-1.4.2.min.js"></script>
     <script src="../js/jquery-ui-1.8.1.custom.min.js"></script>
@@ -28,6 +30,9 @@
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/style-responsive.css" rel="stylesheet" />
 
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
 </head>
 <body>
     <form id="form1" runat="server">
@@ -53,16 +58,16 @@
                 <div class="form-group form-horizontal col-md-12">
                     <div class="col-lg-12">
                         <header class="panel-heading" style="background-color: #F5DEB3">
-                            <h4> ขั้นตอนที่ 2 --> เพิ่มที่อยู่ปัจจุบัน</h4>
+                            <h4>ขั้นตอนที่ 2 --> เพิ่มที่อยู่ปัจจุบัน</h4>
                         </header>
                     </div>
                 </div>
-        </section>
+            </section>
         </div>
         <div class="row">
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-4">
-                    <asp:TextBox runat="server" ID="address" CssClass="form-control input-sm" placeholder="ค้นหาที่อยู่" Width="950" Height="40" Font-Size="Larger"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="address" CssClass="form-control input-sm" placeholder="กรุณากรอกที่อยู่ของท่าน ( บ้านเลขที่ หมู่บ้าน ตำบล อำเภอ จังหวัด รหัสไปรษณีย์ )" Width="950" Height="40" Font-Size="Larger"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -97,7 +102,7 @@
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-4">
                     <%--<asp:LinkButton runat="server" ID="bthSave" class="btn btn-danger" Width="150" Height="40" OnClick="bthSave_Click">Save</asp:LinkButton>--%>
-                     <asp:LinkButton runat="server" ID="bthnext" class="btn btn-warning" Width="300" Height="40" OnClick="bthnext_Click">ถัดไป</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bthnext" class="btn btn-warning" Width="300" Height="40" OnClick="bthnext_Click">ถัดไป</asp:LinkButton>
                 </div>
             </div>
         </div>

@@ -4,6 +4,11 @@
 <%@ Register Src="~/UserControls/PagingControl.ascx" TagPrefix="uc1" TagName="PagingControl" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
@@ -33,7 +38,7 @@
             <br />
             <div class="row">
                 <div class=" col-md-6">
-                    <asp:FileUpload ID="FileUpload1" runat="server" BackColor="#CCFFCC"/>
+                    <asp:FileUpload ID="FileUpload1" runat="server" BackColor="#CCFFCC" Width="250"/>
                 </div>
             </div>
               <div class="row">
@@ -41,7 +46,7 @@
                      <asp:Label runat="server" ID="laberroe" ></asp:Label>
                 </div>
             </div>
-           
+           <br />
             <div class="row">
                 <div class="col-md-4">
                         <asp:Button ID="btnshow" runat="server" Text="Show" Class="btn btn-danger" Width="250" Height="40" OnClick="btnshow_Click" />
@@ -58,7 +63,13 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <asp:Image runat="server" ID="Imgfingerprint" ControlStyle-Height="250" ControlStyle-Width="250" BorderStyle="Double" />
+                    <asp:Image runat="server" ID="Imgfingerprint" ControlStyle-Height="150" ControlStyle-Width="150" BorderStyle="Double" />
+                </div>
+            </div>
+       
+            <div class="row">
+                <div class="col-md-6">
+                    <asp:Label runat="server" ID="labscan" Text="ยังไม่ได้ทำการสแกนลายนิ้วมือ"></asp:Label>
                 </div>
             </div>
         </div>

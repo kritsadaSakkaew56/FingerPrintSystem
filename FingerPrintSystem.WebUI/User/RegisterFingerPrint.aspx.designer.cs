@@ -58,6 +58,33 @@ namespace FingerPrintSystem.WebUI.User {
         protected global::System.Web.UI.WebControls.CheckBox chknoscan;
         
         /// <summary>
+        /// bthfinish control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bthfinish;
+        
+        /// <summary>
+        /// bthOKSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bthOKSave;
+        
+        /// <summary>
+        /// bthclse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bthclse;
+        
+        /// <summary>
         /// Master property.
         /// </summary>
         /// <remarks>
