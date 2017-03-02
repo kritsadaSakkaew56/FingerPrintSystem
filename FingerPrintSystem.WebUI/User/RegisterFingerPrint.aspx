@@ -80,9 +80,7 @@
         <div class="form-group form-horizontal col-md-5">
             <div class="row">
                 <div class="col-md-12">
-                
-                    <asp:LinkButton runat="server" ID="bthfinish" class="btn btn-warning" Width="250" Height="40" Visible="false" OnClick="bthfinish_Click">เสร็จสิ้น</asp:LinkButton>
-                   
+                    <asp:LinkButton runat="server" ID="bthfinish" class="btn btn-warning" Width="250" Height="40" Visible="false" OnClick="bthfinish_Click">เสร็จสิ้น</asp:LinkButton> 
                 </div>
             </div>
         </div>

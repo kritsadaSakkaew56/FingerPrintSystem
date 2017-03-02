@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
 
@@ -38,18 +38,18 @@
             <br />
             <div class="row">
                 <div class=" col-md-6">
-                    <asp:FileUpload ID="FileUpload1" runat="server" BackColor="#CCFFCC" Width="250"/>
+                    <asp:FileUpload ID="FileUpload1" runat="server" BackColor="#CCFFCC" Width="250" />
                 </div>
             </div>
-              <div class="row">
-                <div class="col-md-4">
-                     <asp:Label runat="server" ID="laberroe" ></asp:Label>
-                </div>
-            </div>
-           <br />
             <div class="row">
                 <div class="col-md-4">
-                        <asp:Button ID="btnshow" runat="server" Text="Show" Class="btn btn-danger" Width="250" Height="40" OnClick="btnshow_Click" />
+                    <asp:Label runat="server" ID="laberroe"></asp:Label>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4">
+                    <asp:Button ID="btnshow" runat="server" Text="Show" Class="btn btn-danger" Width="100" Height="40" OnClick="btnshow_Click" />
                 </div>
             </div>
         </div>
@@ -63,13 +63,41 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <asp:Image runat="server" ID="Imgfingerprint" ControlStyle-Height="150" ControlStyle-Width="150" BorderStyle="Double" />
+                    <asp:Image runat="server" ID="Imgfingerprint" ControlStyle-Height="200" ControlStyle-Width="200" BorderStyle="Double" />
                 </div>
             </div>
-       
+
             <div class="row">
                 <div class="col-md-6">
                     <asp:Label runat="server" ID="labscan" Text="ยังไม่ได้ทำการสแกนลายนิ้วมือ"></asp:Label>
+                </div>
+            </div>
+        </div>
+    </div>
+  <div class="row">
+        <div class="form-group form-horizontal col-md-7">
+        </div>
+        <div class="form-group form-horizontal col-md-5">
+            <div class="row">
+                <div class="col-md-12">
+                     <asp:LinkButton runat="server" ID="bthfinish" class="btn btn-warning" Width="250" Height="40" OnClick="bthfinish_Click">ยืนยัน</asp:LinkButton> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModalScan" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">สแกนลายนิ้วมือ</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว</h5>
+                </div>
+                <div class="modal-footer">
+                    <asp:LinkButton runat="server" ID="bthclse" CssClass="btn btn-info"> Close</asp:LinkButton>
+
                 </div>
             </div>
         </div>

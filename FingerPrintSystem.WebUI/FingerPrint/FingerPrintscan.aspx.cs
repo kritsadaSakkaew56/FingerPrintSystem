@@ -41,10 +41,19 @@ namespace FingerPrintSystem.WebUI.FingerPrint
             }
             else
             {
-
+               
                 laberroe.Text = "Please select file.";
 
             }
+        }
+
+        protected void bthfinish_Click(object sender, EventArgs e)
+        {
+
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalScan", "$('#myModalScan').modal();", true);
+            labscan.Text = "ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว";
+            Imgfingerprint.ImageUrl = "~/Images/true.png";
+
         }
     }
 }
