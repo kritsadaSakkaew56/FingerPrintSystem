@@ -22,15 +22,16 @@
     <div class="row">
         <div class="form-group form-horizontal col-md-1">
         </div>
+     
         <div class="form-group form-horizontal col-md-2">
             <div class="row">
                 <div class="col-md-12">
-                    <asp:Image runat="server" ID="Imgstudent" ControlStyle-Height="150" ControlStyle-Width="150" BorderStyle="Double" ImageUrl="~/Images/Home.png" />
+                    <asp:Image runat="server" ID="Imgstudent" ControlStyle-Height="115" ControlStyle-Width="115" BorderStyle="Double" ImageUrl="~/Images/Home.png" />
                 </div>
             </div>
 
         </div>
-        <div class="form-group form-horizontal col-md-5">
+        <div class="form-group form-horizontal col-md-6">
             <div class="row">
                 <div class="col-md-4">
                     <asp:Label runat="server" Text="เลขที่:" Font-Size="Large"></asp:Label>
@@ -68,16 +69,17 @@
                 </div>
             </div>
         </div>
-        <div class="form-group form-horizontal col-md-4">
+        <div class="form-group form-horizontal col-md-3">
             <div class="row">
-                <div class="col-md-3">
-                    <asp:Label runat="server" Text="อุณหภูมิ:" Font-Size="Large"></asp:Label>
+                <div class="col-md-5">
+                    <asp:Label runat="server" Text="อุณหภูมิบนรถ:" Font-Size="Large"></asp:Label>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <asp:Label runat="server" ID="labc" Text="38" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
                 </div>
-                <div class="col-md-7">
-                    <asp:Label runat="server" Text="องศาเซลเซียล" Font-Bold="true" Font-Size="Large"></asp:Label>
+                <div class="col-md-5">
+                    <asp:Image runat="server" ControlStyle-Height="25" ControlStyle-Width="25" ImageUrl="~/Images/celcius-icon.png" />
+                    <%--<asp:Label runat="server" Text="องศาเซลเซียล" Font-Bold="true" Font-Size="Large"></asp:Label>--%>
                 </div>
             </div>
         </div>

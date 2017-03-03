@@ -26,5 +26,11 @@ namespace FingerPrintClinic.WebUI
             Response.Redirect("/User/RegisterUser.aspx");
 
         }
+
+        protected void bthforget_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("/Driver/HomegoSchool.aspx");
+        }
     }
 }

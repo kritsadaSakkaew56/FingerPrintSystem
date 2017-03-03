@@ -62,7 +62,7 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btnEdit" runat="server" meta:resourcekey="btnEdit" CssClass="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></asp:LinkButton>
                                                 <asp:LinkButton ID="btnDelete" runat="server" meta:resourcekey="btnDelete" CssClass="btn btn-danger btn-xs" CommandName="Delete"><i class="fa fa-trash-o "></i></asp:LinkButton>
-                                                 <asp:LinkButton ID="bthScantest" runat="server" meta:resourcekey="bthScantest" CssClass="btn btn-success btn-xs" OnClick="bthScantest_Click"><i class="fa fa-search"></i></asp:LinkButton>
+                                                <asp:LinkButton ID="bthScantest" runat="server" meta:resourcekey="bthScantest" CssClass="btn btn-success btn-xs" OnClick="bthScantest_Click"><i class="fa fa-search"></i></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>

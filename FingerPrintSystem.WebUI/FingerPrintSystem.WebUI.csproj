@@ -66,7 +66,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Driver\HomegoSchool.aspx" />
+    <Content Include="Driver\Schoolgohome.aspx" />
     <Content Include="FingerPrint\FingerPrintscan.aspx" />
+    <Content Include="Images\celcius-icon.png" />
+    <Content Include="Images\false.png" />
+    <Content Include="Images\smalllogo.png" />
+    <Content Include="Images\true.png" />
     <Content Include="js\jquery.min.js" />
     <Content Include="User\Home.aspx" />
     <Content Include="User\RegisterFingerPrint.aspx" />
@@ -186,6 +192,20 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Driver\HomegoSchool.aspx.cs">
+      <DependentUpon>HomegoSchool.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Driver\HomegoSchool.aspx.designer.cs">
+      <DependentUpon>HomegoSchool.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Driver\Schoolgohome.aspx.cs">
+      <DependentUpon>Schoolgohome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Driver\Schoolgohome.aspx.designer.cs">
+      <DependentUpon>Schoolgohome.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FingerPrint\FingerPrintscan.aspx.cs">
       <DependentUpon>FingerPrintscan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

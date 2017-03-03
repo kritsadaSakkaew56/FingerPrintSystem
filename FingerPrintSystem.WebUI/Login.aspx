@@ -33,7 +33,6 @@
 </head>
 <body>
     <div class="container">
-
         <div style="text-align: center;">
             <img src="Images/logo.png" style="margin-top: 200px; opacity: 0.7;" width="150" height="150" />
         </div>
@@ -41,23 +40,23 @@
             <h2 class="form-signin-heading">sign in now</h2>
             <br />
             <div class="row">
-                <div class="col-lg-4 text-center">
+                <div class="col-md-4 text-center">
                     <h5>UserName</h5>
                 </div>
-                <div class="col-lg-7">
+                <div class="col-md-8">
                     <asp:TextBox ID="txtUserName" runat="server" class="form-control" meta:resourcekey="txtUserName" autocomplete="off"></asp:TextBox>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 text-center">
+                <div class="col-md-4 text-center">
                     <h5>Password</h5>
                 </div>
-                <div class="col-lg-7 text-center">
+                <div class="col-md-8 text-center">
                     <asp:TextBox ID="txtPassword" runat="server" class="form-control" meta:resourcekey="txtPassword" TextMode="Password"></asp:TextBox>
                 </div>
             </div>
                     <asp:Button ID="btnSignin" runat="server" class="btn btn-lg btn-login btn-block" OnClick="btnSignin_Click" Text="Login" />
-                    <asp:Button ID="bthforget" runat="server" class="btn btn-lg btn-login btn-block" Text="Forget"  />
+                    <asp:Button ID="bthforget" runat="server" class="btn btn-lg btn-login btn-block" Text="Forget" OnClick="bthforget_Click"  />
                     <asp:Button ID="bthregister" runat="server" class="btn btn-lg btn-login btn-block" Text="Register" OnClick="bthregister_Click"  />
               
        
