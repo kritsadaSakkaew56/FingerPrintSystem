@@ -16,7 +16,7 @@ namespace FingerPrintClinic.WebUI
 
         protected void btnSignin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Home/Home.aspx");
+            Response.Redirect("User/Home.aspx");
         }
 
         protected void bthregister_Click(object sender, EventArgs e)

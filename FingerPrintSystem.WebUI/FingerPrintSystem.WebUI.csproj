@@ -68,6 +68,7 @@
   <ItemGroup>
     <Content Include="FingerPrint\FingerPrintscan.aspx" />
     <Content Include="js\jquery.min.js" />
+    <Content Include="User\Home.aspx" />
     <Content Include="User\RegisterFingerPrint.aspx" />
     <Content Include="User\RegisterGooglemap.aspx" />
     <Content Include="User\RegisterUser.aspx" />
@@ -170,6 +171,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Master\Register.Master" />
+    <Content Include="Master\User.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -197,6 +199,20 @@
     </Compile>
     <Compile Include="Master\Register.Master.designer.cs">
       <DependentUpon>Register.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\User.Master.cs">
+      <DependentUpon>User.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\User.Master.designer.cs">
+      <DependentUpon>User.Master</DependentUpon>
+    </Compile>
+    <Compile Include="User\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\RegisterFingerPrint.aspx.cs">
       <DependentUpon>RegisterFingerPrint.aspx</DependentUpon>

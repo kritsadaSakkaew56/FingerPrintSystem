@@ -73,18 +73,22 @@
                 </div>
             </div>
         </div>
+
     </div>
-  <div class="row">
+    <hr />
+    <div class="row">
+
         <div class="form-group form-horizontal col-md-7">
         </div>
         <div class="form-group form-horizontal col-md-5">
             <div class="row">
                 <div class="col-md-12">
-                     <asp:LinkButton runat="server" ID="bthfinish" class="btn btn-warning" Width="250" Height="40" OnClick="bthfinish_Click">ยืนยัน</asp:LinkButton> 
+                    <asp:LinkButton runat="server" ID="bthfinish" class="btn btn-warning" Width="300" Height="40" OnClick="bthfinish_Click">ยืนยัน</asp:LinkButton>
                 </div>
             </div>
         </div>
     </div>
+  
     <div class="modal fade" id="myModalScan" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -93,10 +97,12 @@
                     <h4 class="modal-title">สแกนลายนิ้วมือ</h4>
                 </div>
                 <div class="modal-body">
-                    <h5>ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว</h5>
+                    <h5>ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว กด OK เพื่อกลับไปสู่เมนูหลัก  </h5>
+                
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bthclse" CssClass="btn btn-info"> Close</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bthok" CssClass="btn btn-info" Width="100px">OK</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bthclse" CssClass="btn btn-info" Width="100px">CLOSE</asp:LinkButton>
 
                 </div>
             </div>

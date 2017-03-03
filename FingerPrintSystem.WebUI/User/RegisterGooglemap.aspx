@@ -32,7 +32,6 @@
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
 </head>
 <body>
     <form id="form1" runat="server">
@@ -86,11 +85,11 @@
                     <div id="map_canvas" style="width: 950px; height: 400px;"></div>
                 </div>
             </div>
-        </div>
+        </div>a
         <div class="row">
             <div class="form-group form-horizontal col-md-8">
-                <div class="col-lg-6">
-                    <label>x</label>
+                <div class="col-lg-8">
+                    <label>x</label>a
                     <asp:TextBox ID="latitude" runat="server"></asp:TextBox>
                     <label>y</label>
                     <asp:TextBox ID="longitude" runat="server"></asp:TextBox>

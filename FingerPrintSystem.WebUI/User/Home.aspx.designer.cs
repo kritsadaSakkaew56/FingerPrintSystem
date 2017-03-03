@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FingerPrintSystem.WebUI.FingerPrint {
+namespace FingerPrintSystem.WebUI.User {
     
     
-    public partial class FingerPrintscan {
+    public partial class Home {
         
         /// <summary>
         /// Imgstudent control.
@@ -22,87 +22,57 @@ namespace FingerPrintSystem.WebUI.FingerPrint {
         protected global::System.Web.UI.WebControls.Image Imgstudent;
         
         /// <summary>
-        /// FileUpload1 control.
+        /// labid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        protected global::System.Web.UI.WebControls.Label labid;
         
         /// <summary>
-        /// laberroe control.
+        /// labfullname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label laberroe;
+        protected global::System.Web.UI.WebControls.Label labfullname;
         
         /// <summary>
-        /// btnshow control.
+        /// labschool control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnshow;
+        protected global::System.Web.UI.WebControls.Label labschool;
         
         /// <summary>
-        /// Imgfingerprint control.
+        /// labstatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Imgfingerprint;
+        protected global::System.Web.UI.WebControls.Label labstatus;
         
         /// <summary>
-        /// labscan control.
+        /// labc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labscan;
+        protected global::System.Web.UI.WebControls.Label labc;
         
         /// <summary>
-        /// bthfinish control.
+        /// Imagebusschool control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton bthfinish;
-        
-        /// <summary>
-        /// bthok control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton bthok;
-        
-        /// <summary>
-        /// bthclse control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton bthclse;
-        
-        /// <summary>
-        /// Master property.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated property.
-        /// </remarks>
-        public new FingerPrintSystem.WebUI.Master.Register Master {
-            get {
-                return ((FingerPrintSystem.WebUI.Master.Register)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.WebControls.Image Imagebusschool;
     }
 }
