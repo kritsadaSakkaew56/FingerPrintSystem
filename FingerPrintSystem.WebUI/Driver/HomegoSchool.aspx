@@ -14,7 +14,7 @@
     <div class="row">
         <section class="panel">
             <header class="panel-heading" style="background-color: #F5DEB3">
-                <h4>การเดินทางจาก   บ้าน   --->  โรงเรียน </h4>
+                <h4>การเดินทางจาก   บ้าน  >>>  โรงเรียน </h4>
             </header>
         </section>
     </div>
@@ -27,15 +27,13 @@
                     <div class="col-md-12">
                         <asp:Label runat="server" Text="จำนวนเด็กนักเรียนขึ้นรถรับส่ง" Font-Bold="true" Font-Size="Large"></asp:Label>
                     </div>
-                    <hr />
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-md-5">
                     <asp:Label runat="server" Text="ขึ้นรถรับส่ง:" Font-Size="Large"></asp:Label>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <asp:Label runat="server" ID="labupstudent" Text="0" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
                 </div>
                 <div class="col-md-2">
@@ -48,7 +46,7 @@
                 <div class="col-md-5">
                     <asp:Label runat="server" Text="เหลือ:" Font-Size="Large"></asp:Label>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <asp:Label runat="server" ID="labresuluptstudent" Text="10" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
                 </div>
                 <div class="col-md-2">
@@ -68,7 +66,7 @@
                 <div class="col-md-5">
                     <asp:Label runat="server" Text="ลงรถรับส่ง:" Font-Size="Large"></asp:Label>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <asp:Label runat="server" ID="labdownstudent" Text="0" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
                 </div>
                 <div class="col-md-2">
@@ -81,7 +79,7 @@
                 <div class="col-md-5">
                     <asp:Label runat="server" Text="เหลือ:" Font-Size="Large"></asp:Label>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <asp:Label runat="server" ID="labresuldowntstudent" Text="10" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
                 </div>
                 <div class="col-md-2">
@@ -90,12 +88,12 @@
             </div>
         </div>
     </div>
-    <hr />
+    <br />
     <div class="row">
         <div class="form-group form-horizontal col-md-3">
         </div>
         <div class="form-group form-horizontal col-md-9">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <asp:Label runat="server" Text="ทั้งหมด:" Font-Size="Large"></asp:Label>
             </div>
             <div class="col-md-2">

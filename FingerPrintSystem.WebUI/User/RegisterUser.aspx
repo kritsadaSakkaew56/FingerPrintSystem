@@ -18,7 +18,7 @@
     <div class="row">
         <section class="panel">
             <header class="panel-heading" style="background-color: #F5DEB3">
-                <h4>ขั้นตอนที่ 1 --> กรอกข้อมูล </h4>
+                <h4>ขั้นตอนที่ 1 >>> กรอกข้อมูล </h4>
             </header>
         </section>
     </div>
@@ -34,9 +34,40 @@
         </div>
     </div>--%>
     <div class="row">
-        <div class="form-group form-horizontal col-md-4">
+        <div class="form-group form-horizontal col-md-1">
         </div>
-        <div class="form-group form-horizontal col-md-6">
+        <div class="form-group form-horizontal col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Student's Photo </h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <asp:Image runat="server" ID="Imgstudent" ControlStyle-Height="180" ControlStyle-Width="200" BorderStyle="Double" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class=" col-md-6">
+                    <asp:FileUpload ID="FileUpload1" runat="server" BackColor="#CCFFCC" Width="200" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <asp:Label runat="server" ID="laberroe"></asp:Label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <asp:Button ID="btnshow" runat="server" Text="Show" Class="btn btn-danger" Width="200" Height="40" OnClick="btnshow_Click" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group form-horizontal col-md-7">
             <div class="row">
                 <div class="col-md-12">
                     <h4>สมัครเข้าสู่ระบบ</h4>
@@ -66,37 +97,37 @@
             <hr />
             <div class="row">
                 <div class=" col-md-6">
-                        <asp:TextBox runat="server" ID="txtid" CssClass="form-control input-sm" placeholder="เลขที่" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="txtid" CssClass="form-control input-sm" placeholder="เลขที่" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="txtfullname" CssClass="form-control input-sm" placeholder="ชื่อ-นามสกุล" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="txtfullname" CssClass="form-control input-sm" placeholder="ชื่อ-นามสกุล" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="txtschool" CssClass="form-control input-sm" placeholder="กำลังศึกษา" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="txtschool" CssClass="form-control input-sm" placeholder="กำลังศึกษา" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="txtfullnameparent" CssClass="form-control input-sm" placeholder="ชื่อผู้ปกครอง" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="txtfullnameparent" CssClass="form-control input-sm" placeholder="ชื่อผู้ปกครอง" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="txttel" CssClass="form-control input-sm" placeholder="เบอร์โทรศัพท์ติดต่อฉุกเฉิน" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="txttel" CssClass="form-control input-sm" placeholder="เบอร์โทรศัพท์ติดต่อฉุกเฉิน" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="txtemail" CssClass="form-control input-sm" placeholder="E-mail" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="txtemail" CssClass="form-control input-sm" placeholder="E-mail" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
                 </div>
             </div>
             <%-- <div class="row">
@@ -115,7 +146,7 @@
             </div>--%>
 
             <br />
-      
+
             <asp:LinkButton runat="server" ID="bthnext" class="btn btn-warning" Width="250" Height="40" OnClick="bthnext_Click">ถัดไป</asp:LinkButton>
 
 

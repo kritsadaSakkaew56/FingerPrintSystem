@@ -16,7 +16,7 @@
     <div class="row">
         <section class="panel">
             <header class="panel-heading" style="background-color: #F5DEB3">
-                <h4>ขั้นตอนที่ 3 --> สแกนลายนิ้วมือ </h4>
+                <h4>ขั้นตอนที่ 3 >>> สแกนลายนิ้วมือ </h4>
             </header>
         </section>
     </div>

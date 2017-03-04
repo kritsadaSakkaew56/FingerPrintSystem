@@ -19,9 +19,9 @@
         </section>
     </div>
     <div class="row">
-        <div class="form-group form-horizontal col-md-1">
+        <div class="form-group form-horizontal col-md-3">
         </div>
-        <div class="form-group form-horizontal col-md-5">
+       <%-- <div class="form-group form-horizontal col-md-5">
             <div class="row">
                 <div class="col-md-12">
                     <hr />
@@ -29,7 +29,6 @@
                     <hr />
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-md-6">
                     <asp:Image runat="server" ID="Imgstudent" ControlStyle-Height="250" ControlStyle-Width="250" BorderStyle="Double" />
@@ -52,24 +51,24 @@
                     <asp:Button ID="btnshow" runat="server" Text="Show" Class="btn btn-danger" Width="100" Height="40" OnClick="btnshow_Click" />
                 </div>
             </div>
-        </div>
+        </div>--%>
         <div class="form-group form-horizontal col-md-6">
-            <div class="row">
+            <%--<div class="row">
                 <div class="col-md-12">
                     <hr />
                     <h4>Finger Print</h4>
                     <hr />
                 </div>
-            </div>
+            </div>--%>
             <div class="row">
                 <div class="col-md-6">
-                    <asp:Image runat="server" ID="Imgfingerprint" ControlStyle-Height="200" ControlStyle-Width="200" BorderStyle="Double" />
+                    <asp:Image runat="server" ID="Imgfingerprint" ControlStyle-Height="300" ControlStyle-Width="300" BorderStyle="Double" />
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-6">
-                    <asp:Label runat="server" ID="labscan" Text="ยังไม่ได้ทำการสแกนลายนิ้วมือ"></asp:Label>
+                <div class="col-md-12 ">
+                    <asp:Label runat="server" ID="labscan" Text="ยังไม่ได้ทำการสแกนลายนิ้วมือ" Font-Size="X-Large"></asp:Label>
                 </div>
             </div>
         </div>
@@ -77,10 +76,9 @@
     </div>
     <hr />
     <div class="row">
-
-        <div class="form-group form-horizontal col-md-7">
+        <div class="form-group form-horizontal col-md-3">
         </div>
-        <div class="form-group form-horizontal col-md-5">
+        <div class="form-group form-horizontal col-md-9">
             <div class="row">
                 <div class="col-md-12">
                     <asp:LinkButton runat="server" ID="bthfinish" class="btn btn-warning" Width="300" Height="40" OnClick="bthfinish_Click">ยืนยัน</asp:LinkButton>

@@ -57,7 +57,7 @@
                 <div class="form-group form-horizontal col-md-12">
                     <div class="col-lg-12">
                         <header class="panel-heading" style="background-color: #F5DEB3">
-                            <h4>ขั้นตอนที่ 2 --> เพิ่มที่อยู่ปัจจุบัน</h4>
+                            <h4>ขั้นตอนที่ 2 >>> เพิ่มที่อยู่ปัจจุบัน</h4>
                         </header>
                     </div>
                 </div>
@@ -85,18 +85,18 @@
                     <div id="map_canvas" style="width: 950px; height: 400px;"></div>
                 </div>
             </div>
-        </div>a
+        </div>
         <div class="row">
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-8">
-                    <label>x</label>a
+                    <label>x</label>
                     <asp:TextBox ID="latitude" runat="server"></asp:TextBox>
                     <label>y</label>
                     <asp:TextBox ID="longitude" runat="server"></asp:TextBox>
                 </div>
             </div>
         </div>
-        <hr />
+     
         <div class="row">
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-4">

@@ -22,6 +22,17 @@ namespace FingerPrintSystem.WebUI.Driver
         protected void gvMember_Sorting(object sender, GridViewSortEventArgs e)
         {
 
+
+
+        }
+
+        protected void bthsave_Click(object sender, EventArgs e)
+        {
+
+
+            Response.Redirect("/Login.aspx");
+
+
         }
     }
 }
