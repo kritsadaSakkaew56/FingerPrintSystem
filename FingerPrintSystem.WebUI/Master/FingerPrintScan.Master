@@ -1,7 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="FingerPrintClinic.WebUI.Master.Main" %>
-
-<!DOCTYPE html>
-
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="FingerPrintScan.master.cs" Inherits="FingerPrintSystem.WebUI.Master.FingerPrintScan" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -10,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Mosaddek">
-
+    
     <meta name="keyword" content="Clinic, Blossom">
     <link rel="shortcut icon" href="img/favicon.png">
 
@@ -48,7 +45,7 @@
     <![endif]-->
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-</head>
+    </head>
 <body>
     <form id="form1" runat="server">
         <section id="container">
@@ -57,15 +54,15 @@
             <header class="header white-bg" style="background-color: sandybrown">
                 <div class="sidebar-toggle-box">
                     <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-
+                    
                 </div>
-                <div class="sidebar-toggle-box">
-                    <img src="../Images/Home.png" width="27" height="27" />
-                    <!--logo start-->
-                </div>
-                <a href="Home.aspx" class="logo">FingerPrint<span>System</span></a>
+                 <div class="sidebar-toggle-box">
+                <img src="../Images/Home.png" width="27" height="27" />
+                <!--logo start-->
+              </div>
+                <a href="../FingerPrint/FingerPrintscan.aspx" class="logo">FingerPrint<span>System</span></a>
                 <!--logo end-->
-
+               
                 <div class="top-nav ">
                     <!--search & user info start-->
                     <ul class="nav pull-right top-menu">
@@ -73,7 +70,8 @@
                             <input type="text" class="form-control search" placeholder="Search">
                         </li>--%>
                         <!-- user login dropdown start-->
-                        
+                       
+                      
                         <!-- user login dropdown end -->
                     </ul>
                     <!--search & user info end-->
@@ -92,23 +90,17 @@
                             </div>
 
                         </li>
-
-                        <li>
-                            <a class="active" href="../Home/Home.aspx">
-                                <i class="fa fa-unlock-alt"></i>
-                                <span>Change Password</span>
-                            </a>
-                        </li>
-                        <%-- <li>
+                       <%-- <li>
                             <a class="active" href="../Admin/AddUser.aspx">
                                 <i class="fa fa-th-list"></i>
                                 <span>Add User</span>
                             </a>
                         </li>--%>
+           
                         <li>
-                            <a class="active" href="../Admin/Member.aspx">
-                                <i class="fa fa-user"></i>
-                                <span>Member</span>
+                            <a class="active" href="../Login.aspx">
+                                <i class="fa fa-minus-square"></i>
+                                <span>Exit</span>
                             </a>
                         </li>
 

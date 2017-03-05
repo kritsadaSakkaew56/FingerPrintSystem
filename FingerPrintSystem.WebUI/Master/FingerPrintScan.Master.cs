@@ -5,15 +5,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace FingerPrintClinic.WebUI.Master
+namespace FingerPrintSystem.WebUI.Master
 {
-    public partial class Main : System.Web.UI.MasterPage
+    public partial class FingerPrintScan : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-
 
         }
     }

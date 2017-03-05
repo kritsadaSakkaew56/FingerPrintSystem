@@ -60,7 +60,7 @@
                 <img src="../Images/Home.png" width="27" height="27" />
                 <!--logo start-->
               </div>
-                <a href="Home.aspx" class="logo">FingerPrint<span>System</span></a>
+                <a href="../User/Home.aspx" class="logo">FingerPrint<span>System</span></a>
                 <!--logo end-->
                
                 <div class="top-nav ">

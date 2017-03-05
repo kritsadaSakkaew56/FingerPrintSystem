@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/User.Master" AutoEventWireup="true" CodeBehind="HomegoSchool.aspx.cs" Inherits="FingerPrintSystem.WebUI.Driver.HomegoSchool" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Driver.Master" AutoEventWireup="true" CodeBehind="HomegoSchool.aspx.cs" Inherits="FingerPrintSystem.WebUI.Driver.HomegoSchool" %>
 
-<%@ MasterType VirtualPath="~/Master/User.Master" %>
+<%@ MasterType VirtualPath="~/Master/Driver.Master" %>
 <%@ Register Src="~/UserControls/PagingControl.ascx" TagPrefix="uc1" TagName="PagingControl" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -97,7 +97,7 @@
                 <asp:Label runat="server" Text="ทั้งหมด:" Font-Size="Large"></asp:Label>
             </div>
             <div class="col-md-2">
-                <asp:Label runat="server" ID="labnumstudent" Text="10" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
+                <asp:Label runat="server" ID="labnumstudent" Text="10" Font-Bold="true" Font-Size="Large"></asp:Label>
             </div>
             <div class="col-md-2">
                 <asp:Label runat="server" Text="คน" Font-Bold="true" Font-Size="Large"></asp:Label>

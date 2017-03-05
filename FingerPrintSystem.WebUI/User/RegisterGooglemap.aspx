@@ -10,7 +10,7 @@
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDBGK8nRj24Jh6GVQRtgaoISecBPAHfHDA"></script>
     <script src="../js/jquery-1.4.2.min.js"></script>
     <script src="../js/jquery-ui-1.8.1.custom.min.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="../js/googlemapapi.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -72,13 +72,13 @@
         </div>
         <br />
         <br />
-        <div class="row">
+       <%-- <div class="row">
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-4">
                     <asp:TextBox ID="txtcomment" TextMode="MultiLine" placeholder="ระบุที่อยู่เพิ่มเติม" Height="55px" Width="950" runat="server"></asp:TextBox>
                 </div>
             </div>
-        </div>
+        </div>--%>
         <div class="row">
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-4">

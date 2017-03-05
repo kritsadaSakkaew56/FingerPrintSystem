@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FingerPrintClinic.WebUI.Master {
+namespace FingerPrintSystem.WebUI.Master {
     
     
-    public partial class Main {
+    public partial class Driver {
         
         /// <summary>
         /// head control.

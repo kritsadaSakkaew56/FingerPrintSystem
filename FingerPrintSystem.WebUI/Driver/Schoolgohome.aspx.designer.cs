@@ -108,9 +108,9 @@ namespace FingerPrintSystem.WebUI.Driver {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new FingerPrintSystem.WebUI.Master.User Master {
+        public new FingerPrintSystem.WebUI.Master.Driver Master {
             get {
-                return ((FingerPrintSystem.WebUI.Master.User)(base.Master));
+                return ((FingerPrintSystem.WebUI.Master.Driver)(base.Master));
             }
         }
     }

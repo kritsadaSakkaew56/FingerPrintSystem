@@ -13,11 +13,26 @@ namespace FingerPrintSystem.WebUI.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-   
+            checkdata();
 
 
         }
+        private void checkdata()
+        {
+            txtusername.Text = "";
+            txtpassword.Text = "";
+            txtConfirmPassword.Text = "";
+            txtid.Text = "";
+            txtfullname.Text = "";
+            txtschool.Text = "";
+            txtfullnameparent.Text = "";
+            txttel.Text = "";
+            txtemail.Text = "";
 
+
+
+
+        }
         private void cookiesdata()
         {
 

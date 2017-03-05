@@ -1,15 +1,13 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Register.master.cs" Inherits="FingerPrintSystem.WebUI.Master.Register" %>
-
-<!DOCTYPE html>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Driver.master.cs" Inherits="FingerPrintSystem.WebUI.Master.Driver" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>FingerPrint System</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Mosaddek">
-
+    
     <meta name="keyword" content="Clinic, Blossom">
     <link rel="shortcut icon" href="img/favicon.png">
 
@@ -47,7 +45,7 @@
     <![endif]-->
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-</head>
+    </head>
 <body>
     <form id="form1" runat="server">
         <section id="container">
@@ -56,15 +54,15 @@
             <header class="header white-bg" style="background-color: sandybrown">
                 <div class="sidebar-toggle-box">
                     <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-
+                    
                 </div>
-                <div class="sidebar-toggle-box">
-                    <img src="../Images/Home.png" width="27" height="27" />
-                    <!--logo start-->
-                </div>
-                <a href="../User/default.aspx" class="logo">FingerPrint<span>System</span></a>
+                 <div class="sidebar-toggle-box">
+                <img src="../Images/Home.png" width="27" height="27" />
+                <!--logo start-->
+              </div>
+                <a href="../Driver/HomegoSchool.aspx" class="logo">FingerPrint<span>System</span></a>
                 <!--logo end-->
-
+               
                 <div class="top-nav ">
                     <!--search & user info start-->
                     <ul class="nav pull-right top-menu">
@@ -72,8 +70,8 @@
                             <input type="text" class="form-control search" placeholder="Search">
                         </li>--%>
                         <!-- user login dropdown start-->
-
-
+                       
+                      
                         <!-- user login dropdown end -->
                     </ul>
                     <!--search & user info end-->
@@ -90,23 +88,33 @@
                                 <img src="../Images/logo.png" style="margin-top: 25px; opacity: 0.7;" width="100" height="100" />
 
                             </div>
-                        </li>
-                        <li>
-                            <br />
-                            <br />
-                            <a class="active" href="../User/RegisterUser.aspx">
-                                <i class="fa fa-minus-square"></i>
-                                <span>Register</span>
-                            </a>
+
                         </li>
 
+                        <li>
+                            <a class="active" href="../User/Home.aspx">
+                                <i class="fa fa-unlock-alt"></i>
+                                <span>Change Password</span>
+                            </a>
+                        </li>
+                       <%-- <li>
+                            <a class="active" href="../Admin/AddUser.aspx">
+                                <i class="fa fa-th-list"></i>
+                                <span>Add User</span>
+                            </a>
+                        </li>--%>
+                        <%--<li>
+                            <a class="active" href="../FingerPrint/FingerPrintscan.aspx">
+                                <i class="fa fa-user"></i>
+                                <span>FingerPrintScan</span>
+                            </a>
+                        </li>--%>
                         <li>
                             <a class="active" href="../Login.aspx">
                                 <i class="fa fa-minus-square"></i>
                                 <span>Exit</span>
                             </a>
                         </li>
-
 
                     </ul>
                     <!-- sidebar menu end-->
@@ -174,6 +182,7 @@
             });
 
         </script>
+
     </form>
 </body>
 </html>

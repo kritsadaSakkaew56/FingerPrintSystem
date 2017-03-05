@@ -71,9 +71,11 @@
     <Content Include="FingerPrint\FingerPrintscan.aspx" />
     <Content Include="Images\celcius-icon.png" />
     <Content Include="Images\false.png" />
+    <Content Include="Images\sensor-icon-temp.png" />
     <Content Include="Images\smalllogo.png" />
     <Content Include="Images\true.png" />
     <Content Include="js\jquery.min.js" />
+    <Content Include="User\default.aspx" />
     <Content Include="User\Home.aspx" />
     <Content Include="User\RegisterFingerPrint.aspx" />
     <Content Include="User\RegisterGooglemap.aspx" />
@@ -152,7 +154,7 @@
     <Content Include="js\jquery.tagsinput.js" />
     <Content Include="js\jquery.ui.touch-punch.min.js" />
     <Content Include="js\jquery.validate.min.js" />
-    <Content Include="js\main.js" />
+    <Content Include="js\googlemapapi.js" />
     <Content Include="js\modernizr.custom.js" />
     <Content Include="js\morris-script.js" />
     <Content Include="js\nestable.js" />
@@ -172,12 +174,13 @@
     <Content Include="packages.config" />
     <Content Include="css\bootstrap-theme.css.map" />
     <Content Include="css\bootstrap.css.map" />
-    <Content Include="Master\Main.Master" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Master\Register.Master" />
     <Content Include="Master\User.Master" />
+    <Content Include="Master\Driver.Master" />
+    <Content Include="Master\FingerPrintScan.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -213,6 +216,20 @@
     <Compile Include="FingerPrint\FingerPrintscan.aspx.designer.cs">
       <DependentUpon>FingerPrintscan.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Master\Driver.Master.cs">
+      <DependentUpon>Driver.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Driver.Master.designer.cs">
+      <DependentUpon>Driver.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\FingerPrintScan.Master.cs">
+      <DependentUpon>FingerPrintScan.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\FingerPrintScan.Master.designer.cs">
+      <DependentUpon>FingerPrintScan.Master</DependentUpon>
+    </Compile>
     <Compile Include="Master\Register.Master.cs">
       <DependentUpon>Register.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -226,6 +243,13 @@
     </Compile>
     <Compile Include="Master\User.Master.designer.cs">
       <DependentUpon>User.Master</DependentUpon>
+    </Compile>
+    <Compile Include="User\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -268,13 +292,6 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Master\Main.Master.cs">
-      <DependentUpon>Main.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Master\Main.Master.designer.cs">
-      <DependentUpon>Main.Master</DependentUpon>
     </Compile>
     <Compile Include="Admin\Member.aspx.cs">
       <DependentUpon>Member.aspx</DependentUpon>
