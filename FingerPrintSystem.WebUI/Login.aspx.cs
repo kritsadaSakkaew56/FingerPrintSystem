@@ -23,7 +23,7 @@ namespace FingerPrintClinic.WebUI
         {
 
 
-            Response.Redirect("/User/RegisterUser.aspx");
+            Response.Redirect("/User/default.aspx");
 
         }
 

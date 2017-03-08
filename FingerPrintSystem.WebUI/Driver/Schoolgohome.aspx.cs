@@ -12,6 +12,8 @@ namespace FingerPrintSystem.WebUI.Driver
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
+            gvMember.DataBind();
         }
 
         protected void gvMember_RowDataBound(object sender, GridViewRowEventArgs e)

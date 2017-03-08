@@ -6,7 +6,6 @@
 <head runat="server">
     <title></title>
 
-
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDBGK8nRj24Jh6GVQRtgaoISecBPAHfHDA"></script>
     <script src="../js/jquery-1.4.2.min.js"></script>
     <script src="../js/jquery-ui-1.8.1.custom.min.js"></script>

@@ -5,9 +5,53 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <script src="../css/bootstrap.min.css"></script>
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            // Declare a proxy to reference the hub.
+            var chat = $.connection.myHub;
+
+            // Create a function that the hub can call to broadcast messages.
+            chat.client.displayData = function (jsonData) {
+
+                $('#myTable > tbody:last').empty();
+
+                var obj = jQuery.parseJSON(jsonData);
+                $.each(obj, function (key, val) {
+                    var name = val["name"];
+                    var email = val["email"];
+                    var tr = "<tr>";
+                    tr = tr + "<td>" + name + "</td>";
+                    tr = tr + "<td>" + email + "</td>";
+                    tr = tr + "</tr>";
+                    $('#myTable > tbody:last').append(tr);
+                });
+
+            };
+
+
+            // Start the connection.
+            $.connection.hub.start().done(function () {
+                $('#btnSave').click(function () {
+                    // Call the Send method on the hub.
+                    chat.server.saveData($('#txtName').val(), $('#txtEmail').val());
+                    // Clear text box and reset focus for next comment.
+                    $('#txtName').val('').focus();
+                    $('#txtEmail').val('').focus();
+                });
+
+                //First load
+                chat.server.saveData('', '');
+            });
+
+        })
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="scMain" runat="server"></asp:ScriptManager>
