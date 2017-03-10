@@ -127,31 +127,29 @@
                             <Columns>
 
                                 <%--   <asp:BoundField HeaderText="#" DataField="Count" SortExpression="Count" ItemStyle-HorizontalAlign="Left"/>--%>
-                                <asp:ImageField DataImageUrlField="ID"
+                                <asp:ImageField DataImageUrlField="id"
                                     DataImageUrlFormatString="HomegoSchool.aspx?ImageID={0}"
                                     ControlStyle-Width="100" ControlStyle-Height="100"
                                     HeaderText="รูปประจำตัว" />
-                                <asp:BoundField HeaderText="เลขประจำตัว" DataField="ID" SortExpression="ID" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="125" />
-                                <asp:BoundField HeaderText="ชื่อ-นามสกุล" DataField="FullName" SortExpression="FullName" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="300" />
+                                <asp:BoundField HeaderText="เลขประจำตัว" DataField="ID" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="125" />
+                                <asp:BoundField HeaderText="ชื่อ-นามสกุล" DataField="FullName"  ItemStyle-HorizontalAlign="Left" ItemStyle-Width="300" />
 
                                 <asp:TemplateField HeaderText="วันที่/เวลาขึ้น" ItemStyle-Width="200" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:Label runat="server" ID="lalScanup" Text='<%# Eval("DateTimeScan") %>' Width="150px" Height="20px" ForeColor="White" Visible="false"></asp:Label>
-                                        <asp:Label runat="server" ID="lalnoScanup" Text="ยังไม่ได้สแกน" Width="150px" Height="20px" ForeColor="White" Visible="true"></asp:Label>
+                                        <asp:Label runat="server" ID="lalScanup" Text='<%# Eval("datetime_up") %>' Width="150px" Height="20px" ForeColor="White" Visible="false"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="วันที่/เวลาลง" ItemStyle-Width="200" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:Label runat="server" ID="lalScandown" Text='<%# Eval("DateTimeScan") %>' Width="150px" Height="20px" ForeColor="White" Visible="false"></asp:Label>
-                                        <asp:Label runat="server" ID="lalnoScandown" Text="ยังไม่ได้สแกน" Width="150px" Height="20px" ForeColor="White" Visible="true"></asp:Label>
+                                        <asp:Label runat="server" ID="lalScandown" Text='<%# Eval("datetime_down") %>' Width="150px" Height="20px" ForeColor="White" Visible="false"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ยืนยัน" ItemStyle-Width="75" ItemStyle-HorizontalAlign="Center">
+                               <%-- <asp:TemplateField HeaderText="ยืนยัน" ItemStyle-Width="75" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:LinkButton runat="server" ID="btnOK" CssClass="btn btn-primary"> OK</asp:LinkButton>
                                         <asp:CheckBox runat="server" ID="chkSelect" Enabled="false" Checked="false" />
                                     </ItemTemplate>
-                                </asp:TemplateField>
+                                </asp:TemplateField>--%>
 
                                 <%--<asp:BoundField HeaderText="วันที่/เวลา" DataField="DateTime" SortExpression="DateTime" ItemStyle-HorizontalAlign="Left" />--%>
                             </Columns>

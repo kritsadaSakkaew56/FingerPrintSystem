@@ -3,7 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 
-
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
@@ -84,10 +83,10 @@
                 </div>
             </div>
         </div>
-        <div class="form-group form-horizontal col-md-3">
+       <%-- <div class="form-group form-horizontal col-md-3">
             <div class="row">
                 <div class="col-md-5">
-                    <%-- <asp:Label runat="server" Text="อุณหภูมิ:" Font-Size="Large"></asp:Label>--%>
+
                     <asp:Image runat="server" ControlStyle-Height="75" ControlStyle-Width="75" BorderStyle="Double" ImageUrl="~/Images/sensor-icon-temp.png" />
                 </div>
                 <div class="col-md-1">
@@ -97,7 +96,7 @@
                     <asp:Image runat="server" ControlStyle-Height="25" ControlStyle-Width="25" ImageUrl="~/Images/celcius-icon.png" />
                 </div>
             </div>
-        </div>
+        </div>--%>
         <hr />
     </div>
     <div class="row">
