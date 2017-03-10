@@ -3,7 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
 
@@ -86,7 +87,7 @@
         <div class="form-group form-horizontal col-md-3">
             <div class="row">
                 <div class="col-md-5">
-                   <%-- <asp:Label runat="server" Text="อุณหภูมิ:" Font-Size="Large"></asp:Label>--%>
+                    <%-- <asp:Label runat="server" Text="อุณหภูมิ:" Font-Size="Large"></asp:Label>--%>
                     <asp:Image runat="server" ControlStyle-Height="75" ControlStyle-Width="75" BorderStyle="Double" ImageUrl="~/Images/sensor-icon-temp.png" />
                 </div>
                 <div class="col-md-1">

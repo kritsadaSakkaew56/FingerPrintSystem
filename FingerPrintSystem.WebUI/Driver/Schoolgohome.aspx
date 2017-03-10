@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
 

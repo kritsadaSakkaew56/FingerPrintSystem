@@ -5,7 +5,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 
-
     <title>FingerPrint System </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -15,6 +14,7 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-reset.css" rel="stylesheet">
+
     <!--external css-->
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <!-- Custom styles for this template -->
@@ -30,6 +30,7 @@
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
 </head>
 <body>
     <div class="container">
@@ -58,13 +59,12 @@
                     <asp:Button ID="btnSignin" runat="server" class="btn btn-lg btn-login btn-block" OnClick="btnSignin_Click" Text="Login" />
                     <asp:Button ID="bthforget" runat="server" class="btn btn-lg btn-login btn-block" Text="Forget" OnClick="bthforget_Click"  />
                     <asp:Button ID="bthregister" runat="server" class="btn btn-lg btn-login btn-block" Text="Register" OnClick="bthregister_Click"  />
-              
-       
+  
         </form>
     </div>
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-1.11.1.min.js"></script>
+
 </body>
 </html>
