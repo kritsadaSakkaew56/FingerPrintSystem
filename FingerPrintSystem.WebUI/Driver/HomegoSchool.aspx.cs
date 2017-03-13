@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 
+using System.Web.Services;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -44,11 +45,20 @@ namespace FingerPrintSystem.WebUI.Driver
 
         }
 
+        [WebMethod]
+        public static void getData()
+        {
+
+           
+
+
+        }
         private void BindData()
         {
 
             DataSet ds = new MemberDAO().GetMember(PagingControl1.CurrentPageIndex, PagingControl1.PageSize, this.SortColumn, this.SortOrder);
             PagingControl1.RecordCount = (int)ds.Tables[1].Rows[0][0];
+
             gvMember.DataSource = ds.Tables[0];
             gvMember.DataBind();
 
@@ -56,5 +66,6 @@ namespace FingerPrintSystem.WebUI.Driver
 
 
         }
+        
     }
 }

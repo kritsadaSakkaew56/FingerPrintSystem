@@ -6,10 +6,54 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-   
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="../js/jquery-1.6.4.min.js"></script>
+    <script src="../js/jquery.signalR-2.2.1.min.js"></script>
+    <script src="../signalR/hubs"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            // Proxy created on the fly
+            var job = $.connection.myHub;
+            // Declare a function on the job hub so the server can invoke it
+            job.client.displayStatus = function () {
+                getData();
+            };
+
+            // Start the connection
+            $.connection.hub.start();
+            getData();
+
+
+        });
+
+        function getData() {
+            var $gvDetails = $('#gvDetails');
+            $.ajax({
+                url: 'HomegoSchool.aspx/GetData',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: "POST",
+                success: function (data) {
+                    debugger;
+                    if (data.d.length > 0) {
+                        var newdata = data.d;
+                        $gvDetails.empty();
+                        $gvDetails.append(' <tr><th>ID</th><th>Name</th><th>Last Executed Date</th><th>Status</th></tr>');
+                        var rows = [];
+                        for (var i = 0; i < newdata.length; i++) {
+                            rows.push(' <tr><td>' + newdata[i].ProductID + '</td><td>' + newdata[i].Name + '</td><td>' + newdata[i].UnitPrice + '</td><td>' + newdata[i].Quantity + '</td></tr>');
+                        }
+
+                        $gvDetails.append(rows.join(''));
+                    }
+                }
+            });
+        }
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="scMain" runat="server"></asp:ScriptManager>
@@ -125,14 +169,13 @@
                             CssClass="table table-bordered table-striped table-hover">
 
                             <Columns>
-
-                                <%--   <asp:BoundField HeaderText="#" DataField="Count" SortExpression="Count" ItemStyle-HorizontalAlign="Left"/>--%>
-                                <asp:ImageField DataImageUrlField="id"
+                                <asp:ImageField DataImageUrlField="ID"
                                     DataImageUrlFormatString="HomegoSchool.aspx?ImageID={0}"
                                     ControlStyle-Width="100" ControlStyle-Height="100"
                                     HeaderText="รูปประจำตัว" />
+
                                 <asp:BoundField HeaderText="เลขประจำตัว" DataField="ID" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="125" />
-                                <asp:BoundField HeaderText="ชื่อ-นามสกุล" DataField="FullName"  ItemStyle-HorizontalAlign="Left" ItemStyle-Width="300" />
+                                <asp:BoundField HeaderText="ชื่อ-นามสกุล" DataField="FullName" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="300" />
 
                                 <asp:TemplateField HeaderText="วันที่/เวลาขึ้น" ItemStyle-Width="200" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
@@ -144,7 +187,7 @@
                                         <asp:Label runat="server" ID="lalScandown" Text='<%# Eval("datetime_down") %>' Width="150px" Height="20px" ForeColor="White" Visible="false"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                               <%-- <asp:TemplateField HeaderText="ยืนยัน" ItemStyle-Width="75" ItemStyle-HorizontalAlign="Center">
+                                <%-- <asp:TemplateField HeaderText="ยืนยัน" ItemStyle-Width="75" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:LinkButton runat="server" ID="btnOK" CssClass="btn btn-primary"> OK</asp:LinkButton>
                                         <asp:CheckBox runat="server" ID="chkSelect" Enabled="false" Checked="false" />
@@ -172,6 +215,5 @@
     </div>
 
 
-    <script src="../js/app.js"></script>
 
 </asp:Content>
