@@ -13,7 +13,7 @@ namespace FingerPrintSystem.WebUI.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            checkdata();
+            //checkdata();
 
 
         }
@@ -28,8 +28,6 @@ namespace FingerPrintSystem.WebUI.User
             txtfullnameparent.Text = "";
             txttel.Text = "";
             txtemail.Text = "";
-
-
 
 
         }
@@ -48,7 +46,11 @@ namespace FingerPrintSystem.WebUI.User
 
         protected void bthnext_Click(object sender, EventArgs e)
         {
+
             cookiesdata();
+            //double dfah = double.Parse(txtusername.Text);
+            //ServiceReference1.WebServiceSoapClient soapClient = new ServiceReference1.WebServiceSoapClient();
+            //double dval = soapClient.ConverTemperature(dfah);
 
 
         }

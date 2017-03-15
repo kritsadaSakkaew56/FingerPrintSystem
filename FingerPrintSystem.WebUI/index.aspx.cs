@@ -58,8 +58,6 @@ namespace FingerPrintSystem.WebUI
                             Quantity = x.GetString(3),
                         }).ToList();
 
-
-
                 }
             }
         }
@@ -71,8 +69,8 @@ namespace FingerPrintSystem.WebUI
         {
             DataTable dt = new DataTable();
             dt.Rows.Add();
-            gvDetails.DataSource = dt;
-            gvDetails.DataBind();
+            //gvDetails.DataSource = dt;
+            //gvDetails.DataBind();
             //gvDetails.Rows[0].Visible = false;
 
         }

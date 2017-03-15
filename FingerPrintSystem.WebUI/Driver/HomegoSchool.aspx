@@ -5,54 +5,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-
+    <%--<meta http-equiv="refresh" content="3">--%>
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
     <script src="../js/jquery-1.6.4.min.js"></script>
     <script src="../js/jquery.signalR-2.2.1.min.js"></script>
     <script src="../signalR/hubs"></script>
 
-    <script type="text/javascript">
-        $(function () {
-
-            // Proxy created on the fly
-            var job = $.connection.myHub;
-            // Declare a function on the job hub so the server can invoke it
-            job.client.displayStatus = function () {
-                getData();
-            };
-
-            // Start the connection
-            $.connection.hub.start();
-            getData();
-
-
-        });
-
-        function getData() {
-            var $gvDetails = $('#gvDetails');
-            $.ajax({
-                url: 'HomegoSchool.aspx/GetData',
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                type: "POST",
-                success: function (data) {
-                    debugger;
-                    if (data.d.length > 0) {
-                        var newdata = data.d;
-                        $gvDetails.empty();
-                        $gvDetails.append(' <tr><th>ID</th><th>Name</th><th>Last Executed Date</th><th>Status</th></tr>');
-                        var rows = [];
-                        for (var i = 0; i < newdata.length; i++) {
-                            rows.push(' <tr><td>' + newdata[i].ProductID + '</td><td>' + newdata[i].Name + '</td><td>' + newdata[i].UnitPrice + '</td><td>' + newdata[i].Quantity + '</td></tr>');
-                        }
-
-                        $gvDetails.append(rows.join(''));
-                    }
-                }
-            });
-        }
-    </script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -169,24 +128,31 @@
                             CssClass="table table-bordered table-striped table-hover">
 
                             <Columns>
-                                <asp:ImageField DataImageUrlField="ID"
+                                <%-- <asp:ImageField DataImageUrlField="ID"
                                     DataImageUrlFormatString="HomegoSchool.aspx?ImageID={0}"
                                     ControlStyle-Width="100" ControlStyle-Height="100"
-                                    HeaderText="รูปประจำตัว" />
+                                    HeaderText="รูปประจำตัว" />--%>
 
-                                <asp:BoundField HeaderText="เลขประจำตัว" DataField="ID" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="125" />
+                                <asp:BoundField HeaderText="เลขประจำตัว" DataField="ID" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="150" />
                                 <asp:BoundField HeaderText="ชื่อ-นามสกุล" DataField="FullName" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="300" />
 
                                 <asp:TemplateField HeaderText="วันที่/เวลาขึ้น" ItemStyle-Width="200" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:Label runat="server" ID="lalScanup" Text='<%# Eval("datetime_up") %>' Width="150px" Height="20px" ForeColor="White" Visible="false"></asp:Label>
+                                        <asp:Label runat="server" ID="lalScanup" Text='<%# Eval("datetime_up") %>' Width="150px" Height="20px" ForeColor="White" Visible="true" Font-Size="Small"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="วันที่/เวลาลง" ItemStyle-Width="200" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:Label runat="server" ID="lalScandown" Text='<%# Eval("datetime_down") %>' Width="150px" Height="20px" ForeColor="White" Visible="false"></asp:Label>
+                                        <asp:Label runat="server" ID="lalScandown" Text='<%# Eval("datetime_down") %>' Width="150px" Height="20px" ForeColor="White" Visible="true" Font-Size="Small"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
+                                <asp:TemplateField HeaderText="ดำเนินการ" ItemStyle-Width="200" ItemStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="bthScantest" runat="server" meta:resourcekey="bthScantest" CssClass="btn btn-warning btn-xs"><i class="fa fa-search"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="bthwhat" runat="server" meta:resourcekey="bthScantest" CssClass="btn btn-primary btn-xs"><i class="fa fa-exclamation-triangle"></i></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
                                 <%-- <asp:TemplateField HeaderText="ยืนยัน" ItemStyle-Width="75" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:LinkButton runat="server" ID="btnOK" CssClass="btn btn-primary"> OK</asp:LinkButton>
@@ -199,9 +165,8 @@
                         </asp:GridView>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-
                 <%--<asp:LinkButton runat="server" ID="bthScan"  class="btn btn-danger"  Width="150" Height="40" OnClick="bthScan_Click">Scan</asp:LinkButton>
-                         <asp:LinkButton runat="server" ID="bthreset" class="btn btn-danger"  Width="150" Height="40" OnClick="bthreset_Click">reset</asp:LinkButton>--%>
+                <asp:LinkButton runat="server" ID="bthreset" class="btn btn-danger"  Width="150" Height="40" OnClick="bthreset_Click">reset</asp:LinkButton>--%>
             </div>
         </div>
     </div>
@@ -213,7 +178,5 @@
             <asp:LinkButton runat="server" ID="bthsave" class="btn btn-warning" Width="150" Height="40" OnClick="bthsave_Click">บันทึก</asp:LinkButton>
         </div>
     </div>
-
-
 
 </asp:Content>

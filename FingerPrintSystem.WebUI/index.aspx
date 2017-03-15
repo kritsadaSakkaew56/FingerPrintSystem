@@ -11,8 +11,8 @@
     <script src="../js/jquery-1.6.4.min.js"></script>
     <script src="../js/jquery.signalR-2.2.1.min.js"></script>
     <script src="../signalR/hubs"></script>
-    <script type="text/javascript">
 
+     <script type="text/javascript">
         $(function () {
 
             // Proxy created on the fly
@@ -31,23 +31,20 @@
         function getData() {
             var $tbl = $('#tbl');
             $.ajax({
+                type: "POST",
                 url: 'index.aspx/GetData',
                 data: '{}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                type: "POST",
                 success: function (data) {
-                    debugger;
-                    if (data.d.length > 0) {
-                        var newdata = data.d;
-                        $tbl.empty();
-                        $tbl.append(' <tr><th>ID</th><th>Name</th><th>Last Executed Date</th><th>Status</th></tr>');
-                        var rows = [];
-
-                        for (var i = 0; i < newdata.length; i++) {
-                            rows.push(' <tr><td>' + newdata[i].ProductID + '</td><td>' + newdata[i].Name + '</td><td>' + newdata[i].UnitPrice + '</td><td>' + newdata[i].Quantity + '</td></tr>');
-                        }
-                        $tbl.append(rows.join(''));
+                    var newdata = data.d;
+                    $tb1.empty();
+                    $tb1.append(' <tr><th>ID</th><th>Name</th><th>Last Executed Date</th><th>Status</th></tr>');
+                    for (var i = 0; i < newdata.length; i++) {
+                        $tb1.append('<tr><td>' + newdata[i].ProductID
+                                  + '</td><td>' + newdata[i].Name
+                                  + '</td><td>' + newdata[i].UnitPrice
+                                  + '</td><td>' + newdata[i].Quantity + '</td></tr>');
                     }
                 },
                 error: function () {
@@ -56,20 +53,17 @@
             });
         }
     </script>
-
+    <style type="text/css">
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-  
-        <div class="row">
-            <table id="tbl"></table>
-        </div>
-        <div class="row">
-            <asp:GridView ID="gvDetails" runat="server"
-                HeaderStyle-BackColor="#3AC0F2"
-                EmptyDataText="------ ไม่พบข้อมูล ------"
-                EmptyDataRowStyle-HorizontalAlign="Center"
-                CssClass="table table-bordered table-striped table-hover">
-            </asp:GridView>
-        </div>
-  
+
+
+    <table id="tbl" class="table"></table>
+
+   
 </asp:Content>

@@ -29,6 +29,35 @@ namespace FingerPrintSystem.WebUI.Driver
 
         protected void gvMember_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            if(e.Row.RowType == DataControlRowType.DataRow)
+            {
+                DataRowView drv = (DataRowView)e.Row.DataItem;
+                Label lalscanup = (Label)e.Row.FindControl("lalScanup");
+                Label lalscadown = (Label)e.Row.FindControl("lalScandown");
+
+                if(lalscanup.Text== "ยังไม่ได้สแกน" || lalscanup.Text =="กรุณาเพิ่มลายนิ้วมือใรระบบ")
+                {
+                    lalscanup.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
+                }
+                else
+                {
+                    lalscanup.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900");
+                }
+
+                if (lalscadown.Text == "ยังไม่ได้สแกน" || lalscanup.Text == "กรุณาเพิ่มลายนิ้วมือใรระบบ")
+                {
+                    lalscadown.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
+                }
+                else
+                {
+                    lalscadown.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900");
+
+                }
+
+
+
+            }
+
 
         }
 
@@ -49,7 +78,11 @@ namespace FingerPrintSystem.WebUI.Driver
         public static void getData()
         {
 
-           
+  
+        }
+        private void Numberstudentup()
+        {
+
 
 
         }
@@ -61,9 +94,6 @@ namespace FingerPrintSystem.WebUI.Driver
 
             gvMember.DataSource = ds.Tables[0];
             gvMember.DataBind();
-
-
-
 
         }
         
