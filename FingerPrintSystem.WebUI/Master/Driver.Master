@@ -35,7 +35,7 @@
     <%--<script src="../js/jquery.js"></script>
     <script src="../js/bootstrap.min.js"></script>--%>
 
-   <%-- <script src="../assets/datepicker/js/bootstrap-datepicker.js"></script>--%>
+    <%-- <script src="../assets/datepicker/js/bootstrap-datepicker.js"></script>--%>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -59,7 +59,7 @@
                     <img src="../Images/Home.png" width="27" height="27" />
                     <!--logo start-->
                 </div>
-                <a href="../Driver/HomegoSchool.aspx" class="logo">FingerPrint<span>System</span></a>
+                <a href="../Driver/default.aspx" class="logo">FingerPrint<span>System</span></a>
                 <!--logo end-->
 
                 <div class="top-nav ">
@@ -91,23 +91,24 @@
                         </li>
 
                         <li>
-                            <a class="active" href="../User/Home.aspx">
+                            <a class="active" href="../Driver/default.aspx">
                                 <i class="fa fa-unlock-alt"></i>
                                 <span>Change Password</span>
                             </a>
                         </li>
-                        <%-- <li>
-                            <a class="active" href="../Admin/AddUser.aspx">
-                                <i class="fa fa-th-list"></i>
-                                <span>Add User</span>
-                            </a>
-                        </li>--%>
-                        <%--<li>
+                        <li>
                             <a class="active" href="../FingerPrint/FingerPrintscan.aspx">
                                 <i class="fa fa-user"></i>
                                 <span>FingerPrintScan</span>
                             </a>
-                        </li>--%>
+                        </li>
+                        <li>
+                            <a class="active" href="../Driver/HomegoSchool.aspx">
+                                <i class="fa fa-th-list"></i>
+                                <span>Child User</span>
+                            </a>
+                        </li>
+
                         <li>
                             <a class="active" href="../Login.aspx">
                                 <i class="fa fa-minus-square"></i>
@@ -153,28 +154,6 @@
         <script src="../js/respond.min.js"></script>
 
 
-        <script>
-
-            //owl carousel
-
-            $(document).ready(function () {
-                $("#owl-demo").owlCarousel({
-                    navigation: true,
-                    slideSpeed: 300,
-                    paginationSpeed: 400,
-                    singleItem: true,
-                    autoPlay: true
-
-                });
-            });
-
-            //custom select box
-
-            $(function () {
-                $('select.styled').customSelect();
-            });
-
-        </script>
 
     </form>
 </body>

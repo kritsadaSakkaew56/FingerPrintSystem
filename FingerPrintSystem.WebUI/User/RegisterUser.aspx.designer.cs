@@ -22,13 +22,13 @@ namespace FingerPrintSystem.WebUI.User {
         protected global::System.Web.UI.WebControls.Image Imgstudent;
         
         /// <summary>
-        /// FileUpload1 control.
+        /// FileUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload;
         
         /// <summary>
         /// laberroe control.
@@ -40,13 +40,13 @@ namespace FingerPrintSystem.WebUI.User {
         protected global::System.Web.UI.WebControls.Label laberroe;
         
         /// <summary>
-        /// btnshow control.
+        /// bthshow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnshow;
+        protected global::System.Web.UI.WebControls.LinkButton bthshow;
         
         /// <summary>
         /// txtusername control.
@@ -130,13 +130,13 @@ namespace FingerPrintSystem.WebUI.User {
         protected global::System.Web.UI.WebControls.TextBox txtemail;
         
         /// <summary>
-        /// bthnext control.
+        /// bthsave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton bthnext;
+        protected global::System.Web.UI.WebControls.Button bthsave;
         
         /// <summary>
         /// Master property.

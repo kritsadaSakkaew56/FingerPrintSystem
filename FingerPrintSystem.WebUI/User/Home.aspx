@@ -19,6 +19,8 @@
         </section>
     </div>
     <br />
+    <br />
+    <br />
     <div class="row">
         <div class="form-group form-horizontal col-md-1">
         </div>
@@ -59,6 +61,7 @@
                 </div>
             </div>
             <br />
+            <hr />
             <%-- <div class="row">
                 <div class="col-md-12">
                     <asp:Label runat="server" Text="สถานะ" Font-Size="Large"></asp:Label>
@@ -67,7 +70,7 @@
             <br />--%>
             <div class="row">
                 <div class="col-md-4">
-                    <asp:Label runat="server" Text="ขึ้นรถรับส่ง" Font-Size="Large"></asp:Label>
+                    <asp:Label runat="server" Text="ขึ้นรถรับส่ง:" Font-Size="Large"></asp:Label>
                 </div>
                 <div class="col-md-8">
                     <asp:Label runat="server" ID="labstatusup" Text="ยังไม่ได้ทำการเพิ่มลายนิ้วมือ" Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="White"></asp:Label>
@@ -76,14 +79,23 @@
             <br />
             <div class="row">
                 <div class="col-md-4">
-                    <asp:Label runat="server" Text="ลงรถรับส่ง" Font-Size="Large"></asp:Label>
+                    <asp:Label runat="server" Text="ลงรถรับส่ง:" Font-Size="Large"></asp:Label>
                 </div>
                 <div class="col-md-8">
                     <asp:Label runat="server" ID="labstatusdown" Text="ยังไม่ได้ทำการเพิ่มลายนิ้วมือ" Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="White"></asp:Label>
                 </div>
             </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4">
+                    <asp:Label runat="server" Text="ตำแหน่งปัจจุบัน:" Font-Size="Large"></asp:Label>
+                </div>
+                <div class="col-md-8">
+                    <asp:Label runat="server" ID="labgps" Text="นเรศวร" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
+                </div>
+            </div>
         </div>
-       <%-- <div class="form-group form-horizontal col-md-3">
+        <div class="form-group form-horizontal col-md-3">
             <div class="row">
                 <div class="col-md-5">
 
@@ -96,10 +108,10 @@
                     <asp:Image runat="server" ControlStyle-Height="25" ControlStyle-Width="25" ImageUrl="~/Images/celcius-icon.png" />
                 </div>
             </div>
-        </div>--%>
+        </div>
         <hr />
     </div>
-    <div class="row">
+    <%-- <div class="row">
         <section class="panel">
             <header class="panel-heading" style="background-color: #F5DEB3">
                 <h4>ภาพถ่ายบริเวณรถรับส่งเด็กนักเรียน</h4>
@@ -115,10 +127,6 @@
                     <asp:Image runat="server" ID="Imagebusschool" ControlStyle-Height="250" ControlStyle-Width="550" BorderStyle="Double" />
                 </div>
             </div>
-
         </div>
-
-
-
-    </div>
+    </div>--%>
 </asp:Content>

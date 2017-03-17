@@ -17,7 +17,8 @@ namespace FingerPrintSystem.WebUI.User
         protected void bthlogin_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("../FingerPrint/FingerPrintscan.aspx");
+            Response.Redirect("../Driver/default.aspx");
+      
 
         }
 

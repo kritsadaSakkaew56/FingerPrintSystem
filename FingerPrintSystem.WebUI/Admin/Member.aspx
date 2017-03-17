@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="true" CodeBehind="Member.aspx.cs" Inherits="FingerPrintSystem.WebUI.Member.Member" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Driver.Master" AutoEventWireup="true" CodeBehind="Member.aspx.cs" Inherits="FingerPrintSystem.WebUI.Member.Member" %>
 
-<%@ MasterType VirtualPath="~/Master/Main.Master" %>
+<%@ MasterType VirtualPath="~/Master/Driver.Master" %>
 <%@ Register Src="~/UserControls/PagingControl.ascx" TagPrefix="uc1" TagName="PagingControl" %>
 
 

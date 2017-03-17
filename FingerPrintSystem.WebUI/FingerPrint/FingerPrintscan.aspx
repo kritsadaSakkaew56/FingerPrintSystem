@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/FingerPrintScan.Master" AutoEventWireup="true" CodeBehind="FingerPrintscan.aspx.cs" Inherits="FingerPrintSystem.WebUI.FingerPrint.FingerPrintscan" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Driver.Master" AutoEventWireup="true" CodeBehind="FingerPrintscan.aspx.cs" Inherits="FingerPrintSystem.WebUI.FingerPrint.FingerPrintscan" %>
 
-<%@ MasterType VirtualPath="~/Master/FingerPrintScan.Master" %>
+<%@ MasterType VirtualPath="~/Master/Driver.Master" %>
 <%@ Register Src="~/UserControls/PagingControl.ascx" TagPrefix="uc1" TagName="PagingControl" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

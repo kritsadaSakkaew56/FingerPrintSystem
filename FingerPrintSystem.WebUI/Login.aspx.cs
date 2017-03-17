@@ -30,7 +30,7 @@ namespace FingerPrintClinic.WebUI
         protected void bthforget_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("/Driver/HomegoSchool.aspx");
+            Response.Redirect("/Driver/default.aspx");
         }
     }
 }

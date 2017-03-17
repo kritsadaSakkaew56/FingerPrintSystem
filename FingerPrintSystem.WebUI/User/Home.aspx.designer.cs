@@ -67,12 +67,21 @@ namespace FingerPrintSystem.WebUI.User {
         protected global::System.Web.UI.WebControls.Label labstatusdown;
         
         /// <summary>
-        /// Imagebusschool control.
+        /// labgps control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Imagebusschool;
+        protected global::System.Web.UI.WebControls.Label labgps;
+        
+        /// <summary>
+        /// labc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labc;
     }
 }

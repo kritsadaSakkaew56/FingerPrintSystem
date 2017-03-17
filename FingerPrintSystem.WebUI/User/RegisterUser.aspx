@@ -7,8 +7,123 @@
 
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+
+    <script src="../js/jquery.validate.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#form1").validate({
+                
+                rules: {
+                    <%=txtusername.UniqueID %>: {
+                        required: true,
+                        minlength: 6,
+                        rangelength: [6, 10]
+                    },
+
+                    <%=txtpassword.UniqueID %>: {   
+                        required: true, 
+                        equalTo: "#<%=txtConfirmPassword.ClientID %>"     
+                    },
+                    <%=txtusername.UniqueID %>: {
+                        required: true
+                    },
+                    <%=txtid.UniqueID %>: {                       
+                        required: true
+                    },
+                    <%=txtfullname.UniqueID %>: {                       
+                        required: true
+                    },
+                    <%=txtschool.UniqueID %>: {                       
+                        required: true
+                    },
+                    <%=txtfullnameparent.UniqueID %>: {                       
+                        required: true
+                    },
+                    <%=txttel.UniqueID %>: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10
+                    },
+                    <%=txtemail.UniqueID %>: {
+                        required: true,
+                        email: true
+                    }
+
+                }, messages: {
+                    <%=txtusername.UniqueID %>: {
+                        required: "Please enter username",
+                        minlength: "A minimum of {0} digits are required.",
+                        rangelength: "Password should be between {0} and {1} characters long"
+                         
+                    },
+                    <%=txtpassword.UniqueID %>: {   
+                        required: "Please enter password", 
+                        equalTo: "Enter same password."  
+                    },
+                    <%=txtid.UniqueID %>: {
+                        required: "Please enter id"
+                    },
+                    <%=txtfullname.UniqueID %>: {
+                        required: "Please enter fullname"
+                    },
+                    <%=txtschool.UniqueID %>: {                       
+                        required: "Please enter school"
+                    },
+                    <%=txtfullnameparent.UniqueID %>: {                       
+                        required: "Please enter nameparen"
+                    },
+                    <%=txttel.UniqueID %>: {
+                        required: "Please enter mobile no",
+                        digits: "Only digits accepted",
+                        minlength: "A minimum of {0} digits are required.",
+                        maxlength: "A maximum of {0} digits are required."
+                    },
+                    <%=txtemail.UniqueID %>: {
+                        required: "Please enter email address"
+                    }
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#FileUpload1").change(function () {
+                if (typeof (FileReader) != "undefined") {
+                    var dvPreview = $("#dvPreview");
+                    dvPreview.html("");
+                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                    $($(this)[0].files).each(function () {
+                        var file = $(this);
+                        if (regex.test(file[0].name.toLowerCase())) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                var img = $("<img />");
+                                img.attr("style", "height:200px;width: 200px");
+                                img.attr("src", e.target.result);
+                                dvPreview.append(img);
+                            }
+                            reader.readAsDataURL(file[0]);
+                        } else {
+                            alert(file[0].name + " is not a valid image file.");
+                            dvPreview.html("");
+                            return false;
+                        }
+                    });
+                } else {
+                    alert("This browser does not support HTML5 FileReader.");
+                }
+            });
+        });
+    </script>
+
+    <style type="text/css">
+        label.error {
+            color: red;
+            display: inline-flex;
+        }
+    </style>
 
 
 </asp:Content>
@@ -23,16 +138,6 @@
         </section>
     </div>
 
-    <%-- <div class="row">
-        <div class="panel-body form-horizontal">
-            <div class="panel-body">
-
-                <asp:LinkButton runat="server" ID="bthChild" CssClass="btn btn-primary" Width="250" Height="50" Text="Child User" Font-Bold="false" Font-Size="X-Large"></asp:LinkButton>
-                <asp:LinkButton runat="server" ID="bthDriver" CssClass="btn btn-primary" Width="250" Height="50" Text="Driver User" Font-Bold="false" Font-Size="X-Large"></asp:LinkButton>
-
-            </div>
-        </div>
-    </div>--%>
     <div class="row">
         <div class="form-group form-horizontal col-md-1">
         </div>
@@ -50,19 +155,25 @@
             </div>
 
             <div class="row">
+                <%-- <div class=" col-md-6">
+                    <input id="FileUpload1" type="file"   />
+                    <div id="dvPreview"></div>
+                </div>--%>
                 <div class=" col-md-6">
-                    <asp:FileUpload ID="FileUpload1" runat="server" BackColor="#CCFFCC" Width="200" />
+                    <asp:FileUpload ID="FileUpload" runat="server" BackColor="#CCFFCC" Width="200" OnLoad="FileUpload_Load" />
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
-                    <asp:Label runat="server" ID="laberroe"></asp:Label>
+                <div class="col-md-7">
+
+                    <asp:Label runat="server" ID="laberroe" ForeColor="White" Width="200" Height="25" Font-Bold="true"></asp:Label>
+
                 </div>
             </div>
-
+            <br />
             <div class="row">
                 <div class="col-md-4">
-                    <asp:Button ID="btnshow" runat="server" Text="Show" Class="btn btn-danger" Width="200" Height="40" OnClick="btnshow_Click" />
+                    <asp:LinkButton runat="server" ID="bthshow" class="btn btn-danger" Width="200" Height="40" OnClick="bthshow_Click">Upload</asp:LinkButton>
                 </div>
             </div>
         </div>
@@ -76,7 +187,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <asp:TextBox runat="server" ID="txtusername" CssClass="form-control input-sm" placeholder="ผู้ใช้งาน" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="txtusername" MaxLength="30" CssClass="form-control input-sm" placeholder="ผู้ใช้งาน" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
                 </div>
             </div>
             <br />
@@ -143,12 +254,14 @@
                         <asp:LinkButton runat="server" ID="bthaddress" class="btn btn-default" Width="300" Height="40" OnClick="bthaddress_Click">เพิ่มที่อยู่</asp:LinkButton>
                     </div>
                 </div>
+
             </div>--%>
 
             <br />
+            <br />
 
-            <asp:LinkButton runat="server" ID="bthnext" class="btn btn-warning" Width="250" Height="40" OnClick="bthnext_Click">ถัดไป</asp:LinkButton>
 
+            <asp:Button ID="bthsave" runat="server" Text="Next" Class="btn btn-warning" Width="250" Height="40" OnClick="bthsave_Click" />
 
 
         </div>

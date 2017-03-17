@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="Driver\default.aspx" />
     <Content Include="Driver\HomegoSchool.aspx" />
     <Content Include="Driver\Schoolgohome.aspx" />
     <Content Include="FingerPrint\FingerPrintscan.aspx" />
@@ -115,17 +116,19 @@
     <Content Include="Images\true.png" />
     <Content Include="index.aspx" />
     <Content Include="js\app.js" />
+    <Content Include="js\jquery-1.3.2.js" />
     <Content Include="js\jquery-1.4.2.min.js" />
     <None Include="js\jquery-1.6.4-vsdoc.js" />
     <Content Include="js\jquery-1.6.4.js" />
     <Content Include="js\jquery-1.6.4.min.js" />
+    <Content Include="js\jquery-1.7.2.min.js" />
+    <Content Include="js\jquery-1.9.1.js" />
     <Content Include="js\jquery.min.js" />
     <Content Include="js\jquery.signalR-2.2.1.js" />
     <Content Include="js\jquery.signalR-2.2.1.min.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.0.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="User\default.aspx" />
     <Content Include="User\Home.aspx" />
+    <Content Include="User\Photo.aspx" />
     <Content Include="User\RegisterFingerPrint.aspx" />
     <Content Include="User\RegisterGooglemap.aspx" />
     <Content Include="User\RegisterUser.aspx" />
@@ -210,6 +213,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Driver\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Driver\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Driver\HomegoSchool.aspx.cs">
       <DependentUpon>HomegoSchool.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -281,6 +291,13 @@
     </Compile>
     <Compile Include="User\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\Photo.aspx.cs">
+      <DependentUpon>Photo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Photo.aspx.designer.cs">
+      <DependentUpon>Photo.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\RegisterFingerPrint.aspx.cs">
       <DependentUpon>RegisterFingerPrint.aspx</DependentUpon>

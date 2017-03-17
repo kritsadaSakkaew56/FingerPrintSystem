@@ -7,14 +7,22 @@ using System.Web.UI.WebControls;
 using System.Data;
 using FingerPrintSystem.DataAccess;
 
+using System.IO;
+using System.Data.SqlClient;
+using System.Configuration;
+
 namespace FingerPrintSystem.WebUI.User
 {
     public partial class RegisterUser : PageBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //checkdata();
-
+            if (!IsPostBack)
+            {
+                checkdata();
+                Maxcountuserid();
+            }
+           
 
         }
         private void checkdata()
@@ -43,39 +51,68 @@ namespace FingerPrintSystem.WebUI.User
 
 
         }
-
-        protected void bthnext_Click(object sender, EventArgs e)
+        private void Maxcountuserid()
         {
 
-            cookiesdata();
-            //double dfah = double.Parse(txtusername.Text);
-            //ServiceReference1.WebServiceSoapClient soapClient = new ServiceReference1.WebServiceSoapClient();
-            //double dval = soapClient.ConverTemperature(dfah);
+            string strConnString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
+            SqlConnection con = new SqlConnection(strConnString);
+            string query = "[sp_user_Select_maxcount]";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                int value = 1 + Int32.Parse(dr[0].ToString());
+                ViewState["Max_Count_user_id"] = value.ToString();
+            }
+
+
+
+            con.Close();
+
+        }
+
+
+        protected void bthsave_Click(object sender, EventArgs e)
+        {
+
+
+
 
 
         }
 
-        protected void btnshow_Click(object sender, EventArgs e)
+        protected void bthshow_Click(object sender, EventArgs e)
         {
-
-
-            if (FileUpload1.HasFile)
+            if (FileUpload.HasFile)
             {
 
-                string FileName = "image.png";
-                //string FileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
+                //string FileName = "image.png";
+                string FileName = Path.GetFileName(FileUpload.PostedFile.FileName);
                 string imagepath = Server.MapPath("~/UploadImage/" + FileName);
-                FileUpload1.SaveAs(imagepath);
+                FileUpload.SaveAs(imagepath);
                 Imgstudent.ImageUrl = "~/UploadImage/" + FileName;
-                laberroe.Text = "";
+                laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900");
+                laberroe.Text = "รูปประจำตัวได้บันทึกเรียบร้อย.";
 
             }
             else
             {
-
-                laberroe.Text = "Please select file.";
+                laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
+                laberroe.Text = "กรุณาทำการเลือกรูปประจำตัว.";
 
             }
+        }
+
+        protected void FileUpload_Load(object sender, EventArgs e)
+        {
+
+
+
+            Imgstudent.ImageUrl = "";
+
 
 
         }

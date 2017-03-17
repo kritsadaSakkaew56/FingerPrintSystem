@@ -63,9 +63,9 @@ namespace FingerPrintSystem.WebUI.FingerPrint {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new FingerPrintSystem.WebUI.Master.FingerPrintScan Master {
+        public new FingerPrintSystem.WebUI.Master.Driver Master {
             get {
-                return ((FingerPrintSystem.WebUI.Master.FingerPrintScan)(base.Master));
+                return ((FingerPrintSystem.WebUI.Master.Driver)(base.Master));
             }
         }
     }

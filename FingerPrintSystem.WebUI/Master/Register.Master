@@ -1,7 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Register.master.cs" Inherits="FingerPrintSystem.WebUI.Master.Register" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
@@ -145,35 +144,11 @@
         <script src="../js/jquery.customSelect.min.js"></script>
         <script src="../js/respond.min.js"></script>
 
-        <!--right slidebar-->
-        <script src="../js/slidebars.min.js"></script>
-
-        <!--common script for all pages-->
-        <script src="../js/common-scripts.js"></script>
 
 
-        <script>
 
-            //owl carousel
-
-            $(document).ready(function () {
-                $("#owl-demo").owlCarousel({
-                    navigation: true,
-                    slideSpeed: 300,
-                    paginationSpeed: 400,
-                    singleItem: true,
-                    autoPlay: true
-
-                });
-            });
-
-            //custom select box
-
-            $(function () {
-                $('select.styled').customSelect();
-            });
-
-        </script>
+       
+      
     </form>
 </body>
 </html>
