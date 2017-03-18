@@ -43,9 +43,7 @@ namespace FingerPrintSystem.WebUI.User
         {
 
             HttpCookie id = new HttpCookie("id");
-
-            id.Value = txtid.Text;
-
+            id.Value = ViewState["Max_Count_user_id"].ToString(); ;
             Response.Cookies.Add(id);
             Response.RedirectPermanent("../User/RegisterGooglemap.aspx");
 
@@ -77,22 +75,40 @@ namespace FingerPrintSystem.WebUI.User
 
         protected void bthsave_Click(object sender, EventArgs e)
         {
+            try { 
 
+                string imagepath = ViewState["svatar"].ToString();
+                FileStream fs = new FileStream(imagepath, FileMode.Open, FileAccess.Read);
+                BinaryReader br = new BinaryReader(fs);
+                Byte[] bytes = br.ReadBytes((Int32)fs.Length);
+                br.Close();
+                fs.Close();
 
+                cookiesdata();
+            }
+            catch
+            {
 
+                laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
+                laberroe.Text = "กรุณาทำการเลือกรูปประจำตัว.";
 
-
+            }
+            
         }
 
         protected void bthshow_Click(object sender, EventArgs e)
         {
             if (FileUpload.HasFile)
             {
-
+                string MaxCountuserid = ViewState["Max_Count_user_id"].ToString();
+                string FileName = MaxCountuserid + ".png";
                 //string FileName = "image.png";
-                string FileName = Path.GetFileName(FileUpload.PostedFile.FileName);
+                // string FileName = Path.GetFileName(FileUpload.PostedFile.FileName);
                 string imagepath = Server.MapPath("~/UploadImage/" + FileName);
                 FileUpload.SaveAs(imagepath);
+                ViewState["svatar"] = imagepath;
+
+
                 Imgstudent.ImageUrl = "~/UploadImage/" + FileName;
                 laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900");
                 laberroe.Text = "รูปประจำตัวได้บันทึกเรียบร้อย.";
@@ -109,11 +125,7 @@ namespace FingerPrintSystem.WebUI.User
         protected void FileUpload_Load(object sender, EventArgs e)
         {
 
-
-
             Imgstudent.ImageUrl = "";
-
-
 
         }
     }
