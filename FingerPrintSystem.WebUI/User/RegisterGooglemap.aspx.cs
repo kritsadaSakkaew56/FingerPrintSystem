@@ -11,22 +11,35 @@ namespace FingerPrintSystem.WebUI.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            HttpCookie id = Request.Cookies["id"];
-
-            if (id.Value != null)
-            {
-                ViewState["id"] = id.Value;
-
-
-            }
-
+            RequestCookiesid();
 
         }
 
         protected void bthnext_Click(object sender, EventArgs e)
         {
             Response.Redirect("../User/RegisterFingerPrint.aspx");
+        }
+        private void RequestCookiesid()
+        {
+            try
+            {
+                HttpCookie id = Request.Cookies["id"];
+
+                if (id.Value != null)
+                {
+                    ViewState["id"] = id.Value;
+
+
+                }
+            }
+            catch
+            {
+
+                Response.Redirect("../User/RegisterUser.aspx");
+            }
+
+
+
         }
     }
 }

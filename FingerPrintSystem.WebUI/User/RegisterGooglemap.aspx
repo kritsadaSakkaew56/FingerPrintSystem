@@ -71,13 +71,13 @@
         </div>
         <br />
         <br />
-       <%-- <div class="row">
+        <div class="row">
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-4">
                     <asp:TextBox ID="txtcomment" TextMode="MultiLine" placeholder="ระบุที่อยู่เพิ่มเติม" Height="55px" Width="950" runat="server"></asp:TextBox>
                 </div>
             </div>
-        </div>--%>
+        </div>
         <div class="row">
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-4">

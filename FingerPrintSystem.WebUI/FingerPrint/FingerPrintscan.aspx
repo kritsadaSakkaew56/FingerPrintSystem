@@ -1,16 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Driver.Master" AutoEventWireup="true" CodeBehind="FingerPrintscan.aspx.cs" Inherits="FingerPrintSystem.WebUI.FingerPrint.FingerPrintscan" %>
 
 <%@ MasterType VirtualPath="~/Master/Driver.Master" %>
-<%@ Register Src="~/UserControls/PagingControl.ascx" TagPrefix="uc1" TagName="PagingControl" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+ 
+    
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <div class="row">
         <section class="panel">
             <header class="panel-heading" style="background-color: #F5DEB3">
@@ -21,7 +22,7 @@
     <div class="row">
         <div class="form-group form-horizontal col-md-3">
         </div>
-       <%-- <div class="form-group form-horizontal col-md-5">
+        <%-- <div class="form-group form-horizontal col-md-5">
             <div class="row">
                 <div class="col-md-12">
                     <hr />
@@ -82,11 +83,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <asp:LinkButton runat="server" ID="bthfinish" class="btn btn-warning" Width="300" Height="40" OnClick="bthfinish_Click">ยืนยัน</asp:LinkButton>
+                    
                 </div>
             </div>
         </div>
     </div>
-  
+
     <div class="modal fade" id="myModalScan" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -96,7 +98,7 @@
                 </div>
                 <div class="modal-body">
                     <h5>ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว กด OK เพื่อกลับไปสู่เมนูหลัก  </h5>
-                
+
                 </div>
                 <div class="modal-footer">
                     <asp:LinkButton runat="server" ID="bthok" CssClass="btn btn-info" Width="100px">OK</asp:LinkButton>
@@ -106,5 +108,6 @@
             </div>
         </div>
     </div>
+   
 
 </asp:Content>
