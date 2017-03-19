@@ -10,6 +10,9 @@ using FingerPrintSystem.DataAccess;
 using System.IO;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Security.Cryptography;
+using System.Text;
+
 
 namespace FingerPrintSystem.WebUI.User
 {
@@ -19,10 +22,10 @@ namespace FingerPrintSystem.WebUI.User
         {
             if (!IsPostBack)
             {
-                checkdata();
+               // checkdata();
                 Maxcountuserid();
             }
-           
+
 
         }
         private void checkdata()
@@ -75,25 +78,90 @@ namespace FingerPrintSystem.WebUI.User
 
         protected void bthsave_Click(object sender, EventArgs e)
         {
-            try { 
 
-                string imagepath = ViewState["svatar"].ToString();
-                FileStream fs = new FileStream(imagepath, FileMode.Open, FileAccess.Read);
+            if (laberroe.Text == "รูปประจำตัวได้บันทึกเรียบร้อย")
+            {
+                Encrypt(txtpassword.Text.Trim());
+                string photopath = ViewState["svatar"].ToString();
+                string addressphoto = ViewState["addressphoto"].ToString();
+                int userid = Int32.Parse(ViewState["Max_Count_user_id"].ToString());
+
+                FileStream fs = new FileStream(photopath, FileMode.Open, FileAccess.Read);
                 BinaryReader br = new BinaryReader(fs);
-                Byte[] bytes = br.ReadBytes((Int32)fs.Length);
+                Byte[] bytesimage = br.ReadBytes((Int32)fs.Length);
                 br.Close();
                 fs.Close();
 
+                UserDAO User = new UserDAO();
+                User.AddUser(userid,
+                             txtusername.Text.Trim(),
+                             Encrypt(txtpassword.Text.Trim()),
+                             Convert.ToInt32(txtid.Text.Trim()),
+                             txtfullname.Text.Trim(),
+                             txtschool.Text.Trim(),
+                             txtfullnameparent.Text.Trim(),
+                             Convert.ToInt32(txttel.Text.Trim()),
+                             txtemail.Text.Trim(),
+                             true,
+                             addressphoto,
+                             bytesimage);
+
+
                 cookiesdata();
             }
-            catch
+            else
             {
-
                 laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
-                laberroe.Text = "กรุณาทำการเลือกรูปประจำตัว.";
-
+                laberroe.Text = "กรุณา Upload รูปประจำตัว";
             }
+           
+        
+               
             
+            
+
+        }
+        private string Encrypt(string clearText)
+        {
+            string EncryptionKey = "MAKV2SPBNI99212";
+            byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(clearBytes, 0, clearBytes.Length);
+                        cs.Close();
+                    }
+                    clearText = Convert.ToBase64String(ms.ToArray());
+                }
+            }
+            return clearText;
+        }
+        private string Decrypt(string cipherText)
+        {
+            string EncryptionKey = "MAKV2SPBNI99212";
+            byte[] cipherBytes = Convert.FromBase64String(cipherText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(cipherBytes, 0, cipherBytes.Length);
+                        cs.Close();
+                    }
+                    cipherText = Encoding.Unicode.GetString(ms.ToArray());
+                }
+            }
+            return cipherText;
         }
 
         protected void bthshow_Click(object sender, EventArgs e)
@@ -102,7 +170,7 @@ namespace FingerPrintSystem.WebUI.User
             {
                 string MaxCountuserid = ViewState["Max_Count_user_id"].ToString();
                 string FileName = MaxCountuserid + ".png";
-                //string FileName = "image.png";
+              
                 // string FileName = Path.GetFileName(FileUpload.PostedFile.FileName);
                 string imagepath = Server.MapPath("~/UploadImage/" + FileName);
                 FileUpload.SaveAs(imagepath);
@@ -110,14 +178,16 @@ namespace FingerPrintSystem.WebUI.User
 
 
                 Imgstudent.ImageUrl = "~/UploadImage/" + FileName;
+                ViewState["addressphoto"] = "~/ UploadImage / " + FileName;
+
                 laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900");
-                laberroe.Text = "รูปประจำตัวได้บันทึกเรียบร้อย.";
+                laberroe.Text = "รูปประจำตัวได้บันทึกเรียบร้อย";
 
             }
             else
             {
                 laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
-                laberroe.Text = "กรุณาทำการเลือกรูปประจำตัว.";
+                laberroe.Text = "กรุณา Upload รูปประจำตัว";
 
             }
         }
