@@ -126,6 +126,7 @@
     <Content Include="js\jquery.min.js" />
     <Content Include="js\jquery.signalR-2.2.1.js" />
     <Content Include="js\jquery.signalR-2.2.1.min.js" />
+    <Content Include="js\mqttws31.js" />
     <Content Include="User\default.aspx" />
     <Content Include="User\Home.aspx" />
     <Content Include="User\Photo.aspx" />

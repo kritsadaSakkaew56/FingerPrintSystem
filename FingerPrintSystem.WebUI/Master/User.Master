@@ -97,18 +97,19 @@
                                 <span>Change Password</span>
                             </a>
                         </li>
+                         <li>
+                            <a class="active" href="../FingerPrint/FingerPrintscan.aspx">
+                                <i class="fa fa-user"></i>
+                                <span>FingerPrintScan</span>
+                            </a>
+                        </li>
                         <li>
                             <a class="active" href="../User/Photo.aspx">
                                 <i class="fa fa-th-list"></i>
                                 <span>Photo</span>
                             </a>
                         </li>
-                        <%--<li>
-                            <a class="active" href="../FingerPrint/FingerPrintscan.aspx">
-                                <i class="fa fa-user"></i>
-                                <span>FingerPrintScan</span>
-                            </a>
-                        </li>--%>
+                       
                         <li>
                             <a class="active" href="../Login.aspx">
                                 <i class="fa fa-minus-square"></i>

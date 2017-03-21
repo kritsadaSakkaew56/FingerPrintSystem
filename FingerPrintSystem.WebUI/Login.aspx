@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <link rel="shortcut icon" href="img/favicon.png">
-    
+
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -27,9 +27,11 @@
     <script src="js/respond.min.js"></script>
     <![endif]-->
 
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
     <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+   
+
+    
     
 </head>
 <body>
@@ -56,15 +58,14 @@
                     <asp:TextBox ID="txtPassword" runat="server" class="form-control" meta:resourcekey="txtPassword" TextMode="Password"></asp:TextBox>
                 </div>
             </div>
-                    <asp:Button ID="btnSignin" runat="server" class="btn btn-lg btn-login btn-block" OnClick="btnSignin_Click" Text="Login" />
-                    <asp:Button ID="bthforget" runat="server" class="btn btn-lg btn-login btn-block" Text="Forget" OnClick="bthforget_Click"  />
-                    <asp:Button ID="bthregister" runat="server" class="btn btn-lg btn-login btn-block" Text="Register" OnClick="bthregister_Click"  />
-  
+            <asp:Button ID="btnSignin" runat="server" class="btn btn-lg btn-login btn-block" OnClick="btnSignin_Click" Text="Login" />
+            <asp:Button ID="bthforget" runat="server" class="btn btn-lg btn-login btn-block" Text="Forget" OnClick="bthforget_Click" />
+            <asp:Button ID="bthregister" runat="server" class="btn btn-lg btn-login btn-block" Text="Register" OnClick="bthregister_Click" />
+
         </form>
     </div>
 
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+  
 
 </body>
 </html>
