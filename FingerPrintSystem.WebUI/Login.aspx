@@ -8,7 +8,7 @@
     <title>FingerPrint System </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <link rel="shortcut icon" href="img/favicon.png">
+   
 
 
     <!-- Bootstrap core CSS -->
@@ -29,10 +29,10 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <script src="../js/jquery.min.js"></script>
-   
 
-    
-    
+  
+
+
 </head>
 <body>
     <div class="container">
@@ -61,11 +61,11 @@
             <asp:Button ID="btnSignin" runat="server" class="btn btn-lg btn-login btn-block" OnClick="btnSignin_Click" Text="Login" />
             <asp:Button ID="bthforget" runat="server" class="btn btn-lg btn-login btn-block" Text="Forget" OnClick="bthforget_Click" />
             <asp:Button ID="bthregister" runat="server" class="btn btn-lg btn-login btn-block" Text="Register" OnClick="bthregister_Click" />
-
+           
         </form>
     </div>
 
-  
+
 
 </body>
 </html>

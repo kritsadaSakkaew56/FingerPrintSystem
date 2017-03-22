@@ -11,33 +11,33 @@
     <script src="../js/jquery.validate.min.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#form1").validate({
-                
+
                 rules: {
                     <%=txtusername.UniqueID %>: {
-                        required: true,
-                        minlength: 6,
-                        rangelength: [6, 10]
-                    },
+                    required: true,
+                    minlength: 6,
+                    rangelength: [6, 10]
+                },
 
-                    <%=txtpassword.UniqueID %>: {   
-                        required: true, 
-                        equalTo: "#<%=txtConfirmPassword.ClientID %>"     
+                    <%=txtpassword.UniqueID %>: {
+                        required: true,
+                        equalTo: "#<%=txtConfirmPassword.ClientID %>"
                     },
                     <%=txtusername.UniqueID %>: {
                         required: true
                     },
-                    <%=txtid.UniqueID %>: {                       
+                    <%=txtid.UniqueID %>: {
                         required: true
                     },
-                    <%=txtfullname.UniqueID %>: {                       
+                    <%=txtfullname.UniqueID %>: {
                         required: true
                     },
-                    <%=txtschool.UniqueID %>: {                       
+                    <%=txtschool.UniqueID %>: {
                         required: true
                     },
-                    <%=txtfullnameparent.UniqueID %>: {                       
+                    <%=txtfullnameparent.UniqueID %>: {
                         required: true
                     },
                     <%=txttel.UniqueID %>: {
@@ -53,14 +53,14 @@
 
                 }, messages: {
                     <%=txtusername.UniqueID %>: {
-                        required: "Please enter username",
-                        minlength: "A minimum of {0} digits are required.",
-                        rangelength: "Password should be between {0} and {1} characters long"
-                         
-                    },
-                    <%=txtpassword.UniqueID %>: {   
-                        required: "Please enter password", 
-                        equalTo: "Enter same password."  
+                    required: "Please enter username",
+                    minlength: "A minimum of {0} digits are required.",
+                    rangelength: "Password should be between {0} and {1} characters long"
+
+                },
+                    <%=txtpassword.UniqueID %>: {
+                        required: "Please enter password",
+                        equalTo: "Enter same password."
                     },
                     <%=txtid.UniqueID %>: {
                         required: "Please enter id"
@@ -68,10 +68,10 @@
                     <%=txtfullname.UniqueID %>: {
                         required: "Please enter fullname"
                     },
-                    <%=txtschool.UniqueID %>: {                       
+                    <%=txtschool.UniqueID %>: {
                         required: "Please enter school"
                     },
-                    <%=txtfullnameparent.UniqueID %>: {                       
+                    <%=txtfullnameparent.UniqueID %>: {
                         required: "Please enter nameparen"
                     },
                     <%=txttel.UniqueID %>: {

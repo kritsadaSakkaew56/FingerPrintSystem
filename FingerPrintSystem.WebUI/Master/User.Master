@@ -98,7 +98,7 @@
                             </a>
                         </li>
                          <li>
-                            <a class="active" href="../FingerPrint/FingerPrintscan.aspx">
+                            <a class="active" href="../Driver/DriverLogin.aspx">
                                 <i class="fa fa-user"></i>
                                 <span>FingerPrintScan</span>
                             </a>
@@ -154,12 +154,7 @@
         <script src="../js/jquery.customSelect.min.js"></script>
         <script src="../js/respond.min.js"></script>
 
-        <!--right slidebar-->
-        <script src="../js/slidebars.min.js"></script>
-
-        <!--common script for all pages-->
-        <script src="../js/common-scripts.js"></script>
-
+     
 
         <script>
 
