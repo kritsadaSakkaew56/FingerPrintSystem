@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+
 using System.Data.SqlClient;
 
 namespace FingerPrintSystem.DataAccess
@@ -13,8 +14,8 @@ namespace FingerPrintSystem.DataAccess
 
 
         public string AddUser(int UserID,string UserName,string Password,
-                              int ID,string Fullname,string School ,string Fullnameparent,
-                              int Tel,string Email,bool IsActive,string Photo, Byte[] Savatardata)
+                              string ID,string Fullname,string School ,string Fullnameparent,
+                              string Tel,string Email,bool IsActive,string Photo, Byte[] Savatardata)
         {
             DatabaseHelper db = new DatabaseHelper();
             List<SqlParameter> param = new List<SqlParameter>();
@@ -32,6 +33,19 @@ namespace FingerPrintSystem.DataAccess
             param.Add(new SqlParameter("@photo_data", Savatardata));
 
             return db.ExecuteScalar("sp_User_Insert", param).ToString();
+
+        }
+        public string AddUserAddress(int UserI ,string Latitude, string Longitude,string address, string Detailaddress)
+        {
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@user_id", UserI));
+            param.Add(new SqlParameter("@latitude", Latitude));
+            param.Add(new SqlParameter("@longitude", Longitude));
+            param.Add(new SqlParameter("@address", address));
+            param.Add(new SqlParameter("@detailaddress", Detailaddress));
+
+            return db.ExecuteScalar("sp_User_address_Insert", param).ToString(); ;
 
         }
     }

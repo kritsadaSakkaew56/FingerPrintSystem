@@ -95,6 +95,8 @@ namespace FingerPrintSystem.WebUI.Driver
             gvMember.DataSource = ds.Tables[0];
             gvMember.DataBind();
 
+
+
         }
         
     }

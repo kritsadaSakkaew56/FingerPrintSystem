@@ -22,7 +22,7 @@ namespace FingerPrintSystem.WebUI.User
         {
             if (!IsPostBack)
             {
-               // checkdata();
+                // checkdata();
                 Maxcountuserid();
             }
 
@@ -42,10 +42,12 @@ namespace FingerPrintSystem.WebUI.User
 
 
         }
+
+     
         private void cookiesdata()
         {
 
-            HttpCookie id = new HttpCookie("id");
+            HttpCookie id = new HttpCookie("id");     // cookies คือการส่งค่าไปอีก pagefrom หนึ่ง
             id.Value = ViewState["Max_Count_user_id"].ToString(); ;
             Response.Cookies.Add(id);
             Response.RedirectPermanent("../User/RegisterGooglemap.aspx");
@@ -65,19 +67,45 @@ namespace FingerPrintSystem.WebUI.User
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
             {
-                int value = 1 + Int32.Parse(dr[0].ToString());
-                ViewState["Max_Count_user_id"] = value.ToString();
+
+                    int value = 1 + Int32.Parse(dr[0].ToString());
+                    ViewState["Max_Count_user_id"] = value.ToString();
+
             }
-
-
-
             con.Close();
 
         }
+        protected void bthshow_Click(object sender, EventArgs e)
+        {
+            if (FileUpload.HasFile)
+            {
+                string data = ViewState["Max_Count_user_id"].ToString();
+                string FileName = data + ".png";
 
+                // string FileName = Path.GetFileName(FileUpload.PostedFile.FileName);
+                string imagepath = Server.MapPath("~/UploadImage/" + FileName);
+                FileUpload.SaveAs(imagepath);
+                ViewState["svatar"] = imagepath;
+
+
+                Imgstudent.ImageUrl = "~/UploadImage/" + FileName;
+                ViewState["addressphoto"] = "~/ UploadImage / " + FileName;
+
+                laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900");
+                laberroe.Text = "รูปประจำตัวได้บันทึกเรียบร้อย";
+
+            }
+            else
+            {
+                laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
+                laberroe.Text = "กรุณา Upload รูปประจำตัว";
+
+            }
+        }
 
         protected void bthsave_Click(object sender, EventArgs e)
         {
+           
 
             if (laberroe.Text == "รูปประจำตัวได้บันทึกเรียบร้อย")
             {
@@ -96,29 +124,28 @@ namespace FingerPrintSystem.WebUI.User
                 User.AddUser(userid,
                              txtusername.Text.Trim(),
                              Encrypt(txtpassword.Text.Trim()),
-                             Convert.ToInt32(txtid.Text.Trim()),
+                             txtid.Text.Trim(),
                              txtfullname.Text.Trim(),
                              txtschool.Text.Trim(),
                              txtfullnameparent.Text.Trim(),
-                             Convert.ToInt32(txttel.Text.Trim()),
+                             txttel.Text.Trim(),
                              txtemail.Text.Trim(),
                              true,
                              addressphoto,
                              bytesimage);
-
-
-                cookiesdata();
+                Response.Redirect("../User/RegisterGooglemap.aspx" + this.EncryptQueryString("id=" + userid));
+                
             }
             else
             {
                 laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
                 laberroe.Text = "กรุณา Upload รูปประจำตัว";
             }
-           
-        
-               
-            
-            
+
+
+
+
+
 
         }
         private string Encrypt(string clearText)
@@ -164,33 +191,7 @@ namespace FingerPrintSystem.WebUI.User
             return cipherText;
         }
 
-        protected void bthshow_Click(object sender, EventArgs e)
-        {
-            if (FileUpload.HasFile)
-            {
-                string MaxCountuserid = ViewState["Max_Count_user_id"].ToString();
-                string FileName = MaxCountuserid + ".png";
-              
-                // string FileName = Path.GetFileName(FileUpload.PostedFile.FileName);
-                string imagepath = Server.MapPath("~/UploadImage/" + FileName);
-                FileUpload.SaveAs(imagepath);
-                ViewState["svatar"] = imagepath;
-
-
-                Imgstudent.ImageUrl = "~/UploadImage/" + FileName;
-                ViewState["addressphoto"] = "~/ UploadImage / " + FileName;
-
-                laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900");
-                laberroe.Text = "รูปประจำตัวได้บันทึกเรียบร้อย";
-
-            }
-            else
-            {
-                laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
-                laberroe.Text = "กรุณา Upload รูปประจำตัว";
-
-            }
-        }
+       
 
         protected void FileUpload_Load(object sender, EventArgs e)
         {

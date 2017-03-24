@@ -40,6 +40,15 @@ namespace FingerPrintSystem.WebUI.User {
         protected global::System.Web.UI.WebControls.TextBox txtcomment;
         
         /// <summary>
+        /// labaddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labaddress;
+        
+        /// <summary>
         /// latitude control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace FingerPrintSystem.WebUI.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox latitude;
+        
+        /// <summary>
+        /// hfvaluelatitude control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfvaluelatitude;
         
         /// <summary>
         /// longitude control.
@@ -58,12 +76,21 @@ namespace FingerPrintSystem.WebUI.User {
         protected global::System.Web.UI.WebControls.TextBox longitude;
         
         /// <summary>
-        /// bthnext control.
+        /// hfvaluelongitude control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton bthnext;
+        protected global::System.Web.UI.WebControls.HiddenField hfvaluelongitude;
+        
+        /// <summary>
+        /// bthsave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bthsave;
     }
 }
