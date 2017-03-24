@@ -11,7 +11,19 @@ namespace FingerPrintSystem.WebUI.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                if (this.DecryptQueryString("id") != null)
+                {
+                    ViewState["user_id"] = this.DecryptQueryString("id").ToString();
+                    string userid = ViewState["user_id"].ToString();
+                }
+                else
+                {
 
+                    Response.Redirect("../User/RegisterUser.aspx");
+                }
+            }
         }
 
         protected void bthlogin_Click(object sender, EventArgs e)
