@@ -58,6 +58,24 @@ namespace FingerPrintSystem.WebUI.FingerPrint {
         protected global::System.Web.UI.WebControls.LinkButton bthclse;
         
         /// <summary>
+        /// bthOKSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bthOKSave;
+        
+        /// <summary>
+        /// LinkButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        
+        /// <summary>
         /// Master property.
         /// </summary>
         /// <remarks>

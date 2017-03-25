@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using FingerPrintSystem.DataAccess;
+
 namespace FingerPrintSystem.WebUI.User
 {
     public partial class RegisterFingerPrint : PageBase
@@ -13,16 +15,18 @@ namespace FingerPrintSystem.WebUI.User
         {
             if (!IsPostBack)
             {
-                if (this.DecryptQueryString("id") != null)
-                {
-                    ViewState["user_id"] = this.DecryptQueryString("id").ToString();
-                    string userid = ViewState["user_id"].ToString();
-                }
-                else
-                {
+                //if (this.DecryptQueryString("id") != null)
+                //{
+                //    ViewState["user_id"] = this.DecryptQueryString("id").ToString();
+                //    string userid = ViewState["user_id"].ToString();
+                //}
+                //else
+                //{
 
-                    Response.Redirect("../User/RegisterUser.aspx");
-                }
+                //    Response.Redirect("../User/RegisterUser.aspx");
+                //}
+
+                ViewState["user_id"] = "3";
             }
         }
 
@@ -76,10 +80,10 @@ namespace FingerPrintSystem.WebUI.User
         protected void bthfinish_Click(object sender, EventArgs e)
         {
 
-
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalSave", "$('#myModalSave').modal();", true);
+           
 
-
+          
         }
 
         protected void bthOKSave_Click(object sender, EventArgs e)
@@ -88,6 +92,9 @@ namespace FingerPrintSystem.WebUI.User
 
             Response.Redirect("../Login.aspx");
 
+            //UserDAO User = new UserDAO();
+            //int Userid = Int32.Parse(ViewState["user_id"].ToString());
+           // User.UpdateUser(Userid, true);
         }
     }
 }

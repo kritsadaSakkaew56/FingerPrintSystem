@@ -124,7 +124,6 @@
     <Content Include="js\hosttemp.js" />
     <Content Include="js\jquery-1.3.2.js" />
     <Content Include="js\jquery-1.4.2.min.js" />
-    <Content Include="WebForm1.aspx" />
     <None Include="js\jquery-1.6.4-vsdoc.js" />
     <Content Include="js\jquery-1.6.4.js" />
     <Content Include="js\jquery-1.6.4.min.js" />
@@ -366,13 +365,6 @@
     </Compile>
     <Compile Include="UserControls\PagingControl.ascx.designer.cs">
       <DependentUpon>PagingControl.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

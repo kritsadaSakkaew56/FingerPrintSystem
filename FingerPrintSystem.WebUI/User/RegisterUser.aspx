@@ -23,6 +23,7 @@
 
                     <%=txtpassword.UniqueID %>: {
                         required: true,
+                        minlength: 5,
                         equalTo: "#<%=txtConfirmPassword.ClientID %>"
                     },
                     <%=txtusername.UniqueID %>: {
@@ -60,6 +61,7 @@
                 },
                     <%=txtpassword.UniqueID %>: {
                         required: "Please enter password",
+                        minlength:"Please enter password at least 5 characters.",
                         equalTo: "Enter same password."
                     },
                     <%=txtid.UniqueID %>: {
@@ -188,6 +190,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <asp:TextBox runat="server" ID="txtusername" MaxLength="30" CssClass="form-control input-sm" placeholder="ผู้ใช้งาน" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                </div>
+                <div class="col-md-6">
+                 <asp:Label runat="server" ID="labusername" Font-Bold="true" ForeColor="Red" Font-Size="Medium" ></asp:Label>
                 </div>
             </div>
             <br />

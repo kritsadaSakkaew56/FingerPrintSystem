@@ -48,5 +48,15 @@ namespace FingerPrintSystem.DataAccess
             return db.ExecuteScalar("sp_User_address_Insert", param).ToString(); ;
 
         }
+        public void UpdateUser(int Userid, bool Isactive)
+        {
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@user_id", Userid));
+            param.Add(new SqlParameter("@is_active", Isactive));
+
+            db.ExecuteNonQuery("sp_User_Update", param);
+
+        }
     }
 }

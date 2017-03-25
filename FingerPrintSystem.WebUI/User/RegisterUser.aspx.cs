@@ -10,6 +10,7 @@ using FingerPrintSystem.DataAccess;
 using System.IO;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Web.Security;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -23,7 +24,8 @@ namespace FingerPrintSystem.WebUI.User
             if (!IsPostBack)
             {
                 // checkdata();
-                Maxcountuserid();
+               Maxcountuserid();
+       
             }
 
 
@@ -54,15 +56,16 @@ namespace FingerPrintSystem.WebUI.User
 
 
         }
+        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString);
+        SqlCommand cmd;
+
         private void Maxcountuserid()
         {
 
-            string strConnString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
-            SqlConnection con = new SqlConnection(strConnString);
-            string query = "[sp_user_Select_maxcount]";
-            SqlCommand cmd = new SqlCommand(query, con);
+            string query = "[sp_User_Select_Maxcount]";
+            cmd = new SqlCommand(query, con);
             cmd.CommandType = CommandType.StoredProcedure;
-
+        
             con.Open();
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
@@ -77,8 +80,10 @@ namespace FingerPrintSystem.WebUI.User
         }
         protected void bthshow_Click(object sender, EventArgs e)
         {
+          
             if (FileUpload.HasFile)
             {
+
                 string data = ViewState["Max_Count_user_id"].ToString();
                 string FileName = data + ".png";
 
@@ -126,13 +131,14 @@ namespace FingerPrintSystem.WebUI.User
 
         protected void bthsave_Click(object sender, EventArgs e)
         {
-           
 
+            int userids = 0;
             if (laberroe.Text == "รูปประจำตัวได้บันทึกเรียบร้อย")
             {
                 Encrypt(txtpassword.Text.Trim());
                 string photopath = ViewState["svatar"].ToString();
                 string addressphoto = ViewState["addressphoto"].ToString();
+
                 int userid = Int32.Parse(ViewState["Max_Count_user_id"].ToString());
 
                 FileStream fs = new FileStream(photopath, FileMode.Open, FileAccess.Read);
@@ -141,21 +147,53 @@ namespace FingerPrintSystem.WebUI.User
                 br.Close();
                 fs.Close();
 
-                UserDAO User = new UserDAO();
-                User.AddUser(userid,
-                             txtusername.Text.Trim(),
-                             Encrypt(txtpassword.Text.Trim()),
-                             txtid.Text.Trim(),
-                             txtfullname.Text.Trim(),
-                             txtschool.Text.Trim(),
-                             txtfullnameparent.Text.Trim(),
-                             txttel.Text.Trim(),
-                             txtemail.Text.Trim(),
-                             true,
-                             addressphoto,
-                             bytesimage);
-                Response.Redirect("../User/RegisterGooglemap.aspx" + this.EncryptQueryString("id=" + userid));
-                
+                string query = "[sp_User_Insert]";
+                cmd = new SqlCommand(query, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@user_id", userid);
+                cmd.Parameters.AddWithValue("@username", txtusername.Text.Trim());
+                cmd.Parameters.AddWithValue("@password", Encrypt(txtpassword.Text.Trim()));
+                cmd.Parameters.AddWithValue("@id", userid);
+                cmd.Parameters.AddWithValue("@fullname", txtusername.Text.Trim());
+                cmd.Parameters.AddWithValue("@school", Encrypt(txtpassword.Text.Trim()));
+                cmd.Parameters.AddWithValue("@fullnameparent", userid);
+                cmd.Parameters.AddWithValue("@tel", txtusername.Text.Trim());
+                cmd.Parameters.AddWithValue("@email", Encrypt(txtpassword.Text.Trim()));
+                cmd.Parameters.AddWithValue("@is_active", userid);
+                cmd.Parameters.AddWithValue("@photo", txtusername.Text.Trim());
+                cmd.Parameters.AddWithValue("@photo_data", Encrypt(txtpassword.Text.Trim()));
+
+                con.Open();
+                userids = Convert.ToInt32(cmd.ExecuteScalar());
+                con.Close();
+
+                string message = string.Empty;
+                switch (userids)
+                {
+                    case -1:
+                        message = "Username already exists.\\nPlease choose a different username.";
+                        break;
+                    default:
+                        message = "Registration successful.\\nUser Id: " + userids.ToString();
+                        break;
+                }
+
+                ClientScript.RegisterStartupScript(GetType(), "alert", "alert('" + message + "');", true);
+                //UserDAO User = new UserDAO();
+                //User.AddUser(userid,
+                //             txtusername.Text.Trim(),
+                //             Encrypt(txtpassword.Text.Trim()),
+                //             txtid.Text.Trim(),
+                //             txtfullname.Text.Trim(),
+                //             txtschool.Text.Trim(),
+                //             txtfullnameparent.Text.Trim(),
+                //             txttel.Text.Trim(),
+                //             txtemail.Text.Trim(),
+                //             false,
+                //             addressphoto,
+                //             bytesimage);
+                //Response.Redirect("../User/RegisterGooglemap.aspx" + this.EncryptQueryString("id=" + userid));
+
             }
             else
             {

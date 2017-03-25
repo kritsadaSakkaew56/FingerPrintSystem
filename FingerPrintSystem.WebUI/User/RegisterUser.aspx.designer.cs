@@ -58,6 +58,15 @@ namespace FingerPrintSystem.WebUI.User {
         protected global::System.Web.UI.WebControls.TextBox txtusername;
         
         /// <summary>
+        /// labusername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labusername;
+        
+        /// <summary>
         /// txtpassword control.
         /// </summary>
         /// <remarks>

@@ -5,9 +5,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -80,7 +79,7 @@
         <div class="form-group form-horizontal col-md-5">
             <div class="row">
                 <div class="col-md-12">
-                    <asp:LinkButton runat="server" ID="bthfinish" class="btn btn-warning" Width="250" Height="40" Visible="false" OnClick="bthfinish_Click">เสร็จสิ้น</asp:LinkButton> 
+                    <asp:LinkButton runat="server" ID="bthfinish" class="btn btn-warning" Width="250" Height="40" Visible="false" OnClick="bthfinish_Click">เสร็จสิ้น</asp:LinkButton>
                 </div>
             </div>
         </div>
@@ -104,6 +103,6 @@
             </div>
         </div>
     </div>
-   
+     
 
 </asp:Content>
