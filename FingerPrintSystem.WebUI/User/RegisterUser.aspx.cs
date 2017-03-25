@@ -24,7 +24,7 @@ namespace FingerPrintSystem.WebUI.User
             if (!IsPostBack)
             {
                 // checkdata();
-               Maxcountuserid();
+               //Maxcountuserid();
        
             }
 
@@ -84,17 +84,15 @@ namespace FingerPrintSystem.WebUI.User
             if (FileUpload.HasFile)
             {
 
-                string data = ViewState["Max_Count_user_id"].ToString();
-                string FileName = data + ".png";
-
-                // string FileName = Path.GetFileName(FileUpload.PostedFile.FileName);
+           
+                string FileName = Path.GetFileName(FileUpload.PostedFile.FileName);
                 string imagepath = Server.MapPath("~/UploadImage/" + FileName);
                 FileUpload.SaveAs(imagepath);
-                ViewState["svatar"] = imagepath;
+                ViewState["svatar"] = imagepath;  // เก็บที่อยู่อยู่ของรูปประจำตัวที่นำเข้ามาในระบบ
 
 
                 Imgstudent.ImageUrl = "~/UploadImage/" + FileName;
-                ViewState["addressphoto"] = "~/ UploadImage / " + FileName;
+                ViewState["addressphoto"] = "~/ UploadImage / " + FileName; // เก็บที่อยู่อยู่ของรูปประจำตัว ใน folder UploadImage
 
                 laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900");
                 laberroe.Text = "รูปประจำตัวได้บันทึกเรียบร้อย";
@@ -132,14 +130,14 @@ namespace FingerPrintSystem.WebUI.User
         protected void bthsave_Click(object sender, EventArgs e)
         {
 
-            int userids = 0;
+           
             if (laberroe.Text == "รูปประจำตัวได้บันทึกเรียบร้อย")
             {
                 Encrypt(txtpassword.Text.Trim());
                 string photopath = ViewState["svatar"].ToString();
                 string addressphoto = ViewState["addressphoto"].ToString();
 
-                int userid = Int32.Parse(ViewState["Max_Count_user_id"].ToString());
+                //int userid = Int32.Parse(ViewState["Max_Count_user_id"].ToString());
 
                 FileStream fs = new FileStream(photopath, FileMode.Open, FileAccess.Read);
                 BinaryReader br = new BinaryReader(fs);
@@ -150,49 +148,37 @@ namespace FingerPrintSystem.WebUI.User
                 string query = "[sp_User_Insert]";
                 cmd = new SqlCommand(query, con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@user_id", userid);
                 cmd.Parameters.AddWithValue("@username", txtusername.Text.Trim());
                 cmd.Parameters.AddWithValue("@password", Encrypt(txtpassword.Text.Trim()));
-                cmd.Parameters.AddWithValue("@id", userid);
-                cmd.Parameters.AddWithValue("@fullname", txtusername.Text.Trim());
-                cmd.Parameters.AddWithValue("@school", Encrypt(txtpassword.Text.Trim()));
-                cmd.Parameters.AddWithValue("@fullnameparent", userid);
-                cmd.Parameters.AddWithValue("@tel", txtusername.Text.Trim());
-                cmd.Parameters.AddWithValue("@email", Encrypt(txtpassword.Text.Trim()));
-                cmd.Parameters.AddWithValue("@is_active", userid);
-                cmd.Parameters.AddWithValue("@photo", txtusername.Text.Trim());
-                cmd.Parameters.AddWithValue("@photo_data", Encrypt(txtpassword.Text.Trim()));
+                cmd.Parameters.AddWithValue("@id", txtid.Text.Trim());
+                cmd.Parameters.AddWithValue("@fullname", txtfullname.Text.Trim());
+                cmd.Parameters.AddWithValue("@school", txtschool.Text.Trim());
+                cmd.Parameters.AddWithValue("@fullnameparent", txtfullnameparent.Text.Trim());
+                cmd.Parameters.AddWithValue("@tel", txttel.Text.Trim());
+                cmd.Parameters.AddWithValue("@email", txtemail.Text.Trim());
+                cmd.Parameters.AddWithValue("@is_active", false);
+                cmd.Parameters.AddWithValue("@photo", addressphoto);
+                cmd.Parameters.AddWithValue("@photo_data", bytesimage);
 
                 con.Open();
-                userids = Convert.ToInt32(cmd.ExecuteScalar());
+                int userids = Convert.ToInt32(cmd.ExecuteScalar());
                 con.Close();
 
-                string message = string.Empty;
+     
                 switch (userids)
                 {
                     case -1:
-                        message = "Username already exists.\\nPlease choose a different username.";
+                        
+                        labusername.Text = "Username already exists";
+                        laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
+                        laberroe.Text = "กรุณา Upload รูปประจำตัว";
                         break;
                     default:
-                        message = "Registration successful.\\nUser Id: " + userids.ToString();
+                       
+                        Response.Redirect("../User/RegisterGooglemap.aspx" + this.EncryptQueryString("id=" + userids));
                         break;
                 }
 
-                ClientScript.RegisterStartupScript(GetType(), "alert", "alert('" + message + "');", true);
-                //UserDAO User = new UserDAO();
-                //User.AddUser(userid,
-                //             txtusername.Text.Trim(),
-                //             Encrypt(txtpassword.Text.Trim()),
-                //             txtid.Text.Trim(),
-                //             txtfullname.Text.Trim(),
-                //             txtschool.Text.Trim(),
-                //             txtfullnameparent.Text.Trim(),
-                //             txttel.Text.Trim(),
-                //             txtemail.Text.Trim(),
-                //             false,
-                //             addressphoto,
-                //             bytesimage);
-                //Response.Redirect("../User/RegisterGooglemap.aspx" + this.EncryptQueryString("id=" + userid));
 
             }
             else
