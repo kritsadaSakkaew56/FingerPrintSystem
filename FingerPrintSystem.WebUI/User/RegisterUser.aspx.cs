@@ -11,6 +11,7 @@ using System.IO;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.Security;
+
 using System.Security.Cryptography;
 using System.Text;
 
@@ -127,6 +128,7 @@ namespace FingerPrintSystem.WebUI.User
             return clearText;
         }
 
+
         protected void bthsave_Click(object sender, EventArgs e)
         {
 
@@ -137,7 +139,7 @@ namespace FingerPrintSystem.WebUI.User
                 string photopath = ViewState["svatar"].ToString();
                 string addressphoto = ViewState["addressphoto"].ToString();
 
-                //int userid = Int32.Parse(ViewState["Max_Count_user_id"].ToString());
+                //int userid = Int32.Parse(ViewState["Max_Count_user_id"].ToString());  //เพิ่ม pk ในการเช็คค่า PK สูงสุดแล้ว + 1
 
                 FileStream fs = new FileStream(photopath, FileMode.Open, FileAccess.Read);
                 BinaryReader br = new BinaryReader(fs);
@@ -148,6 +150,7 @@ namespace FingerPrintSystem.WebUI.User
                 string query = "[sp_User_Insert]";
                 cmd = new SqlCommand(query, con);
                 cmd.CommandType = CommandType.StoredProcedure;
+
                 cmd.Parameters.AddWithValue("@username", txtusername.Text.Trim());
                 cmd.Parameters.AddWithValue("@password", Encrypt(txtpassword.Text.Trim()));
                 cmd.Parameters.AddWithValue("@id", txtid.Text.Trim());
@@ -159,6 +162,7 @@ namespace FingerPrintSystem.WebUI.User
                 cmd.Parameters.AddWithValue("@is_active", false);
                 cmd.Parameters.AddWithValue("@photo", addressphoto);
                 cmd.Parameters.AddWithValue("@photo_data", bytesimage);
+                cmd.Parameters.AddWithValue("@password_Decrypt", txtpassword.Text.Trim());
 
                 con.Open();
                 int userids = Convert.ToInt32(cmd.ExecuteScalar());
@@ -169,7 +173,8 @@ namespace FingerPrintSystem.WebUI.User
                 {
                     case -1:
                         
-                        labusername.Text = "Username already exists";
+                        labusername.Text = "Username already exists"; 
+
                         laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
                         laberroe.Text = "กรุณา Upload รูปประจำตัว";
                         break;
@@ -191,27 +196,7 @@ namespace FingerPrintSystem.WebUI.User
 
 
         
-        private string Decrypt(string cipherText)
-        {
-            string EncryptionKey = "MAKV2SPBNI99212";
-            byte[] cipherBytes = Convert.FromBase64String(cipherText);
-            using (Aes encryptor = Aes.Create())
-            {
-                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
-                encryptor.Key = pdb.GetBytes(32);
-                encryptor.IV = pdb.GetBytes(16);
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
-                    {
-                        cs.Write(cipherBytes, 0, cipherBytes.Length);
-                        cs.Close();
-                    }
-                    cipherText = Encoding.Unicode.GetString(ms.ToArray());
-                }
-            }
-            return cipherText;
-        }
+        
 
        
 

@@ -7,16 +7,10 @@ using System.Web.UI.WebControls;
 
 namespace FingerPrintSystem.WebUI.User
 {
-    public partial class Photo : System.Web.UI.Page
+    public partial class Ping : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Connect("10.59.100.5");
-        }
-        private void Connect (string IPAddress)
-        {
-
-            imgphoto1.Attributes["src"] = ResolveUrl("http://"+ IPAddress + "/?action=stream");
 
         }
     }

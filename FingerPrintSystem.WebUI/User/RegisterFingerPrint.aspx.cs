@@ -15,18 +15,18 @@ namespace FingerPrintSystem.WebUI.User
         {
             if (!IsPostBack)
             {
-                //if (this.DecryptQueryString("id") != null)
-                //{
-                //    ViewState["user_id"] = this.DecryptQueryString("id").ToString();
-                //    string userid = ViewState["user_id"].ToString();
-                //}
-                //else
-                //{
+                if (this.DecryptQueryString("id") != null)
+                {
+                    ViewState["user_id"] = this.DecryptQueryString("id").ToString();
+                    string userid = ViewState["user_id"].ToString();
+                }
+                else
+                {
 
-                //    Response.Redirect("../User/RegisterUser.aspx");
-                //}
+                    Response.Redirect("../User/RegisterUser.aspx");
+                }
 
-                ViewState["user_id"] = "3";
+               
             }
         }
 
@@ -92,9 +92,6 @@ namespace FingerPrintSystem.WebUI.User
 
             Response.Redirect("../Login.aspx");
 
-            //UserDAO User = new UserDAO();
-            //int Userid = Int32.Parse(ViewState["user_id"].ToString());
-           // User.UpdateUser(Userid, true);
         }
     }
 }

@@ -18,11 +18,22 @@ namespace FingerPrintSystem.WebUI.User
        
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (this.IsPostBack)
+            if (!this.IsPostBack)
             {
 
                 labgps.Text = Request.Form[hfvaluegps.UniqueID];
                 labc.Text = Request.Form[hfvaluetemp.UniqueID];
+
+                if (this.DecryptQueryString("id") != null)
+                {
+                    ViewState["user_id"] = this.DecryptQueryString("id").ToString();
+                    string userid = ViewState["user_id"].ToString();
+                }
+                else
+                {
+
+                    Response.Redirect("../User/RegisterUser.aspx");
+                }
             }
 
 

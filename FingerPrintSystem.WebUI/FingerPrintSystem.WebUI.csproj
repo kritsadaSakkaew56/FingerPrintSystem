@@ -116,6 +116,7 @@
     <Content Include="Images\smalllogo.png" />
     <Content Include="Images\true.png" />
     <Content Include="index.aspx" />
+    <Content Include="javascript_simple.html" />
     <Content Include="js\app.js" />
     <Content Include="js\appgps.js" />
     <Content Include="js\apptemp.js" />
@@ -136,6 +137,7 @@
     <Content Include="User\default.aspx" />
     <Content Include="User\Home.aspx" />
     <Content Include="User\Photo.aspx" />
+    <Content Include="User\Ping.aspx" />
     <Content Include="User\RegisterFingerPrint.aspx" />
     <Content Include="User\RegisterGooglemap.aspx" />
     <Content Include="User\RegisterUser.aspx" />
@@ -312,6 +314,13 @@
     </Compile>
     <Compile Include="User\Photo.aspx.designer.cs">
       <DependentUpon>Photo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\Ping.aspx.cs">
+      <DependentUpon>Ping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Ping.aspx.designer.cs">
+      <DependentUpon>Ping.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\RegisterFingerPrint.aspx.cs">
       <DependentUpon>RegisterFingerPrint.aspx</DependentUpon>

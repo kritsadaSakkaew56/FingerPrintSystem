@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FingerPrintClinic.WebUI {
+namespace FingerPrintSystem.WebUI {
     
     
     public partial class Login {
@@ -40,6 +40,15 @@ namespace FingerPrintClinic.WebUI {
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
         
         /// <summary>
+        /// txtusername_password control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtusername_password;
+        
+        /// <summary>
         /// btnSignin control.
         /// </summary>
         /// <remarks>
@@ -65,5 +74,23 @@ namespace FingerPrintClinic.WebUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bthregister;
+        
+        /// <summary>
+        /// bthok control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bthok;
+        
+        /// <summary>
+        /// bthclse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bthclse;
     }
 }

@@ -28,23 +28,6 @@ namespace FingerPrintSystem.WebUI.FingerPrint
         protected void btnshow_Click(object sender, EventArgs e)
         {
 
-            //if (FileUpload1.HasFile)
-            //{
-
-            //    string FileName = "image.png";
-            //    //string FileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
-            //    string imagepath = Server.MapPath("~/UploadImage/" + FileName);
-            //    FileUpload1.SaveAs(imagepath);
-            //    Imgstudent.ImageUrl = "~/UploadImage/" + FileName;
-            //    laberroe.Text = "";
-
-            //}
-            //else
-            //{
-               
-            //    laberroe.Text = "Please select file.";
-
-            //}
         }
 
         protected void bthfinish_Click(object sender, EventArgs e)

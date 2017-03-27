@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Driver.Master" AutoEventWireup="true" CodeBehind="FingerPrintscan.aspx.cs" Inherits="FingerPrintSystem.WebUI.FingerPrint.FingerPrintscan" %>
 
 <%@ MasterType VirtualPath="~/Master/Driver.Master" %>
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
@@ -99,7 +97,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bthok" CssClass="btn btn-info" Width="100px">OK</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bthok" CssClass="btn btn-info"  Width="100px">OK</asp:LinkButton>
                     <asp:LinkButton runat="server" ID="bthclse" CssClass="btn btn-info" Width="100px">CLOSE</asp:LinkButton>
 
                 </div>
