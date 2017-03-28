@@ -46,17 +46,7 @@ namespace FingerPrintSystem.WebUI.User
 
         }
 
-     
-        private void cookiesdata()
-        {
-
-            HttpCookie id = new HttpCookie("id");     // cookies คือการส่งค่าไปอีก pagefrom หนึ่ง
-            id.Value = ViewState["Max_Count_user_id"].ToString(); ;
-            Response.Cookies.Add(id);
-            Response.RedirectPermanent("../User/RegisterGooglemap.aspx");
-
-
-        }
+    
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString);
         SqlCommand cmd;
 
@@ -135,70 +125,103 @@ namespace FingerPrintSystem.WebUI.User
            
             if (laberroe.Text == "รูปประจำตัวได้บันทึกเรียบร้อย")
             {
-                Encrypt(txtpassword.Text.Trim());
-                string photopath = ViewState["svatar"].ToString();
-                string addressphoto = ViewState["addressphoto"].ToString();
-
-                //int userid = Int32.Parse(ViewState["Max_Count_user_id"].ToString());  //เพิ่ม pk ในการเช็คค่า PK สูงสุดแล้ว + 1
-
-                FileStream fs = new FileStream(photopath, FileMode.Open, FileAccess.Read);
-                BinaryReader br = new BinaryReader(fs);
-                Byte[] bytesimage = br.ReadBytes((Int32)fs.Length);
-                br.Close();
-                fs.Close();
-
-                string query = "[sp_User_Insert]";
-                cmd = new SqlCommand(query, con);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("@username", txtusername.Text.Trim());
-                cmd.Parameters.AddWithValue("@password", Encrypt(txtpassword.Text.Trim()));
-                cmd.Parameters.AddWithValue("@id", txtid.Text.Trim());
-                cmd.Parameters.AddWithValue("@fullname", txtfullname.Text.Trim());
-                cmd.Parameters.AddWithValue("@school", txtschool.Text.Trim());
-                cmd.Parameters.AddWithValue("@fullnameparent", txtfullnameparent.Text.Trim());
-                cmd.Parameters.AddWithValue("@tel", txttel.Text.Trim());
-                cmd.Parameters.AddWithValue("@email", txtemail.Text.Trim());
-                cmd.Parameters.AddWithValue("@is_active", false);
-                cmd.Parameters.AddWithValue("@photo", addressphoto);
-                cmd.Parameters.AddWithValue("@photo_data", bytesimage);
-                cmd.Parameters.AddWithValue("@password_Decrypt", txtpassword.Text.Trim());
-
-                con.Open();
-                int userids = Convert.ToInt32(cmd.ExecuteScalar());
-                con.Close();
-
-     
-                switch (userids)
-                {
-                    case -1:
-                        
-                        labusername.Text = "Username already exists"; 
-
-                        laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
-                        laberroe.Text = "กรุณา Upload รูปประจำตัว";
-                        break;
-                    default:
-                       
-                        Response.Redirect("../User/RegisterGooglemap.aspx" + this.EncryptQueryString("id=" + userids));
-                        break;
-                }
-
+    
+                BindDataMember();
 
             }
             else
             {
+                labusername.Text = "";
                 laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
                 laberroe.Text = "กรุณา Upload รูปประจำตัว";
             }
 
         }
 
+        private void BindDataMember()
+        {
+            string query = "[sp_Member_Insert]";
+            cmd = new SqlCommand(query, con);
+            cmd.CommandType = CommandType.StoredProcedure;
 
-        
-        
+            cmd.Parameters.AddWithValue("@username", txtusername.Text.Trim());
+            cmd.Parameters.AddWithValue("@password", Encrypt(txtpassword.Text.Trim()));
+            cmd.Parameters.AddWithValue("@createdby", "User");
 
-       
+            con.Open();
+            int memberid = Convert.ToInt32(cmd.ExecuteScalar());
+            con.Close();
+
+
+            switch (memberid)
+            {
+                case -1:
+                    labusername.Text = "Username already exists";
+
+                    laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
+                    laberroe.Text = "กรุณา Upload รูปประจำตัว";
+                    break;
+                default:
+                    BindDataUser(memberid);
+                    break;
+            }
+
+
+        }
+        private void BindDataUser(int memberid)
+        {
+
+            Encrypt(txtpassword.Text.Trim());
+            string photopath = ViewState["svatar"].ToString();
+            string addressphoto = ViewState["addressphoto"].ToString();
+
+            //int userid = Int32.Parse(ViewState["Max_Count_user_id"].ToString());  //เพิ่ม pk ในการเช็คค่า PK สูงสุดแล้ว + 1
+
+            FileStream fs = new FileStream(photopath, FileMode.Open, FileAccess.Read);
+            BinaryReader br = new BinaryReader(fs);
+            Byte[] bytesimage = br.ReadBytes((Int32)fs.Length);
+            br.Close();
+            fs.Close();
+
+            string query = "[sp_User_Insert]";
+            cmd = new SqlCommand(query, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@userid", memberid);
+            cmd.Parameters.AddWithValue("@id", txtid.Text.Trim());
+            cmd.Parameters.AddWithValue("@fullname", txtfullname.Text.Trim());
+            cmd.Parameters.AddWithValue("@school", txtschool.Text.Trim());
+            cmd.Parameters.AddWithValue("@fullnameparent", txtfullnameparent.Text.Trim());
+            cmd.Parameters.AddWithValue("@tel", txttel.Text.Trim());
+            cmd.Parameters.AddWithValue("@email", txtemail.Text.Trim());
+            cmd.Parameters.AddWithValue("@is_active", false);
+            cmd.Parameters.AddWithValue("@photo", addressphoto);
+            cmd.Parameters.AddWithValue("@photo_data", bytesimage);
+            cmd.Parameters.AddWithValue("@password_Decrypt", txtpassword.Text.Trim());
+
+            con.Open();
+            string check = Convert.ToString(cmd.ExecuteScalar());
+            con.Close();
+           
+            Response.Redirect("../User/RegisterGooglemap.aspx" + this.EncryptQueryString("id=" + memberid));
+
+        }
+        
+        private void cookiesdata()
+        {
+
+            HttpCookie id = new HttpCookie("id");     // cookies คือการส่งค่าไปอีก pagefrom หนึ่ง
+            id.Value = ViewState["Max_Count_user_id"].ToString(); ;
+            Response.Cookies.Add(id);
+            Response.RedirectPermanent("../User/RegisterGooglemap.aspx");
+
+
+        }
+
+
+
+
+
 
         protected void FileUpload_Load(object sender, EventArgs e)
         {

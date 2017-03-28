@@ -34,35 +34,62 @@ namespace FingerPrintSystem.WebUI
 
         protected void btnSignin_Click(object sender, EventArgs e)
         {
-           
-            string query = "sp_User_Select_ByValidating";
-            cmd = new SqlCommand(query, con);
-            cmd.CommandType = CommandType.StoredProcedure;
+                txtusername_password.Text = "";
+        
+                string query = "sp_Member_Select_ByValidating";
+                cmd = new SqlCommand(query, con);
+                cmd.CommandType = CommandType.StoredProcedure;
 
 
-            cmd.Parameters.AddWithValue("@username", txtUserName.Text.Trim());
-            cmd.Parameters.AddWithValue("@password", Encrypt(txtPassword.Text.Trim()));
+                cmd.Parameters.AddWithValue("@username", txtUserName.Text.Trim());
+                cmd.Parameters.AddWithValue("@password", Encrypt(txtPassword.Text.Trim()));
 
-            con.Open();
-            int userid = Convert.ToInt32(cmd.ExecuteScalar());
-            con.Close();
+                con.Open();
+                int memberid = Convert.ToInt32(cmd.ExecuteScalar());
+                con.Close();
 
-            switch(userid)
+
+            switch (memberid)
             {
                 case -1:
                     txtusername_password.Text = "Username and/or password is incorrect.";
                     break;
-                case -2:
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalFingerprint", "$('#myModalFingerprint').modal();", true);
-                    txtusername_password.Text = "";
-                    break;
                 default:
-                    Response.Redirect("User/Home.aspx" + this.EncryptQueryString("id="+ userid));
+                    Checkstatus(memberid);
                     break;
 
             }
-        }
 
+
+        }
+        private void Checkstatus(int memberid)
+        {
+            string query = "sp_Member_Select_ByID";
+            cmd = new SqlCommand(query, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@memberid", memberid);
+
+            SqlDataAdapter ad = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            ad.Fill(dt);
+
+            if(dt.Rows.Count>0)
+            {
+                string status = dt.Rows[0]["createdby"].ToString();
+
+                if (status == "User")
+                {
+                    Response.Redirect("User/Home.aspx" + this.EncryptQueryString("id=" + memberid));
+                }
+                else if(status== "Driver")
+                {
+                    Response.Redirect("Driver/default.aspx" + this.EncryptQueryString("id=" + memberid));
+                }
+
+            }
+
+        }
         private string Encrypt(string clearText)
         {
             string EncryptionKey = "MAKV2SPBNI99212";
@@ -111,12 +138,10 @@ namespace FingerPrintSystem.WebUI
             Response.Redirect("/User/default.aspx");
 
 
-
         }
 
         protected void bthforget_Click(object sender, EventArgs e)
         {
-
             Response.Redirect("/Driver/default.aspx");
         }
     }

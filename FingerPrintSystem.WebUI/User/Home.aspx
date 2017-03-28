@@ -4,7 +4,7 @@
 
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <script src="../js/jquery.min.js"></script>
+   
 
     <script src="../js/host.js"></script>
     <script src="../js/mqttws31.js" type="text/javascript"></script>
@@ -12,7 +12,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
- 
+
 
     <script type="text/javascript">
         var mqtt;
@@ -21,7 +21,7 @@
 
         $(document).ready(function () {
             MQTTconnect();
-     
+
         });
 
 
@@ -32,7 +32,7 @@
 
             mqtt = new Paho.MQTT.Client(host, port, path, "web1_" + parseInt(Math.random() * 100, 10));
 
-  
+
             mqtt.onConnectionLost = onConnectionLost;
             mqtt.onMessageArrived = onMessageArrived;
 
@@ -47,7 +47,7 @@
                     setTimeout(MQTTconnect, reconnectTimeout);
                 }
             };
-     
+
             if (username != null) {
 
                 options.userName = username;
@@ -80,7 +80,7 @@
         };
 
         function onMessageArrived(message) {
-              
+
             var payload = message.payloadString;
 
             // ทำการแสดงค่าใน labelGPS
@@ -130,7 +130,7 @@
                     <asp:Label runat="server" Text="เลขที่:" Font-Size="Large"></asp:Label>
                 </div>
                 <div class="col-md-8">
-                    <asp:Label runat="server" ID="labid" Text="56363413" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
+                    <asp:Label runat="server" ID="labid" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
                 </div>
 
             </div>
@@ -140,7 +140,7 @@
                     <asp:Label runat="server" Text="ชื่อ-นามสกุล:" Font-Size="Large"></asp:Label>
                 </div>
                 <div class="col-md-8">
-                    <asp:Label runat="server" ID="labfullname" Text="นาย กฤษฎา สักแก้ว" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
+                    <asp:Label runat="server" ID="labfullname"  Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
                 </div>
             </div>
             <br />
@@ -149,7 +149,7 @@
                     <asp:Label runat="server" Text="โรงเรียน:" Font-Size="Large"></asp:Label>
                 </div>
                 <div class="col-md-8">
-                    <asp:Label runat="server" ID="labschool" Text="ภูซางวิทยาคม" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
+                    <asp:Label runat="server" ID="labschool"  Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
                 </div>
             </div>
             <br />
@@ -161,11 +161,11 @@
             </div>
             <br />--%>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 ">
                     <asp:Label runat="server" Text="ขึ้นรถรับส่ง:" Font-Size="Large"></asp:Label>
                 </div>
-                <div class="col-md-8">
-                    <asp:Label runat="server" ID="labstatusup" Text="ยังไม่ได้ทำการเพิ่มลายนิ้วมือ" Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="White"></asp:Label>
+                <div class="col-md-4 text-center">
+                    <asp:Label runat="server" ID="labstatusup"  Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="White"></asp:Label>
                 </div>
             </div>
             <br />
@@ -173,8 +173,8 @@
                 <div class="col-md-4">
                     <asp:Label runat="server" Text="ลงรถรับส่ง:" Font-Size="Large"></asp:Label>
                 </div>
-                <div class="col-md-8">
-                    <asp:Label runat="server" ID="labstatusdown" Text="ยังไม่ได้ทำการเพิ่มลายนิ้วมือ" Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="White"></asp:Label>
+                <div class="col-md-4 text-center">
+                    <asp:Label runat="server" ID="labstatusdown"  Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="White"></asp:Label>
                 </div>
             </div>
             <br />
@@ -196,7 +196,7 @@
                 </div>
                 <div class="col-md-1">
                     <asp:Label runat="server" ID="labc" Font-Bold="true" Font-Size="X-Large" ForeColor="#FF99FF"></asp:Label>
-                     <asp:HiddenField ID="hfvaluetemp" runat="server" />
+                    <asp:HiddenField ID="hfvaluetemp" runat="server" />
                 </div>
                 <div class="col-md-3">
                     <asp:Image runat="server" ControlStyle-Height="25" ControlStyle-Width="25" ImageUrl="~/Images/celcius-icon.png" />
@@ -205,22 +205,23 @@
         </div>
         <hr />
     </div>
-    <%-- <div class="row">
-        <section class="panel">
-            <header class="panel-heading" style="background-color: #F5DEB3">
-                <h4>ภาพถ่ายบริเวณรถรับส่งเด็กนักเรียน</h4>
-            </header>
-        </section>
-    </div>
-    <div class="row">
-        <div class="form-group form-horizontal col-md-2">
-        </div>
-        <div class="form-group form-horizontal col-md-10">
-            <div class="row">
-                <div class="col-md-12">
-                    <asp:Image runat="server" ID="Imagebusschool" ControlStyle-Height="250" ControlStyle-Width="550" BorderStyle="Double" />
+    <div class="modal fade" id="myModalFingerprint" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">การใช้งานระบบยังไม่สมบูรณ์</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>กรุณติดต่อคนขับรถเพื่อทำการเพิ่มลายนิ้วมือของเด็กนักเรียน  </h5>
+
+                </div>
+                <div class="modal-footer">
+                     <asp:LinkButton runat="server" ID="bthok" CssClass="btn btn-info" Width="200px" ForeColor="White">OK</asp:LinkButton>
+                    <%-- <asp:LinkButton runat="server" ID="bthclse" CssClass="btn btn-info" Width="100px" ForeColor="White">CLOSE</asp:LinkButton>--%>
+
                 </div>
             </div>
         </div>
-    </div>--%>
+    </div>
 </asp:Content>

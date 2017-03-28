@@ -7,13 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Mosaddek">
-    
     <meta name="keyword" content="Clinic, Blossom">
-  
+
 
 
     <!-- Bootstrap core CSS -->
-   
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/bootstrap-reset.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/datepicker/css/datepicker.css" />
     <!--external css-->
@@ -45,7 +44,7 @@
     <![endif]-->
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    </head>
+</head>
 <body>
     <form id="form1" runat="server">
         <section id="container">
@@ -54,15 +53,15 @@
             <header class="header white-bg" style="background-color: sandybrown">
                 <div class="sidebar-toggle-box">
                     <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-                    
+
                 </div>
-                 <div class="sidebar-toggle-box">
-                <img src="../Images/Home.png" width="27" height="27" />
-                <!--logo start-->
-              </div>
-                <a href="../User/Home.aspx" class="logo">FingerPrint<span>System</span></a>
+                <div class="sidebar-toggle-box">
+                    <img src="../Images/Home.png" width="27" height="27" />
+                    <!--logo start-->
+                </div>
+                <a href="../Login.aspx" class="logo">FingerPrint<span>System</span></a>
                 <!--logo end-->
-               
+
                 <div class="top-nav ">
                     <!--search & user info start-->
                     <ul class="nav pull-right top-menu">
@@ -70,8 +69,8 @@
                             <input type="text" class="form-control search" placeholder="Search">
                         </li>--%>
                         <!-- user login dropdown start-->
-                       
-                      
+
+
                         <!-- user login dropdown end -->
                     </ul>
                     <!--search & user info end-->
@@ -97,19 +96,19 @@
                                 <span>Change Password</span>
                             </a>
                         </li>
-                         <li>
+                        <%--<li>
                             <a class="active" href="../Driver/DriverLogin.aspx">
                                 <i class="fa fa-user"></i>
                                 <span>FingerPrintScan</span>
                             </a>
-                        </li>
+                        </li>--%>
                         <li>
                             <a class="active" href="../User/Photo.aspx">
                                 <i class="fa fa-th-list"></i>
                                 <span>Photo</span>
                             </a>
                         </li>
-                       
+
                         <li>
                             <a class="active" href="../Login.aspx">
                                 <i class="fa fa-minus-square"></i>
@@ -154,9 +153,37 @@
         <script src="../js/jquery.customSelect.min.js"></script>
         <script src="../js/respond.min.js"></script>
 
-     
+         <!--right slidebar-->
+        <script src="../js/slidebars.min.js"></script>
 
-       
+       <!--common script for all pages-->
+        <script src="../js/common-scripts.js"></script>
+
+
+        <script>
+
+            //owl carousel
+
+            $(document).ready(function () {
+                $("#owl-demo").owlCarousel({
+                    navigation: true,
+                    slideSpeed: 300,
+                    paginationSpeed: 400,
+                    singleItem: true,
+                    autoPlay: true
+
+                });
+            });
+
+            //custom select box
+
+            $(function () {
+                $('select.styled').customSelect();
+            });
+
+        </script>
+
+
 
     </form>
 </body>

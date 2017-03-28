@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\Checkbox _Styles.css" />
     <Content Include="Driver\default.aspx" />
     <Content Include="Driver\DriverLogin.aspx" />
     <Content Include="Driver\HomegoSchool.aspx" />
@@ -137,7 +138,6 @@
     <Content Include="User\default.aspx" />
     <Content Include="User\Home.aspx" />
     <Content Include="User\Photo.aspx" />
-    <Content Include="User\Ping.aspx" />
     <Content Include="User\RegisterFingerPrint.aspx" />
     <Content Include="User\RegisterGooglemap.aspx" />
     <Content Include="User\RegisterUser.aspx" />
@@ -314,13 +314,6 @@
     </Compile>
     <Compile Include="User\Photo.aspx.designer.cs">
       <DependentUpon>Photo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="User\Ping.aspx.cs">
-      <DependentUpon>Ping.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User\Ping.aspx.designer.cs">
-      <DependentUpon>Ping.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\RegisterFingerPrint.aspx.cs">
       <DependentUpon>RegisterFingerPrint.aspx</DependentUpon>

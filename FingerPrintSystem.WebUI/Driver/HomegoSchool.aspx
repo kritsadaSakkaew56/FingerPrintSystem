@@ -8,7 +8,7 @@
     <%--<meta http-equiv="refresh" content="3">--%>
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
-    <script src="../js/jquery-1.6.4.min.js"></script>
+    <%--<script src="../js/jquery-1.6.4.min.js"></script>--%>
     <script src="../js/jquery.signalR-2.2.1.min.js"></script>
     <script src="../signalR/hubs"></script>
 
