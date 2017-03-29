@@ -25,7 +25,16 @@ namespace FingerPrintSystem.WebUI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!this.IsPostBack)
+            {   
+                // Delete cookie id
+                if (Request.Cookies["id"] != null)
+                {
+                    HttpCookie myCookie = new HttpCookie("id");
+                    myCookie.Expires = DateTime.Now.AddDays(-1d); 
+                    Response.Cookies.Add(myCookie);
+                }
+            }
 
         }
        
@@ -80,7 +89,8 @@ namespace FingerPrintSystem.WebUI
 
                 if (status == "User")
                 {
-                    Response.Redirect("User/Home.aspx" + this.EncryptQueryString("id=" + memberid));
+                    //Response.Redirect("User/Home.aspx" + this.EncryptQueryString("id=" + memberid));
+                    cookiesdata(memberid);
                 }
                 else if(status== "Driver")
                 {
@@ -88,6 +98,16 @@ namespace FingerPrintSystem.WebUI
                 }
 
             }
+
+        }
+        private void cookiesdata(int Memberid)
+        {
+
+            HttpCookie id = new HttpCookie("id");     // cookies คือการส่งค่าไปอีก pagefrom หนึ่ง
+            id.Value = Memberid.ToString(); ;
+            Response.Cookies.Add(id);
+            Response.RedirectPermanent("/User/Home.aspx");
+
 
         }
         private string Encrypt(string clearText)

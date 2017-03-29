@@ -4,10 +4,14 @@
 
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-   
+
 
     <script src="../js/host.js"></script>
     <script src="../js/mqttws31.js" type="text/javascript"></script>
+
+    <%-- <script src="//maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=AIzaSyDBGK8nRj24Jh6GVQRtgaoISecBPAHfHDA" type="text/javascript"></script>--%>
+
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDBGK8nRj24Jh6GVQRtgaoISecBPAHfHDA"></script>
 
 
 </asp:Content>
@@ -83,14 +87,21 @@
 
             var payload = message.payloadString;
 
-            // ทำการแสดงค่าใน labelGPS
+            ///////////////// ทำการแสดงค่าใน labelGPS////////////////////////////////////
             if (message.destinationName == topicgps) {
-                var label = document.getElementById("<%=labgps.ClientID %>");
+
+<%--                var label = document.getElementById("<%=labgps.ClientID %>");
                 label.innerHTML = payload;
-                document.getElementById("<%=hfvaluegps.ClientID %>").value = label.innerHTML;
+                document.getElementById("<%=hfvaluegps.ClientID %>").value = label.innerHTML;--%>
+
+                var input = payload.split(','); // split เอาค่า latitude และ longitude
+
+                
+                var lat = input[0];
+                var lng = input[1];
+                latlng(lat, lng); // Google map api ตำแหน่งจองรถรับส่ง
 
             }
-
 
             if (message.destinationName == topictemp) {
                 // ทำการแสดงค่าใน labelTemp
@@ -100,6 +111,53 @@
 
             }
         };
+
+        // function Google map api ตำแหน่งจองรถรับส่ง
+        var latlng = function (lat, lng) {
+
+            var markers = [
+                {
+
+                    "title": '',
+                    "lat": lat,
+                    "lng": lng,
+                    "description": 'รถรับส่งเด็กนักเรียน'
+                }
+            ];
+
+            var mapOptions = {
+                center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
+                zoom: 10,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+
+            //Create and open InfoWindow.
+            var infoWindow = new google.maps.InfoWindow();
+
+            for (var i = 0; i < markers.length; i++) {
+                var data = markers[i];
+                var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    title: data.title
+                });
+
+                //Attach click event to the marker.
+                (function (marker, data) {
+                    google.maps.event.addListener(marker, "click", function (e) {
+                        //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+                        infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + data.description + "</div>");
+                        infoWindow.open(map, marker);
+                    });
+
+                })(marker, data);
+            }
+        }
+
+
     </script>
 
     <div class="row">
@@ -110,21 +168,33 @@
             </header>
         </section>
     </div>
-    <br />
-    <br />
-    <br />
     <div class="row">
         <div class="form-group form-horizontal col-md-1">
         </div>
-        <div class="form-group form-horizontal col-md-2">
+        <div class="form-group form-horizontal col-md-3">
             <div class="row">
                 <div class="col-md-12">
-                    <asp:Image runat="server" ID="Imgstudent" ControlStyle-Height="115" ControlStyle-Width="115" BorderStyle="Double" ImageUrl="~/Images/logo.png" />
+                    <asp:Image runat="server" ID="Imgstudent" ControlStyle-Height="150" ControlStyle-Width="150" BorderStyle="Double" />
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-md-4">
+                    <asp:Image runat="server" ControlStyle-Height="60" ControlStyle-Width="60" BorderStyle="Double" ImageUrl="~/Images/sensor-icon-temp.png" />
+                </div>
+                <br />
+                <div class="col-md-1">
+                    <asp:Label runat="server" ID="labc" Font-Bold="true" Font-Size="X-Large" ForeColor="#FF99FF"></asp:Label>
+                    <asp:HiddenField ID="hfvaluetemp" runat="server" />
+                </div>
+                <div class="col-md-3">
+                    <asp:Image runat="server" ControlStyle-Height="25" ControlStyle-Width="25" ImageUrl="~/Images/celcius-icon.png" />
                 </div>
             </div>
 
         </div>
-        <div class="form-group form-horizontal col-md-6">
+        <div class="form-group form-horizontal col-md-8">
             <div class="row">
                 <div class="col-md-4">
                     <asp:Label runat="server" Text="เลขที่:" Font-Size="Large"></asp:Label>
@@ -140,7 +210,7 @@
                     <asp:Label runat="server" Text="ชื่อ-นามสกุล:" Font-Size="Large"></asp:Label>
                 </div>
                 <div class="col-md-8">
-                    <asp:Label runat="server" ID="labfullname"  Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
+                    <asp:Label runat="server" ID="labfullname" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
                 </div>
             </div>
             <br />
@@ -149,7 +219,7 @@
                     <asp:Label runat="server" Text="โรงเรียน:" Font-Size="Large"></asp:Label>
                 </div>
                 <div class="col-md-8">
-                    <asp:Label runat="server" ID="labschool"  Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
+                    <asp:Label runat="server" ID="labschool" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
                 </div>
             </div>
             <br />
@@ -164,8 +234,8 @@
                 <div class="col-md-4 ">
                     <asp:Label runat="server" Text="ขึ้นรถรับส่ง:" Font-Size="Large"></asp:Label>
                 </div>
-                <div class="col-md-4 text-center">
-                    <asp:Label runat="server" ID="labstatusup"  Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="White"></asp:Label>
+                <div class="col-md-3 text-center">
+                    <asp:Label runat="server" ID="labstatusup" Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="White"></asp:Label>
                 </div>
             </div>
             <br />
@@ -173,12 +243,12 @@
                 <div class="col-md-4">
                     <asp:Label runat="server" Text="ลงรถรับส่ง:" Font-Size="Large"></asp:Label>
                 </div>
-                <div class="col-md-4 text-center">
-                    <asp:Label runat="server" ID="labstatusdown"  Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="White"></asp:Label>
+                <div class="col-md-3 text-center">
+                    <asp:Label runat="server" ID="labstatusdown" Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="White"></asp:Label>
                 </div>
             </div>
-            <br />
-            <div class="row">
+
+            <%-- <div class="row">
                 <div class="col-md-4">
                     <asp:Label runat="server" Text="ตำแหน่งปัจจุบัน:" Font-Size="Large"></asp:Label>
                 </div>
@@ -186,24 +256,39 @@
                     <asp:Label runat="server" ID="labgps" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
                     <asp:HiddenField ID="hfvaluegps" runat="server" />
                 </div>
-            </div>
+            </div>--%>
         </div>
-        <div class="form-group form-horizontal col-md-3">
-            <div class="row">
-                <div class="col-md-5">
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-10">
+            <asp:Label runat="server" Text="ตำแหน่งปัจจุบัน" Font-Size="Large"></asp:Label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-10">
+            <%-- <table>
+                <tr>
+                    <td>From : </td>
+                    <td>
+                        <asp:DropDownList ID="ddFrom" runat="server"></asp:DropDownList>
+                    </td>
+                    <td>To : </td>
+                    <td>
+                        <asp:DropDownList ID="ddTo" runat="server"></asp:DropDownList>
+                    </td>
+                    <td>
+                        <input type="button" value="Get Direction" id="btnGetDirection" />
+                    </td>
+                </tr>
+            </table>--%>
 
-                    <asp:Image runat="server" ControlStyle-Height="75" ControlStyle-Width="75" BorderStyle="Double" ImageUrl="~/Images/sensor-icon-temp.png" />
-                </div>
-                <div class="col-md-1">
-                    <asp:Label runat="server" ID="labc" Font-Bold="true" Font-Size="X-Large" ForeColor="#FF99FF"></asp:Label>
-                    <asp:HiddenField ID="hfvaluetemp" runat="server" />
-                </div>
-                <div class="col-md-3">
-                    <asp:Image runat="server" ControlStyle-Height="25" ControlStyle-Width="25" ImageUrl="~/Images/celcius-icon.png" />
-                </div>
-            </div>
+            <div id="dvMap" style="width: 550px; height: 250px; border: solid 1px black; float: left"></div>
         </div>
-        <hr />
     </div>
     <div class="modal fade" id="myModalFingerprint" role="dialog">
         <div class="modal-dialog">
@@ -217,9 +302,8 @@
 
                 </div>
                 <div class="modal-footer">
-                     <asp:LinkButton runat="server" ID="bthok" CssClass="btn btn-info" Width="200px" ForeColor="White">OK</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bthok" CssClass="btn btn-info" Width="200px" ForeColor="White">OK</asp:LinkButton>
                     <%-- <asp:LinkButton runat="server" ID="bthclse" CssClass="btn btn-info" Width="100px" ForeColor="White">CLOSE</asp:LinkButton>--%>
-
                 </div>
             </div>
         </div>

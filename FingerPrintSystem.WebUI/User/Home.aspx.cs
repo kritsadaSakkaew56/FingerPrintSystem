@@ -27,30 +27,47 @@ namespace FingerPrintSystem.WebUI.User
             if (this.IsPostBack) // เมื่อเกิดเหตุการณ์ คลิก จะทำงานเก็บค่าไว้ใน labgps.Text  และ labc.Text
             {
 
-                labgps.Text = Request.Form[hfvaluegps.UniqueID];
+                //labgps.Text = Request.Form[hfvaluegps.UniqueID];
                 labc.Text = Request.Form[hfvaluetemp.UniqueID];
-              
+
+
 
             }
             else
             {
+                RequestCookiesid();
+            }
+
+           
 
 
-                if (this.DecryptQueryString("id") != null)
+        }
+        private void RequestCookiesid()
+        {
+       
+            HttpCookie id = Request.Cookies["id"];
+
+            try
+            {
+                if (id.Value != null)
                 {
-                    ViewState["user_id"] = this.DecryptQueryString("id").ToString();
-                    string userid = ViewState["user_id"].ToString();
+                    ViewState["id"] = id.Value;
+                    string userid = ViewState["id"].ToString();
                     BindData(userid);
-                }
-                else
-                {
 
-                    Response.Redirect("/Login.aspx");
                 }
+            }
+            catch
+            {
+                Response.Redirect("/Login.aspx");
 
             }
 
+           
+
         }
+          
+        
         private void BindData(string Userid)
         {
 
@@ -59,13 +76,15 @@ namespace FingerPrintSystem.WebUI.User
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@userid", Int32.Parse(Userid));
+                                        
     
             SqlDataAdapter ad = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
+            DataTable dt = new DataTable(); 
             ad.Fill(dt);
             if (dt.Rows.Count > 0)
             {
                 bool is_active = (bool)dt.Rows[0]["is_active"];
+                Imgstudent.ImageUrl = dt.Rows[0]["photo"].ToString();
 
                 labid.Text = dt.Rows[0]["id"].ToString();
                 labfullname.Text = dt.Rows[0]["fullname"].ToString();
@@ -91,5 +110,6 @@ namespace FingerPrintSystem.WebUI.User
             }
 
         }
+
     }
 }

@@ -102,6 +102,12 @@
                                 <span>FingerPrintScan</span>
                             </a>
                         </li>--%>
+                          <li>
+                            <a class="active" href="../User/Home.aspx">
+                                <i class="fa fa-th-list"></i>
+                                <span>Data</span>
+                            </a>
+                        </li>
                         <li>
                             <a class="active" href="../User/Photo.aspx">
                                 <i class="fa fa-th-list"></i>

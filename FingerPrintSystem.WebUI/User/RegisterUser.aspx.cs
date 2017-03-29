@@ -24,7 +24,7 @@ namespace FingerPrintSystem.WebUI.User
         {
             if (!IsPostBack)
             {
-                // checkdata();
+               //checkdata();
                //Maxcountuserid();
        
             }
@@ -83,7 +83,7 @@ namespace FingerPrintSystem.WebUI.User
 
 
                 Imgstudent.ImageUrl = "~/UploadImage/" + FileName;
-                ViewState["addressphoto"] = "~/ UploadImage / " + FileName; // เก็บที่อยู่อยู่ของรูปประจำตัว ใน folder UploadImage
+                ViewState["addressphoto"] = "~/UploadImage/"+ FileName; // เก็บที่อยู่อยู่ของรูปประจำตัว ใน folder UploadImage
 
                 laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900");
                 laberroe.Text = "รูปประจำตัวได้บันทึกเรียบร้อย";
