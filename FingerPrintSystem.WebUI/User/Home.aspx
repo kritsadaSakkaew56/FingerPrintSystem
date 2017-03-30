@@ -132,7 +132,7 @@
 
             var mapOptions = {
                 center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
-                zoom: 10,
+                zoom: 11,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
