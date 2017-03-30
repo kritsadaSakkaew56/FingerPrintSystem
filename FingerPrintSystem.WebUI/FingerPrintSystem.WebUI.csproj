@@ -114,6 +114,7 @@
     <Content Include="Images\beachflag.png" />
     <Content Include="Images\celcius-icon.png" />
     <Content Include="Images\false.png" />
+    <Content Include="Images\HomeFingerprint.png" />
     <Content Include="Images\HomeGPS.png" />
     <Content Include="Images\logo1.png" />
     <Content Include="Images\school-bus.png" />

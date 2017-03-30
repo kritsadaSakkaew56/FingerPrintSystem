@@ -58,7 +58,7 @@
 
                 </div>
                 <div class="sidebar-toggle-box">
-                    <img src="../Images/Home.png" width="27" height="27" />
+                    <img src="../Images/HomeFingerprint.png" width="27" height="27" />
                     <!--logo start-->
                 </div>
                 <a href="../User/default.aspx" class="logo">FingerPrint<span>System</span></a>

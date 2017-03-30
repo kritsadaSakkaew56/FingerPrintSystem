@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
 
 using FingerPrintSystem.DataAccess;
 
@@ -11,6 +14,8 @@ namespace FingerPrintSystem.WebUI.User
 {
     public partial class RegisterGooglemap : PageBase
     {
+        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString);
+        SqlCommand cmd;
         protected void Page_Load(object sender, EventArgs e)
         {
             //RequestCookiesid();
@@ -73,8 +78,21 @@ namespace FingerPrintSystem.WebUI.User
   
 
                 int userid = Int32.Parse(ViewState["user_id"].ToString());
-                UserDAO User = new UserDAO();
-                User.AddUserAddress(userid,latitude.Text,longitude.Text,address.Text,txtcomment.Text);
+
+                string query = "sp_User_Address_Insert";
+                cmd = new SqlCommand(query, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@userid", userid);
+                cmd.Parameters.AddWithValue("@latitude", latitude.Text.Trim());
+                cmd.Parameters.AddWithValue("@longitude", longitude.Text.Trim());
+                cmd.Parameters.AddWithValue("@address", address.Text.Trim());
+                cmd.Parameters.AddWithValue("@detailaddress", txtcomment.Text.Trim());
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+
                 Response.Redirect("../User/RegisterFingerPrint.aspx" + this.EncryptQueryString("id="+ userid));
 
 

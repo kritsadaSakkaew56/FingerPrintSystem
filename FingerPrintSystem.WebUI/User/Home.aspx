@@ -129,15 +129,10 @@
                 </asp:Repeater>
             ];
 
-            var beaches = [
-                ['Bondi Beach', -16.7494033, 100.2172302, 4]
-                
-            ];
-
 
             var mapOptions = {
                 center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
-                zoom: 13,
+                zoom: 10,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
@@ -209,7 +204,7 @@
                 });
 
 
-                //Attach click event to the marker.
+                //Attach click event to the marker Driver.
                 (function (marker, datadriver) {
                     google.maps.event.addListener(marker, "click", function (e) {
                         //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
@@ -219,7 +214,7 @@
 
                 })(markerschool, datadriver);
 
-                //Attach click event to the marker.
+                //Attach click event to the marker School.
                 (function (marker, dataschool) {
                     google.maps.event.addListener(marker, "click", function (e) {
                         //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
@@ -229,7 +224,7 @@
 
                 })(markerschool, dataschool);
 
-                //Attach click event to the marker.
+                //Attach click event to the marker Home.
                 (function (marker, dataHome) {
                     google.maps.event.addListener(marker, "click", function (e) {
                         //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
@@ -238,8 +233,6 @@
                     });
 
                 })(markerHome, dataHome);
-
-
 
 
             }
@@ -352,7 +345,7 @@
         <div class="col-md-2">
         </div>
         <div class="col-md-10">
-            <asp:Label runat="server" Text="ตำแหน่งปัจจุบันของรถรับส่งเด็กนักเรียน" Font-Size="Large"></asp:Label>
+            <asp:Label runat="server" Text="แผนที่" Font-Size="Large"></asp:Label>
         </div>
     </div>
     <div class="row">

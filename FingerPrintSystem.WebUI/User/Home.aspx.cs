@@ -35,75 +35,54 @@ namespace FingerPrintSystem.WebUI.User
             }
             else
             {
-                RequestCookiesid();
-
-                int userid =Convert.ToInt32(ViewState["id"].ToString());
-                DataTable dt = this.GetData("sp_User_Address_Select_ByIDUser", userid);
-                rptMarkers.DataSource = dt;
-                rptMarkers.DataBind();
-
                
-               
-            }
-
-           
-
-
-        }
-        private DataTable GetData(string query,int userid)
-        {
-            cmd = new SqlCommand(query, con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@userid", userid);
-
-            SqlDataAdapter ad = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            ad.Fill(dt);
-            return dt;
-
-
-        }
-        private void RequestCookiesid()
-        {
-       
-            HttpCookie id = Request.Cookies["id"];
-
-            try
-            {
-                if (id.Value != null)
+                HttpCookie id = Request.Cookies["id"];
+                try
                 {
-                    ViewState["id"] = id.Value;
-                    string userid = ViewState["id"].ToString();
-                    BindData(userid);
+                    if (id.Value != null)
+                    {
+                        ViewState["id"] = id.Value;
+                        int memberid = Int32.Parse(ViewState["id"].ToString());
+                        BindData(memberid);
+                  
+
+
+
+                    }
+                }
+
+                catch
+                {
+                    Response.Redirect("/Login.aspx");
 
                 }
-            }
-            catch
-            {
-                Response.Redirect("/Login.aspx");
+
 
             }
 
-           
 
         }
-          
         
-        private void BindData(string Userid)
+        private void BindData(int memberid)
         {
 
             string query = "sp_User_Select_ByID";
             cmd = new SqlCommand(query, con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@userid", Int32.Parse(Userid));
-                                        
-    
+            cmd.Parameters.AddWithValue("@memberid", memberid);
+
+           
+
             SqlDataAdapter ad = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable(); 
             ad.Fill(dt);
             if (dt.Rows.Count > 0)
             {
+
+                int userid =Convert.ToInt32(dt.Rows[0]["user_id"].ToString());
+                UserAddress(userid); //แสดงที่อยู่ของเด็ก
+
                 bool is_active = (bool)dt.Rows[0]["is_active"];
                 Imgstudent.ImageUrl = dt.Rows[0]["photo"].ToString();
 
@@ -122,13 +101,34 @@ namespace FingerPrintSystem.WebUI.User
                 }
                 else if (is_active == false)
                 {
-              
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalFingerprint", "$('#myModalFingerprint').modal();", true); // กรณีที่ไม่ได้เพิ่มลายนิ้วมือ
                     labstatusup.Text = "ยังไม่ได้ทำการเพิ่มลายนิ้วมือ";
-                        labstatusdown.Text = "ยังไม่ได้ทำการเพิ่มลายนิ้วมือ";
+                    labstatusdown.Text = "ยังไม่ได้ทำการเพิ่มลายนิ้วมือ";
                     
                 }
             }
+
+        }
+        private void UserAddress(int userid)
+        {
+            // แสดงที่อยู่บ้านของเด็กนักเรียน
+            DataTable dt = this.GetData("sp_User_Address_Select_ByIDUser", userid);
+            rptMarkers.DataSource = dt;
+            rptMarkers.DataBind();
+
+
+        }
+        private DataTable GetData(string query, int userid)
+        {
+            cmd = new SqlCommand(query, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@userid", userid);
+
+            SqlDataAdapter ad = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            ad.Fill(dt);
+            return dt;
+
 
         }
 

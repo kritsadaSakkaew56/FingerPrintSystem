@@ -187,7 +187,7 @@ namespace FingerPrintSystem.WebUI.User
             cmd = new SqlCommand(query, con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@userid", memberid);
+            cmd.Parameters.AddWithValue("@memberid", memberid);
             cmd.Parameters.AddWithValue("@id", txtid.Text.Trim());
             cmd.Parameters.AddWithValue("@fullname", txtfullname.Text.Trim());
             cmd.Parameters.AddWithValue("@school", txtschool.Text.Trim());
@@ -200,10 +200,10 @@ namespace FingerPrintSystem.WebUI.User
             cmd.Parameters.AddWithValue("@password_Decrypt", txtpassword.Text.Trim());
 
             con.Open();
-            string check = Convert.ToString(cmd.ExecuteScalar());
+            int userid = Convert.ToInt32(cmd.ExecuteScalar());
             con.Close();
            
-            Response.Redirect("../User/RegisterGooglemap.aspx" + this.EncryptQueryString("id=" + memberid));
+            Response.Redirect("../User/RegisterGooglemap.aspx" + this.EncryptQueryString("id=" + userid));
 
         }
         
