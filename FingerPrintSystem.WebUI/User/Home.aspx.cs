@@ -36,9 +36,30 @@ namespace FingerPrintSystem.WebUI.User
             else
             {
                 RequestCookiesid();
+
+                int userid =Convert.ToInt32(ViewState["id"].ToString());
+                DataTable dt = this.GetData("sp_User_Address_Select_ByIDUser", userid);
+                rptMarkers.DataSource = dt;
+                rptMarkers.DataBind();
+
+               
+               
             }
 
            
+
+
+        }
+        private DataTable GetData(string query,int userid)
+        {
+            cmd = new SqlCommand(query, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@userid", userid);
+
+            SqlDataAdapter ad = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            ad.Fill(dt);
+            return dt;
 
 
         }

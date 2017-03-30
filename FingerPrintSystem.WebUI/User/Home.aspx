@@ -96,7 +96,7 @@
 
                 var input = payload.split(','); // split เอาค่า latitude และ longitude
 
-                
+
                 var lat = input[0];
                 var lng = input[1];
                 latlng(lat, lng); // Google map api ตำแหน่งจองรถรับส่ง
@@ -116,44 +116,132 @@
         var latlng = function (lat, lng) {
 
             var markers = [
-                {
 
-                    "title": '',
-                    "lat": lat,
-                    "lng": lng,
-                    "description": 'รถรับส่งเด็กนักเรียน'
-                }
+                { "title": 'Driver', "lat": lat, "lng": lng, "description": 'รถรับส่งเด็กนักเรียน' },                
+                { "title": 'School', "lat": '16.7494033', "lng": '100.2172302', "description": 'โรงเรียนคุ้งราวี' }, 
+                <asp:Repeater ID="rptMarkers" runat="server"> 
+                <ItemTemplate>
+                        {"title": 'Home', "lat": '<%# Eval("Latitude") %>', "lng": '<%# Eval("Longitude") %>', "description": '<%# Eval("detailaddress") %>'} 
+                    </ItemTemplate>
+                <SeparatorTemplate>
+                    ,
+                </SeparatorTemplate>
+                </asp:Repeater>
             ];
+
+            var beaches = [
+                ['Bondi Beach', -16.7494033, 100.2172302, 4]
+                
+            ];
+
 
             var mapOptions = {
                 center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
-                zoom: 10,
+                zoom: 13,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
             var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
-
+          
+           
             //Create and open InfoWindow.
             var infoWindow = new google.maps.InfoWindow();
 
+            var imageSchool = {
+                url: '../Images/beachflag.png',
+                // This marker is 20 pixels wide by 32 pixels high.
+                size: new google.maps.Size(25, 38),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 32).
+                anchor: new google.maps.Point(0, 38)
+            };
+
+            var imageHome = {
+                url: '../Images/HomeGPS.png',
+                // This marker is 20 pixels wide by 32 pixels high.
+                size: new google.maps.Size(25, 25),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 32).
+                anchor: new google.maps.Point(0, 32)
+            };
+
+            var imageDriver = {
+                url: '../Images/logo1.png',
+                // This marker is 20 pixels wide by 32 pixels high.
+                size: new google.maps.Size(30, 30),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 32).
+                anchor: new google.maps.Point(0, 32)
+            };
+
             for (var i = 0; i < markers.length; i++) {
-                var data = markers[i];
-                var myLatlng = new google.maps.LatLng(data.lat, data.lng);
-                var marker = new google.maps.Marker({
-                    position: myLatlng,
+                var datadriver = markers[0];
+                var dataschool = markers[1];
+                var dataHome = markers[2];
+
+                var myLatlngdriver = new google.maps.LatLng(datadriver.lat, datadriver.lng);
+                var markerdriver = new google.maps.Marker({
+                    position: myLatlngdriver,
                     map: map,
-                    title: data.title
+                    title: datadriver.title,
+                    icon: imageDriver
+                   
                 });
 
+                var myLatlngschool = new google.maps.LatLng(dataschool.lat, dataschool.lng);
+                var markerschool = new google.maps.Marker({
+                    position: myLatlngschool,
+                    map: map,
+                    title: dataschool.title,
+                    icon: imageSchool
+                  
+                });
+
+                var myLatlngHome = new google.maps.LatLng(dataHome.lat, dataHome.lng);
+                var markerHome = new google.maps.Marker({
+                    position: myLatlngHome,
+                    map: map,
+                    title: dataHome.title,
+                    icon: imageHome
+                });
+
+
                 //Attach click event to the marker.
-                (function (marker, data) {
+                (function (marker, datadriver) {
                     google.maps.event.addListener(marker, "click", function (e) {
                         //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-                        infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + data.description + "</div>");
+                        infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + datadriver.description + "</div>");
                         infoWindow.open(map, marker);
                     });
 
-                })(marker, data);
+                })(markerschool, datadriver);
+
+                //Attach click event to the marker.
+                (function (marker, dataschool) {
+                    google.maps.event.addListener(marker, "click", function (e) {
+                        //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+                        infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + dataschool.description + "</div>");
+                        infoWindow.open(map, marker);
+                    });
+
+                })(markerschool, dataschool);
+
+                //Attach click event to the marker.
+                (function (marker, dataHome) {
+                    google.maps.event.addListener(marker, "click", function (e) {
+                        //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+                        infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + dataHome.description + "</div>");
+                        infoWindow.open(map, marker);
+                    });
+
+                })(markerHome, dataHome);
+
+
+
+
             }
         }
 
@@ -264,7 +352,7 @@
         <div class="col-md-2">
         </div>
         <div class="col-md-10">
-            <asp:Label runat="server" Text="ตำแหน่งปัจจุบัน" Font-Size="Large"></asp:Label>
+            <asp:Label runat="server" Text="ตำแหน่งปัจจุบันของรถรับส่งเด็กนักเรียน" Font-Size="Large"></asp:Label>
         </div>
     </div>
     <div class="row">

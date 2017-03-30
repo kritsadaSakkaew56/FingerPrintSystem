@@ -111,8 +111,12 @@
     <Content Include="Driver\HomegoSchool.aspx" />
     <Content Include="Driver\Schoolgohome.aspx" />
     <Content Include="FingerPrint\FingerPrintscan.aspx" />
+    <Content Include="Images\beachflag.png" />
     <Content Include="Images\celcius-icon.png" />
     <Content Include="Images\false.png" />
+    <Content Include="Images\HomeGPS.png" />
+    <Content Include="Images\logo1.png" />
+    <Content Include="Images\school-bus.png" />
     <Content Include="Images\sensor-icon-temp.png" />
     <Content Include="Images\smalllogo.png" />
     <Content Include="Images\true.png" />
@@ -166,7 +170,6 @@
     <Content Include="css\yamm.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Home\Home.aspx" />
-    <Content Include="Images\Home.png" />
     <Content Include="Images\logo.png" />
     <Content Include="js\bootstrap-v3.2.0.js" />
     <Content Include="js\bootstrap-v3.2.0.min.js" />
