@@ -122,7 +122,6 @@
     <Content Include="Images\smalllogo.png" />
     <Content Include="Images\true.png" />
     <Content Include="index.aspx" />
-    <Content Include="javascript_simple.html" />
     <Content Include="js\app.js" />
     <Content Include="js\appgps.js" />
     <Content Include="js\apptemp.js" />

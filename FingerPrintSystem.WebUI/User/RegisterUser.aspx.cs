@@ -8,9 +8,6 @@ using System.Data;
 using FingerPrintSystem.DataAccess;
 
 using System.IO;
-using System.Data.SqlClient;
-using System.Configuration;
-using System.Web.Security;
 
 using System.Security.Cryptography;
 using System.Text;
@@ -20,12 +17,12 @@ namespace FingerPrintSystem.WebUI.User
 {
     public partial class RegisterUser : PageBase
     {
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-               //checkdata();
-               //Maxcountuserid();
+              
        
             }
 
@@ -43,30 +40,6 @@ namespace FingerPrintSystem.WebUI.User
             txttel.Text = "";
             txtemail.Text = "";
 
-
-        }
-
-    
-        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString);
-        SqlCommand cmd;
-
-        private void Maxcountuserid()
-        {
-
-            string query = "[sp_User_Select_Maxcount]";
-            cmd = new SqlCommand(query, con);
-            cmd.CommandType = CommandType.StoredProcedure;
-        
-            con.Open();
-            SqlDataReader dr = cmd.ExecuteReader();
-            if (dr.Read())
-            {
-
-                    int value = 1 + Int32.Parse(dr[0].ToString());
-                    ViewState["Max_Count_user_id"] = value.ToString();
-
-            }
-            con.Close();
 
         }
         protected void bthshow_Click(object sender, EventArgs e)
@@ -140,17 +113,9 @@ namespace FingerPrintSystem.WebUI.User
 
         private void BindDataMember()
         {
-            string query = "[sp_Member_Insert]";
-            cmd = new SqlCommand(query, con);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.AddWithValue("@username", txtusername.Text.Trim());
-            cmd.Parameters.AddWithValue("@password", Encrypt(txtpassword.Text.Trim()));
-            cmd.Parameters.AddWithValue("@createdby", "User");
-
-            con.Open();
-            int memberid = Convert.ToInt32(cmd.ExecuteScalar());
-            con.Close();
+  
+            MemberDAO member = new MemberDAO();
+            int memberid = Convert.ToInt32(member.AddMember(txtusername.Text.Trim(), Encrypt(txtpassword.Text.Trim()),"User"));
 
 
             switch (memberid)
@@ -175,53 +140,20 @@ namespace FingerPrintSystem.WebUI.User
             string photopath = ViewState["svatar"].ToString();
             string addressphoto = ViewState["addressphoto"].ToString();
 
-            //int userid = Int32.Parse(ViewState["Max_Count_user_id"].ToString());  //เพิ่ม pk ในการเช็คค่า PK สูงสุดแล้ว + 1
-
             FileStream fs = new FileStream(photopath, FileMode.Open, FileAccess.Read);
             BinaryReader br = new BinaryReader(fs);
             Byte[] bytesimage = br.ReadBytes((Int32)fs.Length);
             br.Close();
             fs.Close();
 
-            string query = "[sp_User_Insert]";
-            cmd = new SqlCommand(query, con);
-            cmd.CommandType = CommandType.StoredProcedure;
+            UserDAO user = new UserDAO();
+            user.AddUser(memberid, txtid.Text.Trim(), txtfullname.Text.Trim(), txtschool.Text.Trim(), txtfullnameparent.Text.Trim(),
+                         txttel.Text.Trim(), txtemail.Text.Trim(), false, addressphoto, bytesimage, txtpassword.Text.Trim());
 
-            cmd.Parameters.AddWithValue("@memberid", memberid);
-            cmd.Parameters.AddWithValue("@id", txtid.Text.Trim());
-            cmd.Parameters.AddWithValue("@fullname", txtfullname.Text.Trim());
-            cmd.Parameters.AddWithValue("@school", txtschool.Text.Trim());
-            cmd.Parameters.AddWithValue("@fullnameparent", txtfullnameparent.Text.Trim());
-            cmd.Parameters.AddWithValue("@tel", txttel.Text.Trim());
-            cmd.Parameters.AddWithValue("@email", txtemail.Text.Trim());
-            cmd.Parameters.AddWithValue("@is_active", false);
-            cmd.Parameters.AddWithValue("@photo", addressphoto);
-            cmd.Parameters.AddWithValue("@photo_data", bytesimage);
-            cmd.Parameters.AddWithValue("@password_Decrypt", txtpassword.Text.Trim());
-
-            con.Open();
-            int userid = Convert.ToInt32(cmd.ExecuteScalar());
-            con.Close();
-           
-            Response.Redirect("../User/RegisterGooglemap.aspx" + this.EncryptQueryString("id=" + userid));
+            Response.Redirect("../User/RegisterGooglemap.aspx" + this.EncryptQueryString("id=" + memberid));
 
         }
         
-        private void cookiesdata()
-        {
-
-            HttpCookie id = new HttpCookie("id");     // cookies คือการส่งค่าไปอีก pagefrom หนึ่ง
-            id.Value = ViewState["Max_Count_user_id"].ToString(); ;
-            Response.Cookies.Add(id);
-            Response.RedirectPermanent("../User/RegisterGooglemap.aspx");
-
-
-        }
-
-
-
-
-
 
         protected void FileUpload_Load(object sender, EventArgs e)
         {

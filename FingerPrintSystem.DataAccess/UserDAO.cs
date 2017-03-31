@@ -12,16 +12,12 @@ namespace FingerPrintSystem.DataAccess
     public class UserDAO
     {
 
-
-        public string AddUser(int UserID,string UserName,string Password,
-                              string ID,string Fullname,string School ,string Fullnameparent,
-                              string Tel,string Email,bool IsActive,string Photo, Byte[] Savatardata)
+        public string AddUser(int memberID, string ID,string Fullname,string School ,string Fullnameparent,
+                              string Tel,string Email,bool IsActive,string Photo, Byte[] Savatardata, string passwordDecrypt )
         {
             DatabaseHelper db = new DatabaseHelper();
             List<SqlParameter> param = new List<SqlParameter>();
-            param.Add(new SqlParameter("@user_id", UserID));
-            param.Add(new SqlParameter("@username", UserName));
-            param.Add(new SqlParameter("@password", Password));
+            param.Add(new SqlParameter("@memberid", memberID));
             param.Add(new SqlParameter("@id", ID));
             param.Add(new SqlParameter("@fullname", Fullname));
             param.Add(new SqlParameter("@school", School));
@@ -31,23 +27,12 @@ namespace FingerPrintSystem.DataAccess
             param.Add(new SqlParameter("@is_active", IsActive));
             param.Add(new SqlParameter("@photo", Photo));
             param.Add(new SqlParameter("@photo_data", Savatardata));
+            param.Add(new SqlParameter("@password_Decrypt", passwordDecrypt));
 
             return db.ExecuteScalar("sp_User_Insert", param).ToString();
 
         }
-        public string AddUserAddress(int UserI ,string Latitude, string Longitude,string address, string Detailaddress)
-        {
-            DatabaseHelper db = new DatabaseHelper();
-            List<SqlParameter> param = new List<SqlParameter>();
-            param.Add(new SqlParameter("@user_id", UserI));
-            param.Add(new SqlParameter("@latitude", Latitude));
-            param.Add(new SqlParameter("@longitude", Longitude));
-            param.Add(new SqlParameter("@address", address));
-            param.Add(new SqlParameter("@detailaddress", Detailaddress));
-
-            return db.ExecuteScalar("sp_User_address_Insert", param).ToString(); ;
-
-        }
+       
         public void UpdateUser(int Userid, bool Isactive)
         {
             DatabaseHelper db = new DatabaseHelper();
@@ -56,6 +41,16 @@ namespace FingerPrintSystem.DataAccess
             param.Add(new SqlParameter("@is_active", Isactive));
 
             db.ExecuteNonQuery("sp_User_Update", param);
+
+        }
+        public DataTable GetUserByMember(int memberid)
+        {
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@memberid", memberid));
+            return db.ExecuteDataTable("sp_User_Select_ByIDMember", param);
+
+
 
         }
     }

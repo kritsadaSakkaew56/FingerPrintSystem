@@ -17,8 +17,8 @@ namespace FingerPrintSystem.WebUI.User
             {
                 if (this.DecryptQueryString("id") != null)
                 {
-                    ViewState["user_id"] = this.DecryptQueryString("id").ToString();
-                    string userid = ViewState["user_id"].ToString();
+                    ViewState["member_id"] = this.DecryptQueryString("id").ToString();
+                    string memberid = ViewState["member_id"].ToString();
                 }
                 else
                 {

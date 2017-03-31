@@ -13,8 +13,15 @@ namespace FingerPrintSystem.DataAccess
 {
     public class MemberDAO
     {
+        public DataTable GetMember(int memberid)
+        {
 
-       
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@memberid", memberid));
+            return db.ExecuteDataTable("sp_Member_Select_ByID", param);
+
+        }
         public DataSet GetMember(int pageNum, int pageSize, string sortField, string sortOrder)
         {
 
@@ -41,6 +48,26 @@ namespace FingerPrintSystem.DataAccess
 
         }
 
-      
+        public string AddMember(string Username, string Password, string createdby)
+        {
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@username", Username));
+            param.Add(new SqlParameter("@password", Password));
+            param.Add(new SqlParameter("@createdby", createdby));
+
+            return db.ExecuteScalar("sp_Member_Insert", param).ToString();
+
+
+        }
+        public string AddMemberValidating(string Username , string Password)
+        {
+
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@username", Username));
+            param.Add(new SqlParameter("@password", Password));
+            return db.ExecuteScalar("sp_Member_Insert_ByValidating", param).ToString();
+        }
     }
 }

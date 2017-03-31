@@ -11,17 +11,14 @@ using System.Net.Sockets;
 using System.Threading;
 
 using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
+using FingerPrintSystem.DataAccess;
 
 namespace FingerPrintSystem.WebUI.User
 {
     public partial class Home : PageBase
 
     {
-        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString);
-        SqlCommand cmd;
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (this.IsPostBack) // เมื่อเกิดเหตุการณ์ คลิก จะทำงานเก็บค่าไว้ใน labgps.Text  และ labc.Text
@@ -29,8 +26,6 @@ namespace FingerPrintSystem.WebUI.User
 
                 //labgps.Text = Request.Form[hfvaluegps.UniqueID];
                 labc.Text = Request.Form[hfvaluetemp.UniqueID];
-
-
 
             }
             else
@@ -41,12 +36,11 @@ namespace FingerPrintSystem.WebUI.User
                 {
                     if (id.Value != null)
                     {
+
+                        
                         ViewState["id"] = id.Value;
                         int memberid = Int32.Parse(ViewState["id"].ToString());
                         BindData(memberid);
-                  
-
-
 
                     }
                 }
@@ -66,22 +60,10 @@ namespace FingerPrintSystem.WebUI.User
         private void BindData(int memberid)
         {
 
-            string query = "sp_User_Select_ByID";
-            cmd = new SqlCommand(query, con);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.AddWithValue("@memberid", memberid);
-
-           
-
-            SqlDataAdapter ad = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable(); 
-            ad.Fill(dt);
+            DataTable dt = new UserDAO().GetUserByMember(memberid);
             if (dt.Rows.Count > 0)
             {
-
-                int userid =Convert.ToInt32(dt.Rows[0]["user_id"].ToString());
-                UserAddress(userid); //แสดงที่อยู่ของเด็ก
+                UserAddress(memberid); //แสดงที่อยู่ของเด็ก
 
                 bool is_active = (bool)dt.Rows[0]["is_active"];
                 Imgstudent.ImageUrl = dt.Rows[0]["photo"].ToString();
@@ -109,25 +91,12 @@ namespace FingerPrintSystem.WebUI.User
             }
 
         }
-        private void UserAddress(int userid)
+        private void UserAddress(int memberid)
         {
             // แสดงที่อยู่บ้านของเด็กนักเรียน
-            DataTable dt = this.GetData("sp_User_Address_Select_ByIDUser", userid);
+            DataTable dt = new UserAddressDAO().GetUserAddressByMember(memberid);
             rptMarkers.DataSource = dt;
             rptMarkers.DataBind();
-
-
-        }
-        private DataTable GetData(string query, int userid)
-        {
-            cmd = new SqlCommand(query, con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@userid", userid);
-
-            SqlDataAdapter ad = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            ad.Fill(dt);
-            return dt;
 
 
         }
