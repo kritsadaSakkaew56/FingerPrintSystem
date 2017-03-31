@@ -52,7 +52,7 @@
                     <asp:TextBox ID="txtPassword" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
                 </div>
             </div>
-             <%-- <div class="row">
+            <%-- <div class="row">
                 <div class="col-md-4 text-center">
                   <h5>User</h5>
                 </div>
@@ -70,18 +70,35 @@
                     <asp:Label ID="txtusername_password" runat="server" ForeColor="Red"></asp:Label>
                 </div>
             </div>
-          
+
 
             <br />
             <asp:Button ID="btnSignin" runat="server" class="btn btn-lg btn-login btn-block" OnClick="btnSignin_Click" Text="Login" />
-            <asp:Button ID="bthforget" runat="server" class="btn btn-lg btn-login btn-block" Text="Forget" OnClick="bthforget_Click" />
+            <%-- <asp:Button ID="bthforget" runat="server" class="btn btn-lg btn-login btn-block" Text="Forget" OnClick="bthforget_Click" />--%>
             <asp:Button ID="bthregister" runat="server" class="btn btn-lg btn-login btn-block" Text="Register" OnClick="bthregister_Click" />
 
+            <div class="modal fade" id="myModalFingerprint" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">การลงทะเบียนในระบบยังไม่สมบูรณ์</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h5>กรุณติดต่อเจ้าหน้าที่เพื่อทำการแก้ไข</h5>
 
-            
+                        </div>
+                        <div class="modal-footer">
+                            <asp:LinkButton runat="server" ID="bthok" CssClass="btn btn-info" Width="200px" ForeColor="White">OK</asp:LinkButton>
+                            <%-- <asp:LinkButton runat="server" ID="bthclse" CssClass="btn btn-info" Width="100px" ForeColor="White">CLOSE</asp:LinkButton>--%>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
 
     </div>
+
 
 </body>
 </html>

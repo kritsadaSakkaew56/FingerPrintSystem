@@ -115,7 +115,7 @@ namespace FingerPrintSystem.WebUI.User
         {
   
             MemberDAO member = new MemberDAO();
-            int memberid = Convert.ToInt32(member.AddMember(txtusername.Text.Trim(), Encrypt(txtpassword.Text.Trim()),"User"));
+            int memberid = Convert.ToInt32(member.AddMember(txtusername.Text.Trim(), Encrypt(txtpassword.Text.Trim()),"User",false));
 
 
             switch (memberid)
@@ -148,7 +148,7 @@ namespace FingerPrintSystem.WebUI.User
 
             UserDAO user = new UserDAO();
             user.AddUser(memberid, txtid.Text.Trim(), txtfullname.Text.Trim(), txtschool.Text.Trim(), txtfullnameparent.Text.Trim(),
-                         txttel.Text.Trim(), txtemail.Text.Trim(), false, addressphoto, bytesimage, txtpassword.Text.Trim());
+                         txttel.Text.Trim(), txtemail.Text.Trim(),addressphoto, bytesimage, txtpassword.Text.Trim());
 
             Response.Redirect("../User/RegisterGooglemap.aspx" + this.EncryptQueryString("id=" + memberid));
 

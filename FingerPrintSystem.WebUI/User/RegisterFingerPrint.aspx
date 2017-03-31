@@ -48,6 +48,11 @@
                     <asp:TextBox runat="server" ID="txtpassword" CssClass="form-control input-sm" placeholder="รหัสผ่าน" TextMode="Password" Width="250" Height="40" Font-Size="Larger" Visible="false"></asp:TextBox>
                 </div>
             </div>
+              <div class="row">
+                <div class="col-md-6">
+                     <asp:Label ID="txtusername_password" runat="server" ForeColor="Red"></asp:Label>
+                </div>
+            </div>
             <br />
             <div class="row">
                 <div class="col-md-6">

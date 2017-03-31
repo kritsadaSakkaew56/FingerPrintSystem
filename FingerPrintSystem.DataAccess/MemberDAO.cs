@@ -48,13 +48,14 @@ namespace FingerPrintSystem.DataAccess
 
         }
 
-        public string AddMember(string Username, string Password, string createdby)
+        public string AddMember(string Username, string Password, string createdby,bool isactive)
         {
             DatabaseHelper db = new DatabaseHelper();
             List<SqlParameter> param = new List<SqlParameter>();
             param.Add(new SqlParameter("@username", Username));
             param.Add(new SqlParameter("@password", Password));
             param.Add(new SqlParameter("@createdby", createdby));
+            param.Add(new SqlParameter("@isactive", isactive));
 
             return db.ExecuteScalar("sp_Member_Insert", param).ToString();
 

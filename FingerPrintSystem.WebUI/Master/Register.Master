@@ -36,7 +36,6 @@
     <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap.min.js"></script>
 
-
     <script src="../assets/datepicker/js/bootstrap-datepicker.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->

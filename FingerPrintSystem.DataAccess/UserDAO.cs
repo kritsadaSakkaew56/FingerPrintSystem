@@ -13,7 +13,7 @@ namespace FingerPrintSystem.DataAccess
     {
 
         public string AddUser(int memberID, string ID,string Fullname,string School ,string Fullnameparent,
-                              string Tel,string Email,bool IsActive,string Photo, Byte[] Savatardata, string passwordDecrypt )
+                              string Tel,string Email,string Photo, Byte[] Savatardata, string passwordDecrypt )
         {
             DatabaseHelper db = new DatabaseHelper();
             List<SqlParameter> param = new List<SqlParameter>();
@@ -24,7 +24,6 @@ namespace FingerPrintSystem.DataAccess
             param.Add(new SqlParameter("@fullnameparent", Fullnameparent));
             param.Add(new SqlParameter("@tel", Tel));
             param.Add(new SqlParameter("@email", Email));
-            param.Add(new SqlParameter("@is_active", IsActive));
             param.Add(new SqlParameter("@photo", Photo));
             param.Add(new SqlParameter("@photo_data", Savatardata));
             param.Add(new SqlParameter("@password_Decrypt", passwordDecrypt));

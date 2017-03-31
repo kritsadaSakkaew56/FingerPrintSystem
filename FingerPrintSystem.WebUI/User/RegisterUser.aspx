@@ -5,9 +5,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-
     <script src="../js/jquery.validate.min.js"></script>
 
     <script type="text/javascript">

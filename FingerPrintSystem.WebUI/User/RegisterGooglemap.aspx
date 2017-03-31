@@ -42,7 +42,7 @@
             <header class="header white-bg" style="background-color: sandybrown">
 
                 <div class="sidebar-toggle-box">
-                    <img src="../Images/Home.png" width="27" height="27" />
+                    <img src="../Images/HomeFingerprint.png" width="27" height="27" />
                     <!--logo start-->
                 </div>
                 <a href="../Admin/googlemap.aspx" class="logo">FingerPrint<span>System</span></a>

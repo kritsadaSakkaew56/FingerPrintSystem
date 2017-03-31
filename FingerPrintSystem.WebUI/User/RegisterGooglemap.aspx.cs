@@ -29,7 +29,7 @@ namespace FingerPrintSystem.WebUI.User
                     Response.Redirect("../User/RegisterUser.aspx");
                 }
 
-                
+
             }
 
         }
@@ -42,8 +42,9 @@ namespace FingerPrintSystem.WebUI.User
             {
                 labaddress.Visible = true;
                 labaddress.Text = "กรุณากรอกข้อมูลให้ครบถ้วย";
-
-
+                address.Text = "";
+                longitude.Text = "";
+                latitude.Text = "";
             }
             else
             {
@@ -51,8 +52,6 @@ namespace FingerPrintSystem.WebUI.User
                 int memberid = Int32.Parse(ViewState["member_id"].ToString());
                 UserAddressDAO User = new UserAddressDAO();
                 User.AddUserAddress(memberid, latitude.Text.Trim(), longitude.Text.Trim(), address.Text.Trim(), txtcomment.Text.Trim());
-            
-
                 Response.Redirect("../User/RegisterFingerPrint.aspx" + this.EncryptQueryString("id="+ memberid));
 
             }

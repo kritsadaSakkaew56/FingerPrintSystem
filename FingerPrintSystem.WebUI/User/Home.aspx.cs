@@ -30,26 +30,37 @@ namespace FingerPrintSystem.WebUI.User
             }
             else
             {
-               
-                HttpCookie id = Request.Cookies["id"];
-                try
+
+                //HttpCookie userid = Request.Cookies["userid"];
+                //try
+                //{
+                //    if (userid.Value != null)
+                //    {
+
+                //        int memberid =Convert.ToInt32(userid.Value);
+                //        BindData(memberid);
+
+                //    }
+                //}
+
+                //catch
+                //{
+                //    Response.Redirect("/Login.aspx");
+
+                //}
+
+                if (this.DecryptQueryString("id") != null)
                 {
-                    if (id.Value != null)
-                    {
+                    ViewState["member_id"] = this.DecryptQueryString("id").ToString();
+                    int memberid = Convert.ToInt32(ViewState["member_id"].ToString());
+                    BindData(memberid);
+                }
+                else
+                {
 
-                        
-                        ViewState["id"] = id.Value;
-                        int memberid = Int32.Parse(ViewState["id"].ToString());
-                        BindData(memberid);
-
-                    }
+                    Response.Redirect("../Login.aspx");
                 }
 
-                catch
-                {
-                    Response.Redirect("/Login.aspx");
-
-                }
 
 
             }
@@ -61,11 +72,12 @@ namespace FingerPrintSystem.WebUI.User
         {
 
             DataTable dt = new UserDAO().GetUserByMember(memberid);
-            if (dt.Rows.Count > 0)
+            DataTable dt_active = new MemberDAO().GetMember(memberid);
+            if (dt.Rows.Count > 0 && dt_active.Rows.Count > 0)
             {
                 UserAddress(memberid); //แสดงที่อยู่ของเด็ก
 
-                bool is_active = (bool)dt.Rows[0]["is_active"];
+                bool is_active = (bool)dt_active.Rows[0]["is_active"];
                 Imgstudent.ImageUrl = dt.Rows[0]["photo"].ToString();
 
                 labid.Text = dt.Rows[0]["id"].ToString();
@@ -90,6 +102,7 @@ namespace FingerPrintSystem.WebUI.User
                 }
             }
 
+            
         }
         private void UserAddress(int memberid)
         {

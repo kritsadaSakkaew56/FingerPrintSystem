@@ -20,6 +20,23 @@ namespace FingerPrintSystem.WebUI.FingerPrint
 
                 Imgfingerprint.ImageUrl= "~/Images/false.png";
 
+                    HttpCookie userid = Request.Cookies["useridscan"];
+
+                    try
+                    {
+                        if (userid.Value != null)
+                        {
+
+                            int useridscan = Convert.ToInt32(userid.Value);
+                        }
+                    }
+
+                    catch
+                    {
+                        Response.Redirect("/Login.aspx");
+
+                    }
+                
 
             }
         }

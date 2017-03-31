@@ -27,10 +27,16 @@ namespace FingerPrintSystem.WebUI
             if (!this.IsPostBack)
             {   
                 // Delete cookie id
-                if (Request.Cookies["id"] != null)
+                if (Request.Cookies["userid"] != null)
                 {
-                    HttpCookie myCookie = new HttpCookie("id");
+                    HttpCookie myCookie = new HttpCookie("userid");
                     myCookie.Expires = DateTime.Now.AddDays(-1d); 
+                    Response.Cookies.Add(myCookie);
+                }
+                if (Request.Cookies["useridscan"] != null)
+                {
+                    HttpCookie myCookie = new HttpCookie("useridscan");
+                    myCookie.Expires = DateTime.Now.AddDays(-1d);
                     Response.Cookies.Add(myCookie);
                 }
             }
@@ -41,8 +47,7 @@ namespace FingerPrintSystem.WebUI
 
         protected void btnSignin_Click(object sender, EventArgs e)
         {
-                txtusername_password.Text = "";
-        
+           txtusername_password.Text = "";
             MemberDAO member = new MemberDAO();
             int memberid = Convert.ToInt32(member.AddMemberValidating(txtUserName.Text.Trim(), Encrypt(txtPassword.Text.Trim())));
 
@@ -50,6 +55,9 @@ namespace FingerPrintSystem.WebUI
             {
                 case -1:
                     txtusername_password.Text = "Username and/or password is incorrect.";
+                    break;
+                case -2:
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalFingerprint", "$('#myModalFingerprint').modal();", true);
                     break;
                 default:
                     Checkstatus(memberid);
@@ -69,24 +77,37 @@ namespace FingerPrintSystem.WebUI
 
                 if (status == "User")
                 {
-                    //Response.Redirect("User/Home.aspx" + this.EncryptQueryString("id=" + memberid));
-                    cookiesdata(memberid);
+                   
+                    //cookiesdatauser(memberid);
+                    Response.Redirect("/User/Home.aspx" + this.EncryptQueryString("id="+ memberid));
+                   
                 }
                 else if(status== "Driver")
                 {
-                    Response.Redirect("Driver/default.aspx" + this.EncryptQueryString("id=" + memberid));
+                    //cookiesdatadriver(memberid);
+                    Response.RedirectPermanent("/Driver/default.aspx");
                 }
 
             }
 
         }
-        // cookies คือการส่งค่าไปอีก pagefrom หนึ่ง
-        private void cookiesdata(int Memberid)
+        // cookies คือการส่งค่าไปอีก pagefrom หนึ่ง ของ user
+        private void cookiesdatauser(int Memberid)
         {
-            HttpCookie id = new HttpCookie("id");     
-            id.Value = Memberid.ToString(); ;
-            Response.Cookies.Add(id);
+            HttpCookie userid = new HttpCookie("userid");
+            userid.Value = Memberid.ToString(); ;
+            Response.Cookies.Add(userid);
             Response.RedirectPermanent("/User/Home.aspx");
+
+
+        }
+        // cookies คือการส่งค่าไปอีก pagefrom หนึ่ง ของ Driver
+        private void cookiesdatadriver(int Memberid)
+        {
+            HttpCookie driverid = new HttpCookie("driverid");
+            driverid.Value = Memberid.ToString(); ;
+            Response.Cookies.Add(driverid);
+            Response.RedirectPermanent("/Driver/default.aspx");
 
 
         }
