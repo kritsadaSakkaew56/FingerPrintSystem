@@ -131,6 +131,8 @@ namespace FingerPrintSystem.WebUI
                 BindLanguage();
             }
             base.OnLoad(e);
+
+
             //if (this.UserProfile == null)
             //{
             //    if (this.ValidateLogin)

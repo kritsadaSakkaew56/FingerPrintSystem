@@ -9,9 +9,11 @@ using uPLibrary.Networking.M2Mqtt;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Web.Security;
 
 using System.Data;
 using FingerPrintSystem.DataAccess;
+
 
 namespace FingerPrintSystem.WebUI.User
 {
@@ -37,7 +39,7 @@ namespace FingerPrintSystem.WebUI.User
                 //    if (userid.Value != null)
                 //    {
 
-                //        int memberid =Convert.ToInt32(userid.Value);
+                //        int memberid = Convert.ToInt32(this.DecryptQueryString(userid.Value));
                 //        BindData(memberid);
 
                 //    }
@@ -95,7 +97,7 @@ namespace FingerPrintSystem.WebUI.User
                 }
                 else if (is_active == false)
                 {
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalFingerprint", "$('#myModalFingerprint').modal();", true); // กรณีที่ไม่ได้เพิ่มลายนิ้วมือ
+                   
                     labstatusup.Text = "ยังไม่ได้ทำการเพิ่มลายนิ้วมือ";
                     labstatusdown.Text = "ยังไม่ได้ทำการเพิ่มลายนิ้วมือ";
                     
@@ -114,5 +116,11 @@ namespace FingerPrintSystem.WebUI.User
 
         }
 
+        protected void imgyoutube_Click(object sender, ImageClickEventArgs e)
+        {
+            //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalFingerprint", "$('#myModalFingerprint').modal();", true); // กรณีที่ไม่ได้เพิ่มลายนิ้วมือ
+             Response.Redirect("../User/Photo.aspx");
+
+        }
     }
 }

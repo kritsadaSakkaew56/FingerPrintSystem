@@ -16,7 +16,7 @@ namespace FingerPrintSystem.WebUI.User
         private void Connect (string IPAddress)
         {
 
-            imgphoto1.Attributes["src"] = ResolveUrl("http://"+ IPAddress + "/?action=stream");
+           // imgphoto1.Attributes["src"] = ResolveUrl("http://"+ IPAddress + "/?action=stream");
 
         }
     }

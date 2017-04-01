@@ -4,7 +4,7 @@
 
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="../css/main.css" rel="stylesheet" />
 
     <script src="../js/host.js"></script>
     <script src="../js/mqttws31.js" type="text/javascript"></script>
@@ -117,16 +117,16 @@
 
             var markers = [
 
-                { "title": 'Driver', "lat": lat, "lng": lng, "description": 'รถรับส่งเด็กนักเรียน' },                
-                { "title": 'School', "lat": '16.7494033', "lng": '100.2172302', "description": 'โรงเรียนคุ้งราวี' }, 
-                <asp:Repeater ID="rptMarkers" runat="server"> 
-                <ItemTemplate>
-                        {"title": 'Home', "lat": '<%# Eval("Latitude") %>', "lng": '<%# Eval("Longitude") %>', "description": '<%# Eval("detailaddress") %>'} 
+                { "title": 'Driver', "lat": lat, "lng": lng, "description": 'รถรับส่งเด็กนักเรียน' },
+                { "title": 'School', "lat": '16.7494033', "lng": '100.2172302', "description": 'โรงเรียนคุ้งราวี' },
+                <asp:Repeater ID="rptMarkers" runat="server">
+                    <ItemTemplate>
+                        {"title": 'Home', "lat": '<%# Eval("Latitude") %>', "lng": '<%# Eval("Longitude") %>', "description": '<%# Eval("detailaddress") %>'}
                     </ItemTemplate>
-                <SeparatorTemplate>
-                    ,
+                    <SeparatorTemplate>
+                        ,
                 </SeparatorTemplate>
-                </asp:Repeater>
+                </asp:Repeater >
             ];
 
 
@@ -137,8 +137,8 @@
             };
 
             var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
-          
-           
+
+
             //Create and open InfoWindow.
             var infoWindow = new google.maps.InfoWindow();
 
@@ -183,7 +183,7 @@
                     map: map,
                     title: datadriver.title,
                     icon: imageDriver
-                   
+
                 });
 
                 var myLatlngschool = new google.maps.LatLng(dataschool.lat, dataschool.lng);
@@ -192,7 +192,7 @@
                     map: map,
                     title: dataschool.title,
                     icon: imageSchool
-                  
+
                 });
 
                 var myLatlngHome = new google.maps.LatLng(dataHome.lat, dataHome.lng);
@@ -241,106 +241,120 @@
 
     </script>
 
-    <div class="row">
-        <section class="panel">
-            <header class="panel-heading" style="background-color: #F5DEB3">
-                <h4>ข้อมูล</h4>
 
-            </header>
-        </section>
+    <div class="panel">
+        <header class="panel-heading" style="background-color: #F5DEB3">
+            <h4>ข้อมูล</h4>
+        </header>
     </div>
-    <div class="row">
-        <div class="form-group form-horizontal col-md-1">
-        </div>
-        <div class="form-group form-horizontal col-md-3">
-            <div class="row">
-                <div class="col-md-12">
-                    <asp:Image runat="server" ID="Imgstudent" ControlStyle-Height="150" ControlStyle-Width="150" BorderStyle="Double" />
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div>
+                            <article class="statistic-box yellow">
+
+                                <br />
+                                <p>
+                                    <asp:Image runat="server" ID="Imgstudent" ControlStyle-Height="200" ControlStyle-Width="200" />
+                                </p>
+                                <p>
+                                    <asp:Label runat="server" Text="รูปประจำตัว" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                </p>
+                                <br />
+                                <br />
+                            </article>
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6">
+                        <article class="statistic-box yellow">
+                            <div>
+                                <br />
+                                <p>
+                                    <asp:Label runat="server" Text="เลขที่:" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                    <asp:Label runat="server" ID="labid" Font-Bold="true" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                </p>
+
+                                <p>
+                                    <asp:Label runat="server" Text="ชื่อ-นามสกุล:" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                    <asp:Label runat="server" ID="labfullname" Font-Bold="true" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                </p>
+                                <p>
+                                    <asp:Label runat="server" Text="โรงเรียน:" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                    <asp:Label runat="server" ID="labschool" Font-Bold="true" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                </p>
+
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-sm-6">
+                        <article class="statistic-box yellow">
+                            <div>
+                                <br />
+                                <p>
+                                    <asp:Label runat="server" Text="ขึ้นรถรับส่ง:" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                    <asp:Label runat="server" ID="labstatusup" Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="Black"></asp:Label>
+                                </p>
+                                <p>
+
+                                    <asp:Label runat="server" Text="ลงรถรับส่ง:" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                    <asp:Label runat="server" ID="labstatusdown" Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="Black"></asp:Label>
+
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-sm-6">
+                        <article class="statistic-box yellow">
+                            <div>
+                                <br />
+                                <br />
+                                <p>
+
+                                    <asp:ImageButton runat="server" ID="imgyoutube" ImageUrl="~/Images/YouTube.png" ToolTip="Submit" Width="130" Height="85" OnClick="imgyoutube_Click" />
+                                    <asp:Label runat="server" Text="Video Steaming" Font-Size="Small"></asp:Label>
+                                </p>
+
+                            </div>
+                            <br />
+                            <br />
+                        </article>
+                    </div>
+                    <div class="col-sm-6">
+                        <article class="statistic-box yellow">
+                            <div>
+                                <br />
+                                <p>
+                                    <asp:Image runat="server" ControlStyle-Height="60" ControlStyle-Width="60" ImageUrl="~/Images/sensor-icon-temp.png" />
+
+                                </p>
+                                <p>
+                                    <asp:Label runat="server" ID="labc" Font-Bold="true" Font-Size="X-Large" ForeColor="Black"></asp:Label>
+                                    <asp:HiddenField ID="hfvaluetemp" runat="server" />
+                                    <asp:Label runat="server" Font-Bold="true" Font-Size="X-Large" ForeColor="Black" Text="องศาเซลเซียส"></asp:Label>
+                                    <%--<asp:Image runat="server" ControlStyle-Height="25" ControlStyle-Width="25" ImageUrl="~/Images/celcius-icon.png" />--%>
+                                </p>
+
+
+                            </div>
+                            <br />
+                            <br />
+                        </article>
+                    </div>
+
                 </div>
-            </div>
-            <br />
-            <br />
-            <div class="row">
-                <div class="col-md-4">
-                    <asp:Image runat="server" ControlStyle-Height="60" ControlStyle-Width="60" BorderStyle="Double" ImageUrl="~/Images/sensor-icon-temp.png" />
-                </div>
-                <br />
-                <div class="col-md-1">
-                    <asp:Label runat="server" ID="labc" Font-Bold="true" Font-Size="X-Large" ForeColor="#FF99FF"></asp:Label>
-                    <asp:HiddenField ID="hfvaluetemp" runat="server" />
-                </div>
-                <div class="col-md-3">
-                    <asp:Image runat="server" ControlStyle-Height="25" ControlStyle-Width="25" ImageUrl="~/Images/celcius-icon.png" />
-                </div>
+
             </div>
 
-        </div>
-        <div class="form-group form-horizontal col-md-8">
-            <div class="row">
-                <div class="col-md-4">
-                    <asp:Label runat="server" Text="เลขที่:" Font-Size="Large"></asp:Label>
-                </div>
-                <div class="col-md-8">
-                    <asp:Label runat="server" ID="labid" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
-                </div>
-
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-md-4">
-                    <asp:Label runat="server" Text="ชื่อ-นามสกุล:" Font-Size="Large"></asp:Label>
-                </div>
-                <div class="col-md-8">
-                    <asp:Label runat="server" ID="labfullname" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-md-4">
-                    <asp:Label runat="server" Text="โรงเรียน:" Font-Size="Large"></asp:Label>
-                </div>
-                <div class="col-md-8">
-                    <asp:Label runat="server" ID="labschool" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
-                </div>
-            </div>
-            <br />
-            <hr />
-            <%-- <div class="row">
-                <div class="col-md-12">
-                    <asp:Label runat="server" Text="สถานะ" Font-Size="Large"></asp:Label>
-                </div>
-            </div>
-            <br />--%>
-            <div class="row">
-                <div class="col-md-4 ">
-                    <asp:Label runat="server" Text="ขึ้นรถรับส่ง:" Font-Size="Large"></asp:Label>
-                </div>
-                <div class="col-md-3 text-center">
-                    <asp:Label runat="server" ID="labstatusup" Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="White"></asp:Label>
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-md-4">
-                    <asp:Label runat="server" Text="ลงรถรับส่ง:" Font-Size="Large"></asp:Label>
-                </div>
-                <div class="col-md-3 text-center">
-                    <asp:Label runat="server" ID="labstatusdown" Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="White"></asp:Label>
-                </div>
-            </div>
-
-            <%-- <div class="row">
-                <div class="col-md-4">
-                    <asp:Label runat="server" Text="ตำแหน่งปัจจุบัน:" Font-Size="Large"></asp:Label>
-                </div>
-                <div class="col-md-8">
-                    <asp:Label runat="server" ID="labgps" Font-Bold="true" Font-Size="Large" BackColor="Yellow"></asp:Label>
-                    <asp:HiddenField ID="hfvaluegps" runat="server" />
-                </div>
-            </div>--%>
         </div>
     </div>
-    <hr />
+
+
     <div class="row">
         <div class="col-md-2">
         </div>
@@ -352,23 +366,8 @@
         <div class="col-md-2">
         </div>
         <div class="col-md-10">
-            <%-- <table>
-                <tr>
-                    <td>From : </td>
-                    <td>
-                        <asp:DropDownList ID="ddFrom" runat="server"></asp:DropDownList>
-                    </td>
-                    <td>To : </td>
-                    <td>
-                        <asp:DropDownList ID="ddTo" runat="server"></asp:DropDownList>
-                    </td>
-                    <td>
-                        <input type="button" value="Get Direction" id="btnGetDirection" />
-                    </td>
-                </tr>
-            </table>--%>
 
-            <div id="dvMap" style="width: 550px; height: 250px; border: solid 1px black; float: left"></div>
+            <div id="dvMap" style="width: 545px; height: 250px; border: solid 1px black; float: left"></div>
         </div>
     </div>
     <div class="modal fade" id="myModalFingerprint" role="dialog">

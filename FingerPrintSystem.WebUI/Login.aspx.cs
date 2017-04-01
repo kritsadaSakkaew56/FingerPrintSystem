@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using FingerPrintSystem.DataAccess;
-
+using System.Web.Security;
 //SQL Server
 using System.Data;
 
@@ -17,6 +17,7 @@ using System.Data;
 using System.Security.Cryptography;
 using System.Text;
 using System.IO;
+
 
 namespace FingerPrintSystem.WebUI
 {
@@ -40,6 +41,7 @@ namespace FingerPrintSystem.WebUI
                     Response.Cookies.Add(myCookie);
                 }
             }
+           
 
         }
        
@@ -71,6 +73,7 @@ namespace FingerPrintSystem.WebUI
         {
 
             DataTable dt = new MemberDAO().GetMember(memberid);
+
             if(dt.Rows.Count>0)
             {
                 string status = dt.Rows[0]["createdby"].ToString();

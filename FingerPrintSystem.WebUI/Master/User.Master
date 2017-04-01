@@ -59,7 +59,7 @@
                     <img src="../Images/HomeFingerprint.png" width="27" height="27" />
                     <!--logo start-->
                 </div>
-                <a href="../Login.aspx" class="logo">FingerPrint<span>System</span></a>
+                <a class="logo">FingerPrint<span>System</span></a>
                 <!--logo end-->
 
                 <div class="top-nav ">
@@ -102,7 +102,7 @@
                                 <span>FingerPrintScan</span>
                             </a>
                         </li>--%>
-                          <li>
+                         <%-- <li>
                             <a class="active" href="../User/Home.aspx">
                                 <i class="fa fa-th-list"></i>
                                 <span>Data</span>
@@ -113,7 +113,7 @@
                                 <i class="fa fa-th-list"></i>
                                 <span>Photo</span>
                             </a>
-                        </li>
+                        </li>--%>
 
                         <li>
                             <a class="active" href="../Login.aspx">
