@@ -5,6 +5,14 @@
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/main.css" rel="stylesheet" />
+    <script src="../js/jquery-ui-1.8.1.custom.min.js"></script>
+
+    <!-- Custom styles for this template -->
+
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/style-responsive.css" rel="stylesheet" />
+
+
 
     <script src="../js/host.js"></script>
     <script src="../js/mqttws31.js" type="text/javascript"></script>
@@ -136,9 +144,10 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
+           
             var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
-
-
+           
+          
             //Create and open InfoWindow.
             var infoWindow = new google.maps.InfoWindow();
 
@@ -234,13 +243,13 @@
 
                 })(markerHome, dataHome);
 
-
             }
+           
         }
-
-
+       
+     
     </script>
-
+    
 
     <div class="panel">
         <header class="panel-heading" style="background-color: #F5DEB3">
@@ -259,22 +268,8 @@
 
                                 <br />
                                 <p>
-                                    <asp:Image runat="server" ID="Imgstudent" ControlStyle-Height="200" ControlStyle-Width="200" />
+                                    <asp:Image runat="server" ID="Imgstudent" ControlStyle-Height="175" ControlStyle-Width="175" />
                                 </p>
-                                <p>
-                                    <asp:Label runat="server" Text="รูปประจำตัว" Font-Size="Large" ForeColor="Black"></asp:Label>
-                                </p>
-                                <br />
-                                <br />
-                            </article>
-
-                        </div>
-
-                    </div>
-                    <div class="col-sm-6">
-                        <article class="statistic-box yellow">
-                            <div>
-                                <br />
                                 <p>
                                     <asp:Label runat="server" Text="เลขที่:" Font-Size="Large" ForeColor="Black"></asp:Label>
                                     <asp:Label runat="server" ID="labid" Font-Bold="true" Font-Size="Large" ForeColor="Black"></asp:Label>
@@ -288,9 +283,12 @@
                                     <asp:Label runat="server" Text="โรงเรียน:" Font-Size="Large" ForeColor="Black"></asp:Label>
                                     <asp:Label runat="server" ID="labschool" Font-Bold="true" Font-Size="Large" ForeColor="Black"></asp:Label>
                                 </p>
+                                <br />
+                                <br />
+                            </article>
 
-                            </div>
-                        </article>
+                        </div>
+
                     </div>
                     <div class="col-sm-6">
                         <article class="statistic-box yellow">
@@ -325,7 +323,7 @@
                             <br />
                         </article>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <article class="statistic-box yellow">
                             <div>
                                 <br />
@@ -339,11 +337,9 @@
                                     <asp:Label runat="server" Font-Bold="true" Font-Size="X-Large" ForeColor="Black" Text="องศาเซลเซียส"></asp:Label>
                                     <%--<asp:Image runat="server" ControlStyle-Height="25" ControlStyle-Width="25" ImageUrl="~/Images/celcius-icon.png" />--%>
                                 </p>
-
-
                             </div>
                             <br />
-                            <br />
+
                         </article>
                     </div>
 
@@ -352,24 +348,18 @@
             </div>
 
         </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-md-2">
+        <div class="row">
+            <div class="col-md-10">
+                <asp:Label runat="server" Text="แผนที่" Font-Size="Large" ForeColor="Black"></asp:Label>
+            </div>
         </div>
-        <div class="col-md-10">
-            <asp:Label runat="server" Text="แผนที่" Font-Size="Large"></asp:Label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-        </div>
-        <div class="col-md-10">
-
-            <div id="dvMap" style="width: 545px; height: 250px; border: solid 1px black; float: left"></div>
+        <div class="row">
+           
+                <div id="dvMap" style="width:100%;height:300px;border:solid 1px black; float: left"></div>
+            
         </div>
     </div>
+
     <div class="modal fade" id="myModalFingerprint" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -388,4 +378,5 @@
             </div>
         </div>
     </div>
+
 </asp:Content>
