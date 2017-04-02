@@ -13,12 +13,12 @@ namespace FingerPrintSystem.WebUI.User {
     public partial class Photo {
         
         /// <summary>
-        /// imgphoto1 control.
+        /// iframeDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage imgphoto1;
+        protected global::System.Web.UI.WebControls.PlaceHolder iframeDiv;
     }
 }

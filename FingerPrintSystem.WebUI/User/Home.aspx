@@ -122,7 +122,7 @@
 
         // function Google map api ตำแหน่งจองรถรับส่ง
         var latlng = function (lat, lng) {
-
+           
             var markers = [
 
                 { "title": 'Driver', "lat": lat, "lng": lng, "description": 'รถรับส่งเด็กนักเรียน' },
@@ -180,6 +180,8 @@
                 // The anchor for this image is the base of the flagpole at (0, 32).
                 anchor: new google.maps.Point(0, 32)
             };
+
+           
 
             for (var i = 0; i < markers.length; i++) {
                 var datadriver = markers[0];
@@ -243,11 +245,16 @@
 
                 })(markerHome, dataHome);
 
+
+               
+               // google.maps.event.addDomListener(window, 'resize', initialize); //resize
+               // google.maps.event.addDomListener(window, 'load', initialize);
             }
+
            
         }
-       
-     
+            
+             
     </script>
     
 

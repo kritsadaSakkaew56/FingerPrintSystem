@@ -22,6 +22,7 @@
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link href="css/Checkbox%20_Styles.css" rel="stylesheet" />
+   
 
 </head>
 <body>
@@ -97,6 +98,6 @@
 
     </div>
 
-
+    
 </body>
 </html>
