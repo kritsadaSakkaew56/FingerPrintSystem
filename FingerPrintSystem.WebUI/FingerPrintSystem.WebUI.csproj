@@ -113,6 +113,7 @@
     <Content Include="Driver\DriverLogin.aspx" />
     <Content Include="Driver\HomegoSchool.aspx" />
     <Content Include="Driver\Schoolgohome.aspx" />
+    <Content Include="Driver\Videosteaming.aspx" />
     <Content Include="FingerPrint\FingerPrintscan.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\Proxima_Nova_Bold.svg" />
@@ -314,6 +315,13 @@
     </Compile>
     <Compile Include="Driver\Schoolgohome.aspx.designer.cs">
       <DependentUpon>Schoolgohome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Driver\Videosteaming.aspx.cs">
+      <DependentUpon>Videosteaming.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Driver\Videosteaming.aspx.designer.cs">
+      <DependentUpon>Videosteaming.aspx</DependentUpon>
     </Compile>
     <Compile Include="FingerPrint\FingerPrintscan.aspx.cs">
       <DependentUpon>FingerPrintscan.aspx</DependentUpon>

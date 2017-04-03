@@ -13,7 +13,7 @@ namespace FingerPrintSystem.WebUI.User
         {
             Connect("10.59.100.5");
             string width = "100%";
-            string height = "550";
+            string height = "600";
             string videoId = "8q1c5kLpUwI";
             iframeDiv.Controls.Add(new LiteralControl("<iframe width="+width+ " height="+height+ " src=" + "https://www.youtube.com/embed/"+ videoId + "?autoplay=1&origin=http://example.com"+"></iframe><br />"));
         }

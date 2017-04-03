@@ -84,7 +84,7 @@
             <%--<asp:Image runat="server"  ID="Imagebusschool1" ControlStyle-Height="275" ControlStyle-Width="575" BorderStyle="Double" />--%>
         </div>
     </div>
-    </div>
+
 
     <%-- <div class="row">
         <div class="form-group form-horizontal col-md-2">
