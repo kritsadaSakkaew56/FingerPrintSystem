@@ -4,11 +4,11 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title></title>พะเ
 
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDBGK8nRj24Jh6GVQRtgaoISecBPAHfHDA"></script>
     <script src="../js/jquery-1.4.2.min.js"></script>
-   
+   <script src="../js/jquery-ui-1.8.1.custom.min.js"></script>
     <script src="../js/googlemapapi.js"></script>
 
     <!-- Bootstrap core CSS -->

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FingerPrintSystem.WebUI.FingerPrint {
+namespace FingerPrintSystem.WebUI.Driver {
     
     
     public partial class FingerPrintscan {
@@ -74,17 +74,5 @@ namespace FingerPrintSystem.WebUI.FingerPrint {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
-        
-        /// <summary>
-        /// Master property.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated property.
-        /// </remarks>
-        public new FingerPrintSystem.WebUI.Master.Driver Master {
-            get {
-                return ((FingerPrintSystem.WebUI.Master.Driver)(base.Master));
-            }
-        }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Driver.Master" AutoEventWireup="true" CodeBehind="FingerPrintscan.aspx.cs" Inherits="FingerPrintSystem.WebUI.FingerPrint.FingerPrintscan" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Driver.Master" AutoEventWireup="true" CodeBehind="FristFingerPrintscan.aspx.cs" Inherits="FingerPrintSystem.WebUI.FingerPrint.FristFingerPrintscan" %>
 
 <%@ MasterType VirtualPath="~/Master/Driver.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

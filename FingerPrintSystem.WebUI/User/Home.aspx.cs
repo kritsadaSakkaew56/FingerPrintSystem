@@ -32,6 +32,19 @@ namespace FingerPrintSystem.WebUI.User
             }
             else
             {
+                if (this.DecryptQueryString("id") != null)
+                {
+                    ViewState["member_id"] = this.DecryptQueryString("id").ToString();
+                    int memberid = Convert.ToInt32(ViewState["member_id"].ToString());
+                    BindData(memberid);
+                }
+                else
+                {
+
+                    Response.Redirect("../Login.aspx");
+                }
+
+
 
                 //HttpCookie userid = Request.Cookies["userid"];
                 //try
@@ -50,20 +63,6 @@ namespace FingerPrintSystem.WebUI.User
                 //    Response.Redirect("/Login.aspx");
 
                 //}
-
-                if (this.DecryptQueryString("id") != null)
-                {
-                    ViewState["member_id"] = this.DecryptQueryString("id").ToString();
-                    int memberid = Convert.ToInt32(ViewState["member_id"].ToString());
-                    BindData(memberid);
-                }
-                else
-                {
-
-                    Response.Redirect("../Login.aspx");
-                }
-
-
 
             }
 
@@ -118,8 +117,11 @@ namespace FingerPrintSystem.WebUI.User
 
         protected void imgyoutube_Click(object sender, ImageClickEventArgs e)
         {
+
             //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalFingerprint", "$('#myModalFingerprint').modal();", true); // กรณีที่ไม่ได้เพิ่มลายนิ้วมือ
-             Response.Redirect("../User/Photo.aspx");
+
+            string memberid = this.DecryptQueryString("id").ToString();
+            Response.Redirect("../User/Video.aspx"+ this.EncryptQueryString("id=" + memberid));
 
         }
     }

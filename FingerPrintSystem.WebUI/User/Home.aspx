@@ -263,8 +263,6 @@
             <h4>ข้อมูล</h4>
         </header>
     </div>
-
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-xl-6">

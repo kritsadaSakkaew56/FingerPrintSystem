@@ -20,18 +20,18 @@ namespace FingerPrintSystem.WebUI.User
         {
             if (!IsPostBack)
             {
-                //if (this.DecryptQueryString("id") != null)
-                //{
-                //    ViewState["member_id"] = this.DecryptQueryString("id").ToString();
-                //    string memberid = ViewState["member_id"].ToString();
-                //}
-                //else
-                //{
+                if (this.DecryptQueryString("id") != null)
+                {
+                    ViewState["memberUser_id"] = this.DecryptQueryString("id").ToString();
+                    string memberUserid = ViewState["memberUser_id"].ToString();
+                }
+                else
+                {
 
-                //    Response.Redirect("../User/RegisterUser.aspx");
-                //}
+                    Response.Redirect("../User/RegisterUser.aspx");
+                }
 
-                ViewState["member_id"] = "1";
+                //ViewState["MemberUser_id"] = "1"; //ทดสอบ
             }
         }
 
@@ -88,8 +88,9 @@ namespace FingerPrintSystem.WebUI.User
 
                 if (status == "Driver")
                 {
-                    int userscan = Convert.ToInt32(ViewState["member_id"].ToString());
-                    cookiesdatauser(userscan);
+                    int memberUser = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
+                    Response.Redirect("../FingerPrint/FristFingerPrintscan.aspx" + this.EncryptQueryString("id=" + memberUser));
+                    //cookiesdatauser(userscan);
                 }
                 else if (status == "User")
                 {
@@ -107,7 +108,7 @@ namespace FingerPrintSystem.WebUI.User
             HttpCookie userid = new HttpCookie("useridscan");
             userid.Value = Memberid.ToString(); ;
             Response.Cookies.Add(userid);
-            Response.RedirectPermanent("../Driver/default.aspx");
+            Response.RedirectPermanent("../Driver/FingerPrintscan.aspx");
 
 
         }

@@ -111,10 +111,11 @@
     <Content Include="css\main.source.css" />
     <Content Include="Driver\default.aspx" />
     <Content Include="Driver\DriverLogin.aspx" />
+    <Content Include="Driver\FingerPrintscan.aspx" />
     <Content Include="Driver\HomegoSchool.aspx" />
     <Content Include="Driver\Schoolgohome.aspx" />
     <Content Include="Driver\Videosteaming.aspx" />
-    <Content Include="FingerPrint\FingerPrintscan.aspx" />
+    <Content Include="FingerPrint\FristFingerPrintscan.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\Proxima_Nova_Bold.svg" />
     <Content Include="fonts\Proxima_Nova_Bold_Italic.svg" />
@@ -204,7 +205,6 @@
     <Content Include="UploadImage\8.jpg" />
     <Content Include="User\default.aspx" />
     <Content Include="User\Home.aspx" />
-    <Content Include="User\Photo.aspx" />
     <Content Include="User\RegisterFingerPrint.aspx" />
     <Content Include="User\RegisterGooglemap.aspx" />
     <Content Include="User\RegisterUser.aspx" />
@@ -283,6 +283,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="UserControls\PagingControl.ascx" />
+    <Content Include="User\Video.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -301,6 +302,13 @@
     </Compile>
     <Compile Include="Driver\DriverLogin.aspx.designer.cs">
       <DependentUpon>DriverLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Driver\FingerPrintscan.aspx.cs">
+      <DependentUpon>FingerPrintscan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Driver\FingerPrintscan.aspx.designer.cs">
+      <DependentUpon>FingerPrintscan.aspx</DependentUpon>
     </Compile>
     <Compile Include="Driver\HomegoSchool.aspx.cs">
       <DependentUpon>HomegoSchool.aspx</DependentUpon>
@@ -323,12 +331,12 @@
     <Compile Include="Driver\Videosteaming.aspx.designer.cs">
       <DependentUpon>Videosteaming.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FingerPrint\FingerPrintscan.aspx.cs">
-      <DependentUpon>FingerPrintscan.aspx</DependentUpon>
+    <Compile Include="FingerPrint\FristFingerPrintscan.aspx.cs">
+      <DependentUpon>FristFingerPrintscan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FingerPrint\FingerPrintscan.aspx.designer.cs">
-      <DependentUpon>FingerPrintscan.aspx</DependentUpon>
+    <Compile Include="FingerPrint\FristFingerPrintscan.aspx.designer.cs">
+      <DependentUpon>FristFingerPrintscan.aspx</DependentUpon>
     </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
@@ -380,13 +388,6 @@
     </Compile>
     <Compile Include="User\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="User\Photo.aspx.cs">
-      <DependentUpon>Photo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User\Photo.aspx.designer.cs">
-      <DependentUpon>Photo.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\RegisterFingerPrint.aspx.cs">
       <DependentUpon>RegisterFingerPrint.aspx</DependentUpon>
@@ -440,6 +441,13 @@
     </Compile>
     <Compile Include="UserControls\PagingControl.ascx.designer.cs">
       <DependentUpon>PagingControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User\Video.aspx.cs">
+      <DependentUpon>Video.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Video.aspx.designer.cs">
+      <DependentUpon>Video.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
