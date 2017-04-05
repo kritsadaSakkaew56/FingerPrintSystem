@@ -11,8 +11,19 @@ namespace FingerPrintSystem.WebUI.Driver
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!this.IsPostBack)
+            {
+                if (this.DecryptQueryString("driverid") != null)
+                {
+                    string data = DecryptQueryString("driverid").ToString();
+                }
+                else
+                {
 
+                    Response.Redirect("../login.aspx");
+
+                }
+            }
         }
     }
 }

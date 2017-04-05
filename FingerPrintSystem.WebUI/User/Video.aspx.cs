@@ -16,9 +16,9 @@ namespace FingerPrintSystem.WebUI.User
                 btnBack.Text = "<i class='fa fa-arrow-left'></i> " + "กลับ";
                 youtube();
 
-                if (this.DecryptQueryString("id") != null)
+                if (this.DecryptQueryString("userid") != null)
                 {
-                    ViewState["member_id"] = this.DecryptQueryString("id").ToString();
+                    ViewState["member_id"] = this.DecryptQueryString("userid").ToString();
                     int memberid = Convert.ToInt32(ViewState["member_id"].ToString());
                
                 }
@@ -45,8 +45,8 @@ namespace FingerPrintSystem.WebUI.User
         protected void btnBack_Click(object sender, EventArgs e)
         {
 
-            string memberid = this.DecryptQueryString("id").ToString();
-            Response.Redirect("../User/Home.aspx" + this.EncryptQueryString("id=" + memberid));
+            string memberid = this.DecryptQueryString("userid").ToString();
+            Response.Redirect("../User/Home.aspx" + this.EncryptQueryString("userid=" + memberid));
 
 
 

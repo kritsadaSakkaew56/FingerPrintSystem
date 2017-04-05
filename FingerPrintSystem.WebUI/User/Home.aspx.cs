@@ -32,11 +32,11 @@ namespace FingerPrintSystem.WebUI.User
             }
             else
             {
-                if (this.DecryptQueryString("id") != null)
+                if (this.DecryptQueryString("userid") != null)
                 {
-                    ViewState["member_id"] = this.DecryptQueryString("id").ToString();
-                    int memberid = Convert.ToInt32(ViewState["member_id"].ToString());
-                    BindData(memberid);
+                    ViewState["memberuser_id"] = this.DecryptQueryString("userid").ToString();
+                    int memberuserid = Convert.ToInt32(ViewState["memberuser_id"].ToString());
+                    BindData(memberuserid);
                 }
                 else
                 {
@@ -69,14 +69,14 @@ namespace FingerPrintSystem.WebUI.User
 
         }
         
-        private void BindData(int memberid)
+        private void BindData(int memberuserid)
         {
 
-            DataTable dt = new UserDAO().GetUserByMember(memberid);
-            DataTable dt_active = new MemberDAO().GetMember(memberid);
+            DataTable dt = new UserDAO().GetUserByMember(memberuserid);
+            DataTable dt_active = new MemberDAO().GetMember(memberuserid);
             if (dt.Rows.Count > 0 && dt_active.Rows.Count > 0)
             {
-                UserAddress(memberid); //แสดงที่อยู่ของเด็ก
+                UserAddress(memberuserid); //แสดงที่อยู่ของเด็ก
 
                 bool is_active = (bool)dt_active.Rows[0]["is_active"];
                 Imgstudent.ImageUrl = dt.Rows[0]["photo"].ToString();
@@ -120,8 +120,8 @@ namespace FingerPrintSystem.WebUI.User
 
             //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalFingerprint", "$('#myModalFingerprint').modal();", true); // กรณีที่ไม่ได้เพิ่มลายนิ้วมือ
 
-            string memberid = this.DecryptQueryString("id").ToString();
-            Response.Redirect("../User/Video.aspx"+ this.EncryptQueryString("id=" + memberid));
+            string memberid = this.DecryptQueryString("userid").ToString();
+            Response.Redirect("../User/Video.aspx"+ this.EncryptQueryString("userid=" + memberid));
 
         }
     }

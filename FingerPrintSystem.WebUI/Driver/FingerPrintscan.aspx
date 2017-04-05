@@ -93,8 +93,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bthok" CssClass="btn btn-info" Width="100px">OK</asp:LinkButton>
-                    <asp:LinkButton runat="server" ID="bthclse" CssClass="btn btn-info" Width="100px">CLOSE</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bthok" CssClass="btn btn-info" Width="200px" OnClick="bthok_Click">OK</asp:LinkButton>
 
                 </div>
             </div>

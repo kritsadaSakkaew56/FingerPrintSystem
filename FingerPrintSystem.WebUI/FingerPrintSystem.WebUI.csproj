@@ -110,12 +110,12 @@
     <Content Include="css\main.css" />
     <Content Include="css\main.source.css" />
     <Content Include="Driver\default.aspx" />
-    <Content Include="Driver\DriverLogin.aspx" />
+    <Content Include="Driver\LoginUser.aspx" />
     <Content Include="Driver\FingerPrintscan.aspx" />
     <Content Include="Driver\HomegoSchool.aspx" />
     <Content Include="Driver\Schoolgohome.aspx" />
     <Content Include="Driver\Videosteaming.aspx" />
-    <Content Include="FingerPrint\FristFingerPrintscan.aspx" />
+    <Content Include="FingerPrint\RegisterFingerPrintscan.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\Proxima_Nova_Bold.svg" />
     <Content Include="fonts\Proxima_Nova_Bold_Italic.svg" />
@@ -274,6 +274,7 @@
     <Content Include="Master\User.Master" />
     <Content Include="Master\Driver.Master" />
     <Content Include="Master\FingerPrintScan.Master" />
+    <Content Include="Master\RegisterDriver.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -296,12 +297,12 @@
     <Compile Include="Driver\default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Driver\DriverLogin.aspx.cs">
-      <DependentUpon>DriverLogin.aspx</DependentUpon>
+    <Compile Include="Driver\LoginUser.aspx.cs">
+      <DependentUpon>LoginUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Driver\DriverLogin.aspx.designer.cs">
-      <DependentUpon>DriverLogin.aspx</DependentUpon>
+    <Compile Include="Driver\LoginUser.aspx.designer.cs">
+      <DependentUpon>LoginUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="Driver\FingerPrintscan.aspx.cs">
       <DependentUpon>FingerPrintscan.aspx</DependentUpon>
@@ -331,12 +332,12 @@
     <Compile Include="Driver\Videosteaming.aspx.designer.cs">
       <DependentUpon>Videosteaming.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FingerPrint\FristFingerPrintscan.aspx.cs">
-      <DependentUpon>FristFingerPrintscan.aspx</DependentUpon>
+    <Compile Include="FingerPrint\RegisterFingerPrintscan.aspx.cs">
+      <DependentUpon>RegisterFingerPrintscan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FingerPrint\FristFingerPrintscan.aspx.designer.cs">
-      <DependentUpon>FristFingerPrintscan.aspx</DependentUpon>
+    <Compile Include="FingerPrint\RegisterFingerPrintscan.aspx.designer.cs">
+      <DependentUpon>RegisterFingerPrintscan.aspx</DependentUpon>
     </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
@@ -365,6 +366,13 @@
     </Compile>
     <Compile Include="Master\Register.Master.designer.cs">
       <DependentUpon>Register.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\RegisterDriver.Master.cs">
+      <DependentUpon>RegisterDriver.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\RegisterDriver.Master.designer.cs">
+      <DependentUpon>RegisterDriver.Master</DependentUpon>
     </Compile>
     <Compile Include="Master\User.Master.cs">
       <DependentUpon>User.Master</DependentUpon>

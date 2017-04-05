@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Driver.master.cs" Inherits="FingerPrintSystem.WebUI.Master.Driver" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="RegisterDriver.master.cs" Inherits="FingerPrintSystem.WebUI.Master.RegisterDriver" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -86,28 +86,16 @@
                     <ul class="sidebar-menu" id="nav-accordion">
                         <li>
                             <div style="text-align: center;">
-                                <img src="../Images/logo.png" style="margin-top: 25px; opacity: 0.7;" width="100" height="100" />
+                                <img src="../Images/logo.png" style="margin-top: 25px; opacity: 0.7;" width="100" height="100" id="img" />
 
                             </div>
 
                         </li>
 
                         <li>
-                            <a class="active" href="../Driver/default.aspx" id="changepassword" runat="server">
+                            <a class="active" href="../Driver/default.aspx" runat="server" id="ChangePassword">
                                 <i class="fa fa-unlock-alt"></i>
                                 <span>Change Password</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="active" href="../Driver/FingerPrintscan.aspx" id="fingerprintscan" runat="server">
-                                <i class="fa fa-user"></i>
-                                <span>FingerPrintScan</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="active" href="../Driver/HomegoSchool.aspx" id="childuser" runat="server">
-                                <i class="fa fa-th-list"></i>
-                                <span>Child User</span>
                             </a>
                         </li>
 

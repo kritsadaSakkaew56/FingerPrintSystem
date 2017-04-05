@@ -20,18 +20,18 @@ namespace FingerPrintSystem.WebUI.User
         {
             if (!IsPostBack)
             {
-                if (this.DecryptQueryString("id") != null)
-                {
-                    ViewState["memberUser_id"] = this.DecryptQueryString("id").ToString();
-                    string memberUserid = ViewState["memberUser_id"].ToString();
-                }
-                else
-                {
+                //if (this.DecryptQueryString("userid") != null)
+                //{
+                //    ViewState["memberUser_id"] = this.DecryptQueryString("userid").ToString();
+                //    string memberUserid = ViewState["memberUser_id"].ToString();
+                //}
+                //else
+                //{
 
-                    Response.Redirect("../User/RegisterUser.aspx");
-                }
+                //    Response.Redirect("../User/RegisterUser.aspx");
+                //}
 
-                //ViewState["MemberUser_id"] = "1"; //ทดสอบ
+                ViewState["MemberUser_id"] = "1"; //ทดสอบ
             }
         }
 
@@ -39,7 +39,7 @@ namespace FingerPrintSystem.WebUI.User
         {
             txtusername_password.Text = "";
             MemberDAO member = new MemberDAO();
-            int memberid = Convert.ToInt32(member.AddMemberValidating(txtusername.Text.Trim(), Encrypt(txtpassword.Text.Trim())));
+            int memberid = Convert.ToInt32(member.GetMemberByChecklogin(txtusername.Text.Trim(), Encrypt(txtpassword.Text.Trim())));
 
             switch (memberid)
             {
@@ -47,7 +47,8 @@ namespace FingerPrintSystem.WebUI.User
                     txtusername_password.Text = "Username and/or password is incorrect.";
                     break;
                 case -2:
-                    txtusername_password.Text = "Please Username and/or password is Driver.";
+                    txtusername_password.Text = "Username and/or password is incorrect.";
+                    // txtusername_password.Text = "Please Username and/or password is Driver.";
                     break;
                 default:
                     Checkstatus(memberid);
@@ -89,12 +90,15 @@ namespace FingerPrintSystem.WebUI.User
                 if (status == "Driver")
                 {
                     int memberUser = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
-                    Response.Redirect("../FingerPrint/FristFingerPrintscan.aspx" + this.EncryptQueryString("id=" + memberUser));
-                    //cookiesdatauser(userscan);
+
+                        Response.Redirect("../FingerPrint/RegisterFingerPrintscan.aspx" + 
+                                        this.EncryptQueryString("userid=" + memberUser+"&driverid=" + memberid));
+                    //cookiesdatauseranddriver(memberUser, memberid);
+
                 }
                 else if (status == "User")
                 {
-                    txtusername_password.Text = "Please Username and/or password is Driver.";
+                    txtusername_password.Text = "Username and/or password is incorrect.";
 
                 }
 
@@ -102,13 +106,18 @@ namespace FingerPrintSystem.WebUI.User
 
         }
 
-        // cookies คือการส่งค่าไปอีก pagefrom หนึ่ง ของ user
-        private void cookiesdatauser(int Memberid)
+        // cookies คือการส่งค่าไปอีก pagefrom หนึ่ง ของ user และ driver
+        private void cookiesdatauseranddriver(int memberUser,int memberid)
         {
-            HttpCookie userid = new HttpCookie("useridscan");
-            userid.Value = Memberid.ToString(); ;
+            HttpCookie userid = new HttpCookie("userscanid");
+            HttpCookie driverid = new HttpCookie("memberdriver");
+
+            userid.Value = memberUser.ToString();
+            driverid.Value = memberid.ToString();
+
             Response.Cookies.Add(userid);
-            Response.RedirectPermanent("../Driver/FingerPrintscan.aspx");
+            Response.Cookies.Add(driverid);
+            Response.RedirectPermanent("../Driver/FingerPrintscan.aspx" + this.EncryptQueryString("id=" + memberUser));
 
 
         }

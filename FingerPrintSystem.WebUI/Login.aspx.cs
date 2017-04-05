@@ -26,20 +26,22 @@ namespace FingerPrintSystem.WebUI
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
-            {   
+            {
+
                 // Delete cookie id
-                if (Request.Cookies["userid"] != null)
+                if (Request.Cookies["memberdriver"] != null)
                 {
-                    HttpCookie myCookie = new HttpCookie("userid");
-                    myCookie.Expires = DateTime.Now.AddDays(-1d); 
-                    Response.Cookies.Add(myCookie);
-                }
-                if (Request.Cookies["useridscan"] != null)
-                {
-                    HttpCookie myCookie = new HttpCookie("useridscan");
+                    HttpCookie myCookie = new HttpCookie("memberdriver");
                     myCookie.Expires = DateTime.Now.AddDays(-1d);
                     Response.Cookies.Add(myCookie);
                 }
+                if (Request.Cookies["userscanid"] != null)
+                {
+                    HttpCookie myCookie = new HttpCookie("userscanid");
+                    myCookie.Expires = DateTime.Now.AddDays(-1d);
+                    Response.Cookies.Add(myCookie);
+                }
+
             }
            
 
@@ -51,7 +53,7 @@ namespace FingerPrintSystem.WebUI
         {
            txtusername_password.Text = "";
             MemberDAO member = new MemberDAO();
-            int memberid = Convert.ToInt32(member.AddMemberValidating(txtUserName.Text.Trim(), Encrypt(txtPassword.Text.Trim())));
+            int memberid = Convert.ToInt32(member.GetMemberByChecklogin(txtUserName.Text.Trim(), Encrypt(txtPassword.Text.Trim())));
 
             switch (memberid)
             {
@@ -82,13 +84,12 @@ namespace FingerPrintSystem.WebUI
                 {
                    
                     //cookiesdatauser(memberid);
-                    Response.Redirect("/User/Home.aspx" + this.EncryptQueryString("id="+ memberid));
+                    Response.Redirect("/User/Home.aspx" + this.EncryptQueryString("userid="+ memberid));
                    
                 }
                 else if(status== "Driver")
                 {
-                    //cookiesdatadriver(memberid);
-                    Response.RedirectPermanent("/Driver/default.aspx");
+                    Response.RedirectPermanent("/Driver/default.aspx"+this.EncryptQueryString("driverid=" + memberid));
                 }
 
             }
@@ -107,7 +108,7 @@ namespace FingerPrintSystem.WebUI
         // cookies คือการส่งค่าไปอีก pagefrom หนึ่ง ของ Driver
         private void cookiesdatadriver(int Memberid)
         {
-            HttpCookie driverid = new HttpCookie("driverid");
+            HttpCookie driverid = new HttpCookie("memberdriver");
             driverid.Value = Memberid.ToString(); ;
             Response.Cookies.Add(driverid);
             Response.RedirectPermanent("/Driver/default.aspx");

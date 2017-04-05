@@ -37,12 +37,13 @@ namespace FingerPrintSystem.DataAccess
 
 
         }
-        public void UpdateMember(string MemberID)
+        public void UpdateMember(int MemberID,bool Isactive)
         {
             DatabaseHelper db = new DatabaseHelper();
             List<SqlParameter> param = new List<SqlParameter>();
 
-            param.Add(new SqlParameter("@Memberid", MemberID));
+            param.Add(new SqlParameter("@memberuserid ", MemberID));
+            param.Add(new SqlParameter("@isactive", Isactive));
 
             db.ExecuteNonQuery("sp_Member_Update", param);
 
@@ -61,14 +62,23 @@ namespace FingerPrintSystem.DataAccess
 
 
         }
-        public string AddMemberValidating(string Username , string Password)
+        public string GetMemberByChecklogin(string Username , string Password)
         {
 
             DatabaseHelper db = new DatabaseHelper();
             List<SqlParameter> param = new List<SqlParameter>();
             param.Add(new SqlParameter("@username", Username));
             param.Add(new SqlParameter("@password", Password));
-            return db.ExecuteScalar("sp_Member_Insert_ByValidating", param).ToString();
+            return db.ExecuteScalar("sp_Member_Select_ByChecklogin", param).ToString();
+        }
+        public string GetMemberByCheckloginScan(string Username, string Password)
+        {
+
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@username", Username));
+            param.Add(new SqlParameter("@password", Password));
+            return db.ExecuteScalar("sp_Member_Select_ByCheckloginscan", param).ToString();
         }
     }
 }

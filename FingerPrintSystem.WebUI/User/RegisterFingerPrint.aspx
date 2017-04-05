@@ -6,7 +6,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
-  
+   
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -48,9 +48,9 @@
                     <asp:TextBox runat="server" ID="txtpassword" CssClass="form-control input-sm" placeholder="รหัสผ่าน" TextMode="Password" Width="250" Height="40" Font-Size="Larger" Visible="false"></asp:TextBox>
                 </div>
             </div>
-              <div class="row">
+            <div class="row">
                 <div class="col-md-6">
-                     <asp:Label ID="txtusername_password" runat="server" ForeColor="Red"></asp:Label>
+                    <asp:Label ID="txtusername_password" runat="server" ForeColor="Red"></asp:Label>
                 </div>
             </div>
             <br />
@@ -108,6 +108,6 @@
             </div>
         </div>
     </div>
-     
+
 
 </asp:Content>

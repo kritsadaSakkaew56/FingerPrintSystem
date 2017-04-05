@@ -18,9 +18,9 @@ namespace FingerPrintSystem.WebUI.User
             if(!IsPostBack)
             {
 
-                if (this.DecryptQueryString("id") != null)
+                if (this.DecryptQueryString("userid") != null)
                 {
-                    ViewState["memberUser_id"] = this.DecryptQueryString("id").ToString();
+                    ViewState["memberUser_id"] = this.DecryptQueryString("userid").ToString();
                     string memberid = ViewState["memberUser_id"].ToString();
                 }
                 else
@@ -52,7 +52,7 @@ namespace FingerPrintSystem.WebUI.User
                 int memberid = Int32.Parse(ViewState["memberUser_id"].ToString());
                 UserAddressDAO User = new UserAddressDAO();
                 User.AddUserAddress(memberid, latitude.Text.Trim(), longitude.Text.Trim(), address.Text.Trim(), txtcomment.Text.Trim());
-                Response.Redirect("../User/RegisterFingerPrint.aspx" + this.EncryptQueryString("id="+ memberid));
+                Response.Redirect("../User/RegisterFingerPrint.aspx" + this.EncryptQueryString("userid=" + memberid));
 
             }
 

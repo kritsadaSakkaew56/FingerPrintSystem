@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Driver.Master" AutoEventWireup="true" CodeBehind="FristFingerPrintscan.aspx.cs" Inherits="FingerPrintSystem.WebUI.FingerPrint.FristFingerPrintscan" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/RegisterDriver.Master" AutoEventWireup="true" CodeBehind="RegisterFingerPrintscan.aspx.cs" Inherits="FingerPrintSystem.WebUI.FingerPrint.RegisterFingerPrintscan" %>
 
-<%@ MasterType VirtualPath="~/Master/Driver.Master" %>
+<%@ MasterType VirtualPath="~/Master/RegisterDriver.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
@@ -97,32 +97,15 @@
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bthok" CssClass="btn btn-info"  Width="100px">OK</asp:LinkButton>
-                    <asp:LinkButton runat="server" ID="bthclse" CssClass="btn btn-info" Width="100px">CLOSE</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bthok" CssClass="btn btn-info"  Width="200px" OnClick="bthok_Click">OK</asp:LinkButton>
+                  
 
                 </div>
             </div>
         </div>
     </div>
 
-       <div class="modal fade" id="myModalSave" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">บันทึกรายการ</h4>
-                </div>
-                <div class="modal-body">
-                    <h5>ต้องการบันทึกรายการนี้หรือไม่</h5>
-                </div>
-                <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bthOKSave" CssClass="btn btn-info" > OK</asp:LinkButton>
-                    <asp:LinkButton runat="server" ID="LinkButton1" CssClass="btn btn-info"> Close</asp:LinkButton>
-
-                </div>
-            </div>
-        </div>
-    </div>
+      
    
 
 </asp:Content>
