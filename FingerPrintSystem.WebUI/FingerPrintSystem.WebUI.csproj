@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="M2Mqtt.Net, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\M2Mqtt.4.3.0.0\lib\net45\M2Mqtt.Net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
       <Private>True</Private>
@@ -198,8 +201,8 @@
     <Content Include="js\jquery.signalR-2.2.1.js" />
     <Content Include="js\jquery.signalR-2.2.1.min.js" />
     <Content Include="js\mqttws31.js" />
-    <Content Include="UploadImage\7.jpg" />
-    <Content Include="UploadImage\8.jpg" />
+    <Content Include="UploadImage\1.jpg" />
+    <Content Include="UploadImage\2.jpg" />
     <Content Include="User\default.aspx" />
     <Content Include="User\Home.aspx" />
     <Content Include="User\RegisterFingerPrint.aspx" />
@@ -272,6 +275,8 @@
     <Content Include="Master\Driver.Master" />
     <Content Include="Master\FingerPrintScan.Master" />
     <Content Include="Master\RegisterDriver.Master" />
+    <None Include="Properties\PublishProfiles\FingerprintscantSystem - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\FingerprintscantSystem - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

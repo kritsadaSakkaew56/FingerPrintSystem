@@ -14,13 +14,16 @@ using System.Web.Security;
 using System.Data;
 using FingerPrintSystem.DataAccess;
 
+using uPLibrary.Networking.M2Mqtt;
+using uPLibrary.Networking.M2Mqtt.Messages;
+
 
 namespace FingerPrintSystem.WebUI.User
 {
     public partial class Home : PageBase
 
     {
-
+        MqttClient client = new MqttClient("128.199.169.39");
         protected void Page_Load(object sender, EventArgs e)
         {
             if (this.IsPostBack) // เมื่อเกิดเหตุการณ์ คลิก จะทำงานเก็บค่าไว้ใน labgps.Text  และ labc.Text

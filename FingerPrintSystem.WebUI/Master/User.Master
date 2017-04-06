@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="User.master.cs" Inherits="FingerPrintSystem.WebUI.Master.User" %>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="https://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>FingerPrint System</title>
     <meta charset="utf-8">
@@ -15,6 +15,7 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/bootstrap-reset.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/datepicker/css/datepicker.css" />
+
     <!--external css-->
     <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/owl.carousel.css" type="text/css">

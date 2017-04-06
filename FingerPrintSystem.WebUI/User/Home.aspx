@@ -13,8 +13,7 @@
     <link href="../css/style-responsive.css" rel="stylesheet" />
 
 
-
-    <script src="../js/host.js"></script>
+    <script src="../js/host.js" ></script>
     <script src="../js/mqttws31.js" type="text/javascript"></script>
 
     <%-- <script src="//maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=AIzaSyDBGK8nRj24Jh6GVQRtgaoISecBPAHfHDA" type="text/javascript"></script>--%>
@@ -41,7 +40,7 @@
             if (typeof path == "undefined") {
                 path = '/mqtt';
             }
-
+          
             mqtt = new Paho.MQTT.Client(host, port, path, "web1_" + parseInt(Math.random() * 100, 10));
 
 

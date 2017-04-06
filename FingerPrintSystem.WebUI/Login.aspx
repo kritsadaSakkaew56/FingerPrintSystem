@@ -1,14 +1,14 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="FingerPrintSystem.WebUI.Login" %>
 
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="https://www.w3.org/1999/xhtml">
 <head runat="server">
 
     <title>FingerPrint System </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
+    
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-reset.css" rel="stylesheet">
@@ -16,13 +16,13 @@
     <!--external css-->
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" />
     <link href="css/style-responsive.css" rel="stylesheet" />
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link href="css/Checkbox%20_Styles.css" rel="stylesheet" />
-   
+
 
 </head>
 <body>
@@ -98,6 +98,6 @@
 
     </div>
 
-    
+
 </body>
 </html>
