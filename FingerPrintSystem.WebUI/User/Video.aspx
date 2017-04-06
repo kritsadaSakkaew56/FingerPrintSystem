@@ -20,12 +20,13 @@
             </div>
         </div>
     </div>
+    <hr />
+    <br />
     <div class="row">
         <%--<div id="player"></div>--%>
         <%-- <iframe id="ytplayer" width="80%" height="550" src="https://www.youtube.com/embed/n_toKZltHU8?autoplay=1&origin=http://example.com"></iframe>--%>
         <div class="col-sm-12">
             <asp:PlaceHolder ID="iframeDiv" runat="server" />
-
         </div>
     </div>
 

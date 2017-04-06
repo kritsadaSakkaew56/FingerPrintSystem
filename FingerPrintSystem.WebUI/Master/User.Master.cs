@@ -11,10 +11,13 @@ namespace FingerPrintSystem.WebUI.Master
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(this.IsPostBack)
+            if(!this.IsPostBack)
             {
-
+                PageBase page = new PageBase();
+                int userid = Convert.ToInt32(page.DecryptQueryString("userid"));
                 
+                changepassword.Attributes["href"] = ResolveUrl("../User/Home.aspx" + page.EncryptQueryString("userid=" + userid));
+
             }
         }
     }

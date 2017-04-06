@@ -23,7 +23,6 @@ namespace FingerPrintSystem.WebUI.Driver
             {
 
                 ViewState["memberdriver_id"] = this.DecryptQueryString("driverid").ToString();
-               
 
             }
             else

@@ -122,7 +122,7 @@
 
         // function Google map api ตำแหน่งจองรถรับส่ง
         var latlng = function (lat, lng) {
-           
+
             var markers = [
 
                 { "title": 'Driver', "lat": lat, "lng": lng, "description": 'รถรับส่งเด็กนักเรียน' },
@@ -144,10 +144,10 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
-           
+
             var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
-           
-          
+
+
             //Create and open InfoWindow.
             var infoWindow = new google.maps.InfoWindow();
 
@@ -181,7 +181,7 @@
                 anchor: new google.maps.Point(0, 32)
             };
 
-           
+
 
             for (var i = 0; i < markers.length; i++) {
                 var datadriver = markers[0];
@@ -246,21 +246,20 @@
                 })(markerHome, dataHome);
 
 
-               
-               // google.maps.event.addDomListener(window, 'resize', initialize); //resize
-               // google.maps.event.addDomListener(window, 'load', initialize);
+
+                // google.maps.event.addDomListener(window, 'resize', initialize); //resize
+                // google.maps.event.addDomListener(window, 'load', initialize);
             }
 
-           
+
         }
-            
-             
+
     </script>
-    
+
 
     <div class="panel">
         <header class="panel-heading" style="background-color: #F5DEB3">
-            <h4>ข้อมูล</h4>
+            <asp:Label runat="server" Text="ข้อมูล" Font-Size="X-Large" ForeColor="Black"></asp:Label>
         </header>
     </div>
     <div class="container-fluid">
@@ -312,23 +311,8 @@
                             </div>
                         </article>
                     </div>
+
                     <div class="col-sm-6">
-                        <article class="statistic-box yellow">
-                            <div>
-                                <br />
-                                <br />
-                                <p>
-
-                                    <asp:ImageButton runat="server" ID="imgyoutube" ImageUrl="~/Images/YouTube.png" ToolTip="Submit" Width="130" Height="85" OnClick="imgyoutube_Click" />
-                                    <asp:Label runat="server" Text="Video Steaming" Font-Size="Small"></asp:Label>
-                                </p>
-
-                            </div>
-                            <br />
-                            <br />
-                        </article>
-                    </div>
-                    <div class="col-sm-12">
                         <article class="statistic-box yellow">
                             <div>
                                 <br />
@@ -347,6 +331,22 @@
 
                         </article>
                     </div>
+                    <div class="col-sm-12">
+                        <article class="statistic-box yellow">
+                            <div>
+                                <br />
+                                <br />
+                                <p>
+
+                                    <asp:ImageButton runat="server" ID="imgyoutube" ImageUrl="~/Images/YouTube.png" ToolTip="Submit" Width="130" Height="85" OnClick="imgyoutube_Click" />
+                                    <asp:Label runat="server" Text="Video Steaming" Font-Size="Small"></asp:Label>
+                                </p>
+
+                            </div>
+                            <br />
+                            <br />
+                        </article>
+                    </div>
 
                 </div>
 
@@ -359,9 +359,9 @@
             </div>
         </div>
         <div class="row">
-           
-                <div id="dvMap" style="width:100%;height:300px;border:solid 1px black; float: left"></div>
-            
+
+            <div id="dvMap" style="width: 100%; height: 300px; border: solid 1px black; float: left"></div>
+
         </div>
     </div>
 

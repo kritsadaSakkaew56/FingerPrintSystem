@@ -2,6 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/circle.css" rel="stylesheet" />
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
@@ -12,61 +14,25 @@
         </section>
     </div>
     <div class="row">
-        <div class="form-group form-horizontal col-md-3">
+        <div class="col-sm-2">
         </div>
-        <%-- <div class="form-group form-horizontal col-md-5">
-            <div class="row">
-                <div class="col-md-12">
-                    <hr />
-                    <h4>Student's Photo </h4>
-                    <hr />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <asp:Image runat="server" ID="Imgstudent" ControlStyle-Height="250" ControlStyle-Width="250" BorderStyle="Double" />
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class=" col-md-6">
-                    <asp:FileUpload ID="FileUpload1" runat="server" BackColor="#CCFFCC" Width="250" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <asp:Label runat="server" ID="laberroe"></asp:Label>
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-md-4">
-                    <asp:Button ID="btnshow" runat="server" Text="Show" Class="btn btn-danger" Width="100" Height="40" OnClick="btnshow_Click" />
-                </div>
-            </div>
-        </div>--%>
-        <div class="form-group form-horizontal col-md-6">
-            <%--<div class="row">
-                <div class="col-md-12">
-                    <hr />
-                    <h4>Finger Print</h4>
-                    <hr />
-                </div>
-            </div>--%>
-            <div class="row">
-                <div class="col-md-6">
-                    <asp:Image runat="server" ID="Imgfingerprint" ControlStyle-Height="300" ControlStyle-Width="300" BorderStyle="Double" />
-                </div>
-            </div>
+        <div class="col-sm-5">
+            <p>
+                <asp:Image runat="server" ID="Imgfingerprint" ControlStyle-Height="300" ControlStyle-Width="300" BorderStyle="Double" />
+            </p>
+            <p>
+                <asp:Label runat="server" ID="labscan" Text="ยังไม่ได้ทำการสแกนลายนิ้วมือ" Font-Size="X-Large"></asp:Label>
+            </p>
 
-            <div class="row">
-                <div class="col-md-12 ">
-                    <asp:Label runat="server" ID="labscan" Text="ยังไม่ได้ทำการสแกนลายนิ้วมือ" Font-Size="X-Large"></asp:Label>
-                </div>
-            </div>
         </div>
+        <div class="col-sm-5">
+            <p>
+                <asp:Button runat="server" OnClick="bthSaveFinish_Click" ID="bthSaveFinish" class="btn btn-warning btn-circle btn-Xl " Text="Scan" />
+            </p>
 
+        </div>
     </div>
+
     <hr />
     <div class="row">
         <div class="form-group form-horizontal col-md-3">
@@ -74,8 +40,9 @@
         <div class="form-group form-horizontal col-md-9">
             <div class="row">
                 <div class="col-md-12">
-                    <asp:LinkButton runat="server" ID="bthfinish" class="btn btn-warning" Width="300" Height="40" OnClick="bthfinish_Click">ยืนยัน</asp:LinkButton>
 
+                    <%--<asp:LinkButton runat="server" ID="bthfinish" class="btn btn-warning btn-circle btn-Xl" OnClick="bthfinish_Click" Text="ยืนยัน"><i class="glyphicon glyphicon-ok"></i>ยืนยัน</asp:LinkButton>--%>
+                    <%-- <button type="button" runat="server"  id="bthsave" class="btn btn-warning btn-circle btn-Xl"><i class="glyphicon glyphicon-ok" ></i>ยืนยัน</button>--%>
                 </div>
             </div>
         </div>

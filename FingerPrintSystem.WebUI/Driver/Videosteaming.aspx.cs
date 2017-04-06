@@ -7,12 +7,28 @@ using System.Web.UI.WebControls;
 
 namespace FingerPrintSystem.WebUI.Driver
 {
-    public partial class Videosteaming : System.Web.UI.Page
+    public partial class Videosteaming : PageBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Connect1("10.59.100.5");
-            //Connect2("10.59.100.5");
+            if (!this.IsPostBack)
+            {
+                 //Connect1("192.168.1.44");
+                // Connect2("192.168.1.44:81");
+
+                if (this.DecryptQueryString("driverid") != null)
+                {
+                    string data = DecryptQueryString("driverid").ToString();
+                }
+                else
+                {
+
+                    Response.Redirect("../login.aspx");
+
+                }
+            }
+
+          
         }
         private void Connect1(string IPAddress)
         {

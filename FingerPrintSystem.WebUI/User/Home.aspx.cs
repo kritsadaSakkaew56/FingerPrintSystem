@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using uPLibrary.Networking.M2Mqtt;
+
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
@@ -45,25 +45,6 @@ namespace FingerPrintSystem.WebUI.User
                 }
 
 
-
-                //HttpCookie userid = Request.Cookies["userid"];
-                //try
-                //{
-                //    if (userid.Value != null)
-                //    {
-
-                //        int memberid = Convert.ToInt32(this.DecryptQueryString(userid.Value));
-                //        BindData(memberid);
-
-                //    }
-                //}
-
-                //catch
-                //{
-                //    Response.Redirect("/Login.aspx");
-
-                //}
-
             }
 
 
@@ -77,6 +58,7 @@ namespace FingerPrintSystem.WebUI.User
             if (dt.Rows.Count > 0 && dt_active.Rows.Count > 0)
             {
                 UserAddress(memberuserid); //แสดงที่อยู่ของเด็ก
+                userScan(memberuserid); // แสดงการสแกน
 
                 bool is_active = (bool)dt_active.Rows[0]["is_active"];
                 Imgstudent.ImageUrl = dt.Rows[0]["photo"].ToString();
@@ -84,23 +66,20 @@ namespace FingerPrintSystem.WebUI.User
                 labid.Text = dt.Rows[0]["id"].ToString();
                 labfullname.Text = dt.Rows[0]["fullname"].ToString();
                 labschool.Text = dt.Rows[0]["school"].ToString();
-                if (is_active == true)
-                {
 
-                    labstatusup.Text = "ยังไม่ได้สแกนลายนิ้วมือ";
-                    labstatusup.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF9900");
+                //if (is_active == true)
+                //{
 
-                    labstatusdown.Text = "ยังไม่ได้สแกนลายนิ้วมือ";
-                    labstatusdown.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF9900");
+                  
 
-                }
-                else if (is_active == false)
-                {
+                //}
+                //else if (is_active == false)
+                //{
                    
-                    labstatusup.Text = "ยังไม่ได้ทำการเพิ่มลายนิ้วมือ";
-                    labstatusdown.Text = "ยังไม่ได้ทำการเพิ่มลายนิ้วมือ";
+                //    labstatusup.Text = "ยังไม่ได้ทำการเพิ่มลายนิ้วมือ";
+                //    labstatusdown.Text = "ยังไม่ได้ทำการเพิ่มลายนิ้วมือ";
                     
-                }
+                //}
             }
 
             
@@ -111,6 +90,23 @@ namespace FingerPrintSystem.WebUI.User
             DataTable dt = new UserAddressDAO().GetUserAddressByMember(memberid);
             rptMarkers.DataSource = dt;
             rptMarkers.DataBind();
+
+
+        }
+        private void userScan(int memberid)
+        {
+            DataTable dt = new UserScanDAO().GetUserScanByIDMember(memberid);
+
+            if(dt.Rows.Count>0)
+            {
+
+                labstatusup.Text = dt.Rows[0]["datetime_up"].ToString();
+                labstatusup.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
+
+                labstatusdown.Text = dt.Rows[0]["datetime_down"].ToString();
+                labstatusdown.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
+
+            }
 
 
         }

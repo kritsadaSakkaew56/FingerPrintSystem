@@ -110,6 +110,12 @@
                                 <span>Child User</span>
                             </a>
                         </li>
+                         <li>
+                            <a class="active" href="~/Driver/Videosteaming.aspx" id="video" runat="server">
+                                <i class="fa fa-th-list"></i>
+                                <span>Video</span>
+                            </a>
+                        </li>
 
                         <li>
                             <a class="active" href="../Login.aspx">

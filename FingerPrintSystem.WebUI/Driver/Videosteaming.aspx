@@ -19,16 +19,17 @@
                 id="imgphoto1"
                 alt="vote up"
                 runat="server"
-                style="height: 400px; width: 80%" />
+                style="width: 70%; height: 240px; border: solid 1px black; float: left" />
         </div>
     </div>
+    <br />
     <div class="row">
         <div class="col-sm-12">
             <img src="~/Images/logo.png"
                 id="imgphoto2"
                 alt="vote up"
                 runat="server"
-                style="height: 400px; width: 80%" />
+                style="width: 70%; height: 240px; border: solid 1px black; float: left" />
         </div>
     </div>
 

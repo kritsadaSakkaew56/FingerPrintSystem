@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>พะเ
+    <title></title>
 
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDBGK8nRj24Jh6GVQRtgaoISecBPAHfHDA"></script>
     <script src="../js/jquery-1.4.2.min.js"></script>
@@ -91,7 +91,7 @@
         <div class="row">
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-4">
-                    <div id="map_canvas" style="width: 950px; height: 400px; border: solid 1px black; float: left""></div>
+                    <div id="map_canvas" style="width: 950px; height: 400px; border: solid 1px black; float: left" ></div>
                 </div>
             </div>
         </div>

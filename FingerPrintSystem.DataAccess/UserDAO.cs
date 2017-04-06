@@ -13,7 +13,7 @@ namespace FingerPrintSystem.DataAccess
     {
 
         public string AddUser(int memberID, string ID,string Fullname,string School ,string Fullnameparent,
-                              string Tel,string Email,string Photo, Byte[] Savatardata, string passwordDecrypt )
+                              string Tel,string Email,string Photo , string passwordDecrypt )
         {
             DatabaseHelper db = new DatabaseHelper();
             List<SqlParameter> param = new List<SqlParameter>();
@@ -25,7 +25,6 @@ namespace FingerPrintSystem.DataAccess
             param.Add(new SqlParameter("@tel", Tel));
             param.Add(new SqlParameter("@email", Email));
             param.Add(new SqlParameter("@photo", Photo));
-            param.Add(new SqlParameter("@photo_data", Savatardata));
             param.Add(new SqlParameter("@password_Decrypt", passwordDecrypt));
 
             return db.ExecuteScalar("sp_User_Insert", param).ToString();
@@ -49,7 +48,13 @@ namespace FingerPrintSystem.DataAccess
             param.Add(new SqlParameter("@memberid", memberid));
             return db.ExecuteDataTable("sp_User_Select_ByIDMember", param);
 
+        }
 
+        public string GetMaxID()
+        {
+
+            DatabaseHelper db = new DatabaseHelper();
+            return db.ExecuteScalar("sp_User_Select_ByIDMax").ToString();
 
         }
     }

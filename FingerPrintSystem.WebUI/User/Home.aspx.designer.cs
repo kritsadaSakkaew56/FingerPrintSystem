@@ -76,15 +76,6 @@ namespace FingerPrintSystem.WebUI.User {
         protected global::System.Web.UI.WebControls.Label labstatusdown;
         
         /// <summary>
-        /// imgyoutube control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgyoutube;
-        
-        /// <summary>
         /// labc control.
         /// </summary>
         /// <remarks>
@@ -101,6 +92,15 @@ namespace FingerPrintSystem.WebUI.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfvaluetemp;
+        
+        /// <summary>
+        /// imgyoutube control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton imgyoutube;
         
         /// <summary>
         /// bthok control.

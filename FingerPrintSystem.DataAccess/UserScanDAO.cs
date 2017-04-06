@@ -23,7 +23,15 @@ namespace FingerPrintSystem.DataAccess
             return db.ExecuteScalar("sp_User_Scan_Insert_ByIDMember",param).ToString();
         }
 
+        public DataTable GetUserScanByIDMember(int memberuserid)
+        {
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@memberuserid", memberuserid));
 
+            return db.ExecuteDataTable("sp_User_Scan_Select_ByIDMember", param);
+
+        }
 
     }
 }

@@ -20,26 +20,25 @@ namespace FingerPrintSystem.WebUI.Driver
             {
                 Imgfingerprint.ImageUrl = "~/Images/false.png";
 
-                    int driverid = Convert.ToInt32(DecryptQueryString("driverid")); 
+                int driverid = Convert.ToInt32(DecryptQueryString("driverid"));
 
-                    if (Convert.ToInt32(DecryptQueryString("userid")) > 0 && Convert.ToInt32(DecryptQueryString("driverid")) > 0)
-                    {
+                if (Convert.ToInt32(DecryptQueryString("userid")) > 0 && Convert.ToInt32(DecryptQueryString("driverid")) > 0)
+                {
 
                     ViewState["MemberUser_id"] = this.DecryptQueryString("userid").ToString();
-                    int  memberuserid =Convert.ToInt32(ViewState["MemberUser_id"].ToString());
+                    int memberuserid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
                     CheckIsactive(memberuserid);
 
 
                     ViewState["MemberDriver_id"] = this.DecryptQueryString("driverid").ToString();
                     string MemberDriverid = ViewState["MemberDriver_id"].ToString();
 
-                    }
-                    else
-                    {
-                        Response.Redirect("/Driver/LoginUser.aspx" + this.EncryptQueryString("driverid=" + driverid));
+                }
+                else
+                {
+                    Response.Redirect("/Driver/LoginUser.aspx" + this.EncryptQueryString("driverid=" + driverid));
 
-                    }
-
+                }
 
             }
 
@@ -57,7 +56,7 @@ namespace FingerPrintSystem.WebUI.Driver
                 {
                     labscan.Text = "ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว";
                     Imgfingerprint.ImageUrl = "~/Images/true.png";
-                    bthfinish.Visible = false;
+                    bthSaveFinish.Visible = false;
 
                 }
                
@@ -66,17 +65,8 @@ namespace FingerPrintSystem.WebUI.Driver
 
         protected void bthfinish_Click(object sender, EventArgs e)
         {
-                    int memberuserid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
-
-                    MemberDAO Member = new MemberDAO();
-                    UserScanDAO User = new UserScanDAO();
-                    User.AddUserScanByIDMember(memberuserid, "", "ยังไม่ได้สแกน", "ยังไม่ได้สแกน");
-                    Member.UpdateMember(memberuserid, true);
-
-                    labscan.Text = "ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว";
-                    Imgfingerprint.ImageUrl = "~/Images/true.png";
-
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalScan", "$('#myModalScan').modal();", true);
+                
+            
                 
             
         }
@@ -85,6 +75,24 @@ namespace FingerPrintSystem.WebUI.Driver
         {
 
             Response.Redirect("../Login.aspx");
+        }
+
+        protected void bthSaveFinish_Click(object sender, EventArgs e)
+        {
+            int memberuserid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
+
+
+            UserScanDAO User = new UserScanDAO();
+            User.AddUserScanByIDMember(memberuserid, "", "ยังไม่ได้สแกน", "ยังไม่ได้สแกน");
+
+            MemberDAO Member = new MemberDAO();
+            Member.UpdateMember(memberuserid, true);
+
+            labscan.Text = "ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว";
+            Imgfingerprint.ImageUrl = "~/Images/true.png";
+
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalScan", "$('#myModalScan').modal();", true);
+
         }
     }
 }

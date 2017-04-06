@@ -20,18 +20,18 @@ namespace FingerPrintSystem.WebUI.User
         {
             if (!IsPostBack)
             {
-                //if (this.DecryptQueryString("userid") != null)
-                //{
-                //    ViewState["memberUser_id"] = this.DecryptQueryString("userid").ToString();
-                //    string memberUserid = ViewState["memberUser_id"].ToString();
-                //}
-                //else
-                //{
+                if (this.DecryptQueryString("userid") != null)
+                {
+                    ViewState["memberUser_id"] = this.DecryptQueryString("userid").ToString();
+                    string memberUserid = ViewState["memberUser_id"].ToString();
+                }
+                else
+                {
 
-                //    Response.Redirect("../User/RegisterUser.aspx");
-                //}
+                    Response.Redirect("../User/RegisterUser.aspx");
+                }
 
-                ViewState["MemberUser_id"] = "1"; //ทดสอบ
+                //ViewState["memberUser_id"] = "1"; //ทดสอบ
             }
         }
 
@@ -89,10 +89,11 @@ namespace FingerPrintSystem.WebUI.User
 
                 if (status == "Driver")
                 {
-                    int memberUser = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
+                    int memberUser = Convert.ToInt32(ViewState["memberUser_id"].ToString());
 
-                        Response.Redirect("../FingerPrint/RegisterFingerPrintscan.aspx" + 
+                        Response.Redirect("../Driver/FingerPrintscan.aspx" + 
                                         this.EncryptQueryString("userid=" + memberUser+"&driverid=" + memberid));
+
                     //cookiesdatauseranddriver(memberUser, memberid);
 
                 }
@@ -117,7 +118,7 @@ namespace FingerPrintSystem.WebUI.User
 
             Response.Cookies.Add(userid);
             Response.Cookies.Add(driverid);
-            Response.RedirectPermanent("../Driver/FingerPrintscan.aspx" + this.EncryptQueryString("id=" + memberUser));
+            Response.RedirectPermanent("../Driver/FingerPrintscan.aspx" + this.EncryptQueryString("userid=" + memberUser));
 
 
         }
@@ -165,7 +166,7 @@ namespace FingerPrintSystem.WebUI.User
 
         protected void bthfinish_Click(object sender, EventArgs e)
         {
-
+           
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalSave", "$('#myModalSave').modal();", true);
            
 
@@ -174,6 +175,10 @@ namespace FingerPrintSystem.WebUI.User
 
         protected void bthOKSave_Click(object sender, EventArgs e)
         {
+            int memberUserid = Convert.ToInt32(ViewState["memberUser_id"].ToString());
+
+            MemberDAO Member = new MemberDAO();
+            Member.UpdateMember(memberUserid, false);
 
             Response.Redirect("../Login.aspx");
 

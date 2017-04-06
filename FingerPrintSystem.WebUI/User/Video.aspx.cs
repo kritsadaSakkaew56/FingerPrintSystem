@@ -20,7 +20,7 @@ namespace FingerPrintSystem.WebUI.User
                 {
                     ViewState["member_id"] = this.DecryptQueryString("userid").ToString();
                     int memberid = Convert.ToInt32(ViewState["member_id"].ToString());
-               
+
                 }
                 else
                 {
@@ -31,7 +31,7 @@ namespace FingerPrintSystem.WebUI.User
         }
         private void youtube()
         {
-            string UrlYoutube = "https://www.youtube.com/watch?v=OiPReqexyjw";
+            string UrlYoutube = "https://www.youtube.com/watch?v=dnC7wfLw05E";
             string[] stringSplit = new string[] { "watch?v=" };
             string[] TostringSplit = UrlYoutube.Split(stringSplit, StringSplitOptions.None);
             string valueSplit = TostringSplit[1];

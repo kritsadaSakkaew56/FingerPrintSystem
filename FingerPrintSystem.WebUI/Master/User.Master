@@ -91,7 +91,7 @@
                         </li>
 
                         <li>
-                            <a class="active" href="../User/Home.aspx">
+                            <a class="active" href="../User/Home.aspx" id="changepassword" runat="server">
                                 <i class="fa fa-unlock-alt"></i>
                                 <span>Change Password</span>
                             </a>

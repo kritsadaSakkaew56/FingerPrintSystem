@@ -47,9 +47,10 @@ namespace FingerPrintSystem.WebUI.User
           
             if (FileUpload.HasFile)
             {
+                int maxuserid = Convert.ToInt32(new UserDAO().GetMaxID());
+                string FileName = (maxuserid + 1 +".jpg").ToString(); ;
 
-           
-                string FileName = Path.GetFileName(FileUpload.PostedFile.FileName);
+                //string FileName = Path.GetFileName(FileUpload.PostedFile.FileName);
                 string imagepath = Server.MapPath("~/UploadImage/" + FileName);
                 FileUpload.SaveAs(imagepath);
                 ViewState["svatar"] = imagepath;  // เก็บที่อยู่อยู่ของรูปประจำตัวที่นำเข้ามาในระบบ
@@ -140,17 +141,17 @@ namespace FingerPrintSystem.WebUI.User
             string photopath = ViewState["svatar"].ToString();
             string addressphoto = ViewState["addressphoto"].ToString();
 
-            FileStream fs = new FileStream(photopath, FileMode.Open, FileAccess.Read);
-            BinaryReader br = new BinaryReader(fs);
-            Byte[] bytesimage = br.ReadBytes((Int32)fs.Length);
-            br.Close();
-            fs.Close();
+            //FileStream fs = new FileStream(photopath, FileMode.Open, FileAccess.Read);
+            //BinaryReader br = new BinaryReader(fs);
+            //Byte[] bytesimage = br.ReadBytes((Int32)fs.Length);
+            //br.Close();
+            //fs.Close();
 
             UserDAO user = new UserDAO();
             user.AddUser(memberid, txtid.Text.Trim(), txtfullname.Text.Trim(), txtschool.Text.Trim(), txtfullnameparent.Text.Trim(),
-                         txttel.Text.Trim(), txtemail.Text.Trim(),addressphoto, bytesimage, txtpassword.Text.Trim());
+                         txttel.Text.Trim(), txtemail.Text.Trim(),addressphoto, txtpassword.Text.Trim());
 
-            Response.Redirect("../User/RegisterGooglemap.aspx" + this.EncryptQueryString("id=" + memberid));
+            Response.Redirect("../User/RegisterGooglemap.aspx" + this.EncryptQueryString("userid=" + memberid));
 
         }
         
