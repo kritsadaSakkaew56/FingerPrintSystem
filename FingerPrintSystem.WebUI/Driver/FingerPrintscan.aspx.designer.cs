@@ -13,6 +13,15 @@ namespace FingerPrintSystem.WebUI.Driver {
     public partial class FingerPrintscan {
         
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
         /// Imgfingerprint control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace FingerPrintSystem.WebUI.Driver {
         protected global::System.Web.UI.WebControls.Label labscan;
         
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        
+        /// <summary>
         /// bthSaveFinish control.
         /// </summary>
         /// <remarks>
@@ -38,6 +56,24 @@ namespace FingerPrintSystem.WebUI.Driver {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bthSaveFinish;
+        
+        /// <summary>
+        /// lblStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStatus;
+        
+        /// <summary>
+        /// UpdWaitImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress UpdWaitImage;
         
         /// <summary>
         /// bthok control.

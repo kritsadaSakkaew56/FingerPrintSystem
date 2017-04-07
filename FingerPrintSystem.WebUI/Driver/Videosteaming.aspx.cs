@@ -13,13 +13,14 @@ namespace FingerPrintSystem.WebUI.Driver
         {
             if (!this.IsPostBack)
             {
-                 //Connect1("192.168.1.44");
-                // Connect2("192.168.1.44:81");
+                 Connect1("192.168.1.110:80");
+                 Connect2("192.168.1.110:81");
 
                 if (this.DecryptQueryString("driverid") != null)
                 {
                     string data = DecryptQueryString("driverid").ToString();
                 }
+
                 else
                 {
 

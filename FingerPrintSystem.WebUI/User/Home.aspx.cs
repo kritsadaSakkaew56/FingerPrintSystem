@@ -23,7 +23,7 @@ namespace FingerPrintSystem.WebUI.User
     public partial class Home : PageBase
 
     {
-        MqttClient client = new MqttClient("128.199.169.39");
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (this.IsPostBack) // เมื่อเกิดเหตุการณ์ คลิก จะทำงานเก็บค่าไว้ใน labgps.Text  และ labc.Text
@@ -31,10 +31,11 @@ namespace FingerPrintSystem.WebUI.User
 
                 //labgps.Text = Request.Form[hfvaluegps.UniqueID];
                 labc.Text = Request.Form[hfvaluetemp.UniqueID];
-
+               
             }
             else
             {
+              
                 if (this.DecryptQueryString("userid") != null)
                 {
                     ViewState["memberuser_id"] = this.DecryptQueryString("userid").ToString();
@@ -70,19 +71,7 @@ namespace FingerPrintSystem.WebUI.User
                 labfullname.Text = dt.Rows[0]["fullname"].ToString();
                 labschool.Text = dt.Rows[0]["school"].ToString();
 
-                //if (is_active == true)
-                //{
-
-                  
-
-                //}
-                //else if (is_active == false)
-                //{
-                   
-                //    labstatusup.Text = "ยังไม่ได้ทำการเพิ่มลายนิ้วมือ";
-                //    labstatusdown.Text = "ยังไม่ได้ทำการเพิ่มลายนิ้วมือ";
-                    
-                //}
+              
             }
 
             
@@ -123,5 +112,6 @@ namespace FingerPrintSystem.WebUI.User
             Response.Redirect("../User/Video.aspx"+ this.EncryptQueryString("userid=" + memberid));
 
         }
+        
     }
 }

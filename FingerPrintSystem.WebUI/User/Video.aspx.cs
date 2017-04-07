@@ -31,17 +31,17 @@ namespace FingerPrintSystem.WebUI.User
         }
         private void youtube()
         {
-            string UrlYoutube = "https://www.youtube.com/watch?v=dnC7wfLw05E";
+            string UrlYoutube = "https://www.youtube.com/watch?v=_DnXFvQdJwc";
             string[] stringSplit = new string[] { "watch?v=" };
             string[] TostringSplit = UrlYoutube.Split(stringSplit, StringSplitOptions.None);
             string valueSplit = TostringSplit[1];
 
-            string width = "100%";
-            string height = "600";
+            string width = "65%";
+            string height = "400";
             iframeDiv.Controls.Add(new LiteralControl("<iframe width=" + width + " height=" + height + " src=" + "https://www.youtube.com/embed/" + valueSplit + "?autoplay=1&origin=http://example.com" + "></iframe><br />"));
 
-
         }
+
         protected void btnBack_Click(object sender, EventArgs e)
         {
 

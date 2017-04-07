@@ -13,25 +13,45 @@
             </header>
         </section>
     </div>
-    <div class="row">
-        <div class="col-sm-2">
-        </div>
-        <div class="col-sm-5">
-            <p>
-                <asp:Image runat="server" ID="Imgfingerprint" ControlStyle-Height="300" ControlStyle-Width="300" BorderStyle="Double" />
-            </p>
-            <p>
-                <asp:Label runat="server" ID="labscan" Text="ยังไม่ได้ทำการสแกนลายนิ้วมือ" Font-Size="X-Large"></asp:Label>
-            </p>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <div class="row">
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-5">
+                    <p>
+                        <asp:Image runat="server" ID="Imgfingerprint" ControlStyle-Height="300" ControlStyle-Width="300" BorderStyle="Double" />
+                    </p>
+                    <p>
+                        <asp:Label runat="server" ID="labscan" Text="ยังไม่ได้ทำการสแกนลายนิ้วมือ" Font-Size="X-Large"></asp:Label>
+                    </p>
 
-        </div>
-        <div class="col-sm-5">
-            <p>
-                <asp:Button runat="server" OnClick="bthSaveFinish_Click" ID="bthSaveFinish" class="btn btn-warning btn-circle btn-Xl " Text="Scan" />
-            </p>
+                </div>
+                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                <div class="col-sm-5">
 
-        </div>
-    </div>
+
+                    <p>
+                        <asp:Button runat="server" OnClick="bthSaveFinish_Click" ID="bthSaveFinish" class="btn btn-warning btn-circle btn-Xl " Text="Scan" />
+                    </p>
+                    <p>
+                        <asp:Label ID="lblStatus" runat="server" Text=""></asp:Label>
+                    </p>
+                    <fieldset style="width: 200px">
+                        <p>
+
+                            <asp:UpdateProgress ID="UpdWaitImage" runat="server" DynamicLayout="true" AssociatedUpdatePanelID="UpdatePanel1">
+                                <ProgressTemplate>
+                                    <asp:Image ID="imgProgress" ImageUrl="~/Images/ajax_loader_gray_48.gif" runat="server" />
+                                    Please Wait...
+                                </ProgressTemplate>
+                            </asp:UpdateProgress>
+                        </p>
+                </div>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
 
     <hr />
     <div class="row">
@@ -40,6 +60,7 @@
         <div class="form-group form-horizontal col-md-9">
             <div class="row">
                 <div class="col-md-12">
+
 
                     <%--<asp:LinkButton runat="server" ID="bthfinish" class="btn btn-warning btn-circle btn-Xl" OnClick="bthfinish_Click" Text="ยืนยัน"><i class="glyphicon glyphicon-ok"></i>ยืนยัน</asp:LinkButton>--%>
                     <%-- <button type="button" runat="server"  id="bthsave" class="btn btn-warning btn-circle btn-Xl"><i class="glyphicon glyphicon-ok" ></i>ยืนยัน</button>--%>

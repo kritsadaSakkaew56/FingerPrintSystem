@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using System.Data;
 
 using FingerPrintSystem.DataAccess;
+using FingerPrintSystem.MQTT;
+using System.Threading;
+using System.Diagnostics;
 
 namespace FingerPrintSystem.WebUI.Driver
 {
@@ -59,16 +62,8 @@ namespace FingerPrintSystem.WebUI.Driver
                     bthSaveFinish.Visible = false;
 
                 }
-               
-            }
-        }
 
-        protected void bthfinish_Click(object sender, EventArgs e)
-        {
-                
-            
-                
-            
+            }
         }
 
         protected void bthok_Click(object sender, EventArgs e)
@@ -79,19 +74,31 @@ namespace FingerPrintSystem.WebUI.Driver
 
         protected void bthSaveFinish_Click(object sender, EventArgs e)
         {
-            int memberuserid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
 
 
-            UserScanDAO User = new UserScanDAO();
-            User.AddUserScanByIDMember(memberuserid, "", "ยังไม่ได้สแกน", "ยังไม่ได้สแกน");
+                PublishDAO Publish = new PublishDAO();
+                Publish.GetPublish("/test", "111"); // สั่งเปิดสแกนลายนิ้วมือ
+                Debug.WriteLine("Sleep for 3 seconds.");
+                Thread.Sleep(3000);
+                Debug.WriteLine("Sleep for 3 OK.");
 
-            MemberDAO Member = new MemberDAO();
-            Member.UpdateMember(memberuserid, true);
+                //....................................................................................//
+           
+                labscan.Text = "ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว";
+                Imgfingerprint.ImageUrl = "~/Images/true.png";
 
-            labscan.Text = "ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว";
-            Imgfingerprint.ImageUrl = "~/Images/true.png";
+                int memberuserid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
 
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalScan", "$('#myModalScan').modal();", true);
+
+                UserScanDAO User = new UserScanDAO();
+                User.AddUserScanByIDMember(memberuserid, "", "ยังไม่ได้สแกน", "ยังไม่ได้สแกน");
+
+                MemberDAO Member = new MemberDAO();
+                Member.UpdateMember(memberuserid, true);
+
+
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalScan", "$('#myModalScan').modal();", true);
+
 
         }
     }

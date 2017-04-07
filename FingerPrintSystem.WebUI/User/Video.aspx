@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
@@ -22,12 +23,12 @@
     </div>
     <hr />
     <br />
-    <div class="row">
         <%--<div id="player"></div>--%>
         <%-- <iframe id="ytplayer" width="80%" height="550" src="https://www.youtube.com/embed/n_toKZltHU8?autoplay=1&origin=http://example.com"></iframe>--%>
-        <div class="col-sm-12">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
             <asp:PlaceHolder ID="iframeDiv" runat="server" />
         </div>
-    </div>
+
 
 </asp:Content>

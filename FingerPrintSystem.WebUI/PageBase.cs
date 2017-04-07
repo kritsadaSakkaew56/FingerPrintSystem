@@ -129,6 +129,7 @@ namespace FingerPrintSystem.WebUI
             if (!IsPostBack)
             {
                 BindLanguage();
+
             }
             base.OnLoad(e);
 

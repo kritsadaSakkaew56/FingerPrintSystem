@@ -83,6 +83,10 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
@@ -94,6 +98,12 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -126,6 +136,8 @@
     <Content Include="fonts\Proxima_Nova_Semibold.svg" />
     <Content Include="fonts\Proxima_Nova_Semibold_Italic.svg" />
     <Content Include="fonts\startui.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\ajax_loader_gray_48.gif" />
     <Content Include="Images\beachflag.png" />
     <Content Include="Images\celcius-icon.png" />
     <Content Include="Images\false.png" />
@@ -341,6 +353,9 @@
     <Compile Include="FingerPrint\RegisterFingerPrintscan.aspx.designer.cs">
       <DependentUpon>RegisterFingerPrintscan.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -470,6 +485,10 @@
     <ProjectReference Include="..\FingerPrintSystem.DataAccess\FingerPrintSystem.DataAccess.csproj">
       <Project>{9c1b4a6d-2cd7-4ec8-b158-2645f5d7503a}</Project>
       <Name>FingerPrintSystem.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FingerPrintSystem.MQTT\FingerPrintSystem.MQTT.csproj">
+      <Project>{51902996-7e24-4a9e-82d0-8be2c704b8f7}</Project>
+      <Name>FingerPrintSystem.MQTT</Name>
     </ProjectReference>
     <ProjectReference Include="..\FingerPrintSystem.Utility\FingerPrintSystem.Utility.csproj">
       <Project>{1f0b3880-183b-445d-a975-22052c612af3}</Project>
