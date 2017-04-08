@@ -6,19 +6,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
-   
+
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 
-    <div class="row">
-        <section class="panel">
-            <header class="panel-heading" style="background-color: #F5DEB3">
-                <h4>ขั้นตอนที่ 3 >>> สแกนลายนิ้วมือ </h4>
-            </header>
-        </section>
-    </div>
+
+    <section class="panel">
+        <header class="panel-heading" style="background-color: #F5DEB3">
+            <h4>ขั้นตอนที่ 3 >>> สแกนลายนิ้วมือ </h4>
+        </header>
+    </section>
+
     <div class="row">
         <div class="form-group form-horizontal col-md-1">
         </div>

@@ -27,14 +27,15 @@ namespace FingerPrintSystem.MQTT
                               MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, // QoS level
                               false); // retained
 
+            void client_MqttMsgPublished(object sender, MqttMsgPublishedEventArgs e)
+            {
+                Message = e.MessageId.ToString();
+                Debug.WriteLine("MessageId = " + e.MessageId + " Published = " + e.IsPublished);
+            }
 
         }
 
-        void client_MqttMsgPublished(object sender, MqttMsgPublishedEventArgs e)
-        {
-            Message = e.MessageId.ToString();
-            Debug.WriteLine("MessageId = " + e.MessageId + " Published = " + e.IsPublished);
-        }
+      
 
 
 

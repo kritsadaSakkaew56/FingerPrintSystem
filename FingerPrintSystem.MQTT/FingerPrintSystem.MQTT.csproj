@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublishDAO.cs" />
+    <Compile Include="SubscribeDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

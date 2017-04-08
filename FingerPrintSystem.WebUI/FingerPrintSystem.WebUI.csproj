@@ -287,8 +287,8 @@
     <Content Include="Master\Driver.Master" />
     <Content Include="Master\FingerPrintScan.Master" />
     <Content Include="Master\RegisterDriver.Master" />
-    <None Include="Properties\PublishProfiles\FingerprintscantSystem - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\FingerprintscantSystem - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\FingerprintSystem - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\FingerprintSystem - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

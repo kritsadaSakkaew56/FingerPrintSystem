@@ -7,20 +7,17 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    
-
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="scMain" runat="server"></asp:ScriptManager>
-    <div class="row">
-        <section class="panel">
-            <header class="panel-heading" style="background-color: #F5DEB3">
-                <h4>การเดินทางจาก  โรงเรียน >>> บ้าน </h4>
-            </header>
-        </section>
-    </div>
-    <div class="row">
+
+    <section class="panel">
+        <header class="panel-heading" style="background-color: #F5DEB3">
+            <h4>การเดินทางจาก  โรงเรียน >>> บ้าน </h4>
+        </header>
+    </section>
+
+    <%--<div class="row">
         <div class="form-group form-horizontal col-md-1">
         </div>
         <div class="form-group form-horizontal col-md-5">
@@ -89,9 +86,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
     <br />
-    <div class="row">
+    <%-- <div class="row">
         <div class="form-group form-horizontal col-md-3">
         </div>
         <div class="form-group form-horizontal col-md-9">
@@ -105,6 +102,15 @@
                 <asp:Label runat="server" Text="คน" Font-Bold="true" Font-Size="Large"></asp:Label>
             </div>
         </div>
+    </div>--%>
+    <div class="row">
+        <div class="panel-body form-horizontal">
+            <div class="panel-body">
+                 <asp:DropDownList ID="DropDownList" runat="server" Width="50%" Height="35"></asp:DropDownList>
+                 <asp:LinkButton runat="server" ID="bthSaveFinish" class="btn btn-primary btn-md" ><i class="glyphicon glyphicon-ok-sign"></i>ตกลง</asp:LinkButton>
+                 <asp:LinkButton runat="server" ID="bthclose" class="btn btn-danger btn-lg" ><i class="glyphicon glyphicon-remove"></i></asp:LinkButton>
+            </div>
+        </div>
     </div>
     <hr />
     <div class="row">
@@ -112,62 +118,63 @@
             <div class="panel-body">
                 <asp:UpdatePanel runat="server" ID="updResult">
                     <ContentTemplate>
-                        <uc1:PagingControl ID="PagingControl1" runat="server" />
+                        <%--<uc1:PagingControl ID="PagingControl1" runat="server" />--%>
                         <asp:GridView
                             ID="gvMember" runat="server"
                             AutoGenerateColumns="false"
-                            AllowSorting="true"
+                            AllowSorting="false"
                             OnRowDataBound="gvMember_RowDataBound"
                             OnSorting="gvMember_Sorting"
                             EmptyDataText="------ ไม่พบข้อมูล ------"
-                            EmptyDataRowStyle-HorizontalAlign="Center"
-                            CssClass="table table-bordered table-striped table-hover">
+                            HeaderStyle-BackColor="Orange"
+                            CssClass="table table-bordered table-striped table-hover"
+                            Style="max-width: 100%">
                             <Columns>
 
                                 <%--   <asp:BoundField HeaderText="#" DataField="Count" SortExpression="Count" ItemStyle-HorizontalAlign="Left"/>--%>
-                                <asp:ImageField DataImageUrlField="ID"
+                                <%--  <asp:ImageField DataImageUrlField="ID"
                                     DataImageUrlFormatString="HomegoSchool.aspx?ImageID={0}"
                                     ControlStyle-Width="100" ControlStyle-Height="100"
-                                    HeaderText="รูปประจำตัว" />
-                                <asp:BoundField HeaderText="เลขประจำตัว" DataField="ID" SortExpression="ID" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="125" />
-                                <asp:BoundField HeaderText="ชื่อ-นามสกุล" DataField="FullName" SortExpression="FullName" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="300" />
+                                    HeaderText="รูปประจำตัว" />--%>
 
-                                <asp:TemplateField HeaderText="วันที่/เวลาขึ้น" ItemStyle-Width="200" ItemStyle-HorizontalAlign="Center">
-                                    <ItemTemplate>
-                                        <asp:Label runat="server" ID="lalScanup" Text='<%# Eval("DateTimeScan") %>' Width="150px" Height="20px" ForeColor="White" Visible="false"></asp:Label>
-                                        <asp:Label runat="server" ID="lalnoScanup" Text="ยังไม่ได้สแกน" Width="150px" Height="20px" ForeColor="White" Visible="true"></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="วันที่/เวลาลง" ItemStyle-Width="200" ItemStyle-HorizontalAlign="Center">
-                                    <ItemTemplate>
-                                        <asp:Label runat="server" ID="lalScandown" Text='<%# Eval("DateTimeScan") %>' Width="150px" Height="20px" ForeColor="White" Visible="false"></asp:Label>
-                                        <asp:Label runat="server" ID="lalnoScandown" Text="ยังไม่ได้สแกน" Width="150px" Height="20px" ForeColor="White" Visible="true"></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ยืนยัน" ItemStyle-Width="75" ItemStyle-HorizontalAlign="Center">
-                                    <ItemTemplate>
-                                        <asp:LinkButton runat="server" ID="btnOK" CssClass="btn btn-primary"> OK</asp:LinkButton>
-                                        <asp:CheckBox runat="server" ID="chkSelect" Enabled="false" Checked="false" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                <asp:BoundField HeaderText="เลขประจำตัว" DataField="id" SortExpression="id" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
+                                <asp:BoundField HeaderText="ชื่อ-นามสกุล" DataField="fullName" SortExpression="fullName" />
 
-                                <%--<asp:BoundField HeaderText="วันที่/เวลา" DataField="DateTime" SortExpression="DateTime" ItemStyle-HorizontalAlign="Left" />--%>
+                                <asp:TemplateField HeaderText="วันที่/เวลาขึ้น" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+
+                                        <asp:Label runat="server" ID="lalScanup" Text='<%# Eval("datetime_up") %>' Height="20px" ForeColor="Black" Visible="true"></asp:Label>
+                                        <%--  <asp:Label runat="server" ID="lalnoScanup" Text="ยังไม่ได้สแกน" Width="150px" Height="20px" ForeColor="White" Visible="true"></asp:Label>--%>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="วันที่/เวลาลง" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" ID="lalScandown" Text='<%# Eval("datetime_down") %>' Height="20px" ForeColor="Black" Visible="true"></asp:Label>
+                                        <%--<asp:Label runat="server" ID="lalnoScandown" Text="ยังไม่ได้สแกน" Width="150px" Height="20px" ForeColor="White" Visible="true"></asp:Label>--%>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="ดำเนินการ" ItemStyle-Width="75" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="bthScan" runat="server" meta:resourcekey="bthScantest" CssClass="btn btn-success btn-xs" ><i class="fa fa-search"></i></asp:LinkButton>
+                                        <%--<asp:LinkButton runat="server" ID="btnOK" CssClass="btn btn-primary"> OK</asp:LinkButton>
+                                        <asp:CheckBox runat="server" ID="chkSelect" Enabled="false" Checked="false" />--%>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
                     </ContentTemplate>
                 </asp:UpdatePanel>
 
-                <%--<asp:LinkButton runat="server" ID="bthScan"  class="btn btn-danger"  Width="150" Height="40" OnClick="bthScan_Click">Scan</asp:LinkButton>
-                         <asp:LinkButton runat="server" ID="bthreset" class="btn btn-danger"  Width="150" Height="40" OnClick="bthreset_Click">reset</asp:LinkButton>--%>
+               
             </div>
         </div>
     </div>
-     <hr />
+    <hr />
     <div class="row">
         <div class="form-group form-horizontal col-md-9">
         </div>
         <div class="form-group form-horizontal col-md-3">
-            <asp:LinkButton runat="server" ID="bthsave" class="btn btn-warning" Width="150" Height="40" OnClick="bthsave_Click" >บันทึก</asp:LinkButton>
+            <asp:LinkButton runat="server" ID="bthsave" class="btn btn-success" Width="150" Height="40" OnClick="bthsave_Click"><i class="glyphicon glyphicon-ok"></i>ยืนยัน</asp:LinkButton>
         </div>
     </div>
 </asp:Content>

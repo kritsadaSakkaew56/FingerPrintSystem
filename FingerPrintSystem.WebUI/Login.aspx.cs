@@ -139,7 +139,7 @@ namespace FingerPrintSystem.WebUI
         protected void bthregister_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("/User/default.aspx");
+            Response.Redirect("/User/RegisterUser.aspx");
 
 
         }

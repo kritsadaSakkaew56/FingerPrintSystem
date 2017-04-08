@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
- 
-   <!-- Bootstrap core CSS -->
+
+    <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/bootstrap-reset.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/datepicker/css/datepicker.css" />
@@ -17,7 +17,7 @@
     <!--external css-->
     <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/owl.carousel.css" type="text/css">
-   <%-- <link href="../assets/font-awesome.min.css" rel="stylesheet" />--%>
+    <%-- <link href="../assets/font-awesome.min.css" rel="stylesheet" />--%>
 
     <!--right slidebar-->
     <link href="../css/slidebars.css" rel="stylesheet">
@@ -52,13 +52,13 @@
                     <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
 
                 </div>
-                <div class="sidebar-toggle-box">
-                    <img src="../Images/HomeFingerprint.png" width="27" height="27" />
-                    <!--logo start-->
-                </div>
-                <a href="../User/default.aspx" class="logo">FingerPrint<span>System</span></a>
-                <!--logo end-->
-
+                
+                    <div class="sidebar-toggle-box">
+                        <img src="../Images/HomeFingerprint.png" width="27" height="27" />
+                        <!--logo start-->
+                    </div>
+                    <a class="logo">FingerPrint<span>System</span></a>
+                    <!--logo end-->
                 <div class="top-nav ">
                     <!--search & user info start-->
                     <ul class="nav pull-right top-menu">
@@ -129,7 +129,7 @@
             <!--footer end-->
         </section>
 
-         <!-- js placed at the end of the document so the pages load faster -->
+        <!-- js placed at the end of the document so the pages load faster -->
 
         <script class="include" type="text/javascript" src="../js/jquery.dcjqaccordion.2.7.js"></script>
         <script src="../js/jquery.scrollTo.min.js"></script>
@@ -139,10 +139,10 @@
         <script src="../js/jquery.customSelect.min.js"></script>
         <script src="../js/respond.min.js"></script>
 
-          <!--right slidebar-->
+        <!--right slidebar-->
         <script src="../js/slidebars.min.js"></script>
 
-       <!--common script for all pages-->
+        <!--common script for all pages-->
         <script src="../js/common-scripts.js"></script>
 
 
@@ -172,8 +172,8 @@
 
 
 
-       
-      
+
+
     </form>
 </body>
 </html>

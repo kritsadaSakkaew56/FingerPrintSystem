@@ -36,7 +36,7 @@ namespace FingerPrintSystem.WebUI.User
             string[] TostringSplit = UrlYoutube.Split(stringSplit, StringSplitOptions.None);
             string valueSplit = TostringSplit[1];
 
-            string width = "65%";
+            string width = "70%";
             string height = "400";
             iframeDiv.Controls.Add(new LiteralControl("<iframe width=" + width + " height=" + height + " src=" + "https://www.youtube.com/embed/" + valueSplit + "?autoplay=1&origin=http://example.com" + "></iframe><br />"));
 

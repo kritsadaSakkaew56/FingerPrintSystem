@@ -6,13 +6,13 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row">
-        <section class="panel">
-            <header class="panel-heading" style="background-color: #F5DEB3">
-                <h4>สแกนลายนิ้วมือ </h4>
-            </header>
-        </section>
-    </div>
+
+    <section class="panel">
+        <header class="panel-heading" style="background-color: #F5DEB3">
+            <h4>สแกนลายนิ้วมือ </h4>
+        </header>
+    </section>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="row">

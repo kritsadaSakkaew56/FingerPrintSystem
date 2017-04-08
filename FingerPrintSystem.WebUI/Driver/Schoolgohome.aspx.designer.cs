@@ -22,49 +22,31 @@ namespace FingerPrintSystem.WebUI.Driver {
         protected global::System.Web.UI.ScriptManager scMain;
         
         /// <summary>
-        /// labupstudent control.
+        /// DropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labupstudent;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList;
         
         /// <summary>
-        /// labresuluptstudent control.
+        /// bthSaveFinish control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labresuluptstudent;
+        protected global::System.Web.UI.WebControls.LinkButton bthSaveFinish;
         
         /// <summary>
-        /// labdownstudent control.
+        /// bthclose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labdownstudent;
-        
-        /// <summary>
-        /// labresuldowntstudent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labresuldowntstudent;
-        
-        /// <summary>
-        /// labnumstudent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labnumstudent;
+        protected global::System.Web.UI.WebControls.LinkButton bthclose;
         
         /// <summary>
         /// updResult control.
@@ -74,15 +56,6 @@ namespace FingerPrintSystem.WebUI.Driver {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel updResult;
-        
-        /// <summary>
-        /// PagingControl1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::FingerPrintSystem.WebUI.UserControls.PagingControl PagingControl1;
         
         /// <summary>
         /// gvMember control.

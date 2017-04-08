@@ -32,6 +32,14 @@ namespace FingerPrintSystem.DataAccess
             return db.ExecuteDataTable("sp_User_Scan_Select_ByIDMember", param);
 
         }
+        public DataSet GetUserScanJoin_tbUser()
+        {
+
+
+            DatabaseHelper db = new DatabaseHelper();
+            return db.ExecuteDataSet("sp_User_Scan_SelectJoin_tbuser");
+          
+        }
 
     }
 }

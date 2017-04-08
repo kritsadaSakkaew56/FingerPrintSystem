@@ -8,7 +8,7 @@
 
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDBGK8nRj24Jh6GVQRtgaoISecBPAHfHDA"></script>
     <script src="../js/jquery-1.4.2.min.js"></script>
-   <script src="../js/jquery-ui-1.8.1.custom.min.js"></script>
+    <script src="../js/jquery-ui-1.8.1.custom.min.js"></script>
     <script src="../js/googlemapapi.js"></script>
 
     <!-- Bootstrap core CSS -->
@@ -40,7 +40,6 @@
         <section id="container">
             <!--header start-->
             <header class="header white-bg" style="background-color: sandybrown">
-
                 <div class="sidebar-toggle-box">
                     <img src="../Images/HomeFingerprint.png" width="27" height="27" />
                     <!--logo start-->
@@ -48,7 +47,6 @@
                 <a href="../Admin/googlemap.aspx" class="logo">FingerPrint<span>System</span></a>
                 <!--logo end-->
             </header>
-
         </section>
         <br />
         <br />
@@ -65,6 +63,7 @@
                 </div>
             </section>
         </div>
+
         <div class="row">
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-4">
@@ -91,7 +90,7 @@
         <div class="row">
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-4">
-                    <div id="map_canvas" style="width: 950px; height: 400px; border: solid 1px black; float: left" ></div>
+                    <div id="map_canvas" style="width: 950px; height: 400px; border: solid 1px black; float: left"></div>
                 </div>
             </div>
         </div>
@@ -99,13 +98,13 @@
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-8">
                     <label>x</label>
-                    <asp:TextBox id="latitude" runat="server" Visible="true"></asp:TextBox>
+                    <asp:TextBox ID="latitude" runat="server" Visible="true"></asp:TextBox>
                     <asp:HiddenField ID="hfvaluelatitude" runat="server" />
 
                     <label>y</label>
                     <asp:TextBox ID="longitude" runat="server" Visible="true"></asp:TextBox>
                     <asp:HiddenField ID="hfvaluelongitude" runat="server" />
-                   
+
                 </div>
             </div>
         </div>

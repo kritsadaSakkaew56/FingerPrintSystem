@@ -14,6 +14,7 @@
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/bootstrap-reset.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/datepicker/css/datepicker.css" />
 
     <!--external css-->

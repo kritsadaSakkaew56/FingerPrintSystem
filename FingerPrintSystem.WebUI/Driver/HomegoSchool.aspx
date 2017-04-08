@@ -16,13 +16,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="scMain" runat="server"></asp:ScriptManager>
-    <div class="row">
-        <section class="panel">
-            <header class="panel-heading" style="background-color: #F5DEB3">
-                <h4>การเดินทางจาก   บ้าน  >>>  โรงเรียน </h4>
-            </header>
-        </section>
-    </div>
+
+    <section class="panel">
+        <header class="panel-heading" style="background-color: #F5DEB3">
+            <h4>การเดินทางจาก   บ้าน  >>>  โรงเรียน </h4>
+        </header>
+    </section>
+
     <div class="row">
         <div class="form-group form-horizontal col-md-1">
         </div>
