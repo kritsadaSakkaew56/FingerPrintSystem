@@ -50,5 +50,15 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FingerPrintSystem.DataAccess\FingerPrintSystem.DataAccess.csproj">
+      <Project>{9c1b4a6d-2cd7-4ec8-b158-2645f5d7503a}</Project>
+      <Name>FingerPrintSystem.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FingerPrintSystem.Utility\FingerPrintSystem.Utility.csproj">
+      <Project>{1f0b3880-183b-445d-a975-22052c612af3}</Project>
+      <Name>FingerPrintSystem.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

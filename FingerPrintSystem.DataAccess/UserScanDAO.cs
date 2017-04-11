@@ -40,6 +40,29 @@ namespace FingerPrintSystem.DataAccess
             return db.ExecuteDataSet("sp_User_Scan_SelectJoin_tbuser");
           
         }
+        public void UpdateUserScanByFingerprintid_Down(string fingerprintid,string datetimedown)
+        {
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@fingerprintid", fingerprintid));
+            param.Add(new SqlParameter("@datetimedown", datetimedown));
+
+            db.ExecuteNonQuery("sp_User_Scan_Update_ByFingerprintid_Down", param);
+
+        }
+
+        public void UpdateUserScanByFingerprintid_Up(string fingerprintid, string datetimeup)
+        {
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@fingerprintid", fingerprintid));
+            param.Add(new SqlParameter("@datetimeup", datetimeup));
+
+            db.ExecuteNonQuery("sp_User_Scan_Update_ByFingerprintid_Up", param);
+
+        }
 
     }
 }

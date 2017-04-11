@@ -243,11 +243,7 @@
                     });
 
                 })(markerHome, dataHome);
-
-
-
-                // google.maps.event.addDomListener(window, 'resize', initialize); //resize
-                // google.maps.event.addDomListener(window, 'load', initialize);
+   
             }
 
 

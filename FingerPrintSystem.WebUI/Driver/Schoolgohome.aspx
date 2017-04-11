@@ -9,7 +9,6 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:ScriptManager ID="scMain" runat="server"></asp:ScriptManager>
 
     <section class="panel">
         <header class="panel-heading" style="background-color: #F5DEB3">
@@ -103,21 +102,32 @@
             </div>
         </div>
     </div>--%>
-    <div class="row">
-        <div class="panel-body form-horizontal">
-            <div class="panel-body">
-                 <asp:DropDownList ID="DropDownList" runat="server" Width="50%" Height="35"></asp:DropDownList>
-                 <asp:LinkButton runat="server" ID="bthSaveFinish" class="btn btn-primary btn-md" ><i class="glyphicon glyphicon-ok-sign"></i>ตกลง</asp:LinkButton>
-                 <asp:LinkButton runat="server" ID="bthclose" class="btn btn-danger btn-lg" ><i class="glyphicon glyphicon-remove"></i></asp:LinkButton>
+    <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
+   
+
+    <asp:UpdatePanel runat="server" ID="UpdatePanel1" UpdateMode="Conditional">
+        <ContentTemplate>
+            <div class="row">
+                <div class="panel-body form-horizontal">
+                    <div class="panel-body">
+                        <asp:DropDownList ID="DropDownList" runat="server" Width="50%" Height="35" AutoPostBack="false"></asp:DropDownList>
+                        <asp:LinkButton runat="server" ID="bthSaveFinish" class="btn btn-primary btn-md" OnClick="bthSaveFinish_Click"><i class="glyphicon glyphicon-ok-sign"></i>ตกลง</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bthclose" class="btn btn-danger btn-md"><i class="glyphicon glyphicon-remove"></i>เริ่มใหม่</asp:LinkButton>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <hr />
-    <div class="row">
-        <div class="panel-body form-horizontal">
-            <div class="panel-body">
-                <asp:UpdatePanel runat="server" ID="updResult">
-                    <ContentTemplate>
+            <hr />
+
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+     <asp:Timer ID="UpdateTimer" runat="server" Interval="1000" OnTick="UpdateTimer_Tick"></asp:Timer>
+    <asp:UpdatePanel runat="server" ID="UpdatePanel2" UpdateMode="Conditional">
+        <ContentTemplate>
+            <div class="row">
+                <div class="panel-body form-horizontal">
+                    <div class="panel-body">
+
                         <%--<uc1:PagingControl ID="PagingControl1" runat="server" />--%>
                         <asp:GridView
                             ID="gvMember" runat="server"
@@ -126,7 +136,7 @@
                             OnRowDataBound="gvMember_RowDataBound"
                             OnSorting="gvMember_Sorting"
                             EmptyDataText="------ ไม่พบข้อมูล ------"
-                            HeaderStyle-BackColor="Orange"
+                            HeaderStyle-BackColor="#FFECCD"
                             CssClass="table table-bordered table-striped table-hover"
                             Style="max-width: 100%">
                             <Columns>
@@ -143,32 +153,34 @@
                                 <asp:TemplateField HeaderText="วันที่/เวลาขึ้น" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
 
-                                        <asp:Label runat="server" ID="lalScanup" Text='<%# Eval("datetime_up") %>' Height="20px" ForeColor="Black" Visible="true"></asp:Label>
+                                        <asp:Label runat="server" ID="lalScanup" Text='<%# Eval("datetime_up") %>' Height="20px" ForeColor="White" Font-Bold="true"></asp:Label>
                                         <%--  <asp:Label runat="server" ID="lalnoScanup" Text="ยังไม่ได้สแกน" Width="150px" Height="20px" ForeColor="White" Visible="true"></asp:Label>--%>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="วันที่/เวลาลง" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:Label runat="server" ID="lalScandown" Text='<%# Eval("datetime_down") %>' Height="20px" ForeColor="Black" Visible="true"></asp:Label>
+                                        <asp:Label runat="server" ID="lalScandown" Text='<%# Eval("datetime_down") %>' Height="20px" ForeColor="White" Font-Bold="true"></asp:Label>
                                         <%--<asp:Label runat="server" ID="lalnoScandown" Text="ยังไม่ได้สแกน" Width="150px" Height="20px" ForeColor="White" Visible="true"></asp:Label>--%>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ดำเนินการ" ItemStyle-Width="75" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="bthScan" runat="server" meta:resourcekey="bthScantest" CssClass="btn btn-success btn-xs" ><i class="fa fa-search"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="bthScan" runat="server" meta:resourcekey="bthScantest" CssClass="btn btn-success btn-xs"><i class="fa fa-search"></i></asp:LinkButton>
                                         <%--<asp:LinkButton runat="server" ID="btnOK" CssClass="btn btn-primary"> OK</asp:LinkButton>
                                         <asp:CheckBox runat="server" ID="chkSelect" Enabled="false" Checked="false" />--%>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
 
-               
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="UpdateTimer" EventName="Tick" />
+        </Triggers>
+    </asp:UpdatePanel>
     <hr />
     <div class="row">
         <div class="form-group form-horizontal col-md-9">
@@ -177,4 +189,5 @@
             <asp:LinkButton runat="server" ID="bthsave" class="btn btn-success" Width="150" Height="40" OnClick="bthsave_Click"><i class="glyphicon glyphicon-ok"></i>ยืนยัน</asp:LinkButton>
         </div>
     </div>
+
 </asp:Content>

@@ -13,13 +13,22 @@ namespace FingerPrintSystem.WebUI.Driver {
     public partial class Schoolgohome {
         
         /// <summary>
-        /// scMain control.
+        /// ScriptManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager scMain;
+        protected global::System.Web.UI.ScriptManager ScriptManager;
+        
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
         /// DropDownList control.
@@ -49,13 +58,22 @@ namespace FingerPrintSystem.WebUI.Driver {
         protected global::System.Web.UI.WebControls.LinkButton bthclose;
         
         /// <summary>
-        /// updResult control.
+        /// UpdateTimer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updResult;
+        protected global::System.Web.UI.Timer UpdateTimer;
+        
+        /// <summary>
+        /// UpdatePanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
         
         /// <summary>
         /// gvMember control.

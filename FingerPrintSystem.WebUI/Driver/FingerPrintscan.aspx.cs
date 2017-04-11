@@ -23,26 +23,26 @@ namespace FingerPrintSystem.WebUI.Driver
             {
                 Imgfingerprint.ImageUrl = "~/Images/false.png";
 
-                int driverid = Convert.ToInt32(DecryptQueryString("driverid"));
+                //int driverid = Convert.ToInt32(DecryptQueryString("driverid"));
 
-                if (Convert.ToInt32(DecryptQueryString("userid")) > 0 && Convert.ToInt32(DecryptQueryString("driverid")) > 0)
-                {
+                //if (Convert.ToInt32(DecryptQueryString("userid")) > 0 && Convert.ToInt32(DecryptQueryString("driverid")) > 0)
+                //{
 
-                    ViewState["MemberUser_id"] = this.DecryptQueryString("userid").ToString();
-                    int memberuserid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
-                    CheckIsactive(memberuserid);
+                //    ViewState["MemberUser_id"] = this.DecryptQueryString("userid").ToString();
+                //    int memberuserid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
+                //    CheckIsactive(memberuserid);
 
 
-                    ViewState["MemberDriver_id"] = this.DecryptQueryString("driverid").ToString();
-                    string MemberDriverid = ViewState["MemberDriver_id"].ToString();
+                //    ViewState["MemberDriver_id"] = this.DecryptQueryString("driverid").ToString();
+                //    string MemberDriverid = ViewState["MemberDriver_id"].ToString();
 
-                }
-                else
-                {
-                    Response.Redirect("/Driver/LoginUser.aspx" + this.EncryptQueryString("driverid=" + driverid));
+                //}
+                //else
+                //{
+                //    Response.Redirect("/Driver/LoginUser.aspx" + this.EncryptQueryString("driverid=" + driverid));
 
-                }
-
+                //}
+               
             }
 
 
@@ -77,27 +77,22 @@ namespace FingerPrintSystem.WebUI.Driver
 
 
                 PublishDAO Publish = new PublishDAO();
-                Publish.GetPublish("/test", "111"); // สั่งเปิดสแกนลายนิ้วมือ
+                Publish.GetPublish("/control", "ON"); // สั่งเปิดสแกนลายนิ้วมือ
                 Debug.WriteLine("Sleep for 3 seconds.");
                 Thread.Sleep(3000);
                 Debug.WriteLine("Sleep for 3 OK.");
 
-                //....................................................................................//
-           
-                labscan.Text = "ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว";
-                Imgfingerprint.ImageUrl = "~/Images/true.png";
+            //....................................................................................//
 
-                int memberuserid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
+                //int memberuserid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
+                SubscribeDAO Subscribe = new SubscribeDAO(); // รับสแกนลายนิ้วมือ   
+                Subscribe.AddSubscribe(3, "/fingerprint");
+            //......................................................................................//
 
+            labscan.Text = "ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว";
+            Imgfingerprint.ImageUrl = "~/Images/true.png";
 
-                UserScanDAO User = new UserScanDAO();
-                User.AddUserScanByIDMember(memberuserid, "", "ยังไม่ได้สแกน", "ยังไม่ได้สแกน");
-
-                MemberDAO Member = new MemberDAO();
-                Member.UpdateMember(memberuserid, true);
-
-
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalScan", "$('#myModalScan').modal();", true);
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalScan", "$('#myModalScan').modal();", true);
 
 
         }
