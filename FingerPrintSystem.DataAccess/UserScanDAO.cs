@@ -63,6 +63,21 @@ namespace FingerPrintSystem.DataAccess
             db.ExecuteNonQuery("sp_User_Scan_Update_ByFingerprintid_Up", param);
 
         }
+        public void UpdateUserScanByMember(int memberuserid ,string datetimeup , string datetimedown)
+        {
+
+
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@memberuserid", memberuserid));
+            param.Add(new SqlParameter("@datetimeup", datetimeup));
+            param.Add(new SqlParameter("@datetimedown", datetimedown));
+
+            db.ExecuteNonQuery("sp_User_Scan_Update_ByMember", param);
+
+
+        }
 
     }
 }

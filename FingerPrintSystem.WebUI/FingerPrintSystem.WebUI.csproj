@@ -147,6 +147,7 @@
     <Content Include="Images\school-bus.png" />
     <Content Include="Images\sensor-icon-temp.png" />
     <Content Include="Images\smalllogo.png" />
+    <Content Include="Images\success.png" />
     <Content Include="Images\true.png" />
     <Content Include="Images\YouTube.png" />
     <Content Include="img\player-controls.png" />

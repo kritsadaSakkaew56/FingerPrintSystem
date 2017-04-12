@@ -19,9 +19,8 @@ namespace FingerPrintSystem.MQTT
         MqttClient client = new MqttClient("m12.cloudmqtt.com", 29315, true, null, null, MqttSslProtocols.TLSv1_2);
 
         public static int Adduseridscan;
-        public static string Getuseridscan;
 
-        public void AddSubscribe(int memberuserid, string topic)
+        public void AddUserScanByIDMember(int memberuserid, string topic ) // เพิ่มลายนิ้วมือลงไปใน database
         {
             Adduseridscan = memberuserid;
 
@@ -55,30 +54,46 @@ namespace FingerPrintSystem.MQTT
                 }
             }
         }
-        //............ การสแกนขึ้นรถรับส่ง ....................................//
-        public void GetSubscribeUp(string trunscan, string topic)
+        public void UpdateUserScanByFingerprintid(string trunscan, string topicup,string topicdown) // สถานะการสแกน
         {
-            client.ProtocolVersion = MqttProtocolVersion.Version_3_1;
-            client.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", false, 120);
 
-            client.MqttMsgPublishReceived += client_MqttMsgPublishRecieved_GetSubscribeUp;
-            client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
-            
+            client.ProtocolVersion = MqttProtocolVersion.Version_3_1;
+            client.Connect(Guid.NewGuid().ToString(),
+                      "fjhgvxul",
+                      "cT9BYUzB5yCR",
+                      true, // will retain flag
+                      MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE,// will QoS
+                      true, // will flag
+                      "/test",// will topic
+                      "default", // will message
+                       true,
+                       60);
+
+            client.MqttMsgPublishReceived += client_MqttMsgPublishRecieved_GetSubscribe;
+            client.Subscribe(new string[] { topicup,topicdown }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE , MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE});
 
             Debug.WriteLine("OnGetSubscribeUp");
 
-            void client_MqttMsgPublishRecieved_GetSubscribeUp(object sender, MqttMsgPublishEventArgs e)
+            void client_MqttMsgPublishRecieved_GetSubscribe(object sender, MqttMsgPublishEventArgs e)
             {
-
-                if (e.Topic == topic)
+                
+                if (e.Topic == topicup) 
                 {
-
-                    client.Unsubscribe(new string[] { "/scanup" });  /// Unsubscribe
                     string fingerprintid = Encoding.UTF8.GetString(e.Message);
                     Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + DateTime.Now.ToString("dd-MM-yyyy-MM เวลา HH:mm:ss\r"));
                     UserScanDAO userscan = new UserScanDAO();
                     userscan.UpdateUserScanByFingerprintid_Up(fingerprintid, DateTime.Now.ToString("dd-MM-yyyy-MM เวลา HH:mm:ss"));
                     Debug.WriteLine("OKScanup");
+
+                }
+                if (e.Topic == topicdown)
+                {
+                    string fingerprintid = Encoding.UTF8.GetString(e.Message);
+                    Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + DateTime.Now.ToString("dd-MM-yyyy-MM เวลา HH:mm:ss\n"));
+                    UserScanDAO userscan = new UserScanDAO();
+                    userscan.UpdateUserScanByFingerprintid_Down(fingerprintid, DateTime.Now.ToString("dd-MM-yyyy-MM เวลา HH:mm:ss"));
+
+                    Debug.WriteLine("OKScanDown");
 
 
                 }
@@ -86,34 +101,99 @@ namespace FingerPrintSystem.MQTT
             }
 
         }
-        //............ การสแกนลงรถรับส่ง ....................................//
-        public void GetSubscribeDown(string trunscan, string topic)
+
+
+        //............ การสแกนขึ้นรถรับส่ง ....................................//
+
+        /* public void GetSubscribeUp(string trunscan, string topic)
+          {
+
+                  client.ProtocolVersion = MqttProtocolVersion.Version_3_1;
+                  client.Connect(Guid.NewGuid().ToString(),
+                            "fjhgvxul", 
+                            "cT9BYUzB5yCR", 
+                            true, // will retain flag
+                            MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE,// will QoS
+                            true, // will flag
+                            topic,// will topic
+                            "close website", // will message
+                             true,
+                             60);
+
+                  client.MqttMsgPublishReceived += client_MqttMsgPublishRecieved_GetSubscribeUp;
+                  client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+
+
+                  Debug.WriteLine("OnGetSubscribeUp");
+
+              void client_MqttMsgPublishRecieved_GetSubscribeUp(object sender, MqttMsgPublishEventArgs e)
+              {
+
+               client.Unsubscribe(new string[] { "/scanup" });  /// Unsubscribe
+               if (e.Topic == topic)
+                  {
+
+
+                      string fingerprintid = Encoding.UTF8.GetString(e.Message);
+                      Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + DateTime.Now.ToString("dd-MM-yyyy-MM เวลา HH:mm:ss\r"));
+                      UserScanDAO userscan = new UserScanDAO();
+                      userscan.UpdateUserScanByFingerprintid_Up(fingerprintid, DateTime.Now.ToString("dd-MM-yyyy-MM เวลา HH:mm:ss"));
+                      Debug.WriteLine("OKScanup");
+
+
+                  }
+
+              }
+
+          }
+          //............ การสแกนลงรถรับส่ง ....................................//
+          public void GetSubscribeDown(string trunscan, string topic)
+          {
+
+              client.ProtocolVersion = MqttProtocolVersion.Version_3_1;
+              client.Connect(Guid.NewGuid().ToString(),
+                          "fjhgvxul",
+                          "cT9BYUzB5yCR",
+                          true, // will retain flag
+                          MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE,// will QoS
+                          true, // will flag
+                          topic,// will topic
+                          "close website", // will message
+                           true,
+                           60);
+
+           client.MqttMsgPublishReceived += client_MqttMsgPublishRecieved_GetSubscribeDown;
+              client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+
+              Debug.WriteLine("OnGetSubscribeDown");
+
+              void client_MqttMsgPublishRecieved_GetSubscribeDown(object sender, MqttMsgPublishEventArgs e)
+              {
+
+                  if (e.Topic == topic)
+                  {
+                      //client.Unsubscribe(new string[] { "/scanup" });
+                      string fingerprintid = Encoding.UTF8.GetString(e.Message);
+                      Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + DateTime.Now.ToString("dd-MM-yyyy-MM เวลา HH:mm:ss\n"));
+                      UserScanDAO userscan = new UserScanDAO();
+                      userscan.UpdateUserScanByFingerprintid_Down(fingerprintid, DateTime.Now.ToString("dd-MM-yyyy-MM เวลา HH:mm:ss"));
+
+                      Debug.WriteLine("OKScanDown");
+
+                  }
+
+
+              }
+
+          }*/
+        public void Unsubscribescan()
         {
+            client.MqttMsgUnsubscribed += client_MqttMsgUnsubscribed_up;
+            ushort msgId = client.Unsubscribe(new string[] { "/scanup", "/scandown", "/test" });
 
-            client.ProtocolVersion = MqttProtocolVersion.Version_3_1;
-            client.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", false, 120);
-
-            client.MqttMsgPublishReceived += client_MqttMsgPublishRecieved_GetSubscribeDown;
-            client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
-
-            Debug.WriteLine("OnGetSubscribeDown");
-
-            void client_MqttMsgPublishRecieved_GetSubscribeDown(object sender, MqttMsgPublishEventArgs e)
+            void client_MqttMsgUnsubscribed_up(object sender, MqttMsgUnsubscribedEventArgs e)
             {
-
-                if (e.Topic == topic)
-                {
-                    client.Unsubscribe(new string[] { "/scanup" });
-                    string fingerprintid = Encoding.UTF8.GetString(e.Message);
-                    Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + DateTime.Now.ToString("dd-MM-yyyy-MM เวลา HH:mm:ss\n"));
-                    UserScanDAO userscan = new UserScanDAO();
-                    userscan.UpdateUserScanByFingerprintid_Down(fingerprintid, DateTime.Now.ToString("dd-MM-yyyy-MM เวลา HH:mm:ss"));
-                   
-                    Debug.WriteLine("OKScanDown");
-
-                }
-               
-
+                Debug.WriteLine("Unsubscribed for id = " + e.MessageId);
             }
 
         }
@@ -139,7 +219,11 @@ namespace FingerPrintSystem.MQTT
             }
 
         }
+        public void Disconnect(string trunscan)
+        {
+            client.Disconnect();
 
+        }
 
     }
 }

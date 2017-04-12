@@ -77,22 +77,22 @@ namespace FingerPrintSystem.WebUI.Driver
 
 
                 PublishDAO Publish = new PublishDAO();
-                Publish.GetPublish("/control", "ON"); // สั่งเปิดสแกนลายนิ้วมือ
+                Publish.OnScanInputFingerprint("/control", "ON"); // สั่งเปิดสแกนลายนิ้วมือ
                 Debug.WriteLine("Sleep for 3 seconds.");
                 Thread.Sleep(3000);
                 Debug.WriteLine("Sleep for 3 OK.");
 
-            //....................................................................................//
+                //....................................................................................//
 
-                //int memberuserid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
-                SubscribeDAO Subscribe = new SubscribeDAO(); // รับสแกนลายนิ้วมือ   
-                Subscribe.AddSubscribe(3, "/fingerprint");
-            //......................................................................................//
+                ////int memberuserid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
+                //SubscribeDAO Subscribe = new SubscribeDAO(); // รับสแกนลายนิ้วมือ   
+                //Subscribe.AddUserScanByIDMember(3, "/fingerprint");
+                //......................................................................................//
 
-            labscan.Text = "ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว";
-            Imgfingerprint.ImageUrl = "~/Images/true.png";
+                //labscan.Text = "ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว";
+                //Imgfingerprint.ImageUrl = "~/Images/true.png";
 
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalScan", "$('#myModalScan').modal();", true);
+                //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalScan", "$('#myModalScan').modal();", true);
 
 
         }

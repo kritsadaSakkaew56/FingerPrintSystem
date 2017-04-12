@@ -103,16 +103,28 @@
         </div>
     </div>--%>
     <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
-   
+
 
     <asp:UpdatePanel runat="server" ID="UpdatePanel1" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="row">
                 <div class="panel-body form-horizontal">
-                    <div class="panel-body">
-                        <asp:DropDownList ID="DropDownList" runat="server" Width="50%" Height="35" AutoPostBack="false"></asp:DropDownList>
+                    <div class="col-sm-9">
+                        <asp:DropDownList ID="DropDownList" runat="server" Width="70%" Height="35" AutoPostBack="false"></asp:DropDownList>
                         <asp:LinkButton runat="server" ID="bthSaveFinish" class="btn btn-primary btn-md" OnClick="bthSaveFinish_Click"><i class="glyphicon glyphicon-ok-sign"></i>ตกลง</asp:LinkButton>
-                        <asp:LinkButton runat="server" ID="bthclose" class="btn btn-danger btn-md"><i class="glyphicon glyphicon-remove"></i>เริ่มใหม่</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bthclose" class="btn btn-danger btn-md" OnClick="bthclose_Click"><i class="glyphicon glyphicon-remove"></i>เริ่มใหม่</asp:LinkButton>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <asp:UpdateProgress ID="UpdWaitImage" runat="server" DynamicLayout="true" AssociatedUpdatePanelID="UpdatePanel1">
+                            <ProgressTemplate>
+                                <%--  <asp:Image ID="imgProgress" ImageUrl="~/Images/ajax_loader_gray_48.gif" runat="server" Width="25" Height="25" />
+                                Please Wait...--%>
+                                <asp:Image ID="imsuccess" ImageUrl="~/Images/success.png" runat="server" Width="25" Height="25" />
+                                ทำการเลือกสำเร็จ
+                            </ProgressTemplate>
+                        </asp:UpdateProgress>
+
                     </div>
                 </div>
             </div>
@@ -120,8 +132,7 @@
 
         </ContentTemplate>
     </asp:UpdatePanel>
-
-     <asp:Timer ID="UpdateTimer" runat="server" Interval="1000" OnTick="UpdateTimer_Tick"></asp:Timer>
+    <asp:Timer ID="UpdateTimer" runat="server" Interval="1000" OnTick="UpdateTimer_Tick"></asp:Timer>
     <asp:UpdatePanel runat="server" ID="UpdatePanel2" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="row">
@@ -130,6 +141,7 @@
 
                         <%--<uc1:PagingControl ID="PagingControl1" runat="server" />--%>
                         <asp:GridView
+                            DataKeyNames="member_id"
                             ID="gvMember" runat="server"
                             AutoGenerateColumns="false"
                             AllowSorting="false"
@@ -163,9 +175,9 @@
                                         <%--<asp:Label runat="server" ID="lalnoScandown" Text="ยังไม่ได้สแกน" Width="150px" Height="20px" ForeColor="White" Visible="true"></asp:Label>--%>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ดำเนินการ" ItemStyle-Width="75" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                <asp:TemplateField HeaderText="ดำเนินการ" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="bthScan" runat="server" meta:resourcekey="bthScantest" CssClass="btn btn-success btn-xs"><i class="fa fa-search"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="bthdetial" runat="server" Width="25%" Height="20" meta:resourcekey="bthScandetail" CssClass="btn btn-success btn-xs" OnClick="bthdetial_Click" ><i class="fa fa-search"></i></asp:LinkButton>
                                         <%--<asp:LinkButton runat="server" ID="btnOK" CssClass="btn btn-primary"> OK</asp:LinkButton>
                                         <asp:CheckBox runat="server" ID="chkSelect" Enabled="false" Checked="false" />--%>
                                     </ItemTemplate>
@@ -187,6 +199,74 @@
         </div>
         <div class="form-group form-horizontal col-md-3">
             <asp:LinkButton runat="server" ID="bthsave" class="btn btn-success" Width="150" Height="40" OnClick="bthsave_Click"><i class="glyphicon glyphicon-ok"></i>ยืนยัน</asp:LinkButton>
+        </div>
+    </div>
+    <div class="modal fade" id="myModaldetial" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">ข้อมูลเด็กนักเรียน</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                         <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-4">
+                            <asp:Image ID="imgstudent" runat="server" Width="150" Height="175" />
+                        </div>
+                        <div class="col-sm-3">
+
+                            <p>
+                                <asp:Label runat="server" Text="เลขที่:" Font-Size="Medium"></asp:Label>
+                            </p>
+                            <p>
+                                <asp:Label runat="server" Text="ชื่อ-นามสกุล:" Font-Size="Medium"></asp:Label>
+                            </p>
+                            <p>
+                                <asp:Label runat="server" Text="โรงเรียน:" Font-Size="Medium"></asp:Label>
+                            </p>
+                            <p>
+                                <asp:Label runat="server" Text="ชื่อผู้ปกครอง:" Font-Size="Medium"></asp:Label>
+                            </p>
+                            <p>
+                                <asp:Label runat="server" Text="เบอร์โทรศัพท์:" Font-Size="Medium"></asp:Label>
+                            </p>
+                            <p>
+                                <asp:Label runat="server" Text="E-Mail:" Font-Size="Medium"></asp:Label>
+                            </p>
+
+
+                        </div>
+                        <div class="col-sm-4">
+
+                            <p>
+                                <asp:Label ID="txtid" runat="server" Font-Size="Medium"></asp:Label>
+                            </p>
+                            <p>
+                                <asp:Label ID="txtfullname" runat="server" Font-Size="Medium"></asp:Label>
+                            </p>
+                            <p>
+                                <asp:Label ID="txtshcool" runat="server" Font-Size="Medium"></asp:Label>
+                            </p>
+                            <p>
+                                <asp:Label ID="txtfullnameparent" runat="server" Font-Size="Medium"></asp:Label>
+                            </p>
+                            <p>
+                                <asp:Label ID="txttel" runat="server" Font-Size="Medium"></asp:Label>
+                            </p>
+                            <p>
+                                <asp:Label ID="txtemail" runat="server" Font-Size="Medium"></asp:Label>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <%-- <div class="modal-footer">
+                    <asp:LinkButton runat="server" ID="bthOKSave" CssClass="btn btn-info"> OK</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="LinkButton1" CssClass="btn btn-info"> Close</asp:LinkButton>
+
+                </div>--%>
+            </div>
         </div>
     </div>
 
