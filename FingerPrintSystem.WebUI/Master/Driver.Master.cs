@@ -11,7 +11,7 @@ namespace FingerPrintSystem.WebUI.Master
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            PageBase page = new PageBase();
+            PageBase page = new PageBase(); 
 
             int userid = Convert.ToInt32(page.DecryptQueryString("userid"));
             int driverid = Convert.ToInt32(page.DecryptQueryString("driverid"));

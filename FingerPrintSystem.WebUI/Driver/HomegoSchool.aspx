@@ -8,9 +8,7 @@
     <%--<meta http-equiv="refresh" content="3">--%>
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
-    <%--<script src="../js/jquery-1.6.4.min.js"></script>--%>
-    <script src="../js/jquery.signalR-2.2.1.min.js"></script>
-    <script src="../signalR/hubs"></script>
+
 
 
 </asp:Content>
@@ -23,7 +21,7 @@
         </header>
     </section>
 
-    <div class="row">
+    <%--<div class="row">
         <div class="form-group form-horizontal col-md-1">
         </div>
         <div class="form-group form-horizontal col-md-5">
@@ -108,14 +106,14 @@
                 <asp:Label runat="server" Text="คน" Font-Bold="true" Font-Size="Large"></asp:Label>
             </div>
         </div>
-    </div>
-    <hr />
+    </div>--%>
+    <%--<hr />--%>
     <div class="row">
         <div class="panel-body form-horizontal">
             <div class="panel-body">
                 <asp:UpdatePanel runat="server" ID="updResult">
                     <ContentTemplate>
-                        <uc1:PagingControl ID="PagingControl1" runat="server" />
+                        <%--<uc1:PagingControl ID="PagingControl1" runat="server" />--%>
                         <asp:GridView
                             ID="gvMember" runat="server"
                             HeaderStyle-BackColor="#3AC0F2"

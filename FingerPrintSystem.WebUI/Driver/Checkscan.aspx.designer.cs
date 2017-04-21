@@ -10,54 +10,60 @@
 namespace FingerPrintSystem.WebUI.Driver {
     
     
-    public partial class HomegoSchool {
+    public partial class Checkscan {
         
         /// <summary>
-        /// scMain control.
+        /// ScriptManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager scMain;
+        protected global::System.Web.UI.ScriptManager ScriptManager;
         
         /// <summary>
-        /// updResult control.
+        /// UpdatePanel_DropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updResult;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel_DropDownList;
         
         /// <summary>
-        /// gvMember control.
+        /// DropDownList2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMember;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
         
         /// <summary>
-        /// bthsave control.
+        /// LinkButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton bthsave;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
         
         /// <summary>
-        /// Master property.
+        /// UpdWaitImage control.
         /// </summary>
         /// <remarks>
-        /// Auto-generated property.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        public new FingerPrintSystem.WebUI.Master.Driver Master {
-            get {
-                return ((FingerPrintSystem.WebUI.Master.Driver)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.UpdateProgress UpdWaitImage;
+        
+        /// <summary>
+        /// bth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bth;
     }
 }

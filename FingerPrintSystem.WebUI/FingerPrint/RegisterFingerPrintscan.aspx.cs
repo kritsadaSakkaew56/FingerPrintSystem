@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 using FingerPrintSystem.DataAccess;
 using System.IO;
+using System.Data;
 
 
 
@@ -28,7 +29,7 @@ namespace FingerPrintSystem.WebUI.FingerPrint
                     string memberuserid = ViewState["MemberUser_id"].ToString();
 
                     ViewState["MemberDriver_id"] = this.DecryptQueryString("driverid").ToString();
-                    string MemberDriverid = ViewState["MemberDriver_id"].ToString();
+                    string memberDriverid = ViewState["MemberDriver_id"].ToString();
                 }
                 else
                 {
@@ -48,17 +49,24 @@ namespace FingerPrintSystem.WebUI.FingerPrint
         protected void bthfinish_Click(object sender, EventArgs e)
         {
             int userscanid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
+            int memberDriverid = Convert.ToInt32(ViewState["MemberDriver_id"].ToString());
 
-            UserScanDAO User = new UserScanDAO();
-            User.AddUserScanByIDMember(userscanid, "", "ยังไม่ได้สแกน", "ยังไม่ได้สแกน");
+            DataTable dt = new DriverDAO().GetDriverByIDMember(memberDriverid);
+            if (dt.Rows.Count > 0)
+            {
+                string fullnamedriver = dt.Rows[0]["fullname_driver"].ToString();
 
-            MemberDAO Member = new MemberDAO();
-            Member.UpdateMember(userscanid, true);
+                UserScanDAO User = new UserScanDAO();
+                User.AddUserScanByIDMember(userscanid, "", "ยังไม่ได้สแกน", "ยังไม่ได้สแกน", fullnamedriver);
+
+                MemberDAO Member = new MemberDAO();
+                Member.UpdateMember(userscanid, true);
 
 
-            labscan.Text = "ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว";
-            Imgfingerprint.ImageUrl = "~/Images/true.png";
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalScan", "$('#myModalScan').modal();", true);
+                labscan.Text = "ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว";
+                Imgfingerprint.ImageUrl = "~/Images/true.png";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalScan", "$('#myModalScan').modal();", true);
+            }
         }
 
         protected void bthok_Click(object sender, EventArgs e)

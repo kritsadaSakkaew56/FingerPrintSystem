@@ -119,6 +119,7 @@
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\main.css" />
     <Content Include="css\main.source.css" />
+    <Content Include="Driver\Checkscan.aspx" />
     <Content Include="Driver\default.aspx" />
     <Content Include="Driver\LoginUser.aspx" />
     <Content Include="Driver\FingerPrintscan.aspx" />
@@ -305,6 +306,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Driver\Checkscan.aspx.cs">
+      <DependentUpon>Checkscan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Driver\Checkscan.aspx.designer.cs">
+      <DependentUpon>Checkscan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Driver\default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

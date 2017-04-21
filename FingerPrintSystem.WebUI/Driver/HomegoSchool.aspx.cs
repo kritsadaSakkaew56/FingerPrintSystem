@@ -20,7 +20,7 @@ namespace FingerPrintSystem.WebUI.Driver
         {
             if (!IsPostBack)
             {
-                BindData();
+                //BindData();
 
 
             }
@@ -86,18 +86,7 @@ namespace FingerPrintSystem.WebUI.Driver
 
 
         }
-        private void BindData()
-        {
-
-            DataSet ds = new MemberDAO().GetMember(PagingControl1.CurrentPageIndex, PagingControl1.PageSize, this.SortColumn, this.SortOrder);
-            PagingControl1.RecordCount = (int)ds.Tables[1].Rows[0][0];
-
-            gvMember.DataSource = ds.Tables[0];
-            gvMember.DataBind();
-
-
-
-        }
+        
         
     }
 }

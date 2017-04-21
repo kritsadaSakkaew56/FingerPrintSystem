@@ -6,6 +6,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
 
     <section class="panel">
         <header class="panel-heading" style="background-color: #F5DEB3">
@@ -13,8 +14,9 @@
         </header>
     </section>
 
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
+            <asp:Timer ID="UpdateTimer" runat="server" Interval="1000" OnTick="UpdateTimer_Tick" Enabled="false"></asp:Timer>
             <div class="row">
                 <div class="col-sm-2">
                 </div>
@@ -27,9 +29,28 @@
                     </p>
 
                 </div>
-                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                <div class="col-sm-5">
 
+                <div class="modal fade" id="myModalScan" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">สแกนลายนิ้วมือ</h4>
+                            </div>
+                            <div class="modal-body">
+                                <h5>ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว กด OK เพื่อกลับไปสู่เมนูหลัก  </h5>
+
+                            </div>
+                            <div class="modal-footer">
+                                <asp:LinkButton runat="server" ID="bthok" CssClass="btn btn-info" Width="200px" OnClick="bthok_Click">OK</asp:LinkButton>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-5">
 
                     <p>
                         <asp:Button runat="server" OnClick="bthSaveFinish_Click" ID="bthSaveFinish" class="btn btn-warning btn-circle btn-Xl " Text="Scan" />
@@ -40,53 +61,21 @@
                     <fieldset style="width: 200px">
                         <p>
 
-                            <asp:UpdateProgress ID="UpdWaitImage" runat="server" DynamicLayout="true" AssociatedUpdatePanelID="UpdatePanel1">
+                            <%-- <asp:UpdateProgress ID="UpdWaitImage" runat="server" DynamicLayout="true" AssociatedUpdatePanelID="UpdatePanel1">
                                 <ProgressTemplate>
                                     <asp:Image ID="imgProgress" ImageUrl="~/Images/ajax_loader_gray_48.gif" runat="server" />
                                     Please Wait...
                                 </ProgressTemplate>
-                            </asp:UpdateProgress>
+                            </asp:UpdateProgress>--%>
+
+                            <asp:Image ID="imgProgress" ImageUrl="~/Images/ajax_loader_gray_48.gif" runat="server" Visible="false" />
+                            <asp:Label ID="labplase" runat="server" Text=" Please Wait..." Visible="false"></asp:Label>
                         </p>
                 </div>
             </div>
         </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="UpdateTimer" EventName="Tick" />
+        </Triggers>
     </asp:UpdatePanel>
-
-
-    <hr />
-    <div class="row">
-        <div class="form-group form-horizontal col-md-3">
-        </div>
-        <div class="form-group form-horizontal col-md-9">
-            <div class="row">
-                <div class="col-md-12">
-
-
-                    <%--<asp:LinkButton runat="server" ID="bthfinish" class="btn btn-warning btn-circle btn-Xl" OnClick="bthfinish_Click" Text="ยืนยัน"><i class="glyphicon glyphicon-ok"></i>ยืนยัน</asp:LinkButton>--%>
-                    <%-- <button type="button" runat="server"  id="bthsave" class="btn btn-warning btn-circle btn-Xl"><i class="glyphicon glyphicon-ok" ></i>ยืนยัน</button>--%>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="myModalScan" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">สแกนลายนิ้วมือ</h4>
-                </div>
-                <div class="modal-body">
-                    <h5>ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว กด OK เพื่อกลับไปสู่เมนูหลัก  </h5>
-
-                </div>
-                <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bthok" CssClass="btn btn-info" Width="200px" OnClick="bthok_Click">OK</asp:LinkButton>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    
 </asp:Content>

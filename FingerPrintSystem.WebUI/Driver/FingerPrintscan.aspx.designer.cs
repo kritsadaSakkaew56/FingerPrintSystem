@@ -13,6 +13,15 @@ namespace FingerPrintSystem.WebUI.Driver {
     public partial class FingerPrintscan {
         
         /// <summary>
+        /// ScriptManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager;
+        
+        /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace FingerPrintSystem.WebUI.Driver {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
+        /// UpdateTimer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer UpdateTimer;
         
         /// <summary>
         /// Imgfingerprint control.
@@ -40,13 +58,13 @@ namespace FingerPrintSystem.WebUI.Driver {
         protected global::System.Web.UI.WebControls.Label labscan;
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// bthok control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.LinkButton bthok;
         
         /// <summary>
         /// bthSaveFinish control.
@@ -67,21 +85,21 @@ namespace FingerPrintSystem.WebUI.Driver {
         protected global::System.Web.UI.WebControls.Label lblStatus;
         
         /// <summary>
-        /// UpdWaitImage control.
+        /// imgProgress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdateProgress UpdWaitImage;
+        protected global::System.Web.UI.WebControls.Image imgProgress;
         
         /// <summary>
-        /// bthok control.
+        /// labplase control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton bthok;
+        protected global::System.Web.UI.WebControls.Label labplase;
     }
 }

@@ -22,22 +22,76 @@ namespace FingerPrintSystem.WebUI.Driver {
         protected global::System.Web.UI.ScriptManager ScriptManager;
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// UpdatePanel_DropDownList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel_DropDownList1;
         
         /// <summary>
-        /// DropDownList control.
+        /// labround control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList;
+        protected global::System.Web.UI.WebControls.Label labround;
+        
+        /// <summary>
+        /// DropDownList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        
+        /// <summary>
+        /// bthcheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bthcheck;
+        
+        /// <summary>
+        /// UpdatePanel_DropDownList2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel_DropDownList2;
+        
+        /// <summary>
+        /// labpanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labpanel;
+        
+        /// <summary>
+        /// labselectscan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labselectscan;
+        
+        /// <summary>
+        /// DropDownList2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
         
         /// <summary>
         /// bthSaveFinish control.
@@ -76,13 +130,13 @@ namespace FingerPrintSystem.WebUI.Driver {
         protected global::System.Web.UI.Timer UpdateTimer;
         
         /// <summary>
-        /// UpdatePanel2 control.
+        /// UpdatePanel_GridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel_GridView;
         
         /// <summary>
         /// gvMember control.

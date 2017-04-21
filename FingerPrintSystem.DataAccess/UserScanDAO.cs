@@ -11,7 +11,7 @@ namespace FingerPrintSystem.DataAccess
 {
    public class UserScanDAO
     {
-        public string AddUserScanByIDMember(int memberuserid, string Fingerprintid,string datetimeup,string datetimedown)
+        public string AddUserScanByIDMember(int memberuserid, string Fingerprintid,string datetimeup,string datetimedown,string fullnamedriver)
         {
             DatabaseHelper db = new DatabaseHelper();
             List<SqlParameter> param = new List<SqlParameter>();
@@ -19,6 +19,7 @@ namespace FingerPrintSystem.DataAccess
             param.Add(new SqlParameter("@Fingerprintid", Fingerprintid));
             param.Add(new SqlParameter("@datetimeup", datetimeup));
             param.Add(new SqlParameter("@datetimedown", datetimedown));
+            param.Add(new SqlParameter("@fullnamedriver", fullnamedriver));
 
             return db.ExecuteScalar("sp_User_Scan_Insert_ByIDMember",param).ToString();
         }
@@ -39,6 +40,17 @@ namespace FingerPrintSystem.DataAccess
             DatabaseHelper db = new DatabaseHelper();
             return db.ExecuteDataSet("sp_User_Scan_SelectJoin_tbuser");
           
+        }
+        public DataTable GetUserScanJoin_tbUserByfullnamedriver(string fullnamedriver)
+        {
+
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@fullnamedriver", fullnamedriver));
+
+            return db.ExecuteDataTable("sp_User_Scan_SelectJoin_tbuser_Byfullnamedriver", param);
+
+
         }
         public void UpdateUserScanByFingerprintid_Down(string fingerprintid,string datetimedown)
         {
@@ -75,6 +87,21 @@ namespace FingerPrintSystem.DataAccess
             param.Add(new SqlParameter("@datetimedown", datetimedown));
 
             db.ExecuteNonQuery("sp_User_Scan_Update_ByMember", param);
+
+
+        }
+        public void UpdateUserScanByMember_Roundscan(int memberuserid, int Roundscan )
+        {
+
+
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@memberuserid", memberuserid));
+            param.Add(new SqlParameter("@roundscan", Roundscan));
+          
+
+            db.ExecuteNonQuery("sp_User_Scan_Update_ByMember_Roundscan", param);
 
 
         }

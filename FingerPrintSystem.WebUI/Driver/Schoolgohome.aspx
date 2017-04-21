@@ -10,12 +10,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <section class="panel">
-        <header class="panel-heading" style="background-color: #F5DEB3">
-            <h4>การเดินทางจาก  โรงเรียน >>> บ้าน </h4>
-        </header>
-    </section>
-
     <%--<div class="row">
         <div class="form-group form-horizontal col-md-1">
         </div>
@@ -86,7 +80,7 @@
             </div>
         </div>
     </div>--%>
-    <br />
+    <%-- <br />--%>
     <%-- <div class="row">
         <div class="form-group form-horizontal col-md-3">
         </div>
@@ -104,36 +98,55 @@
     </div>--%>
     <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
 
-
-    <asp:UpdatePanel runat="server" ID="UpdatePanel1" UpdateMode="Conditional">
+    <asp:UpdatePanel runat="server" ID="UpdatePanel_DropDownList1" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="row">
                 <div class="panel-body form-horizontal">
-                    <div class="col-sm-9">
-                        <asp:DropDownList ID="DropDownList" runat="server" Width="70%" Height="35" AutoPostBack="false"></asp:DropDownList>
-                        <asp:LinkButton runat="server" ID="bthSaveFinish" class="btn btn-primary btn-md" OnClick="bthSaveFinish_Click"><i class="glyphicon glyphicon-ok-sign"></i>ตกลง</asp:LinkButton>
-                        <asp:LinkButton runat="server" ID="bthclose" class="btn btn-danger btn-md" OnClick="bthclose_Click"><i class="glyphicon glyphicon-remove"></i>เริ่มใหม่</asp:LinkButton>
-
-                    </div>
-                    <div class="col-sm-3">
-                        <asp:UpdateProgress ID="UpdWaitImage" runat="server" DynamicLayout="true" AssociatedUpdatePanelID="UpdatePanel1">
-                            <ProgressTemplate>
-                                <%--  <asp:Image ID="imgProgress" ImageUrl="~/Images/ajax_loader_gray_48.gif" runat="server" Width="25" Height="25" />
-                                Please Wait...--%>
-                                <asp:Image ID="imsuccess" ImageUrl="~/Images/success.png" runat="server" Width="25" Height="25" />
-                                ทำการเลือกสำเร็จ
-                            </ProgressTemplate>
-                        </asp:UpdateProgress>
-
+                    <asp:Label runat="server" ID="labround" Font-Size="Large"></asp:Label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <asp:DropDownList ID="DropDownList1" runat="server" Width="40%" Height="35" AutoPostBack="false"></asp:DropDownList>
+                            <asp:LinkButton runat="server" ID="bthcheck" class="btn btn-primary btn-md" OnClick="bthcheck_Click"><i class="glyphicon glyphicon-ok-sign"></i>ตรวจสอบ</asp:LinkButton>
+                        </div>
                     </div>
                 </div>
             </div>
-            <hr />
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    <asp:UpdatePanel runat="server" ID="UpdatePanel_DropDownList2" UpdateMode="Conditional">
+        <ContentTemplate>
+            <section class="panel">
+                <header class="panel-heading" style="background-color: #F5DEB3">
+                    <asp:Label ID="labpanel" runat="server" Font-Size="Large"></asp:Label>
+                </header>
+            </section>
+            <div class="row">
+                <div class="panel-body form-horizontal">
+                    <asp:Label runat="server" Text="การเลือกสแกนลายนิ้วมือ:" Font-Size="Large" ID="labselectscan" Visible="false"></asp:Label>
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <asp:DropDownList ID="DropDownList2" runat="server" Width="60%" Height="35" AutoPostBack="false" Visible="false"></asp:DropDownList>
+                            <asp:LinkButton runat="server" ID="bthSaveFinish" class="btn btn-primary btn-md" OnClick="bthSaveFinish_Click" Visible="false"><i class="glyphicon glyphicon-ok-sign"></i>ตกลง</asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="bthclose" class="btn btn-danger btn-md" OnClick="bthclose_Click" Visible="false"><i class="glyphicon glyphicon-remove"></i>เริ่มใหม่</asp:LinkButton>
 
+                        </div>
+                        <div class="col-sm-3">
+                            <asp:UpdateProgress ID="UpdWaitImage" runat="server" DynamicLayout="true" AssociatedUpdatePanelID="UpdatePanel_DropDownList2">
+                                <ProgressTemplate>
+                                    <%--  <asp:Image ID="imgProgress" ImageUrl="~/Images/ajax_loader_gray_48.gif" runat="server" Width="25" Height="25" />
+                                Please Wait...--%>
+                                    <asp:Image ID="imgsuccess" ImageUrl="~/Images/success.png" runat="server" Width="30" Height="30" />
+                                    <asp:Label ID="labsuccess" runat="server" Text="ทำการเลือกสำเร็จ" Font-Size="Medium"></asp:Label>
+                                </ProgressTemplate>
+                            </asp:UpdateProgress>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
     <asp:Timer ID="UpdateTimer" runat="server" Interval="1000" OnTick="UpdateTimer_Tick"></asp:Timer>
-    <asp:UpdatePanel runat="server" ID="UpdatePanel2" UpdateMode="Conditional">
+    <asp:UpdatePanel runat="server" ID="UpdatePanel_GridView" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="row">
                 <div class="panel-body form-horizontal">
@@ -143,11 +156,13 @@
                         <asp:GridView
                             DataKeyNames="member_id"
                             ID="gvMember" runat="server"
+                            OnRowCommand="gvMember_RowCommand"
                             AutoGenerateColumns="false"
                             AllowSorting="false"
                             OnRowDataBound="gvMember_RowDataBound"
                             OnSorting="gvMember_Sorting"
                             EmptyDataText="------ ไม่พบข้อมูล ------"
+                            EmptyDataRowStyle-HorizontalAlign="Center"
                             HeaderStyle-BackColor="#FFECCD"
                             CssClass="table table-bordered table-striped table-hover"
                             Style="max-width: 100%">
@@ -177,9 +192,12 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ดำเนินการ" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="bthdetial" runat="server" Width="25%" Height="20" meta:resourcekey="bthScandetail" CssClass="btn btn-success btn-xs" OnClick="bthdetial_Click" ><i class="fa fa-search"></i></asp:LinkButton>
-                                        <%--<asp:LinkButton runat="server" ID="btnOK" CssClass="btn btn-primary"> OK</asp:LinkButton>
-                                        <asp:CheckBox runat="server" ID="chkSelect" Enabled="false" Checked="false" />--%>
+                                        <asp:LinkButton ID="bthdetial" runat="server" Width="25%" Height="20" meta:resourcekey="bthScandetail" CssClass="btn btn-success btn-xs"
+                                            CommandName="memberuserid"
+                                            CommandArgument='<%#Eval("member_id")%>'
+                                            OnClick="bthdetial_Click"><i class="fa fa-search"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="bthnote" runat="server" Width="25%" Height="20" meta:resourcekey="bthnote" CssClass="btn btn-warning btn-xs"><i class="fa  fa-star"></i></asp:LinkButton>
+
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -188,19 +206,25 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="form-group form-horizontal col-md-9">
+                </div>
+                <div class="form-group form-horizontal col-md-3">
+                    <asp:LinkButton runat="server" ID="bthsave" class="btn btn-success"
+                        Width="150" Height="40"
+                        OnClick="bthsave_Click"
+                        Visible="false"><i class="glyphicon glyphicon-floppy-save"></i>บันทึก
+
+                    </asp:LinkButton>
+                </div>
+            </div>
         </ContentTemplate>
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="UpdateTimer" EventName="Tick" />
         </Triggers>
     </asp:UpdatePanel>
     <hr />
-    <div class="row">
-        <div class="form-group form-horizontal col-md-9">
-        </div>
-        <div class="form-group form-horizontal col-md-3">
-            <asp:LinkButton runat="server" ID="bthsave" class="btn btn-success" Width="150" Height="40" OnClick="bthsave_Click"><i class="glyphicon glyphicon-ok"></i>ยืนยัน</asp:LinkButton>
-        </div>
-    </div>
+
     <div class="modal fade" id="myModaldetial" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -210,7 +234,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                         <div class="col-sm-1">
+                        <div class="col-sm-1">
                         </div>
                         <div class="col-sm-4">
                             <asp:Image ID="imgstudent" runat="server" Width="150" Height="175" />

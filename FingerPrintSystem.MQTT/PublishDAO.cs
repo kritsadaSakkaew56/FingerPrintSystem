@@ -19,7 +19,7 @@ namespace FingerPrintSystem.MQTT
         public void OnScanInputFingerprint(string topic, string message) // สั่งเปิดสแกนลายนิ้วมือ
         {
             client.ProtocolVersion = MqttProtocolVersion.Version_3_1;
-            client.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", false, 120);
+            client.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", true, 120);
 
             client.MqttMsgPublished += client_MqttMsgPublished;
             ushort msgId = client.Publish(topic, // topic
@@ -64,6 +64,7 @@ namespace FingerPrintSystem.MQTT
         {
             Message = e.MessageId.ToString();
             Debug.WriteLine("MessageId = " + e.MessageId + " Published = " + e.IsPublished);
+            client.Disconnect();
         }
 
 

@@ -10,6 +10,7 @@ using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 
 using FingerPrintSystem.DataAccess;
+using System.Data;
 
 namespace FingerPrintSystem.MQTT
 {
@@ -19,10 +20,12 @@ namespace FingerPrintSystem.MQTT
         MqttClient client = new MqttClient("m12.cloudmqtt.com", 29315, true, null, null, MqttSslProtocols.TLSv1_2);
 
         public static int Adduseridscan;
+        public static int Adddriverid;
 
-        public void AddUserScanByIDMember(int memberuserid, string topic ) // เพิ่มลายนิ้วมือลงไปใน database
+        public void AddUserScanByIDMember(int memberuserid, int memberdriverid, string topic ) // เพิ่มลายนิ้วมือลงไปใน database
         {
             Adduseridscan = memberuserid;
+            Adddriverid = memberdriverid;
 
             client.ProtocolVersion = MqttProtocolVersion.Version_3_1;
             client.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", false, 120);
@@ -37,20 +40,26 @@ namespace FingerPrintSystem.MQTT
                 if (e.Topic == topic)
                 {
                     int adduserscanid = SubscribeDAO.Adduseridscan;
-                    string fingerprint = Encoding.UTF8.GetString(e.Message);
+                    int adddriverid = SubscribeDAO.Adddriverid;
+                    string Statusfingerprint = Encoding.UTF8.GetString(e.Message);    // รับ message จากตัวสแกนลายนิ้วมือ ok กับ fail
+                    DataTable dt = new DriverDAO().GetDriverByIDMember(adddriverid);  // รับชื่อของคนขับรถที่เป็นร่วม
+                 
 
 
-                    Debug.WriteLine("Received = " + Encoding.UTF8.GetString(e.Message) + "\ron topic = " + e.Topic + "\rMemberuserid = " + adduserscanid);
+                    //if (dt.Rows.Count > 0)
+                    //{
+                    //    Debug.WriteLine("Received = " + Encoding.UTF8.GetString(e.Message) + "\ron topic = " + e.Topic + "\rMemberuserid = " + adduserscanid);
+                    //    string fullnamedriver = dt.Rows[0]["fullname"].ToString();
+                    //    //..................... ทำการเพิ่มลายนิ้วมือลงไป database .......................//
+                    //    UserScanDAO User = new UserScanDAO();
+                    //    User.AddUserScanByIDMember(adduserscanid, adduserscanid, "ยังไม่ได้สแกน", "ยังไม่ได้สแกน", fullnamedriver);
 
-                    //..................... ทำการเพิ่มลายนิ้วมือลงไป database .......................//
-                    UserScanDAO User = new UserScanDAO();
-                    User.AddUserScanByIDMember(adduserscanid, fingerprint, "ยังไม่ได้สแกน", "ยังไม่ได้สแกน");
+                    //    //.....................  เปิกการใช้งานของ user ................................//
+                    //    MemberDAO Member = new MemberDAO();
+                    //    Member.UpdateMember(adduserscanid, true);
 
-                    //.....................  เปิกการใช้งานของ user ................................//
-                    MemberDAO Member = new MemberDAO();
-                    Member.UpdateMember(adduserscanid, true);
-
-
+                    //}
+                    
                 }
             }
         }
@@ -80,18 +89,18 @@ namespace FingerPrintSystem.MQTT
                 if (e.Topic == topicup) 
                 {
                     string fingerprintid = Encoding.UTF8.GetString(e.Message);
-                    Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + DateTime.Now.ToString("dd-MM-yyyy-MM เวลา HH:mm:ss\r"));
+                    Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + DateTime.Now.ToString("dd-MM-yyyy เวลา HH:mm:ss\r"));
                     UserScanDAO userscan = new UserScanDAO();
-                    userscan.UpdateUserScanByFingerprintid_Up(fingerprintid, DateTime.Now.ToString("dd-MM-yyyy-MM เวลา HH:mm:ss"));
+                    userscan.UpdateUserScanByFingerprintid_Up(fingerprintid, DateTime.Now.ToString("dd-MM-yyyy เวลา HH:mm:ss"));
                     Debug.WriteLine("OKScanup");
 
                 }
                 if (e.Topic == topicdown)
                 {
                     string fingerprintid = Encoding.UTF8.GetString(e.Message);
-                    Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + DateTime.Now.ToString("dd-MM-yyyy-MM เวลา HH:mm:ss\n"));
+                    Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + DateTime.Now.ToString("dd-MM-yyyy เวลา HH:mm:ss\n"));
                     UserScanDAO userscan = new UserScanDAO();
-                    userscan.UpdateUserScanByFingerprintid_Down(fingerprintid, DateTime.Now.ToString("dd-MM-yyyy-MM เวลา HH:mm:ss"));
+                    userscan.UpdateUserScanByFingerprintid_Down(fingerprintid, DateTime.Now.ToString("dd-MM-yyyy เวลา HH:mm:ss"));
 
                     Debug.WriteLine("OKScanDown");
 
