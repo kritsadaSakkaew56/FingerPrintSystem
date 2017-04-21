@@ -45,6 +45,8 @@ namespace FingerPrintSystem.WebUI.Driver
                     ViewState["MemberDriver_id"] = this.DecryptQueryString("driverid").ToString();
                     int memberDriverid = Convert.ToInt32(ViewState["MemberDriver_id"].ToString());
 
+
+                     ViewState["status"] = "fail";
                      AddUserScanByIDMember(memberuserid, memberDriverid, "/chkregister"); // Subscribe 
                 }
                 else
@@ -85,20 +87,22 @@ namespace FingerPrintSystem.WebUI.Driver
 
         protected void bthok_Click(object sender, EventArgs e)
         {
-
-            Response.Redirect("../Login.aspx");
+            int driverid = Convert.ToInt32(DecryptQueryString("driverid"));
+            Response.Redirect("/Driver/LoginUser.aspx" + this.EncryptQueryString("driverid=" + driverid));
+          
         }
 
         protected void bthSaveFinish_Click(object sender, EventArgs e)
         {
-             imgProgress.Visible = true;
-             labplase.Visible = true;
-             UpdateTimer.Enabled = true;
-             UpdatePanel1.Update();
+            imgProgress.Visible = true;
+            labplase.Visible = true;
+            UpdatePanel1.Update();
+            UpdateTimer.Enabled = true;
+
             //Thread.Sleep(5000);
             //....................................................................................//
 
-           int memberuserid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
+            int memberuserid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
            int Memberdriverid = Convert.ToInt32(ViewState["MemberDriver_id"].ToString());
 
             //....................................................................................//
@@ -129,7 +133,7 @@ namespace FingerPrintSystem.WebUI.Driver
         }
         public void CheckStatus()
         {
-
+       
             if (FingerPrintscan.status == "ok")
             { 
                 //............. แสดงผลลัพท์การสแกนลายนิ้วมือ......................................//
@@ -141,6 +145,7 @@ namespace FingerPrintSystem.WebUI.Driver
                 UpdateTimer.Enabled = false; //For stop the timer
                 imgProgress.Visible = false;
                 labplase.Visible = false;
+                status = "fail";
             }
             else
             {
@@ -160,12 +165,12 @@ namespace FingerPrintSystem.WebUI.Driver
         {
             //string status_fingerprint = Encoding.UTF8.GetString(e.Message);    // รับ message จากตัวสแกนลายนิ้วมือ ok กับ fail
             Debug.WriteLine("Received = " + Encoding.UTF8.GetString(e.Message) + "\ron topic = " + e.Topic);
-            status = Encoding.UTF8.GetString(e.Message); // ส่ง ok กับ fail
+          
 
-            string message = ViewState["topicmessage"].ToString();
-            if (e.Topic == message)
+            string  topiocmessage = ViewState["topicmessage"].ToString();
+            if (e.Topic == topiocmessage)
             {
-                status = Encoding.UTF8.GetString(e.Message); // ส่ง ok กับ fail
+           
                 int memberuserid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
                 int memberdriverid = Convert.ToInt32(ViewState["MemberDriver_id"].ToString());
 
@@ -174,12 +179,15 @@ namespace FingerPrintSystem.WebUI.Driver
 
                 if (status_fingerprint == "ok")
                 {
-
+                    
+                    
                     if (dt.Rows.Count > 0)
                     {
+
+
                         Debug.WriteLine("Received = " + Encoding.UTF8.GetString(e.Message) + "\ron topic = " + e.Topic + "\rMemberuserid = " + memberuserid);
                         string fullnamedriver = dt.Rows[0]["fullname"].ToString();
-
+                        status = status_fingerprint; // ส่ง ok กับ fail
                         //..................... ทำการเพิ่มลายนิ้วมือลงไป database .......................//
                         UserScanDAO User = new UserScanDAO();
                         User.AddUserScanByIDMember(memberuserid, "", "ยังไม่ได้สแกน", "ยังไม่ได้สแกน", fullnamedriver);
@@ -187,9 +195,9 @@ namespace FingerPrintSystem.WebUI.Driver
                         //.....................  เปิกการใช้งานของ user ................................//
                         MemberDAO Member = new MemberDAO();
                         Member.UpdateMember(memberuserid, true);
-                        status = "";
-                        client.Disconnect(); // Disconnect mqtt
-                   }
+                        
+                        // client.Disconnect(); // Disconnect mqtt
+                    }
                 }
 
 
