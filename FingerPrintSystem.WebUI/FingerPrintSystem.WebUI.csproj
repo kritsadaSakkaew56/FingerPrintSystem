@@ -115,6 +115,7 @@
   <ItemGroup>
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\Checkbox _Styles.css" />
+    <Content Include="css\circle-buttons.css" />
     <Content Include="css\circle.css" />
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\main.css" />
@@ -215,8 +216,6 @@
     <Content Include="js\jquery.signalR-2.2.1.js" />
     <Content Include="js\jquery.signalR-2.2.1.min.js" />
     <Content Include="js\mqttws31.js" />
-    <Content Include="UploadImage\1.jpg" />
-    <Content Include="UploadImage\2.jpg" />
     <Content Include="User\default.aspx" />
     <Content Include="User\Home.aspx" />
     <Content Include="User\RegisterFingerPrint.aspx" />
@@ -486,6 +485,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\" />
+    <Folder Include="UploadImage\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

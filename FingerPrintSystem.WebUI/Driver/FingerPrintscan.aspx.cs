@@ -19,13 +19,13 @@ namespace FingerPrintSystem.WebUI.Driver
 {
     public partial class FingerPrintscan : PageBase
     {
+     
         MqttClient client = new MqttClient("m12.cloudmqtt.com", 29315, true, null, null, MqttSslProtocols.TLSv1_2);
         public static string status;
      
         protected void Page_Load(object sender, EventArgs e)
         {
 
-           
 
             if (!this.IsPostBack)
             {
@@ -119,22 +119,11 @@ namespace FingerPrintSystem.WebUI.Driver
 
 
         }
-        private void AddUserScanByIDMember(int memberuserid, int memberdriverid, string topic)// เพิ่มลายนิ้วมือลงไปใน database
-        {
-            
-            client.ProtocolVersion = MqttProtocolVersion.Version_3_1;
-            client.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", false, 120);
-
-            client.MqttMsgPublishReceived += client_MqttMsgPublishRecieved;
-            client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
-            ViewState["topicmessage"] = topic;
-            Debug.WriteLine("OnAddSubscribe");
-
-        }
+       
         public void CheckStatus()
         {
        
-            if (FingerPrintscan.status == "ok")
+            if (FingerPrintscan.status == "ggwp")
             { 
                 //............. แสดงผลลัพท์การสแกนลายนิ้วมือ......................................//
                 labscan.Text = "ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว";
@@ -161,10 +150,23 @@ namespace FingerPrintSystem.WebUI.Driver
             CheckStatus();
 
         }
+
+        private void AddUserScanByIDMember(int memberuserid, int memberdriverid, string topic)// เพิ่มลายนิ้วมือลงไปใน database
+        {
+
+            client.ProtocolVersion = MqttProtocolVersion.Version_3_1;
+            client.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", false, 120);
+
+            client.MqttMsgPublishReceived += client_MqttMsgPublishRecieved;
+            client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            ViewState["topicmessage"] = topic;
+            Debug.WriteLine("OnAddSubscribe");
+
+        }
         public void client_MqttMsgPublishRecieved(object sender, MqttMsgPublishEventArgs e)
         {
             //string status_fingerprint = Encoding.UTF8.GetString(e.Message);    // รับ message จากตัวสแกนลายนิ้วมือ ok กับ fail
-            Debug.WriteLine("Received = " + Encoding.UTF8.GetString(e.Message) + "\ron topic = " + e.Topic);
+           // Debug.WriteLine("Received = " + Encoding.UTF8.GetString(e.Message) + "\ron topic = " + e.Topic);
           
 
             string  topiocmessage = ViewState["topicmessage"].ToString();
@@ -177,9 +179,8 @@ namespace FingerPrintSystem.WebUI.Driver
                 string status_fingerprint = Encoding.UTF8.GetString(e.Message);    // รับ message จากตัวสแกนลายนิ้วมือ ok กับ fail
                 DataTable dt = new DriverDAO().GetDriverByIDMember(memberdriverid);  // รับชื่อของคนขับรถที่เป็นร่วม
 
-                if (status_fingerprint == "ok")
+                if (status_fingerprint == "ggwp")
                 {
-                    
                     
                     if (dt.Rows.Count > 0)
                     {
@@ -196,7 +197,7 @@ namespace FingerPrintSystem.WebUI.Driver
                         MemberDAO Member = new MemberDAO();
                         Member.UpdateMember(memberuserid, true);
                         
-                        // client.Disconnect(); // Disconnect mqtt
+                        client.Disconnect(); // Disconnect mqtt
                     }
                 }
 

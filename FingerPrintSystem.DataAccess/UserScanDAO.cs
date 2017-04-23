@@ -106,5 +106,28 @@ namespace FingerPrintSystem.DataAccess
 
         }
 
+        public void UpdateUserScanByIDMember_Up(int memberuserid, string datetimeup)
+        {
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@memberuserid", memberuserid));
+            param.Add(new SqlParameter("@datetimeup", datetimeup));
+
+            db.ExecuteNonQuery("sp_User_Scan_Update_ByIDMember_Up", param);
+
+        }
+        public void UpdateUserScanByIDMember_Down(int memberuserid, string datetimedown)
+        {
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@memberuserid", memberuserid));
+            param.Add(new SqlParameter("@datetimedown", datetimedown));
+
+            db.ExecuteNonQuery("sp_User_Scan_Update_ByIDMember_Down", param);
+
+        }
+
     }
 }

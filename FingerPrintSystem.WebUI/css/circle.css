@@ -1,6 +1,9 @@
-﻿body {margin: 40px;}
+﻿body {
+    margin: 40px;
+}
 
-    .btn-circle {
+
+.btn-circle {
     width: 30px;
     height: 30px;
     text-align: center;
@@ -27,3 +30,4 @@
             line-height: 1.33;
             border-radius: 100px;
         }
+

@@ -10,7 +10,7 @@
          
                 <h4>ยินดีต้อนรับเข้าสู่ระบบ </h4>
        
-                <asp:Label runat="server" ID="labdrivername" Text="55555" Font-Size="X-Large"></asp:Label>
+                <asp:Label runat="server" ID="labdrivername" Font-Size="X-Large"></asp:Label>
             
         </header>
     </section>

@@ -85,22 +85,22 @@ namespace FingerPrintSystem.WebUI.Driver {
         protected global::System.Web.UI.WebControls.Label labselectscan;
         
         /// <summary>
-        /// DropDownList2 control.
+        /// bthscanup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.Button bthscanup;
         
         /// <summary>
-        /// bthSaveFinish control.
+        /// bthscandown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton bthSaveFinish;
+        protected global::System.Web.UI.WebControls.Button bthscandown;
         
         /// <summary>
         /// bthclose control.
@@ -110,6 +110,15 @@ namespace FingerPrintSystem.WebUI.Driver {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton bthclose;
+        
+        /// <summary>
+        /// bthreset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bthreset;
         
         /// <summary>
         /// UpdWaitImage control.
@@ -137,6 +146,24 @@ namespace FingerPrintSystem.WebUI.Driver {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel_GridView;
+        
+        /// <summary>
+        /// imgsuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgsuccess;
+        
+        /// <summary>
+        /// labsuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labsuccess;
         
         /// <summary>
         /// gvMember control.

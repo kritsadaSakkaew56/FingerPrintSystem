@@ -29,36 +29,19 @@ namespace FingerPrintSystem.MQTT
 
 
         }
-
-        public void OnScanup(string topic, string message) // สั่งเปิดสแกนลายนิ้วมือ ขึ้นรถรับส่ง
+        public void OnScan(string topic, string message) // สั่งเปิดสแกนลายนิ้วมือ ขึ้นรถรับส่ง
         {
             client.ProtocolVersion = MqttProtocolVersion.Version_3_1;
-            client.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", false, 120);
+            client.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", true, 120);
 
             client.MqttMsgPublished += client_MqttMsgPublished;
             ushort msgId = client.Publish(topic, // topic
                               Encoding.UTF8.GetBytes(message), // message body
                               MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, // QoS level
                               false); // retained
-
-
-        }
-        public void OnScandown(string topic, string message) // สั่งเปิดสแกนลายนิ้วมือ ลงรถรับส่ง
-        {
-            client.ProtocolVersion = MqttProtocolVersion.Version_3_1;
-            client.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", false, 120);
-
-            client.MqttMsgPublished += client_MqttMsgPublished;
-            ushort msgId = client.Publish(topic, // topic
-                              Encoding.UTF8.GetBytes(message), // message body
-                              MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, // QoS level
-                              false); // retained
-
+            
 
         }
-
-
-
 
         void client_MqttMsgPublished(object sender, MqttMsgPublishedEventArgs e)
         {
@@ -66,6 +49,37 @@ namespace FingerPrintSystem.MQTT
             Debug.WriteLine("MessageId = " + e.MessageId + " Published = " + e.IsPublished);
             client.Disconnect();
         }
+        /* public void OnScanup(string topic, string message) // สั่งเปิดสแกนลายนิ้วมือ ขึ้นรถรับส่ง
+         {
+             client.ProtocolVersion = MqttProtocolVersion.Version_3_1;
+             client.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", false, 120);
+
+             client.MqttMsgPublished += client_MqttMsgPublished;
+             ushort msgId = client.Publish(topic, // topic
+                               Encoding.UTF8.GetBytes(message), // message body
+                               MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, // QoS level
+                               false); // retained
+
+
+         }
+         public void OnScandown(string topic, string message) // สั่งเปิดสแกนลายนิ้วมือ ลงรถรับส่ง
+         {
+             client.ProtocolVersion = MqttProtocolVersion.Version_3_1;
+             client.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", false, 120);
+
+             client.MqttMsgPublished += client_MqttMsgPublished;
+             ushort msgId = client.Publish(topic, // topic
+                               Encoding.UTF8.GetBytes(message), // message body
+                               MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, // QoS level
+                               false); // retained
+
+
+         }*/
+
+
+
+
+
 
 
     }

@@ -6,7 +6,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/circle-buttons.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -124,34 +125,59 @@
                 <div class="panel-body form-horizontal">
                     <asp:Label runat="server" Text="การเลือกสแกนลายนิ้วมือ:" Font-Size="Large" ID="labselectscan" Visible="false"></asp:Label>
                     <div class="row">
-                        <div class="col-sm-9">
-                            <asp:DropDownList ID="DropDownList2" runat="server" Width="60%" Height="35" AutoPostBack="false" Visible="false"></asp:DropDownList>
-                            <asp:LinkButton runat="server" ID="bthSaveFinish" class="btn btn-primary btn-md" OnClick="bthSaveFinish_Click" Visible="false"><i class="glyphicon glyphicon-ok-sign"></i>ตกลง</asp:LinkButton>
-                            <asp:LinkButton runat="server" ID="bthclose" class="btn btn-danger btn-md" OnClick="bthclose_Click" Visible="false"><i class="glyphicon glyphicon-remove"></i>เริ่มใหม่</asp:LinkButton>
+
+                        <div class="col-sm-6 ">
+
+                            <%--<asp:DropDownList ID="DropDownList2" runat="server" Width="60%" Height="35" AutoPostBack="false" Visible="false"></asp:DropDownList>--%>
+                            <asp:Button runat="server" ID="bthscanup" class="btn btn-circle-lg btn-success" Text="Scanup" OnClick="bthscanup_Click" Font-Size="Medium" Visible="false" />
+                            <asp:Button runat="server" ID="bthscandown" class="btn btn-circle-lg btn-success" Text="Scandown" OnClick="bthscandown_Click" Font-Size="Medium" Visible="false" />
+                             <asp:LinkButton runat="server" ID="bthclose" class="btn btn-circle-lg btn-info" Font-Size="Medium" OnClick="bthclose_Click" Visible="false"><i class="glyphicon glyphicon-remove"></i>เริ่มใหม่</asp:LinkButton>
+                            <asp:Button runat="server" ID="bthreset" class="btn btn-circle-lg btn-danger" Text="Reset" OnClick="bthreset_Click" Font-Size="Medium" Visible="false" />
+
+                            <%--<asp:Button runat="server" ID="bthstop" class="btn btn-circle-lg btn-danger" Text="Stopscan" OnClick="bthstop_Click" Font-Size="Medium" Visible="false" />--%>
+                            <%--<asp:LinkButton runat="server" ID="bthSaveFinish" class="btn btn-primary btn-md" OnClick="bthSaveFinish_Click" Visible="false"><i class="glyphicon glyphicon-ok-sign"></i>ตกลง</asp:LinkButton>--%>
+                           
 
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-6">
                             <asp:UpdateProgress ID="UpdWaitImage" runat="server" DynamicLayout="true" AssociatedUpdatePanelID="UpdatePanel_DropDownList2">
                                 <ProgressTemplate>
-                                    <%--  <asp:Image ID="imgProgress" ImageUrl="~/Images/ajax_loader_gray_48.gif" runat="server" Width="25" Height="25" />
-                                Please Wait...--%>
-                                    <asp:Image ID="imgsuccess" ImageUrl="~/Images/success.png" runat="server" Width="30" Height="30" />
-                                    <asp:Label ID="labsuccess" runat="server" Text="ทำการเลือกสำเร็จ" Font-Size="Medium"></asp:Label>
+                                       <asp:Image ID="imgProgress" ImageUrl="~/Images/ajax_loader_gray_48.gif" runat="server" />
+                                    Please Wait...
                                 </ProgressTemplate>
                             </asp:UpdateProgress>
+
+                            <%--                            <asp:UpdateProgress ID="UpdWaitImage" runat="server" DynamicLayout="true" AssociatedUpdatePanelID="UpdatePanel_DropDownList2">
+                                <ProgressTemplate>--%>
+                            <%--  <asp:Image ID="imgProgress" ImageUrl="~/Images/ajax_loader_gray_48.gif" runat="server" Width="25" Height="25" />
+                                Please Wait...--%>
+                            <%--    <asp:Image ID="imgsuccess" ImageUrl="~/Images/success.png" runat="server" Width="30" Height="30" />
+                                    <asp:Label ID="labsuccess" runat="server" Text="ทำการเลือกสำเร็จ" Font-Size="Medium"></asp:Label>
+                                </ProgressTemplate>
+                            </asp:UpdateProgress>--%>
                         </div>
                     </div>
                 </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
+    <hr />
+    <%-- <asp:UpdatePanel runat="server" ID="UpdatePanelimgsuccess" UpdateMode="Conditional">
+        <ContentTemplate>
+            <div class="row">
+                <div class="panel-body form-horizontal">
+                </div>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>--%>
     <asp:Timer ID="UpdateTimer" runat="server" Interval="1000" OnTick="UpdateTimer_Tick"></asp:Timer>
     <asp:UpdatePanel runat="server" ID="UpdatePanel_GridView" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="row">
                 <div class="panel-body form-horizontal">
                     <div class="panel-body">
-
+                        <asp:Image ID="imgsuccess" ImageUrl="~/Images/success.png" runat="server" Width="30" Height="30" Visible="false" />
+                        <asp:Label ID="labsuccess" runat="server" Font-Size="Medium" Visible="false"></asp:Label>
                         <%--<uc1:PagingControl ID="PagingControl1" runat="server" />--%>
                         <asp:GridView
                             DataKeyNames="member_id"
@@ -168,8 +194,8 @@
                             Style="max-width: 100%">
                             <Columns>
 
-                                <%--   <asp:BoundField HeaderText="#" DataField="Count" SortExpression="Count" ItemStyle-HorizontalAlign="Left"/>--%>
-                                <%--  <asp:ImageField DataImageUrlField="ID"
+                                <%--<asp:BoundField HeaderText="#" DataField="Count" SortExpression="Count" ItemStyle-HorizontalAlign="Left"/>--%>
+                                <%--<asp:ImageField DataImageUrlField="ID"
                                     DataImageUrlFormatString="HomegoSchool.aspx?ImageID={0}"
                                     ControlStyle-Width="100" ControlStyle-Height="100"
                                     HeaderText="รูปประจำตัว" />--%>
@@ -181,7 +207,7 @@
                                     <ItemTemplate>
 
                                         <asp:Label runat="server" ID="lalScanup" Text='<%# Eval("datetime_up") %>' Height="20px" ForeColor="White" Font-Bold="true"></asp:Label>
-                                        <%--  <asp:Label runat="server" ID="lalnoScanup" Text="ยังไม่ได้สแกน" Width="150px" Height="20px" ForeColor="White" Visible="true"></asp:Label>--%>
+                                        <%--<asp:Label runat="server" ID="lalnoScanup" Text="ยังไม่ได้สแกน" Width="150px" Height="20px" ForeColor="White" Visible="true"></asp:Label>--%>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="วันที่/เวลาลง" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
