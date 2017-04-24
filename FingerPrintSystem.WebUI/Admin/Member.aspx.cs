@@ -38,10 +38,10 @@ namespace FingerPrintSystem.WebUI.Member
         private void BindData()
         {
 
-            DataSet ds = new MemberDAO().GetMember(PagingControl1.CurrentPageIndex, PagingControl1.PageSize,this.SortColumn, this.SortOrder);
-            PagingControl1.RecordCount = (int)ds.Tables[1].Rows[0][0];
-            gvMember.DataSource = ds.Tables[0];
-            gvMember.DataBind();
+            //DataSet ds = new MemberDAO().GetMember(PagingControl1.CurrentPageIndex, PagingControl1.PageSize,this.SortColumn, this.SortOrder);
+            //PagingControl1.RecordCount = (int)ds.Tables[1].Rows[0][0];
+            //gvMember.DataSource = ds.Tables[0];
+            //gvMember.DataBind();
 
 
             
@@ -63,30 +63,6 @@ namespace FingerPrintSystem.WebUI.Member
 
                 lalnoScan.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");         //สีแดง
                 lalScan.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900");           //สีเขียว
-
-                
-                //string Memberid = this.DecryptQueryString("ID").ToString();
-
-                //foreach (GridViewRow row in gvMember.Rows)
-                //{
-
-                //    int rowIndex = row.RowIndex;
-                //    if (row.RowType == DataControlRowType.DataRow)
-                //    {
-
-                //            MemberDAO Member = new MemberDAO();
-                //            Member.UpdateMember("1");
-
-
-                //            lalScan.Visible = true;
-                //            lalnoScan.Visible = false;
-
-
-
-                //    }
-
-                //}
-
 
 
             }

@@ -1,0 +1,198 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="FingerPrintSystem.WebUI.Master.Admin" %>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>FingerPrint System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+
+    <meta name="keyword" content="Clinic, Blossom">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-reset.css" rel="stylesheet">
+    <%--    <link rel="stylesheet" href="../assets/datepicker/css/datepicker.css" />--%>
+
+    <!--external css-->
+    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/owl.carousel.css" type="text/css">
+
+
+
+
+    <!--right slidebar-->
+    <link href="../css/slidebars.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+
+     <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/style-responsive.css" rel="stylesheet" />
+
+
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+    <%-- <script src="../assets/datepicker/js/bootstrap-datepicker.js"></script>--%>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <section id="container">
+
+            <!--header start-->
+            <header class="header white-bg" style="background-color: sandybrown">
+                <div class="sidebar-toggle-box">
+                    <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+
+                </div>
+                <div class="sidebar-toggle-box">
+                    <img src="../Images/HomeFingerprint.png" width="27" height="27" />
+                    <!--logo start-->
+                </div>
+                <a href="../Driver/default.aspx" class="logo">FingerPrint<span>System</span></a>
+                <!--logo end-->
+
+                <div class="top-nav ">
+                    <!--search & user info start-->
+                    <ul class="nav pull-right top-menu">
+                        <%-- <li>
+                            <input type="text" class="form-control search" placeholder="Search">
+                        </li>--%>
+                        <!-- user login dropdown start-->
+
+
+                        <!-- user login dropdown end -->
+                    </ul>
+                    <!--search & user info end-->
+                </div>
+            </header>
+            <!--header end-->
+            <!--sidebar start-->
+            <aside>
+                <div id="sidebar" class="nav-collapse " style="background-color: darkgrey">
+                    <!-- sidebar menu start-->
+                    <ul class="sidebar-menu" id="nav-accordion">
+                        <li>
+                            <div style="text-align: center;">
+                                <img src="../Images/logo.png" style="margin-top: 25px; opacity: 0.7;" width="100" height="100" />
+
+                            </div>
+
+                        </li>
+
+                        <li>
+                            <a class="active" href="../Driver/default.aspx" id="changepassword" runat="server">
+                                <i class="fa fa-unlock-alt"></i>
+                                <span>Change Password</span>
+                            </a>
+                        </li>
+                      <%--  <li>
+                            <a class="active" href="../Driver/FingerPrintscan.aspx" id="fingerprintscan" runat="server">
+                                <i class="fa fa-user"></i>
+                                <span>FingerPrintScan</span>
+                            </a>
+                        </li>--%>
+                        <li>
+                            <a class="active" href="~/Driver/Schoolgohome.aspx" id="childuser" runat="server">
+                                <i class="fa fa-th-list"></i>
+                                <span>User</span>
+                            </a>
+                        </li>
+                         <li>
+                            <a class="active" href="~/Driver/Videosteaming.aspx" id="video" runat="server">
+                                <i class="fa fa-th-list"></i>
+                                <span>Video</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="active" href="../Login.aspx">
+                                <i class="fa fa-minus-square"></i>
+                                <span>Exit</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <!-- sidebar menu end-->
+                </div>
+            </aside>
+            <!--sidebar end-->
+            <!--main content start-->
+            <section id="main-content">
+                <section class="wrapper">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </section>
+            </section>
+            <!--main content end-->
+
+
+            <!--footer start-->
+            <%--<footer class="site-footer">
+                <div class="text-center">
+                    2016 &copy; Blossom Clinic
+              <a href="#" class="go-top">
+                  <i class="fa fa-angle-up"></i>
+              </a>
+                </div>
+            </footer>--%>
+            <!--footer end-->
+        </section>
+
+        <!-- js placed at the end of the document so the pages load faster -->
+
+        <script class="include" type="text/javascript" src="../js/jquery.dcjqaccordion.2.7.js"></script>
+        <script src="../js/jquery.scrollTo.min.js"></script>
+        <script src="../js/jquery.nicescroll.js" type="text/javascript"></script>
+        <script src="../js/jquery.sparkline.js" type="text/javascript"></script>
+        <script src="../js/owl.carousel.js"></script>
+        <script src="../js/jquery.customSelect.min.js"></script>
+        <script src="../js/respond.min.js"></script>
+
+        <!--right slidebar-->
+        <script src="../js/slidebars.min.js"></script>
+
+        <!--common script for all pages-->
+        <script src="../js/common-scripts.js"></script>
+
+
+        <script>
+
+            //owl carousel
+
+            $(document).ready(function () {
+                $("#owl-demo").owlCarousel({
+                    navigation: true,
+                    slideSpeed: 300,
+                    paginationSpeed: 400,
+                    singleItem: true,
+                    autoPlay: true
+
+                });
+            });
+
+            //custom select box
+
+            $(function () {
+                $('select.styled').customSelect();
+            });
+
+        </script>
+
+
+
+    </form>
+</body>
+</html>

@@ -106,8 +106,14 @@
                     <asp:Label runat="server" ID="labround" Font-Size="Large"></asp:Label>
                     <div class="row">
                         <div class="col-sm-12">
-                            <asp:DropDownList ID="DropDownList1" runat="server" Width="40%" Height="35" AutoPostBack="false"></asp:DropDownList>
+                            <asp:DropDownList ID="DropDownList1" runat="server" Width="40%" Height="35" AutoPostBack="false">
+                                <asp:ListItem Text="เลือกการสแกนเที่ยวรถรับส่ง และกดปุ่ม 'ตรวจสอบ'"></asp:ListItem>
+                                <asp:ListItem Value="1" Text="การเดินทางจาก บ้าน >>> โรงเรียน"></asp:ListItem>
+                                <asp:ListItem Value="2" Text="การเดินทางจาก โรงเรียน >>> บ้าน"></asp:ListItem>
+                            </asp:DropDownList>
                             <asp:LinkButton runat="server" ID="bthcheck" class="btn btn-primary btn-md" OnClick="bthcheck_Click"><i class="glyphicon glyphicon-ok-sign"></i>ตรวจสอบ</asp:LinkButton>
+                            <asp:Image ID="imgchk" runat="server" />
+                            <asp:Label runat="server" ID="labchk" Font-Size="Medium"></asp:Label>
                         </div>
                     </div>
                 </div>
@@ -131,18 +137,16 @@
                             <%--<asp:DropDownList ID="DropDownList2" runat="server" Width="60%" Height="35" AutoPostBack="false" Visible="false"></asp:DropDownList>--%>
                             <asp:Button runat="server" ID="bthscanup" class="btn btn-circle-lg btn-success" Text="Scanup" OnClick="bthscanup_Click" Font-Size="Medium" Visible="false" />
                             <asp:Button runat="server" ID="bthscandown" class="btn btn-circle-lg btn-success" Text="Scandown" OnClick="bthscandown_Click" Font-Size="Medium" Visible="false" />
-                             <asp:LinkButton runat="server" ID="bthclose" class="btn btn-circle-lg btn-info" Font-Size="Medium" OnClick="bthclose_Click" Visible="false"><i class="glyphicon glyphicon-remove"></i>เริ่มใหม่</asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="bthclose" class="btn btn-circle-lg btn-info" Font-Size="Medium" OnClick="bthclose_Click" Visible="false"><i class="glyphicon glyphicon-remove"></i>เริ่มใหม่</asp:LinkButton>
                             <asp:Button runat="server" ID="bthreset" class="btn btn-circle-lg btn-danger" Text="Reset" OnClick="bthreset_Click" Font-Size="Medium" Visible="false" />
 
                             <%--<asp:Button runat="server" ID="bthstop" class="btn btn-circle-lg btn-danger" Text="Stopscan" OnClick="bthstop_Click" Font-Size="Medium" Visible="false" />--%>
                             <%--<asp:LinkButton runat="server" ID="bthSaveFinish" class="btn btn-primary btn-md" OnClick="bthSaveFinish_Click" Visible="false"><i class="glyphicon glyphicon-ok-sign"></i>ตกลง</asp:LinkButton>--%>
-                           
-
                         </div>
                         <div class="col-sm-6">
                             <asp:UpdateProgress ID="UpdWaitImage" runat="server" DynamicLayout="true" AssociatedUpdatePanelID="UpdatePanel_DropDownList2">
                                 <ProgressTemplate>
-                                       <asp:Image ID="imgProgress" ImageUrl="~/Images/ajax_loader_gray_48.gif" runat="server" />
+                                    <asp:Image ID="imgProgress" ImageUrl="~/Images/ajax_loader_gray_48.gif" runat="server" />
                                     Please Wait...
                                 </ProgressTemplate>
                             </asp:UpdateProgress>
@@ -180,7 +184,7 @@
                         <asp:Label ID="labsuccess" runat="server" Font-Size="Medium" Visible="false"></asp:Label>
                         <%--<uc1:PagingControl ID="PagingControl1" runat="server" />--%>
                         <asp:GridView
-                            DataKeyNames="member_id"
+                            DataKeyNames="member_id,fullname_driver,roundscan"
                             ID="gvMember" runat="server"
                             OnRowCommand="gvMember_RowCommand"
                             AutoGenerateColumns="false"
@@ -222,7 +226,7 @@
                                             CommandName="memberuserid"
                                             CommandArgument='<%#Eval("member_id")%>'
                                             OnClick="bthdetial_Click"><i class="fa fa-search"></i></asp:LinkButton>
-                                        <asp:LinkButton ID="bthnote" runat="server" Width="25%" Height="20" meta:resourcekey="bthnote" CssClass="btn btn-warning btn-xs"><i class="fa  fa-star"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="bthnote" runat="server" Width="25%" Height="20" meta:resourcekey="bthnote" CssClass="btn btn-warning btn-xs" OnClick="bthnote_Click"><i class="fa  fa-star"></i></asp:LinkButton>
 
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -316,6 +320,44 @@
                     <asp:LinkButton runat="server" ID="LinkButton1" CssClass="btn btn-info"> Close</asp:LinkButton>
 
                 </div>--%>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModalsave" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">บันทึกข้อมูลการสแกนลายนิ้วมือเด็กนักเรียน</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>ต้องการบันทึกข้อมูลการสแกนลายนิ้วมือเด็กนักเรียนหรือไม่</h5>
+                </div>
+                <div class="modal-footer">
+                    <asp:LinkButton runat="server" ID="bthsavesuccess" CssClass="btn btn-info" OnClick="bthsavesuccess_Click"> OK</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bthclosesuccess" CssClass="btn btn-info"> Close</asp:LinkButton>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModalnote" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">หมายเหตุ</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                               <asp:TextBox runat="server" ID="txtcomment" CssClass="form-control input-sm" TextMode="MultiLine" Width="575" Height="75" Font-Size="Larger"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:LinkButton runat="server" ID="bthnoteok" CssClass="btn btn-info" OnClick="bthnoteok_Click"> OK</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bthnoteclose" CssClass="btn btn-info"> Close</asp:LinkButton>
+                </div>
             </div>
         </div>
     </div>

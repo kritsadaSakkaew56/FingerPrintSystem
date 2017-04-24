@@ -113,6 +113,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\default.aspx" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\Checkbox _Styles.css" />
     <Content Include="css\circle-buttons.css" />
@@ -140,6 +141,7 @@
     <Content Include="fonts\startui.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\ajax_loader_gray_48.gif" />
+    <Content Include="Images\Alert.png" />
     <Content Include="Images\beachflag.png" />
     <Content Include="Images\celcius-icon.png" />
     <Content Include="Images\false.png" />
@@ -288,6 +290,7 @@
     <Content Include="Master\Driver.Master" />
     <Content Include="Master\FingerPrintScan.Master" />
     <Content Include="Master\RegisterDriver.Master" />
+    <Content Include="Master\Admin.Master" />
     <None Include="Properties\PublishProfiles\FingerprintSystem - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\FingerprintSystem - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
@@ -305,6 +308,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Driver\Checkscan.aspx.cs">
       <DependentUpon>Checkscan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -370,6 +380,13 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
     <Compile Include="Master\Driver.Master.cs">
       <DependentUpon>Driver.Master</DependentUpon>

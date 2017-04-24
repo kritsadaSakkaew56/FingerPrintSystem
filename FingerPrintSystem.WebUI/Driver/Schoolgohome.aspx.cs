@@ -26,7 +26,7 @@ namespace FingerPrintSystem.WebUI.Driver
         {
             if (!this.IsPostBack)
             {
-               
+                Timer = false;
                 if (this.DecryptQueryString("driverid") != null)
                 {
                     ViewState["member_driver_id"] = DecryptQueryString("driverid").ToString();
@@ -70,7 +70,7 @@ namespace FingerPrintSystem.WebUI.Driver
         {
 
             // Add a default item at first position.
-            DropDownList1.Items.Insert(0, new ListItem("เลือกการสแกนลายเที่ยวรถรับส่ง และกดปุ่ม 'ตรวจสอบ'", ""));
+           // DropDownList1.Items.Insert(0, new ListItem("เลือกการสแกนลายเที่ยวรถรับส่ง และกดปุ่ม 'ตรวจสอบ'", ""));
 
             //Set the default item as selected.
             DropDownList1.Items[0].Selected = true;
@@ -79,8 +79,8 @@ namespace FingerPrintSystem.WebUI.Driver
             //Disable the default item.
             DropDownList1.Items[0].Attributes["disabled"] = "disabled";
 
-            DropDownList1.Items.Add("การเดินทางจาก บ้าน >>> โรงเรียน");
-            DropDownList1.Items.Add("การเดินทางจาก โรงเรียน >>> บ้าน");
+            //DropDownList1.Items.Add("การเดินทางจาก บ้าน >>> โรงเรียน");
+           // DropDownList1.Items.Add("การเดินทางจาก โรงเรียน >>> บ้าน");
 
 
 
@@ -113,34 +113,51 @@ namespace FingerPrintSystem.WebUI.Driver
                 Label lalScanup = (Label)e.Row.FindControl("lalScanup");
                 Label lalScandown = (Label)e.Row.FindControl("lalScandown");
                 LinkButton bthdetial = (LinkButton)e.Row.FindControl("bthdetial");
+                LinkButton bthnote = (LinkButton)e.Row.FindControl("bthnote");
 
                 string memberid = drv["member_id"].ToString();
                 string memberdriverid = ViewState["member_driver_id"].ToString();
 
+
                 bthdetial.PostBackUrl = this.EncryptQueryString("userid=" + memberid + "&driverid=" + memberdriverid);
-             
+                bthnote.PostBackUrl = this.EncryptQueryString("userid=" + memberid + "&driverid=" + memberdriverid);
+
+                string roundscan = drv["roundscan"].ToString();
                 if (drv["datetime_up"].ToString() == "ยังไม่ได้สแกน")
                 {
                     lalScanup.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");         //สีแดง
 
                 }
+               
+                else if (roundscan == "3")
+                {
+
+                    lalScanup.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF9900"); // สีส้ม
+                }
                 else
                 {
-                    lalScanup.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900");         //สีเขียว
+                    lalScanup.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900"); // สีเขียว
+
                 }
-
-
+      //..........................................................................................//
                 if (drv["datetime_down"].ToString() == "ยังไม่ได้สแกน")
                 {
 
                     lalScandown.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
                 }
-                else
+                else if (roundscan == "3")
                 {
 
-                     lalScandown.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900");
+                    lalScandown.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF9900"); // สีส้ม
+                }
+                else
+                {
+                    lalScandown.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900"); // สีเขียว
+
                 }
 
+              
+               
 
             }
             
@@ -165,12 +182,7 @@ namespace FingerPrintSystem.WebUI.Driver
 
         }
 
-        protected void bthsave_Click(object sender, EventArgs e)
-        {
-
-            Response.Redirect("/Login.aspx");
-
-        }
+       
        
         private void Showstatustrunup()
         {
@@ -216,35 +228,132 @@ namespace FingerPrintSystem.WebUI.Driver
 
         SubscribeDAO Subscribe = new SubscribeDAO();
         PublishDAO Publish = new PublishDAO();
+        DriverDAO Driver = new DriverDAO();
+        UserScanResultDAO UserscanResult = new UserScanResultDAO();
+        UserScanDAO UserScan = new UserScanDAO();
 
+        protected void bthsave_Click(object sender, EventArgs e)
+        {
+            //....... บันทึกข้อมูลการสแกนลง ใน database .........................//
+
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalsave", "$('#myModalsave').modal();", true);
+           
+
+        }
+        protected void bthsavesuccess_Click(object sender, EventArgs e)
+        {
+            int Memberdriverid = Convert.ToInt32(ViewState["member_driver_id"].ToString());
+            Driver.UpdateDriverByIDMember_Roundscan(Memberdriverid,Convert.ToInt32(DropDownList1.SelectedValue));
+            foreach (GridViewRow row in gvMember.Rows)
+            {
+
+                int rowIndex = row.RowIndex;
+                if (row.RowType == DataControlRowType.DataRow)
+                {
+
+                    int Memberuserid = Convert.ToInt32(gvMember.DataKeys[rowIndex].Values[0].ToString());
+        
+                    Label lalScanup = (row.Cells[2].FindControl("lalScanup") as Label);
+                    string datetimeup = lalScanup.Text;
+
+                    Label lalScandown = (row.Cells[3].FindControl("lalScandown") as Label);
+                    string datetimedown = lalScandown.Text;
+
+                    string fullnamedriver = gvMember.DataKeys[rowIndex].Values[1].ToString();
+                    int roundscan = Convert.ToInt32(gvMember.DataKeys[rowIndex].Values[2].ToString());
+                    UserscanResult.AddUserScanResultByIDMember(Memberuserid, datetimeup, datetimedown, fullnamedriver, roundscan);
+
+            
+                    UserScan.UpdateUserScanByMember(Memberuserid, "ยังไม่ได้สแกน", "ยังไม่ได้สแกน"); // Reset
+
+                }
+
+            }
+          
+            Response.Redirect("../Driver/Schoolgohome.aspx" + EncryptQueryString("driverid=" + Memberdriverid));
+        }
         protected void bthcheck_Click(object sender, EventArgs e)
         {
-            Timer = true;
+         
             //Disable the default item.
             DropDownList1.Items[0].Attributes["disabled"] = "disabled";
 
-            if (DropDownList1.Items[0].Selected == true)
-            {
+
+             
+                int Memberdriverid = Convert.ToInt32(ViewState["member_driver_id"].ToString());
+                DataTable dtdriverid = new DriverDAO().GetDriverByIDMember(Memberdriverid);  // เช็คสถานะของคนขับรถ
+                if (dtdriverid.Rows.Count > 0)
+                {
+                    //.......... เช็ดคนขับรถว่าสแกนเที่ยวไหนไปแล้ว.........................//
+                    //roundscan = 0 ยังไม่ได้เริ่มสแกน  
+                    //roundscan = 1 สแกนเที่ยวบ้าน-โรงเรียน เรียบร้อยแล้ว
+                    //roundscan = 2 สแกนเที่ยวโรงเรียน-บ้าน เรียบร้อยแล้ว
+
+                    string roundscan = dtdriverid.Rows[0]["roundscan"].ToString();
+
+                if (DropDownList1.Items[0].Selected == true)
+                {
+
+                    //........... "เลือกการสแกนลายเที่ยวรถรับส่ง และกดปุ่ม 'ตรวจสอบ'//................
+                }
+                else
+                {
+
+                        if (DropDownList1.SelectedValue == roundscan) // ถ้าคนขับรถได้บันทึกเที่ยว
+                        {
+
+                            if (roundscan == "1")
+                            {
+                            imgchk.ImageUrl = "~/Images/success.png";
+                            imgchk.Width = 50;
+                            imgchk.Height = 50;
+                            labchk.Text = "สแกนเที่ยวจากบ้าน-โรงเรียน เรียบร้อยแล้ว";
+                                
+                            }
+                            if (roundscan == "2")
+                            {
+                            imgchk.ImageUrl = "~/Images/Alert.png";
+                            imgchk.Width = 50;
+                            imgchk.Height = 50;
+                            labchk.Text = "สแกนเที่ยวจากบ้าน-โรงเรียน ก่อน";
+
+                        }
 
 
+                    }
+                        else // สแกนลานนิ้วมือเด็กนักเรียน
+                        {
+                            Timer = true;
+                            //.......... update รอบเที่ยวไป-กลับของรถรับส่งที่คนขับรถเลือกมา...................//
+                            string fullnamedriver = dtdriverid.Rows[0]["fullname"].ToString();
+                            DataTable dt = new UserScanDAO().GetUserScanJoin_tbUserByfullnamedriver(fullnamedriver); // เช็คชื่อคนขับรถรับส่งที่จะให้สแกน
+
+                        //เพิ่มสถานะเที่ยวรถรับส่งที่คนขับรถเลือกเข้ามา
+                            foreach (DataRow row in dt.Rows)
+                            {
+
+                                int memberuserid = Convert.ToInt32(row["member_id"].ToString());
+                                UserScanDAO UserScan = new UserScanDAO();
+                                UserScan.UpdateUserScanByMember_Roundscan(memberuserid,Convert.ToInt32(DropDownList1.SelectedValue));
+                            }
 
 
+                            DropDownList1.Visible = false;
+                            bthcheck.Visible = false;
+                            labround.Visible = false;
+                            labchk.Visible = false;
+                            imgchk.Visible = false;
+                            UpdatePanel_DropDownList2.Update();
+                            Binddatascan(DropDownList1.SelectedItem.Text.Trim());
+                        }
 
-            }
-            else
-            {
-                DropDownList1.Visible = false;
-                bthcheck.Visible = false;
-                labround.Visible = false;
-                UpdatePanel_DropDownList2.Update();
-                Binddatascan(DropDownList1.Text.Trim());
+                }
 
             }
 
         }
         private void Binddatascan(string round)
         {
-
 
            
             labselectscan.Visible = true; //แสดงปุ่ม เลือกการสแกนลายนิ้วมือ
@@ -261,7 +370,7 @@ namespace FingerPrintSystem.WebUI.Driver
 
         }
 
-        private void Binddata()  // แสดงข้อมูลเด็กนักเรียนที่ให้สแกนกับคนขับรถที่ login เข้ามา
+        private void Binddata()  // แสดงข้อมูลเด็กนักเรียนที่ให้สแกนกับคนขับรถที่ login เข้ามาบนตาราง
         {
 
             int Memberdriverid = Convert.ToInt32(ViewState["member_driver_id"].ToString());
@@ -273,19 +382,7 @@ namespace FingerPrintSystem.WebUI.Driver
             {
                 string fullnamedriver = dtdriverid.Rows[0]["fullname"].ToString();
                 DataTable dt = new UserScanDAO().GetUserScanJoin_tbUserByfullnamedriver(fullnamedriver); // เช็คชื่อคนขับรถรับส่งที่จะให้สแกน
-                //...........เช็คเงื่อนไขว่าได้ทำการบันทึกรอบเที่ยวของรถรับส่งหรือยัง.................//
-
-
-
-                //.......... update รอบเที่ยวไป-กลับของรถรับส่ง...................//
-                foreach (DataRow row in dt.Rows)
-                {
-
-                    int memberuserid = Convert.ToInt32(row["member_id"].ToString());
-                    UserScanDAO UserScan = new UserScanDAO();
-                    UserScan.UpdateUserScanByMember_Roundscan(memberuserid, 1);
-                }
-
+               
 
                 gvMember.DataSource = dt;
                 gvMember.DataBind();
@@ -396,9 +493,6 @@ namespace FingerPrintSystem.WebUI.Driver
             UpdateUserScanByMemberid("ลงรถรับส่งเด็กนักเรียน", "/chksearching");
             Showstatustrundown();
 
-
-
-
         }
         protected void bthstop_Click(object sender, EventArgs e)
         {
@@ -409,7 +503,7 @@ namespace FingerPrintSystem.WebUI.Driver
         protected void bthclose_Click(object sender, EventArgs e)
         {
             Timer = true;
-            Publish.OnScan("/chksearching", "disconnect");
+            Publish.OnScan("/chksearching", "disconnect"); // ทำการ Disconnect MQTT
 
 
         }
@@ -453,7 +547,7 @@ namespace FingerPrintSystem.WebUI.Driver
         {
 
             //Disable the default item.
-            // DropDownList2.Items[0].Attributes["disabled"] = "disabled";
+            DropDownList1.Items[0].Attributes["disabled"] = "disabled";
 
             int memberuserid = Convert.ToInt32(this.DecryptQueryString("userid").ToString());
             DataTable dt = new UserDAO().GetUserByMember(memberuserid);
@@ -472,6 +566,20 @@ namespace FingerPrintSystem.WebUI.Driver
             }
 
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModaldetial", "$('#myModaldetial').modal();", true);
+
+        }
+
+        protected void bthnote_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalnote", "$('#myModalnote').modal();", true);
+        }
+        protected void bthnoteok_Click(object sender, EventArgs e)
+        {
+            UserScanDAO userscan = new UserScanDAO();
+            int memberuserid = Convert.ToInt32(this.DecryptQueryString("userid").ToString());
+            userscan.UpdateUserScanByIDMember_Down(memberuserid, txtcomment.Text.Trim());
+            userscan.UpdateUserScanByIDMember_Up(memberuserid, txtcomment.Text.Trim());
+            userscan.UpdateUserScanByMember_Roundscan(memberuserid, 3); // หมายเหตุ
 
         }
 

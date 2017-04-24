@@ -1,10 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Driver.Master" AutoEventWireup="true" CodeBehind="Member.aspx.cs" Inherits="FingerPrintSystem.WebUI.Member.Member" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Admin.Master" AutoEventWireup="true" CodeBehind="Member.aspx.cs" Inherits="FingerPrintSystem.WebUI.Member.Member" %>
 
-<%@ MasterType VirtualPath="~/Master/Driver.Master" %>
+<%@ MasterType VirtualPath="~/Master/Admin.Master" %>
 <%@ Register Src="~/UserControls/PagingControl.ascx" TagPrefix="uc1" TagName="PagingControl" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+     <link href="../css/bootstrap.min.css" rel="stylesheet">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 

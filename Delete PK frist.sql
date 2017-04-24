@@ -1,1 +1,1 @@
-delete from tb_user DBCC CHECKIDENT(tb_user,reseed,0)
+delete from tb_user_scan_result DBCC CHECKIDENT(tb_user_scan_result,reseed,0)

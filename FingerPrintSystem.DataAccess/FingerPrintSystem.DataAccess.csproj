@@ -48,6 +48,7 @@
     <Compile Include="UserAddressDAO.cs" />
     <Compile Include="UserDAO.cs" />
     <Compile Include="UserScanDAO.cs" />
+    <Compile Include="UserScanResultDAO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

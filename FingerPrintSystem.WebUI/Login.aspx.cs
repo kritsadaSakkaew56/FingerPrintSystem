@@ -91,6 +91,10 @@ namespace FingerPrintSystem.WebUI
                 {
                     Response.RedirectPermanent("/Driver/default.aspx"+this.EncryptQueryString("driverid=" + memberid));
                 }
+                else if (status == "Admin")
+                {
+                    Response.RedirectPermanent("/Admin/default.aspx" + this.EncryptQueryString("adminid=" + memberid));
+                }
 
             }
 

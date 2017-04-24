@@ -7,57 +7,63 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FingerPrintSystem.WebUI.Member {
+namespace FingerPrintSystem.WebUI.Master {
     
     
-    public partial class Member {
+    public partial class Admin {
         
         /// <summary>
-        /// scMain control.
+        /// head control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager scMain;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
-        /// updResult control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updResult;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// PagingControl1 control.
+        /// changepassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::FingerPrintSystem.WebUI.UserControls.PagingControl PagingControl1;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor changepassword;
         
         /// <summary>
-        /// gvMember control.
+        /// childuser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMember;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor childuser;
         
         /// <summary>
-        /// Master property.
+        /// video control.
         /// </summary>
         /// <remarks>
-        /// Auto-generated property.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        public new FingerPrintSystem.WebUI.Master.Admin Master {
-            get {
-                return ((FingerPrintSystem.WebUI.Master.Admin)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor video;
+        
+        /// <summary>
+        /// ContentPlaceHolder1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
     }
 }

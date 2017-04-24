@@ -21,6 +21,18 @@ namespace FingerPrintSystem.DataAccess
             return db.ExecuteDataTable("sp_Driver_Select_ByIDMember", param);
 
         }
+        public void UpdateDriverByIDMember_Roundscan(int memberdriverid , int roundscan)
+        {
+
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@memberdriverid", memberdriverid));
+            param.Add(new SqlParameter("@roundscan", roundscan));
+
+             db.ExecuteNonQuery("sp_Driver_Update_ByIDMember_Roundscan", param);
+
+
+        }
 
     }
 }
