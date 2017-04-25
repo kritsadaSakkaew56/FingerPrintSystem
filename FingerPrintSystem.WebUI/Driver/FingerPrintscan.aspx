@@ -49,28 +49,30 @@
                     </div>
                 </div>
 
-                
+
                 <div class="col-sm-5">
 
                     <p>
-                        <asp:Button runat="server" OnClick="bthSaveFinish_Click" ID="bthSaveFinish" class="btn btn-warning btn-circle btn-Xl " Text="Scan" />
+                        <asp:Button runat="server" OnClick="bthSaveFinish_Click" ID="bthSaveFinish" class="btn btn-warning btn-circle btn-Xl " Text="Scan" Visible="true" />
+                        <asp:Button runat="server" OnClick="bthclose_Click" ID="bthclose" class="btn btn-info btn-circle btn-Xl " Text="default" Visible="false" />
                     </p>
                     <p>
                         <asp:Label ID="lblStatus" runat="server" Text=""></asp:Label>
                     </p>
-                    <fieldset style="width: 200px">
-                        <p>
 
-                            <%-- <asp:UpdateProgress ID="UpdWaitImage" runat="server" DynamicLayout="true" AssociatedUpdatePanelID="UpdatePanel1">
-                                <ProgressTemplate>
-                                    <asp:Image ID="imgProgress" ImageUrl="~/Images/ajax_loader_gray_48.gif" runat="server" />
-                                    Please Wait...
-                                </ProgressTemplate>
-                            </asp:UpdateProgress>--%>
+                    <p>
 
-                            <asp:Image ID="imgProgress" ImageUrl="~/Images/ajax_loader_gray_48.gif" runat="server" Visible="false" />
-                            <asp:Label ID="labplase" runat="server" Text=" Please Wait..." Visible="false"></asp:Label>
-                        </p>
+                        <asp:UpdateProgress ID="UpdWaitImage" runat="server" DynamicLayout="true" AssociatedUpdatePanelID="UpdatePanel1">
+                            <ProgressTemplate>
+                                <asp:Image ID="imgProgressprogress" ImageUrl="~/Images/ajax_loader_gray_48.gif" runat="server" />
+                                Please Wait...
+                            </ProgressTemplate>
+                        </asp:UpdateProgress>
+                        <asp:Image ID="imgsuccess" ImageUrl="~/Images/success.png" runat="server" Width="30" Height="30" Visible="false" />
+                        <asp:Label ID="labsuccess" runat="server" Font-Size="Medium" Visible="false"></asp:Label>
+                        <%--  <asp:Image ID="imgProgress" ImageUrl="~/Images/ajax_loader_gray_48.gif" runat="server" Visible="false" />
+                            <asp:Label ID="labplase" runat="server" Text=" Please Wait..." Visible="false"></asp:Label>--%>
+                    </p>
                 </div>
             </div>
         </ContentTemplate>

@@ -76,6 +76,15 @@ namespace FingerPrintSystem.WebUI.Driver {
         protected global::System.Web.UI.WebControls.Button bthSaveFinish;
         
         /// <summary>
+        /// bthclose control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bthclose;
+        
+        /// <summary>
         /// lblStatus control.
         /// </summary>
         /// <remarks>
@@ -85,21 +94,30 @@ namespace FingerPrintSystem.WebUI.Driver {
         protected global::System.Web.UI.WebControls.Label lblStatus;
         
         /// <summary>
-        /// imgProgress control.
+        /// UpdWaitImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgProgress;
+        protected global::System.Web.UI.UpdateProgress UpdWaitImage;
         
         /// <summary>
-        /// labplase control.
+        /// imgsuccess control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labplase;
+        protected global::System.Web.UI.WebControls.Image imgsuccess;
+        
+        /// <summary>
+        /// labsuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labsuccess;
     }
 }

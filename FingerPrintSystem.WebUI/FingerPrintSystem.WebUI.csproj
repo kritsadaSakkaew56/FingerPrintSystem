@@ -125,8 +125,7 @@
     <Content Include="Driver\default.aspx" />
     <Content Include="Driver\LoginUser.aspx" />
     <Content Include="Driver\FingerPrintscan.aspx" />
-    <Content Include="Driver\HomegoSchool.aspx" />
-    <Content Include="Driver\Schoolgohome.aspx" />
+    <Content Include="Driver\roundscan.aspx" />
     <Content Include="Driver\Videosteaming.aspx" />
     <Content Include="FingerPrint\RegisterFingerPrintscan.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -343,19 +342,12 @@
     <Compile Include="Driver\FingerPrintscan.aspx.designer.cs">
       <DependentUpon>FingerPrintscan.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Driver\HomegoSchool.aspx.cs">
-      <DependentUpon>HomegoSchool.aspx</DependentUpon>
+    <Compile Include="Driver\roundscan.aspx.cs">
+      <DependentUpon>roundscan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Driver\HomegoSchool.aspx.designer.cs">
-      <DependentUpon>HomegoSchool.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Driver\Schoolgohome.aspx.cs">
-      <DependentUpon>Schoolgohome.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Driver\Schoolgohome.aspx.designer.cs">
-      <DependentUpon>Schoolgohome.aspx</DependentUpon>
+    <Compile Include="Driver\roundscan.aspx.designer.cs">
+      <DependentUpon>roundscan.aspx</DependentUpon>
     </Compile>
     <Compile Include="Driver\Videosteaming.aspx.cs">
       <DependentUpon>Videosteaming.aspx</DependentUpon>

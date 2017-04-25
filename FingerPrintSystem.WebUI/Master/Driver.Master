@@ -105,7 +105,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="active" href="~/Driver/Schoolgohome.aspx" id="childuser" runat="server">
+                            <a class="active" href="~/Driver/roundscan.aspx" id="childuser" runat="server">
                                 <i class="fa fa-th-list"></i>
                                 <span>Child User</span>
                             </a>

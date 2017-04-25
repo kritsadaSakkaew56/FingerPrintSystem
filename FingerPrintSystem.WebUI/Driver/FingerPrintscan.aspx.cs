@@ -22,7 +22,7 @@ namespace FingerPrintSystem.WebUI.Driver
      
         MqttClient client = new MqttClient("m12.cloudmqtt.com", 29315, true, null, null, MqttSslProtocols.TLSv1_2);
         public static string status;
-     
+      
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -41,13 +41,13 @@ namespace FingerPrintSystem.WebUI.Driver
                     int memberuserid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
                     CheckIsactive(memberuserid);
 
-
+                    status = "null";
                     ViewState["MemberDriver_id"] = this.DecryptQueryString("driverid").ToString();
-                    int memberDriverid = Convert.ToInt32(ViewState["MemberDriver_id"].ToString());
+                    int memberdriverid = Convert.ToInt32(ViewState["MemberDriver_id"].ToString());
+                
 
-
-                     ViewState["status"] = "fail";
-                     AddUserScanByIDMember(memberuserid, memberDriverid, "/chkregister"); // Subscribe 
+                    
+                    
                 }
                 else
                 {
@@ -91,57 +91,110 @@ namespace FingerPrintSystem.WebUI.Driver
             Response.Redirect("/Driver/LoginUser.aspx" + this.EncryptQueryString("driverid=" + driverid));
           
         }
+        private void showstatustrun()
+        {
 
+            bthSaveFinish.Visible = true;
+     
+           
+        }
+        private void detialstatustrun()
+        {
+            imgsuccess.Visible = true;
+            labsuccess.Visible = true;
+            labsuccess.Text = "กรุณาสแกนลายนิ้วมือ";
+            imgsuccess.ImageUrl = "~/Images/success.png";
+        }
+        private void detialstatustrunfail()
+        {
+            imgsuccess.Visible = true;
+            labsuccess.Visible = true;
+            bthSaveFinish.Visible = true;
+            bthclose.Visible = false;
+            labsuccess.Text = "สแกนไม่สมบูรณ์ กดปุ่ม 'Scan'อีกครั้ง";
+            imgsuccess.ImageUrl = "~/Images/Alert.png";
+
+        }
+        private void disshowstatustrun()
+        {
+            bthclose.Visible = true; //แสดงปุ่ม เริ่มใหม่
+            bthSaveFinish.Visible = false;
+
+        }
+        private void Disshowstatustrn_scan()
+        {
+
+            imgsuccess.Visible = false;
+            labsuccess.Visible = false;
+            bthclose.Visible = false; //แสดงปุ่ม เริ่มใหม่
+           
+
+        }
         protected void bthSaveFinish_Click(object sender, EventArgs e)
         {
-            imgProgress.Visible = true;
-            labplase.Visible = true;
-            UpdatePanel1.Update();
+            status = "null";
             UpdateTimer.Enabled = true;
-
-            //Thread.Sleep(5000);
+            UpdatePanel1.Update();
+            disshowstatustrun();
             //....................................................................................//
 
             int memberuserid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
-           int Memberdriverid = Convert.ToInt32(ViewState["MemberDriver_id"].ToString());
+            int Memberdriverid = Convert.ToInt32(ViewState["MemberDriver_id"].ToString());
 
-            //....................................................................................//
+            PublishDAO Publish = new PublishDAO();
+            Publish.OnScanInputFingerprint("/register", memberuserid.ToString()); // สั่งเปิดสแกนลายนิ้วมือ
 
-             PublishDAO Publish = new PublishDAO();
-             Publish.OnScanInputFingerprint("/register", memberuserid.ToString()); // สั่งเปิดสแกนลายนิ้วมือ
-
-            //Debug.WriteLine("Sleep for 3 seconds.");
-            //Thread.Sleep(3000);
-            //Debug.WriteLine("Sleep for 3 OK.");
-            //SubscribeDAO Subscribe = new SubscribeDAO();
-            // Subscribe.AddUserScanByIDMember(memberuserid, Memberdriverid,"/chkregister");
-            // AddUserScanByIDMember(memberuserid, Memberdriverid, "/chkregister");
-
+            AddUserScanByIDMember(memberuserid, Memberdriverid, "/chkregister"); // Subscribe 
+            detialstatustrun();
 
         }
-       
+        protected void bthclose_Click(object sender, EventArgs e)
+        {
+
+            status = "fail";
+            PublishDAO Publish = new PublishDAO();
+            Publish.OnScanInputFingerprint("/chkregister", "disconnect"); // สั่งปิดสแกน
+
+        }
         public void CheckStatus()
         {
-       
-            if (FingerPrintscan.status == "ggwp")
-            { 
-                //............. แสดงผลลัพท์การสแกนลายนิ้วมือ......................................//
-                labscan.Text = "ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว";
-                Imgfingerprint.ImageUrl = "~/Images/true.png";
-                bthSaveFinish.Visible = false;
-
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalScan", "$('#myModalScan').modal();", true);
-                UpdateTimer.Enabled = false; //For stop the timer
-                imgProgress.Visible = false;
-                labplase.Visible = false;
-                status = "fail";
-            }
-            else
+            if (UpdateTimer.Enabled == true)
             {
 
-              //................................. fail ...........................//
-               
+                if (FingerPrintscan.status == "ok")
+                {
+                    //............. แสดงผลลัพท์การสแกนลายนิ้วมือ......................................//
+                    labscan.Text = "ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว";
+                    Imgfingerprint.ImageUrl = "~/Images/true.png";
+                    bthSaveFinish.Visible = false;
 
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalScan", "$('#myModalScan').modal();", true);
+                    UpdateTimer.Enabled = false; //For stop the timer
+                    Disshowstatustrn_scan();
+                    status = "null";
+                }
+
+                else if (FingerPrintscan.status == "fail")
+                {
+                    //................................. fail ...........................//
+                    bthSaveFinish.Visible = true;
+                    Imgfingerprint.ImageUrl = "~/Images/false.png";
+                    detialstatustrunfail();
+                    // Disshowstatustrn_scan();
+
+
+                }
+                else if (FingerPrintscan.status == "null")
+                {
+
+                  
+
+
+                }
+
+
+
+                
             }
 
         }
@@ -179,7 +232,7 @@ namespace FingerPrintSystem.WebUI.Driver
                 string status_fingerprint = Encoding.UTF8.GetString(e.Message);    // รับ message จากตัวสแกนลายนิ้วมือ ok กับ fail
                 DataTable dt = new DriverDAO().GetDriverByIDMember(memberdriverid);  // รับชื่อของคนขับรถที่เป็นร่วม
 
-                if (status_fingerprint == "ggwp")
+                if (status_fingerprint == "ok")
                 {
                     
                     if (dt.Rows.Count > 0)
@@ -196,9 +249,20 @@ namespace FingerPrintSystem.WebUI.Driver
                         //.....................  เปิกการใช้งานของ user ................................//
                         MemberDAO Member = new MemberDAO();
                         Member.UpdateMember(memberuserid, true);
-                        
                         client.Disconnect(); // Disconnect mqtt
                     }
+                }
+                else if (status_fingerprint == "fail")
+                {
+                    status = status_fingerprint; // ส่ง ok กับ fail
+                    client.Disconnect();
+
+                }
+                else if(status_fingerprint == "disconnect")
+                {
+
+                    client.Disconnect();
+
                 }
 
 
@@ -207,6 +271,6 @@ namespace FingerPrintSystem.WebUI.Driver
 
         }
 
-     
+      
     }
 }

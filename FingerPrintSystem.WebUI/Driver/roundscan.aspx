@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Driver.Master" AutoEventWireup="true" CodeBehind="Schoolgohome.aspx.cs" Inherits="FingerPrintSystem.WebUI.Driver.Schoolgohome" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Driver.Master" AutoEventWireup="true" CodeBehind="roundscan.aspx.cs" Inherits="FingerPrintSystem.WebUI.Driver.roundscan" %>
 
 <%@ MasterType VirtualPath="~/Master/Driver.Master" %>
 <%@ Register Src="~/UserControls/PagingControl.ascx" TagPrefix="uc1" TagName="PagingControl" %>
@@ -340,6 +340,12 @@
             </div>
         </div>
     </div>
+    <style type="text/css">
+        .BigCheckBox input {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
     <div class="modal fade" id="myModalnote" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -350,13 +356,40 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
-                               <asp:TextBox runat="server" ID="txtcomment" CssClass="form-control input-sm" TextMode="MultiLine" Width="575" Height="75" Font-Size="Larger"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtcomment" CssClass="form-control input-sm" TextMode="MultiLine" Width="575" Height="75" Font-Size="Larger"></asp:TextBox>
                         </div>
                     </div>
                 </div>
+                <hr />
+                <div class="row">
+                     <div class="col-lg-2">
+                    </div>
+                    <div class="col-lg-10">
+                        <h4>เลือกเพิ่มหมายเหตุขึ้น-ลงรถรับส่งเด็กนักเรียน</h4>
+                    </div>
+
+                    <div class="col-lg-2">
+                    </div>
+                    <div class="col-lg-10">
+                        <p>
+                            <asp:CheckBox runat="server" ID="chkup" CssClass="BigCheckBox" />
+                            ขึ้นรถรับส่ง
+                     
+                        </p>
+                        <p>
+                            <asp:CheckBox runat="server" ID="chkdown" CssClass="BigCheckBox" />
+                            ลงรถรับส่ง
+
+                        </p>
+
+
+
+                    </div>
+
+                </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bthnoteok" CssClass="btn btn-info" OnClick="bthnoteok_Click"> OK</asp:LinkButton>
-                    <asp:LinkButton runat="server" ID="bthnoteclose" CssClass="btn btn-info"> Close</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bthnoteok" CssClass="btn btn-info" OnClick="bthnoteok_Click" Width="100px"> OK</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bthnoteclose" CssClass="btn btn-info" Width="100px"> Close</asp:LinkButton>
                 </div>
             </div>
         </div>

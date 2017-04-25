@@ -18,7 +18,7 @@ using System.Text;
 
 namespace FingerPrintSystem.WebUI.Driver
 {
-    public partial class Schoolgohome : PageBase
+    public partial class roundscan : PageBase
     {
         MqttClient client = new MqttClient("m12.cloudmqtt.com", 29315, true, null, null, MqttSslProtocols.TLSv1_2);
         public static bool Timer;
@@ -50,8 +50,9 @@ namespace FingerPrintSystem.WebUI.Driver
             else
 
             {
+                
                 //.......... แสดง ปุ่ม scanup และ scandown......................//
-                if (Schoolgohome.Timer == true)
+                if (roundscan.Timer == true)
                 {
 
                     UpdatePanel_DropDownList2.Update();
@@ -122,30 +123,31 @@ namespace FingerPrintSystem.WebUI.Driver
                 bthdetial.PostBackUrl = this.EncryptQueryString("userid=" + memberid + "&driverid=" + memberdriverid);
                 bthnote.PostBackUrl = this.EncryptQueryString("userid=" + memberid + "&driverid=" + memberdriverid);
 
-                string roundscan = drv["roundscan"].ToString();
+                string noteup = drv["noteup"].ToString();
                 if (drv["datetime_up"].ToString() == "ยังไม่ได้สแกน")
                 {
                     lalScanup.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");         //สีแดง
 
                 }
-               
-                else if (roundscan == "3")
+                else if (noteup == "1")
                 {
 
                     lalScanup.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF9900"); // สีส้ม
                 }
+
                 else
                 {
                     lalScanup.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900"); // สีเขียว
 
                 }
-      //..........................................................................................//
+                //..........................................................................................//
+                string notedown = drv["notedown"].ToString();
                 if (drv["datetime_down"].ToString() == "ยังไม่ได้สแกน")
                 {
 
                     lalScandown.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
                 }
-                else if (roundscan == "3")
+                else if (notedown == "1")
                 {
 
                     lalScandown.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF9900"); // สีส้ม
@@ -430,6 +432,13 @@ namespace FingerPrintSystem.WebUI.Driver
                     client.Disconnect();
 
                 }
+                else if(fingerprintid=="fail")
+                {
+                    Debug.WriteLine("Disconnect");
+                    client.Disconnect();
+                    Timer = true;
+
+                }
                 else
                 {
                     int memberuserid = Convert.ToInt32(fingerprintid);
@@ -450,6 +459,13 @@ namespace FingerPrintSystem.WebUI.Driver
                 {
                     Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + DateTime.Now.ToString("dd-MM-yyyy เวลา HH:mm:ss\r"));
                     client.Disconnect();
+
+                }
+                else if (fingerprintid == "fail")
+                {
+                    Debug.WriteLine("Disconnect");
+                    client.Disconnect();
+                    Timer = true;
 
                 }
                 else
@@ -491,6 +507,7 @@ namespace FingerPrintSystem.WebUI.Driver
             Publish.OnScan("/searching", "on");
             //Subscribe.UpdateUserScanByMemberid("ลงรถรับส่งเด็กนักเรียน", "/chksearching");
             UpdateUserScanByMemberid("ลงรถรับส่งเด็กนักเรียน", "/chksearching");
+            UpdatePanel_GridView.Update();
             Showstatustrundown();
 
         }
@@ -529,7 +546,7 @@ namespace FingerPrintSystem.WebUI.Driver
         protected void UpdateTimer_Tick(object sender, EventArgs e)
         {
 
-            if (UpdateTimer.Enabled == Schoolgohome.Timer)
+            if (UpdateTimer.Enabled == roundscan.Timer)
             {
 
                 this.Binddata();

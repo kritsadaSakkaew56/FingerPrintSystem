@@ -10,7 +10,7 @@
 namespace FingerPrintSystem.WebUI.Driver {
     
     
-    public partial class Schoolgohome {
+    public partial class roundscan {
         
         /// <summary>
         /// ScriptManager control.
@@ -290,6 +290,24 @@ namespace FingerPrintSystem.WebUI.Driver {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtcomment;
+        
+        /// <summary>
+        /// chkup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkup;
+        
+        /// <summary>
+        /// chkdown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkdown;
         
         /// <summary>
         /// bthnoteok control.
