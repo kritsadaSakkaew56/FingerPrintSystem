@@ -15,7 +15,7 @@
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/bootstrap-reset.css" rel="stylesheet">
-    <%--    <link rel="stylesheet" href="../assets/datepicker/css/datepicker.css" />--%>
+    <link rel="stylesheet" href="../assets/datepicker/css/datepicker.css" />
 
     <!--external css-->
     <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
 
     <!-- Custom styles for this template -->
 
-     <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
     <link href="../css/style-responsive.css" rel="stylesheet" />
 
 
@@ -37,7 +37,8 @@
     <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap.min.js"></script>
 
-    <%-- <script src="../assets/datepicker/js/bootstrap-datepicker.js"></script>--%>
+    <script src="../assets/datepicker/js/bootstrap-datepicker.js"></script>
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -92,30 +93,30 @@
 
                         </li>
 
-                        <li>
+                     <%--   <li>
                             <a class="active" href="../Driver/default.aspx" id="changepassword" runat="server">
                                 <i class="fa fa-unlock-alt"></i>
                                 <span>Change Password</span>
                             </a>
-                        </li>
-                      <%--  <li>
-                            <a class="active" href="../Driver/FingerPrintscan.aspx" id="fingerprintscan" runat="server">
-                                <i class="fa fa-user"></i>
-                                <span>FingerPrintScan</span>
-                            </a>
                         </li>--%>
+                          <li>
+                            <a class="active" href="~/Admin/AddUser.aspx" id="adduser" runat="server">
+                                <i class="fa fa-user"></i>
+                                <span>Add User</span>
+                            </a>
+                        </li>
                         <li>
                             <a class="active" href="~/Driver/Schoolgohome.aspx" id="childuser" runat="server">
                                 <i class="fa fa-th-list"></i>
-                                <span>User</span>
+                                <span>List scan</span>
                             </a>
                         </li>
-                         <li>
+                        <%--<li>
                             <a class="active" href="~/Driver/Videosteaming.aspx" id="video" runat="server">
-                                <i class="fa fa-th-list"></i>
+                                <i class="fa fa-video-camera"></i>
                                 <span>Video</span>
                             </a>
-                        </li>
+                        </li>--%>
 
                         <li>
                             <a class="active" href="../Login.aspx">

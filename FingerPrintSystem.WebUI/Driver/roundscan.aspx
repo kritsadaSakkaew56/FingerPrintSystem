@@ -211,13 +211,13 @@
                                     <ItemTemplate>
 
                                         <asp:Label runat="server" ID="lalScanup" Text='<%# Eval("datetime_up") %>' Height="20px" ForeColor="White" Font-Bold="true"></asp:Label>
-                                        <%--<asp:Label runat="server" ID="lalnoScanup" Text="ยังไม่ได้สแกน" Width="150px" Height="20px" ForeColor="White" Visible="true"></asp:Label>--%>
+                                     
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="วันที่/เวลาลง" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:Label runat="server" ID="lalScandown" Text='<%# Eval("datetime_down") %>' Height="20px" ForeColor="White" Font-Bold="true"></asp:Label>
-                                        <%--<asp:Label runat="server" ID="lalnoScandown" Text="ยังไม่ได้สแกน" Width="150px" Height="20px" ForeColor="White" Visible="true"></asp:Label>--%>
+                                     
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ดำเนินการ" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
@@ -226,7 +226,10 @@
                                             CommandName="memberuserid"
                                             CommandArgument='<%#Eval("member_id")%>'
                                             OnClick="bthdetial_Click"><i class="fa fa-search"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="bthreset" runat="server" Width="25%" Height="20" meta:resourcekey="bthreset" CssClass="btn btn-info btn-xs" OnClick="btnreset_Click"><i class="fa   fa-mail-reply" "></i></asp:LinkButton>
                                         <asp:LinkButton ID="bthnote" runat="server" Width="25%" Height="20" meta:resourcekey="bthnote" CssClass="btn btn-warning btn-xs" OnClick="bthnote_Click"><i class="fa  fa-star"></i></asp:LinkButton>
+
+
 
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -359,37 +362,78 @@
                             <asp:TextBox runat="server" ID="txtcomment" CssClass="form-control input-sm" TextMode="MultiLine" Width="575" Height="75" Font-Size="Larger"></asp:TextBox>
                         </div>
                     </div>
-                </div>
-                <hr />
-                <div class="row">
-                     <div class="col-lg-2">
-                    </div>
-                    <div class="col-lg-10">
-                        <h4>เลือกเพิ่มหมายเหตุขึ้น-ลงรถรับส่งเด็กนักเรียน</h4>
-                    </div>
 
-                    <div class="col-lg-2">
-                    </div>
-                    <div class="col-lg-10">
-                        <p>
-                            <asp:CheckBox runat="server" ID="chkup" CssClass="BigCheckBox" />
-                            ขึ้นรถรับส่ง
+                    <hr />
+                    <div class="row">
+                        <div class="col-lg-2">
+                        </div>
+                        <div class="col-lg-10">
+                            <h4>เลือกเพิ่มหมายเหตุขึ้น-ลงรถรับส่งเด็กนักเรียน</h4>
+                        </div>
+
+                        <div class="col-lg-2">
+                        </div>
+                        <div class="col-lg-10">
+                            <p>
+                                <asp:CheckBox runat="server" ID="chkup" CssClass="BigCheckBox" />
+                                ขึ้นรถรับส่ง
                      
-                        </p>
-                        <p>
-                            <asp:CheckBox runat="server" ID="chkdown" CssClass="BigCheckBox" />
-                            ลงรถรับส่ง
+                            </p>
+                            <p>
+                                <asp:CheckBox runat="server" ID="chkdown" CssClass="BigCheckBox" />
+                                ลงรถรับส่ง
 
-                        </p>
+                            </p>
 
 
 
+                        </div>
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <asp:LinkButton runat="server" ID="bthnoteok" CssClass="btn btn-info" OnClick="bthnoteok_Click" Width="100px"> OK</asp:LinkButton>
                     <asp:LinkButton runat="server" ID="bthnoteclose" CssClass="btn btn-info" Width="100px"> Close</asp:LinkButton>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModalreset" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Reset</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-lg-2">
+                        </div>
+                        <div class="col-lg-10">
+                            <h4>เลือกเริ่มต้นการสแกนใหม่</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2">
+                        </div>
+                        <div class="col-lg-10">
+                            <p>
+                                <asp:CheckBox runat="server" ID="chkupreset" CssClass="BigCheckBox" />
+                                ขึ้นรถรับส่ง
+                     
+                            </p>
+                            <p>
+                                <asp:CheckBox runat="server" ID="chkdownreset" CssClass="BigCheckBox" />
+                                ลงรถรับส่ง
+
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:LinkButton runat="server" ID="bthresetok" CssClass="btn btn-info" OnClick="bthresetok_Click" Width="100px"> OK</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bthresetclose" CssClass="btn btn-info" Width="100px"> Close</asp:LinkButton>
                 </div>
             </div>
         </div>

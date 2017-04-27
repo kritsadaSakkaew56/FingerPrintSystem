@@ -113,6 +113,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\AddUser.aspx" />
     <Content Include="Admin\default.aspx" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\Checkbox _Styles.css" />
@@ -163,6 +164,7 @@
     <Content Include="js\app.js" />
     <Content Include="js\appgps.js" />
     <Content Include="js\apptemp.js" />
+    <Content Include="js\bootstrap-datetimepicker.js" />
     <Content Include="js\host.js" />
     <Content Include="js\hostgps.js" />
     <Content Include="js\hosttemp.js" />
@@ -217,6 +219,7 @@
     <Content Include="js\jquery.signalR-2.2.1.js" />
     <Content Include="js\jquery.signalR-2.2.1.min.js" />
     <Content Include="js\mqttws31.js" />
+    <Content Include="UserControls\DatePickerControl.ascx" />
     <Content Include="User\default.aspx" />
     <Content Include="User\Home.aspx" />
     <Content Include="User\RegisterFingerPrint.aspx" />
@@ -307,6 +310,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AddUser.aspx.cs">
+      <DependentUpon>AddUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddUser.aspx.designer.cs">
+      <DependentUpon>AddUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -417,6 +427,13 @@
     </Compile>
     <Compile Include="MyHub.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="UserControls\DatePickerControl.ascx.cs">
+      <DependentUpon>DatePickerControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\DatePickerControl.ascx.designer.cs">
+      <DependentUpon>DatePickerControl.ascx</DependentUpon>
+    </Compile>
     <Compile Include="User\default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

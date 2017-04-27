@@ -115,6 +115,7 @@ namespace FingerPrintSystem.WebUI.Driver
                 Label lalScandown = (Label)e.Row.FindControl("lalScandown");
                 LinkButton bthdetial = (LinkButton)e.Row.FindControl("bthdetial");
                 LinkButton bthnote = (LinkButton)e.Row.FindControl("bthnote");
+                LinkButton bthreset = (LinkButton)e.Row.FindControl("bthreset");
 
                 string memberid = drv["member_id"].ToString();
                 string memberdriverid = ViewState["member_driver_id"].ToString();
@@ -122,6 +123,7 @@ namespace FingerPrintSystem.WebUI.Driver
 
                 bthdetial.PostBackUrl = this.EncryptQueryString("userid=" + memberid + "&driverid=" + memberdriverid);
                 bthnote.PostBackUrl = this.EncryptQueryString("userid=" + memberid + "&driverid=" + memberdriverid);
+                bthreset.PostBackUrl = this.EncryptQueryString("userid=" + memberid + "&driverid=" + memberdriverid);
 
                 string noteup = drv["noteup"].ToString();
                 if (drv["datetime_up"].ToString() == "ยังไม่ได้สแกน")
@@ -263,7 +265,7 @@ namespace FingerPrintSystem.WebUI.Driver
 
                     string fullnamedriver = gvMember.DataKeys[rowIndex].Values[1].ToString();
                     int roundscan = Convert.ToInt32(gvMember.DataKeys[rowIndex].Values[2].ToString());
-                    UserscanResult.AddUserScanResultByIDMember(Memberuserid, datetimeup, datetimedown, fullnamedriver, roundscan);
+                    UserscanResult.AddUserScanResultByIDMember(Memberuserid, datetimeup, datetimedown, fullnamedriver, roundscan,datetime1());
 
             
                     UserScan.UpdateUserScanByMember(Memberuserid, "ยังไม่ได้สแกน", "ยังไม่ได้สแกน"); // Reset
@@ -272,8 +274,9 @@ namespace FingerPrintSystem.WebUI.Driver
 
             }
           
-            Response.Redirect("../Driver/Schoolgohome.aspx" + EncryptQueryString("driverid=" + Memberdriverid));
+            Response.Redirect("../Driver/roundscan.aspx" + EncryptQueryString("driverid=" + Memberdriverid));
         }
+        
         protected void bthcheck_Click(object sender, EventArgs e)
         {
          
@@ -421,6 +424,7 @@ namespace FingerPrintSystem.WebUI.Driver
 
             UserScanDAO userscan = new UserScanDAO();
             string trunscan = ViewState["trunscan"].ToString();
+
             if (trunscan == "ขึ้นรถรับส่งเด็กนักเรียน")
             {
                 string fingerprintid = Encoding.UTF8.GetString(e.Message);
@@ -428,7 +432,7 @@ namespace FingerPrintSystem.WebUI.Driver
                 if (fingerprintid == "disconnect")
                 {
 
-                    Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + DateTime.Now.ToString("dd-MM-yyyy เวลา HH:mm:ss\r"));
+                    Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + datetime());
                     client.Disconnect();
 
                 }
@@ -442,8 +446,10 @@ namespace FingerPrintSystem.WebUI.Driver
                 else
                 {
                     int memberuserid = Convert.ToInt32(fingerprintid);
-                    Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + DateTime.Now.ToString("dd-MM-yyyy เวลา HH:mm:ss\r"));
-                    userscan.UpdateUserScanByIDMember_Up(memberuserid, DateTime.Now.ToString("dd-MM-yyyy เวลา HH:mm:ss"));
+                    Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + datetime());
+                    userscan.UpdateUserScanByIDMember_Noteup(memberuserid, 0);
+                    userscan.UpdateUserScanByIDMember_Up(memberuserid, datetime());
+                    
                     //userscan.UpdateUserScanByFingerprintid_Up(fingerprintid, DateTime.Now.ToString("dd-MM-yyyy เวลา HH:mm:ss"));
                     Debug.WriteLine("OKScanup");
                     client.Disconnect();
@@ -457,7 +463,7 @@ namespace FingerPrintSystem.WebUI.Driver
 
                 if (fingerprintid == "disconnect")
                 {
-                    Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + DateTime.Now.ToString("dd-MM-yyyy เวลา HH:mm:ss\r"));
+                    Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + datetime());
                     client.Disconnect();
 
                 }
@@ -471,8 +477,10 @@ namespace FingerPrintSystem.WebUI.Driver
                 else
                 {
                     int memberuserid = Convert.ToInt32(fingerprintid);
-                    Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + DateTime.Now.ToString("dd-MM-yyyy เวลา HH:mm:ss\n"));
-                    userscan.UpdateUserScanByIDMember_Down(memberuserid, DateTime.Now.ToString("dd-MM-yyyy เวลา HH:mm:ss"));
+                    Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + datetime());
+                    userscan.UpdateUserScanByIDMember_Notedown(memberuserid, 0);
+                    userscan.UpdateUserScanByIDMember_Down(memberuserid, datetime());
+                  
                     //userscan.UpdateUserScanByFingerprintid_Down(fingerprintid, DateTime.Now.ToString("dd-MM-yyyy เวลา HH:mm:ss"));
 
                     Debug.WriteLine("OKScanDown");
@@ -482,7 +490,56 @@ namespace FingerPrintSystem.WebUI.Driver
             }
 
         }
+        private string datetime()
+        {
 
+
+            DateTime DtNow = new DateTime();
+            DtNow = DateTime.Now;
+            int day = Convert.ToInt32(DtNow.ToString("dd"));
+            int Mounth = Convert.ToInt32(DtNow.ToString("MM"));
+            int year = Convert.ToInt32(DtNow.ToString("yyyy"))-543;
+
+            int HH = Convert.ToInt32(DtNow.ToString("HH"));
+            int mm = Convert.ToInt32(DtNow.ToString("mm"));
+            int ss = Convert.ToInt32(DtNow.ToString("ss"));
+
+            if (Mounth <= 9)
+            {
+                string cMounth = "0" + Mounth;
+                return day + "-" + cMounth + "-" + year + " เวลา " + HH + ":" + mm + ":" + ss;
+            }
+            else
+            {
+                string cMounth = Mounth.ToString();
+                return day + "-" + cMounth + "-" + year + " เวลา " + HH + ":" + mm + ":" + ss;
+            }
+
+
+        }
+        private string datetime1()
+        {
+
+
+            DateTime DtNow = new DateTime();
+            DtNow = DateTime.Now;
+            int day = Convert.ToInt32(DtNow.ToString("dd"));
+            int Mounth = Convert.ToInt32(DtNow.ToString("MM"));
+            int year = Convert.ToInt32(DtNow.ToString("yyyy"));
+
+            if (Mounth <= 9)
+            {
+                string cMounth = "0" + Mounth;
+                return day + "-" + cMounth + "-" + year;
+            }
+            else
+            {
+                string cMounth = Mounth.ToString();
+                return day + "-" + cMounth + "-" + year;
+            }
+
+
+        }
 
         protected void bthscanup_Click(object sender, EventArgs e)
         {
@@ -557,7 +614,7 @@ namespace FingerPrintSystem.WebUI.Driver
 
 
         }
-
+       
 
 
         protected void bthdetial_Click(object sender, EventArgs e)
@@ -588,19 +645,84 @@ namespace FingerPrintSystem.WebUI.Driver
 
         protected void bthnote_Click(object sender, EventArgs e)
         {
+            txtcomment.Text = "";
+            chkup.Checked = false;
+            chkdown.Checked = false;
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalnote", "$('#myModalnote').modal();", true);
+        }
+
+        protected void btnreset_Click(object sender, EventArgs e)
+        {
+            chkupreset.Checked = false;
+            chkdownreset.Checked = false;
+        
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalreset", "$('#myModalreset').modal();", true);
+
+
         }
         protected void bthnoteok_Click(object sender, EventArgs e)
         {
+    
+
             UserScanDAO userscan = new UserScanDAO();
             int memberuserid = Convert.ToInt32(this.DecryptQueryString("userid").ToString());
-            userscan.UpdateUserScanByIDMember_Down(memberuserid, txtcomment.Text.Trim());
-            userscan.UpdateUserScanByIDMember_Up(memberuserid, txtcomment.Text.Trim());
-            userscan.UpdateUserScanByMember_Roundscan(memberuserid, 3); // หมายเหตุ
+            DataTable dt = userscan.GetUserScanByIDMember(memberuserid);
+            if (dt.Rows.Count > 0)
+            {
+                if (txtcomment.Text.Trim() != "")
+                {
+                    string datetimeup = dt.Rows[0]["datetime_up"].ToString();
+                    string datetimedown = dt.Rows[0]["datetime_down"].ToString();
+
+                    if (datetimeup == "ยังไม่ได้สแกน")
+                    {
+                        if (chkup.Checked == true)
+                        {
+                            userscan.UpdateUserScanByIDMember_Up(memberuserid, txtcomment.Text.Trim());
+                            userscan.UpdateUserScanByIDMember_Noteup(memberuserid, 1);
+
+
+                        }
+                    }
+
+                    if (datetimedown == "ยังไม่ได้สแกน")
+                    {
+                        if (chkdown.Checked == true)
+                        {
+                            userscan.UpdateUserScanByIDMember_Down(memberuserid, txtcomment.Text.Trim());
+                            userscan.UpdateUserScanByIDMember_Notedown(memberuserid, 1);
+
+
+                        }
+                    }
+
+                }
+            }
 
         }
 
+        protected void bthresetok_Click(object sender, EventArgs e)
+        {
+            UserScanDAO userscan = new UserScanDAO();
+            int memberuserid = Convert.ToInt32(this.DecryptQueryString("userid").ToString());
 
+            if (chkupreset.Checked == true)
+            {
+                userscan.UpdateUserScanByIDMemberReset_Up(memberuserid, "ยังไม่ได้สแกน");
+
+
+            }
+
+
+            if (chkdownreset.Checked == true)
+            {
+                userscan.UpdateUserScanByIDMemberReset_Down(memberuserid, "ยังไม่ได้สแกน");
+           
+
+            }
+
+
+        }
         protected void bthSaveFinish_Click(object sender, EventArgs e)
          {
              //UpdatePanelimgsuccess.Update();
@@ -652,6 +774,6 @@ namespace FingerPrintSystem.WebUI.Driver
 
          }
 
-       
+      
     }
 }

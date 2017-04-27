@@ -112,7 +112,7 @@
                         </li>
                          <li>
                             <a class="active" href="~/Driver/Videosteaming.aspx" id="video" runat="server">
-                                <i class="fa fa-th-list"></i>
+                                <i class="fa fa-video-camera"></i>
                                 <span>Video</span>
                             </a>
                         </li>

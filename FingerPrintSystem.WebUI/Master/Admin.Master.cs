@@ -11,6 +11,11 @@ namespace FingerPrintSystem.WebUI.Master
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            PageBase page = new PageBase();
+            int adminid = Convert.ToInt32(page.DecryptQueryString("adminid"));
+
+            childuser.Attributes["href"] = ResolveUrl("../Admin/Member.aspx" + page.EncryptQueryString("adminid=" + adminid));
+            adduser.Attributes["href"] = ResolveUrl("../Admin/AddUser.aspx" + page.EncryptQueryString("adminid=" + adminid));
 
         }
     }

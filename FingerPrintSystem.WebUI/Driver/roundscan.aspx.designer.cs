@@ -328,6 +328,42 @@ namespace FingerPrintSystem.WebUI.Driver {
         protected global::System.Web.UI.WebControls.LinkButton bthnoteclose;
         
         /// <summary>
+        /// chkupreset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkupreset;
+        
+        /// <summary>
+        /// chkdownreset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkdownreset;
+        
+        /// <summary>
+        /// bthresetok control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bthresetok;
+        
+        /// <summary>
+        /// bthresetclose control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bthresetclose;
+        
+        /// <summary>
         /// Master property.
         /// </summary>
         /// <remarks>

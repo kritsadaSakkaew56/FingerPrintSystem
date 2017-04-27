@@ -33,6 +33,20 @@ namespace FingerPrintSystem.DataAccess
 
 
         }
+        public DataSet GetDriver(int pageNum, int pageSize, string sortField, string sortOrder)
+        {
+
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@PageNum", pageNum));
+            param.Add(new SqlParameter("@PageSize", pageSize));
+            param.Add(new SqlParameter("@SortField", sortField));
+            param.Add(new SqlParameter("@SortOrder", sortOrder));
+
+            return db.ExecuteDataSet("sp_Driver_SelectPaging", param);
+
+        }
 
     }
 }

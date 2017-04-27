@@ -31,13 +31,13 @@ namespace FingerPrintSystem.WebUI.Master {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// changepassword control.
+        /// adduser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor changepassword;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor adduser;
         
         /// <summary>
         /// childuser control.
@@ -47,15 +47,6 @@ namespace FingerPrintSystem.WebUI.Master {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor childuser;
-        
-        /// <summary>
-        /// video control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor video;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

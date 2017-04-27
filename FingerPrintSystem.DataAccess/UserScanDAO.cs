@@ -23,7 +23,20 @@ namespace FingerPrintSystem.DataAccess
 
             return db.ExecuteScalar("sp_User_Scan_Insert_ByIDMember",param).ToString();
         }
+        public DataSet GetUserScan(int pageNum, int pageSize, string sortField, string sortOrder)
+        {
 
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@PageNum", pageNum));
+            param.Add(new SqlParameter("@PageSize", pageSize));
+            param.Add(new SqlParameter("@SortField", sortField));
+            param.Add(new SqlParameter("@SortOrder", sortOrder));
+
+            return db.ExecuteDataSet("sp_User_Scan_SelectPaging", param);
+
+        }
         public DataTable GetUserScanByIDMember(int memberuserid)
         {
             DatabaseHelper db = new DatabaseHelper();
@@ -33,6 +46,7 @@ namespace FingerPrintSystem.DataAccess
             return db.ExecuteDataTable("sp_User_Scan_Select_ByIDMember", param);
 
         }
+
         public DataSet GetUserScanJoin_tbUser()
         {
 
@@ -117,6 +131,18 @@ namespace FingerPrintSystem.DataAccess
             db.ExecuteNonQuery("sp_User_Scan_Update_ByIDMember_Up", param);
 
         }
+        public void UpdateUserScanByIDMemberReset_Up(int memberuserid, string datetimeup)
+        {
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@memberuserid", memberuserid));
+            param.Add(new SqlParameter("@datetimeup", datetimeup));
+
+            db.ExecuteNonQuery("sp_User_Scan_Update_ByIDMemberReset_Up", param);
+
+        }
+
         public void UpdateUserScanByIDMember_Down(int memberuserid, string datetimedown)
         {
             DatabaseHelper db = new DatabaseHelper();
@@ -126,6 +152,41 @@ namespace FingerPrintSystem.DataAccess
             param.Add(new SqlParameter("@datetimedown", datetimedown));
 
             db.ExecuteNonQuery("sp_User_Scan_Update_ByIDMember_Down", param);
+
+        }
+        public void UpdateUserScanByIDMemberReset_Down(int memberuserid, string datetimedown)
+        {
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@memberuserid", memberuserid));
+            param.Add(new SqlParameter("@datetimedown", datetimedown));
+
+            db.ExecuteNonQuery("sp_User_Scan_Update_ByIDMemberReset_Down", param);
+
+        }
+        public void UpdateUserScanByIDMember_Noteup(int memberuserid, int noteup)
+        {
+
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@memberuserid", memberuserid));
+            param.Add(new SqlParameter("@noteup", noteup));
+
+            db.ExecuteNonQuery("sp_User_Scan_Update_ByMember_Noteup", param);
+
+        }
+        public void UpdateUserScanByIDMember_Notedown(int memberuserid, int notedown)
+        {
+
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@memberuserid", memberuserid));
+            param.Add(new SqlParameter("@notedown", notedown));
+
+            db.ExecuteNonQuery("sp_User_Scan_Update_ByMember_Notedown", param);
 
         }
 

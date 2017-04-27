@@ -57,5 +57,48 @@ namespace FingerPrintSystem.DataAccess
             return db.ExecuteScalar("sp_User_Select_ByIDMax").ToString();
 
         }
+        public DataSet GetUser(int pageNum, int pageSize, string sortField, string sortOrder)
+        {
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+    
+            param.Add(new SqlParameter("@PageNum", pageNum));
+            param.Add(new SqlParameter("@PageSize", pageSize));
+            param.Add(new SqlParameter("@SortField", sortField));
+            param.Add(new SqlParameter("@SortOrder", sortOrder));
+
+            return db.ExecuteDataSet("sp_User_SelectPaging", param);
+
+
+        }
+        public void UpdateUserByMember(int memberuserid,string id ,string fullname,string school ,string fullnameparent,string tel,string email)
+        {
+
+
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@memberid", memberuserid));
+            param.Add(new SqlParameter("@id", id));
+            param.Add(new SqlParameter("@fullname", fullname));
+            param.Add(new SqlParameter("@school", school));
+            param.Add(new SqlParameter("@fullnameparent", fullnameparent));
+            param.Add(new SqlParameter("@tel", tel));
+            param.Add(new SqlParameter("@email", email));
+
+            db.ExecuteNonQuery("sp_User_Update_ByIDmember", param);
+
+
+        }
+
+        public void DeleteUserByMember(int memberuserid)
+        {
+
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@memberid", memberuserid));
+            db.ExecuteNonQuery("sp_User_Delete_ByIDMember", param);
+        }
     }
 }
