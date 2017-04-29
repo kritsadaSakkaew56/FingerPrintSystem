@@ -34,9 +34,9 @@
                     <%=txtfullname.UniqueID %>: {
                         required: true
                     },
-                    <%=txtschool.UniqueID %>: {
+                   <%-- <%=txtschool.UniqueID %>: {
                         required: true
-                    },
+                    },--%>
                     <%=txtfullnameparent.UniqueID %>: {
                         required: true
                     },
@@ -69,9 +69,9 @@
                     <%=txtfullname.UniqueID %>: {
                         required: "Please enter fullname"
                     },
-                    <%=txtschool.UniqueID %>: {
+                   <%-- <%=txtschool.UniqueID %>: {
                         required: "Please enter school"
-                    },
+                    },--%>
                     <%=txtfullnameparent.UniqueID %>: {
                         required: "Please enter nameparen"
                     },
@@ -222,12 +222,6 @@
             <br />
             <div class="row">
                 <div class="col-md-6">
-                    <asp:TextBox runat="server" ID="txtschool" CssClass="form-control input-sm" placeholder="กำลังศึกษา" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-md-6">
                     <asp:TextBox runat="server" ID="txtfullnameparent" CssClass="form-control input-sm" placeholder="ชื่อผู้ปกครอง" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
                 </div>
             </div>
@@ -243,21 +237,12 @@
                     <asp:TextBox runat="server" ID="txtemail" CssClass="form-control input-sm" placeholder="E-mail" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
                 </div>
             </div>
-            <%-- <div class="row">
-                <div class="form-group form-horizontal col-md-4">
-                    <div class="col-lg-4">
-                        <asp:TextBox runat="server" ID="TxtAddress" CssClass="form-control input-sm" placeholder="คลิ๊กเพิ่มที่อยู่ที่ปุ่ม'เพิ่มที่อยู่'" Enabled="false" MaxLength="300" TextMode="MultiLine" Width="300" Height="90" Font-Size="Small"></asp:TextBox>
-                    </div>
+            <br />
+           <div class="row">
+                <div class="col-md-6">
+                    <asp:DropDownList ID="ddlschool" runat="server"  Width="250" Height="40" Font-Size="Larger" > </asp:DropDownList>
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group form-horizontal col-md-4">
-                    <div class="col-lg-4">
-                        <asp:LinkButton runat="server" ID="bthaddress" class="btn btn-default" Width="300" Height="40" OnClick="bthaddress_Click">เพิ่มที่อยู่</asp:LinkButton>
-                    </div>
-                </div>
-
-            </div>--%>
 
             <br />
             <br />

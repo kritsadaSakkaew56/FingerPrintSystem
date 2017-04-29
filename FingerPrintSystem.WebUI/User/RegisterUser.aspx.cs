@@ -22,11 +22,26 @@ namespace FingerPrintSystem.WebUI.User
         {
             if (!IsPostBack)
             {
-              
-       
+                BindDataschool();
+
+
             }
 
 
+        }
+        private void BindDataschool()
+        {
+             
+            DataSet ds = new SchoolAddressDAO().GetSchoolAddress();
+     
+            ddlschool.DataSource = ds;
+            ddlschool.DataTextField = "detailaddress";
+            ddlschool.DataValueField = "school_id";
+            ddlschool.DataBind();
+           
+            ddlschool.Items.Insert(0, new ListItem("--เลือกชื่อโรงเรียน--", "0"));
+            ddlschool.Items[0].Selected = true;
+            ddlschool.Items[0].Attributes["disabled"] = "disabled";
         }
         private void checkdata()
         {
@@ -35,7 +50,7 @@ namespace FingerPrintSystem.WebUI.User
             txtConfirmPassword.Text = "";
             txtid.Text = "";
             txtfullname.Text = "";
-            txtschool.Text = "";
+            ddlschool.Text = "";
             txtfullnameparent.Text = "";
             txttel.Text = "";
             txtemail.Text = "";
@@ -96,13 +111,26 @@ namespace FingerPrintSystem.WebUI.User
         protected void bthsave_Click(object sender, EventArgs e)
         {
 
-           
+            ddlschool.Items[0].Attributes["disabled"] = "disabled";
             if (laberroe.Text == "รูปประจำตัวได้บันทึกเรียบร้อย")
             {
-    
-                BindDataMember();
+                if (ddlschool.SelectedValue != "0")
+                {
+                    BindDataMember();
 
+                }
+                else
+                {
+
+              
+                    labusername.Text = "กรุณาเลือกชื่อโรงเรียนให้ถูกต้อง";
+                    laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
+                    laberroe.Text = "กรุณา Upload รูปประจำตัว";
+                }
+                  
             }
+               
+            
             else
             {
                 labusername.Text = "";
@@ -122,7 +150,7 @@ namespace FingerPrintSystem.WebUI.User
             switch (memberid)
             {
                 case -1:
-                    labusername.Text = "Username already exists";
+                    labusername.Text = "Username ใช้ไม่ได้";
 
                     laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
                     laberroe.Text = "กรุณา Upload รูปประจำตัว";
@@ -148,8 +176,15 @@ namespace FingerPrintSystem.WebUI.User
             //fs.Close();
 
             UserDAO user = new UserDAO();
-            user.AddUser(memberid, txtid.Text.Trim(), txtfullname.Text.Trim(), txtschool.Text.Trim(), txtfullnameparent.Text.Trim(),
-                         txttel.Text.Trim(), txtemail.Text.Trim(),addressphoto, txtpassword.Text.Trim());
+            user.AddUser(memberid, 
+                         txtid.Text.Trim(), 
+                         Convert.ToInt32(ddlschool.Text.Trim()), 
+                         txtfullname.Text.Trim(),
+                         txtfullnameparent.Text.Trim(),
+                         txttel.Text.Trim(), 
+                         txtemail.Text.Trim(),
+                         addressphoto, 
+                         txtpassword.Text.Trim());
 
             Response.Redirect("../User/RegisterGooglemap.aspx" + this.EncryptQueryString("userid=" + memberid));
 

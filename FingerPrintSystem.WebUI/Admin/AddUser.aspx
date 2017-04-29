@@ -3,9 +3,89 @@
 <%@ Register Src="~/UserControls/PagingControl.ascx" TagPrefix="uc1" TagName="PagingControl" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
+
     <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/jquery.validate.min.js"></script>
+
+
+
+
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#form1").validate({
+
+                rules: {
+                    <%=txtusername.UniqueID %>: {
+                    required: true,
+                    minlength: 6,
+                    rangelength: [6, 10]
+                },
+
+                    <%=txtpassword.UniqueID %>: {
+                        required: true,
+                        minlength: 5,
+                        equalTo: "#<%=txtConfirmPassword.ClientID %>"
+                    },
+                    <%=txtusername.UniqueID %>: {
+                        required: true
+                    },
+                    <%=txtreid.UniqueID %>: {
+                        required: true
+                    },
+                    <%=txtrefullname.UniqueID %>: {
+                        required: true
+                    },
+                    <%=txtretel.UniqueID %>: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10
+                    },
+                    <%=txtreemail.UniqueID %>: {
+                        required: true,
+                        email: true
+                    }
+
+                }, messages: {
+                    <%=txtusername.UniqueID %>: {
+                    required: "Please enter username",
+                    minlength: "A minimum of {0} digits are required.",
+                    rangelength: "Password should be between {0} and {1} characters long"
+
+                },
+                    <%=txtpassword.UniqueID %>: {
+                        required: "Please enter password",
+                        minlength: "Please enter password at least 5 characters.",
+                        equalTo: "Enter same password."
+                    },
+                    <%=txtreid.UniqueID %>: {
+                        required: "Please enter id"
+                    },
+                    <%=txtrefullname.UniqueID %>: {
+                        required: "Please enter fullname"
+                    },
+                    <%=txtretel.UniqueID %>: {
+                        required: "Please enter mobile no",
+                        digits: "Only digits accepted",
+                        minlength: "A minimum of {0} digits are required.",
+                        maxlength: "A maximum of {0} digits are required."
+                    },
+                    <%=txtreemail.UniqueID %>: {
+                        required: "Please enter email address"
+                    }
+                }
+            });
+        });
+    </script>
+    <style type="text/css">
+        label.error {
+            color: red;
+            display: inline-flex;
+        }
+    </style>
     <asp:ScriptManager ID="scMain" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel runat="server" ID="updResult">
         <ContentTemplate>
@@ -21,7 +101,7 @@
 
                         <asp:GridView
                             ID="gvuser" runat="server"
-                            DataKeyNames="scan_id"
+                            DataKeyNames="user_id"
                             AutoGenerateColumns="false"
                             AllowSorting="false"
                             OnRowDataBound="gvuser_RowDataBound"
@@ -32,10 +112,10 @@
                             CssClass="table table-bordered table-striped table-hover"
                             Style="max-width: 100%">
                             <Columns>
-
+                                 <asp:BoundField HeaderText="Username" DataField="Username" SortExpression="Username" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
                                 <asp:BoundField HeaderText="เลขประจำตัว" DataField="id" SortExpression="id" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
                                 <asp:BoundField HeaderText="ชื่อ-นามสกุล" DataField="fullName" SortExpression="fullName" />
-                                <asp:BoundField HeaderText="โรงเรียน" DataField="school" SortExpression="school" />
+                                <asp:BoundField HeaderText="โรงเรียน" DataField="detailaddress" SortExpression="detailaddress" />
                                 <asp:BoundField HeaderText="ผู้ปกครอง" DataField="fullnameparent" SortExpression="fullnameparent" />
                                 <asp:BoundField HeaderText="เบอร์โทรศัพท์" DataField="tel" SortExpression="tel" />
                                 <%--  <asp:TemplateField HeaderText="การใช้งาน" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
@@ -46,7 +126,7 @@
                                 <asp:TemplateField HeaderText="ดำเนินการ" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="btnEdit" runat="server" Width="25%" Height="20" meta:resourcekey="btnEdit" CssClass="btn btn-primary btn-xs" OnClick="btnEdit_Click"><i class="fa fa-pencil"></i></asp:LinkButton>
-                                        <asp:LinkButton ID="btnDeleteuser" runat="server" Width="25%" Height="20" meta:resourcekey="btnDeleteuser" CssClass="btn btn-danger btn-xs"  OnClick="btnDeleteuser_Click"><i class="fa fa-trash-o "></i></asp:LinkButton>
+                                        <asp:LinkButton ID="btnDeleteuser" runat="server" Width="25%" Height="20" meta:resourcekey="btnDeleteuser" CssClass="btn btn-danger btn-xs" OnClick="btnDeleteuser_Click"><i class="fa fa-trash-o "></i></asp:LinkButton>
 
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -82,23 +162,79 @@
                                 <asp:BoundField HeaderText="เลขประจำตัว" DataField="id" SortExpression="id" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
                                 <asp:BoundField HeaderText="ชื่อ-นามสกุล" DataField="fullName" SortExpression="fullName" />
                                 <asp:BoundField HeaderText="เบอร์โทรศัพท์" DataField="tel" SortExpression="tel" />
+                                <asp:BoundField HeaderText="E-mail" DataField="email" SortExpression="email" />
                                 <asp:TemplateField HeaderText="ดำเนินการ" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="btnEditdriver" runat="server" Width="25%" Height="20" meta:resourcekey="btnEdit" CssClass="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></asp:LinkButton>
-                                        <asp:LinkButton ID="btnDeletedriver" runat="server" Width="25%" Height="20" meta:resourcekey="btnDelete" CssClass="btn btn-danger btn-xs" CommandName="Delete"><i class="fa fa-trash-o "></i></asp:LinkButton>
+                                        <asp:LinkButton ID="btnEditdriver" runat="server" Width="25%" Height="20" meta:resourcekey="btnEdit" CssClass="btn btn-primary btn-xs" OnClick="btnEditdriver_Click"><i class="fa fa-pencil"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="btnDeletedriver" runat="server" Width="25%" Height="20" meta:resourcekey="btnDelete" CssClass="btn btn-danger btn-xs" OnClick="btnDeletedriver_Click"><i class="fa fa-trash-o "></i></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
                         <uc1:PagingControl ID="PagingControl2" runat="server" />
-                        <asp:LinkButton runat="server" ID="lbtnAddItem" CssClass="btn btn-primary" Width="150" Height="40"><i class="fa fa-plus-circle "></i>เพิ่มคนขับรถ</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="btnadddriver" CssClass="btn btn-primary" Width="150" Height="40" OnClick="btnadddriver_Click"><i class="fa fa-plus-circle "></i>เพิ่มคนขับรถ</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bthgoogledriver" CssClass="btn btn-primary" Width="150" Height="40" OnClick="bthgoogledriver_Click"><i class="fa fa-plus-circle "></i>เพิ่มที่อยู่โรงเรียน</asp:LinkButton>
                     </div>
                 </div>
             </div>
+            <div class="form-group form-horizontal col-md-12">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <asp:TextBox runat="server" ID="txtusername" MaxLength="30" CssClass="form-control input-sm" placeholder="ผู้ใช้งาน" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Label runat="server" ID="labusername" Font-Bold="true" ForeColor="Red" Font-Size="Medium"></asp:Label>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <asp:TextBox runat="server" ID="txtpassword" CssClass="form-control input-sm" placeholder="รหัสผ่าน" TextMode="Password" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <asp:TextBox runat="server" ID="txtConfirmPassword" CssClass="form-control input-sm" TextMode="Password" placeholder="ยืนยันรหัสผ่าน" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class=" col-md-6">
+                        <asp:TextBox runat="server" ID="txtreid" CssClass="form-control input-sm" placeholder="เลขที่" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <asp:TextBox runat="server" ID="txtrefullname" CssClass="form-control input-sm" placeholder="ชื่อ-นามสกุล" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <asp:TextBox runat="server" ID="txtretel" CssClass="form-control input-sm" placeholder="เบอร์โทรศัพท์ติดต่อฉุกเฉิน" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <asp:TextBox runat="server" ID="txtreemail" CssClass="form-control input-sm" placeholder="E-mail" Width="250" Height="40" Font-Size="Larger"></asp:TextBox>
+                    </div>
+                </div>
+
+                <br />
+
+                <br />
+                <asp:Button ID="bthRegistersave" runat="server" Text="Save" Class="btn btn-warning" OnClick="bthRegistersave_Click" Width="250" Height="40" />
+            </div>
 
         </ContentTemplate>
+
     </asp:UpdatePanel>
-    <div class="modal fade" id="myModaledit" role="dialog">
+    <div class="modal fade" id="myModaledituser" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -147,7 +283,8 @@
                             </p>
 
                             <p>
-                                <asp:TextBox ID="txtshcool" runat="server" Font-Size="Small"></asp:TextBox>
+                                <%--<asp:TextBox ID="txtshcool" runat="server" Font-Size="Small"></asp:TextBox>--%>
+                                <asp:DropDownList ID="ddlschool" runat="server" Font-Size="Small" Width="170px"></asp:DropDownList>
                             </p>
 
                             <p>
@@ -175,6 +312,61 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="myModaleditdriver" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">ข้อมูลคนขับรถ</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+
+                            <p>
+                                <asp:Label runat="server" Text="เลขประจำตัว:" Font-Size="Larger"></asp:Label>
+                            </p>
+
+                            <p>
+                                <asp:Label runat="server" Text="ชื่อ-นามสกุล:" Font-Size="Larger"></asp:Label>
+                            </p>
+
+                            <p>
+                                <asp:Label runat="server" Text="เบอร์โทรศัพท์:" Font-Size="Larger"></asp:Label>
+                            </p>
+
+                            <p>
+                                <asp:Label runat="server" Text="E-Mail:" Font-Size="Larger"></asp:Label>
+                        </div>
+                        <div class="col-sm-4">
+
+                            <p>
+                                <asp:TextBox ID="txtiddriver" runat="server" Font-Size="Small"></asp:TextBox>
+                            </p>
+
+                            <p>
+                                <asp:TextBox ID="txtfullnamedriver" runat="server" Font-Size="Small"></asp:TextBox>
+                            </p>
+
+                            <p>
+                                <asp:TextBox ID="txtteldriver" runat="server" Font-Size="Small"></asp:TextBox>
+                            </p>
+
+                            <p>
+                                <asp:TextBox ID="txtemaildriver" runat="server" Font-Size="Small"></asp:TextBox>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:LinkButton runat="server" ID="bthoksavedriver" CssClass="btn btn-info" OnClick="bthoksavedriver_Click"> OK</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bthclosesavedriver" CssClass="btn btn-info"> Close</asp:LinkButton>
+
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="myModaldelete" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -188,6 +380,50 @@
                         <asp:LinkButton runat="server" ID="bthdeleteok" CssClass="btn btn-info" OnClick="bthdeleteok_Click"> OK</asp:LinkButton>
                         <asp:LinkButton runat="server" ID="bthcloseok" CssClass="btn btn-info"> Close</asp:LinkButton>
 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModaldeletedriver" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">ลบข้อมูล</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>ต้องการที่จะลบข้อมูลคนขับรถหรือไม่</h5>
+                    <div class="modal-footer">
+                        <asp:LinkButton runat="server" ID="bthdeleteokdriver" CssClass="btn btn-info" OnClick="bthdeleteokdriver_Click"> OK</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bthdeleteclosedriver" CssClass="btn btn-info"> Close</asp:LinkButton>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModalsuccess" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-9">
+                        <p>
+                            <asp:Image ID="imgsuccess" ImageUrl="~/Images/success.png" runat="server" Width="200" Height="200" />
+
+                        </p>
+                        <p>
+                            <asp:Label ID="labsuccess" runat="server" Font-Size="X-Large" Text="บันทึกเรียบร้อยแล้ว"></asp:Label>
+
+                        </p>
+                    </div>
+
+                    <div class="modal-footer">
                     </div>
                 </div>
             </div>

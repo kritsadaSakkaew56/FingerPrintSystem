@@ -45,6 +45,7 @@
     <Compile Include="DriverDAO.cs" />
     <Compile Include="MemberDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SchoolAddressDAO.cs" />
     <Compile Include="UserAddressDAO.cs" />
     <Compile Include="UserDAO.cs" />
     <Compile Include="UserScanDAO.cs" />

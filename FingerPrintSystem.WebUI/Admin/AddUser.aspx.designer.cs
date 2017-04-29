@@ -67,13 +67,103 @@ namespace FingerPrintSystem.WebUI.Admin {
         protected global::FingerPrintSystem.WebUI.UserControls.PagingControl PagingControl2;
         
         /// <summary>
-        /// lbtnAddItem control.
+        /// btnadddriver control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnAddItem;
+        protected global::System.Web.UI.WebControls.LinkButton btnadddriver;
+        
+        /// <summary>
+        /// bthgoogledriver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bthgoogledriver;
+        
+        /// <summary>
+        /// txtusername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtusername;
+        
+        /// <summary>
+        /// labusername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labusername;
+        
+        /// <summary>
+        /// txtpassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtpassword;
+        
+        /// <summary>
+        /// txtConfirmPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtConfirmPassword;
+        
+        /// <summary>
+        /// txtreid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtreid;
+        
+        /// <summary>
+        /// txtrefullname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtrefullname;
+        
+        /// <summary>
+        /// txtretel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtretel;
+        
+        /// <summary>
+        /// txtreemail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtreemail;
+        
+        /// <summary>
+        /// bthRegistersave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bthRegistersave;
         
         /// <summary>
         /// txtid control.
@@ -94,13 +184,13 @@ namespace FingerPrintSystem.WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtfullname;
         
         /// <summary>
-        /// txtshcool control.
+        /// ddlschool control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtshcool;
+        protected global::System.Web.UI.WebControls.DropDownList ddlschool;
         
         /// <summary>
         /// txtfullnameparent control.
@@ -148,6 +238,60 @@ namespace FingerPrintSystem.WebUI.Admin {
         protected global::System.Web.UI.WebControls.LinkButton bthclose;
         
         /// <summary>
+        /// txtiddriver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtiddriver;
+        
+        /// <summary>
+        /// txtfullnamedriver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtfullnamedriver;
+        
+        /// <summary>
+        /// txtteldriver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtteldriver;
+        
+        /// <summary>
+        /// txtemaildriver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtemaildriver;
+        
+        /// <summary>
+        /// bthoksavedriver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bthoksavedriver;
+        
+        /// <summary>
+        /// bthclosesavedriver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bthclosesavedriver;
+        
+        /// <summary>
         /// bthdeleteok control.
         /// </summary>
         /// <remarks>
@@ -164,5 +308,41 @@ namespace FingerPrintSystem.WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton bthcloseok;
+        
+        /// <summary>
+        /// bthdeleteokdriver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bthdeleteokdriver;
+        
+        /// <summary>
+        /// bthdeleteclosedriver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bthdeleteclosedriver;
+        
+        /// <summary>
+        /// imgsuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgsuccess;
+        
+        /// <summary>
+        /// labsuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labsuccess;
     }
 }

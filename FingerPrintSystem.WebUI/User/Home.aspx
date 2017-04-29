@@ -13,7 +13,7 @@
     <link href="../css/style-responsive.css" rel="stylesheet" />
 
 
-    <script src="../js/host.js" ></script>
+    <script src="../js/host.js"></script>
     <script src="../js/mqttws31.js" type="text/javascript"></script>
 
     <%-- <script src="//maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=AIzaSyDBGK8nRj24Jh6GVQRtgaoISecBPAHfHDA" type="text/javascript"></script>--%>
@@ -40,7 +40,7 @@
             if (typeof path == "undefined") {
                 path = '/mqtt';
             }
-          
+
             mqtt = new Paho.MQTT.Client(host, port, path, "web1_" + parseInt(Math.random() * 100, 10));
 
 
@@ -125,7 +125,15 @@
             var markers = [
 
                 { "title": 'Driver', "lat": lat, "lng": lng, "description": 'รถรับส่งเด็กนักเรียน' },
-                { "title": 'School', "lat": '16.7494033', "lng": '100.2172302', "description": 'โรงเรียนคุ้งราวี' },
+                <asp:Repeater ID="rptMarkerschool" runat="server">
+                    <ItemTemplate>
+                        {"title": 'School', "lat": '<%# Eval("Latitude") %>', "lng": '<%# Eval("Longitude") %>', "description": '<%# Eval("detailaddress") %>'},
+                    </ItemTemplate>
+                    <SeparatorTemplate>
+                        ,
+                </SeparatorTemplate>
+                </asp:Repeater >
+                //{ "title": 'School', "lat": '16.7494033', "lng": '100.2172302', "description": 'โรงเรียนคุ้งราวี' },
                 <asp:Repeater ID="rptMarkers" runat="server">
                     <ItemTemplate>
                         {"title": 'Home', "lat": '<%# Eval("Latitude") %>', "lng": '<%# Eval("Longitude") %>', "description": '<%# Eval("detailaddress") %>'}
@@ -243,7 +251,7 @@
                     });
 
                 })(markerHome, dataHome);
-   
+
             }
 
 

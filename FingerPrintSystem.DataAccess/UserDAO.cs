@@ -12,15 +12,15 @@ namespace FingerPrintSystem.DataAccess
     public class UserDAO
     {
 
-        public string AddUser(int memberID, string ID,string Fullname,string School ,string Fullnameparent,
+        public string AddUser(int memberID, string ID, int SchoolID,string Fullname ,string Fullnameparent,
                               string Tel,string Email,string Photo , string passwordDecrypt )
         {
             DatabaseHelper db = new DatabaseHelper();
             List<SqlParameter> param = new List<SqlParameter>();
             param.Add(new SqlParameter("@memberid", memberID));
             param.Add(new SqlParameter("@id", ID));
+            param.Add(new SqlParameter("@schoolid", SchoolID));
             param.Add(new SqlParameter("@fullname", Fullname));
-            param.Add(new SqlParameter("@school", School));
             param.Add(new SqlParameter("@fullnameparent", Fullnameparent));
             param.Add(new SqlParameter("@tel", Tel));
             param.Add(new SqlParameter("@email", Email));
@@ -71,7 +71,32 @@ namespace FingerPrintSystem.DataAccess
 
 
         }
-        public void UpdateUserByMember(int memberuserid,string id ,string fullname,string school ,string fullnameparent,string tel,string email)
+        public DataSet GetUserJointbSchooladdress(int pageNum, int pageSize, string sortField, string sortOrder)
+        {
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@PageNum", pageNum));
+            param.Add(new SqlParameter("@PageSize", pageSize));
+            param.Add(new SqlParameter("@SortField", sortField));
+            param.Add(new SqlParameter("@SortOrder", sortOrder));
+
+            return db.ExecuteDataSet("sp_User_SelectPagingJoin_tbSchooladdress", param);
+
+
+        }
+        public DataTable GetUserSelectJointbSchooladdress_ByIDMember(int memberuserid)
+        {
+
+
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@memberuserid", memberuserid));
+            return db.ExecuteDataTable("sp_User_SelectJoin_tbSchooladdress_ByIDMember", param);
+
+        }
+        public void UpdateUserByMember(int memberuserid,int schoolid,string id ,string fullname ,string fullnameparent,string tel,string email)
         {
 
 
@@ -79,9 +104,10 @@ namespace FingerPrintSystem.DataAccess
             List<SqlParameter> param = new List<SqlParameter>();
 
             param.Add(new SqlParameter("@memberid", memberuserid));
+            param.Add(new SqlParameter("@schoolid", schoolid));
             param.Add(new SqlParameter("@id", id));
             param.Add(new SqlParameter("@fullname", fullname));
-            param.Add(new SqlParameter("@school", school));
+
             param.Add(new SqlParameter("@fullnameparent", fullnameparent));
             param.Add(new SqlParameter("@tel", tel));
             param.Add(new SqlParameter("@email", email));
@@ -100,5 +126,6 @@ namespace FingerPrintSystem.DataAccess
             param.Add(new SqlParameter("@memberid", memberuserid));
             db.ExecuteNonQuery("sp_User_Delete_ByIDMember", param);
         }
+       
     }
 }

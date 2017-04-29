@@ -115,6 +115,7 @@
   <ItemGroup>
     <Content Include="Admin\AddUser.aspx" />
     <Content Include="Admin\default.aspx" />
+    <Content Include="Admin\GooglemapAPI.aspx" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\Checkbox _Styles.css" />
     <Content Include="css\circle-buttons.css" />
@@ -323,6 +324,13 @@
     </Compile>
     <Compile Include="Admin\default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\GooglemapAPI.aspx.cs">
+      <DependentUpon>GooglemapAPI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\GooglemapAPI.aspx.designer.cs">
+      <DependentUpon>GooglemapAPI.aspx</DependentUpon>
     </Compile>
     <Compile Include="Driver\Checkscan.aspx.cs">
       <DependentUpon>Checkscan.aspx</DependentUpon>

@@ -7,117 +7,99 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FingerPrintSystem.WebUI.User {
+namespace FingerPrintSystem.WebUI.Admin {
     
     
-    public partial class Home {
+    public partial class GooglemapAPI {
         
         /// <summary>
-        /// rptMarkerschool control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptMarkerschool;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// rptMarkers control.
+        /// bthback control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptMarkers;
+        protected global::System.Web.UI.WebControls.LinkButton bthback;
         
         /// <summary>
-        /// Imgstudent control.
+        /// address control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Imgstudent;
+        protected global::System.Web.UI.WebControls.TextBox address;
         
         /// <summary>
-        /// labid control.
+        /// txtcomment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labid;
+        protected global::System.Web.UI.WebControls.TextBox txtcomment;
         
         /// <summary>
-        /// labfullname control.
+        /// labaddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labfullname;
+        protected global::System.Web.UI.WebControls.Label labaddress;
         
         /// <summary>
-        /// labschool control.
+        /// latitude control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labschool;
+        protected global::System.Web.UI.WebControls.TextBox latitude;
         
         /// <summary>
-        /// labstatusup control.
+        /// hfvaluelatitude control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labstatusup;
+        protected global::System.Web.UI.WebControls.HiddenField hfvaluelatitude;
         
         /// <summary>
-        /// labstatusdown control.
+        /// longitude control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labstatusdown;
+        protected global::System.Web.UI.WebControls.TextBox longitude;
         
         /// <summary>
-        /// labc control.
+        /// hfvaluelongitude control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labc;
+        protected global::System.Web.UI.WebControls.HiddenField hfvaluelongitude;
         
         /// <summary>
-        /// hfvaluetemp control.
+        /// bthsave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfvaluetemp;
-        
-        /// <summary>
-        /// imgyoutube control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgyoutube;
-        
-        /// <summary>
-        /// bthok control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton bthok;
+        protected global::System.Web.UI.WebControls.Button bthsave;
     }
 }

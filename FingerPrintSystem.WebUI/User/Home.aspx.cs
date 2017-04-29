@@ -57,19 +57,22 @@ namespace FingerPrintSystem.WebUI.User
         private void BindData(int memberuserid)
         {
 
-            DataTable dt = new UserDAO().GetUserByMember(memberuserid);
+            DataTable dt = new UserDAO().GetUserSelectJointbSchooladdress_ByIDMember(memberuserid);
             DataTable dt_active = new MemberDAO().GetMember(memberuserid);
             if (dt.Rows.Count > 0 && dt_active.Rows.Count > 0)
             {
                 UserAddress(memberuserid); //แสดงที่อยู่ของเด็ก
                 userScan(memberuserid); // แสดงการสแกน
 
+                int schoolid =Convert.ToInt32(dt.Rows[0]["school_id"].ToString());
+                SchoolAddress(schoolid); //แสดงที่อยู่โรงเรียน
+
                 bool is_active = (bool)dt_active.Rows[0]["is_active"];
                 Imgstudent.ImageUrl = dt.Rows[0]["photo"].ToString();
 
                 labid.Text = dt.Rows[0]["id"].ToString();
                 labfullname.Text = dt.Rows[0]["fullname"].ToString();
-                labschool.Text = dt.Rows[0]["school"].ToString();
+                labschool.Text = dt.Rows[0]["detailaddress"].ToString();
 
               
             }
@@ -82,6 +85,16 @@ namespace FingerPrintSystem.WebUI.User
             DataTable dt = new UserAddressDAO().GetUserAddressByMember(memberid);
             rptMarkers.DataSource = dt;
             rptMarkers.DataBind();
+
+
+        }
+        private void SchoolAddress(int schoolid)
+        {
+
+            // แสดงที่อยู่บ้านโรงเรียน
+            DataTable dt = new SchoolAddressDAO().GetSchoolAddressByID(schoolid);
+            rptMarkerschool.DataSource = dt;
+            rptMarkerschool.DataBind();
 
 
         }

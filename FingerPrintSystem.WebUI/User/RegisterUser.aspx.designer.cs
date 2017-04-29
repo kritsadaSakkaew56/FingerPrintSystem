@@ -103,15 +103,6 @@ namespace FingerPrintSystem.WebUI.User {
         protected global::System.Web.UI.WebControls.TextBox txtfullname;
         
         /// <summary>
-        /// txtschool control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtschool;
-        
-        /// <summary>
         /// txtfullnameparent control.
         /// </summary>
         /// <remarks>
@@ -137,6 +128,15 @@ namespace FingerPrintSystem.WebUI.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtemail;
+        
+        /// <summary>
+        /// ddlschool control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlschool;
         
         /// <summary>
         /// bthsave control.

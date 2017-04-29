@@ -624,14 +624,14 @@ namespace FingerPrintSystem.WebUI.Driver
             DropDownList1.Items[0].Attributes["disabled"] = "disabled";
 
             int memberuserid = Convert.ToInt32(this.DecryptQueryString("userid").ToString());
-            DataTable dt = new UserDAO().GetUserByMember(memberuserid);
+            DataTable dt = new UserDAO().GetUserSelectJointbSchooladdress_ByIDMember(memberuserid);
 
             if (dt.Rows.Count > 0)
             {
                 imgstudent.ImageUrl = dt.Rows[0]["photo"].ToString();
                 txtid.Text = dt.Rows[0]["id"].ToString();
                 txtfullname.Text = dt.Rows[0]["fullname"].ToString();
-                txtshcool.Text = dt.Rows[0]["school"].ToString();
+                txtshcool.Text = dt.Rows[0]["detailaddress"].ToString();
                 txtfullnameparent.Text = dt.Rows[0]["fullnameparent"].ToString();
                 txttel.Text = dt.Rows[0]["tel"].ToString();
                 txtemail.Text = dt.Rows[0]["email"].ToString();
