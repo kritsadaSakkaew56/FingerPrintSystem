@@ -30,8 +30,29 @@ namespace FingerPrintSystem.WebUI.User
             {
 
                 //labgps.Text = Request.Form[hfvaluegps.UniqueID];
-                labc.Text = Request.Form[hfvaluetemp.UniqueID];
+    
+                string datatemp  = Request.Form[hfvaluetemp.UniqueID];
                
+                if (datatemp != "")
+                {
+                    if (Convert.ToInt32(datatemp) >= 40)
+                    {
+                        labc.Text = datatemp;
+                        labstatustemp.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333"); //สีแดง
+                    }
+                    else if (Convert.ToInt32(datatemp) >= 30)
+                    {
+
+                        labc.Text = datatemp;
+                        labstatustemp.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF9900"); // สีส้ม
+                    }
+                    else
+                    {
+                        labc.Text = datatemp;
+                        labstatustemp.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900"); // สีเขียว
+                    }
+                }
+                UpdateTimer.Enabled = true;
             }
             else
             {
@@ -41,6 +62,7 @@ namespace FingerPrintSystem.WebUI.User
                     ViewState["memberuser_id"] = this.DecryptQueryString("userid").ToString();
                     int memberuserid = Convert.ToInt32(ViewState["memberuser_id"].ToString());
                     BindData(memberuserid);
+                   
                 }
                 else
                 {
@@ -62,7 +84,7 @@ namespace FingerPrintSystem.WebUI.User
             if (dt.Rows.Count > 0 && dt_active.Rows.Count > 0)
             {
                 UserAddress(memberuserid); //แสดงที่อยู่ของเด็ก
-                userScan(memberuserid); // แสดงการสแกน
+                userScan(); // แสดงการสแกน
 
                 int schoolid =Convert.ToInt32(dt.Rows[0]["school_id"].ToString());
                 SchoolAddress(schoolid); //แสดงที่อยู่โรงเรียน
@@ -79,6 +101,14 @@ namespace FingerPrintSystem.WebUI.User
 
             
         }
+        protected void UpdateTimer_Tick(object sender, EventArgs e)
+        {
+
+            this.userScan();
+
+
+        }
+       
         private void UserAddress(int memberid)
         {
             // แสดงที่อยู่บ้านของเด็กนักเรียน
@@ -98,18 +128,69 @@ namespace FingerPrintSystem.WebUI.User
 
 
         }
-        private void userScan(int memberid)
+        private void userScan()
         {
-            DataTable dt = new UserScanDAO().GetUserScanByIDMember(memberid);
+            int memberuserid = Convert.ToInt32(ViewState["memberuser_id"].ToString());
+            DataTable dt = new UserScanDAO().GetUserScanByIDMember(memberuserid);
 
             if(dt.Rows.Count>0)
             {
 
                 labstatusup.Text = dt.Rows[0]["datetime_up"].ToString();
-                labstatusup.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
+                string noteup = dt.Rows[0]["noteup"].ToString();
+
+                 int roundscan = Convert.ToInt32( dt.Rows[0]["roundscan"].ToString());
+                if(roundscan==1)
+                {
+                    labroundscan.Text = " บ้าน >>> โรงเรียน";
+                }
+                else if(roundscan == 2)
+                {
+                    labroundscan.Text = " โรงเรียน >>> บ้าน";
+                }
+                else
+                {
+                    labroundscan.Text = "";
+                }
+
+                //............................................................................//
+                if (labstatusup.Text=="ยังไม่ได้สแกน")
+                {
+
+                    labstatusup.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");// สีแดง
+                }
+                else if(noteup=="1")
+                {
+                    labstatusup.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF9900"); // สีส้ม
+
+                }
+                else
+                {
+                    labstatusup.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900"); // สีเขียว
+
+                }
+
+
+                
 
                 labstatusdown.Text = dt.Rows[0]["datetime_down"].ToString();
-                labstatusdown.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
+                string notedown = dt.Rows[0]["notedown"].ToString();
+                if (labstatusdown.Text == "ยังไม่ได้สแกน")
+                {
+
+                    labstatusdown.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333"); // สีแดง
+                }
+                else if (notedown == "1")
+                {
+                    labstatusdown.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF9900"); // สีส้ม
+
+                }
+                else
+                {
+                    labstatusdown.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900"); // สีเขียว
+
+                }
+                
 
             }
 
@@ -125,6 +206,7 @@ namespace FingerPrintSystem.WebUI.User
             Response.Redirect("../User/Video.aspx"+ this.EncryptQueryString("userid=" + memberid));
 
         }
-        
+
+       
     }
 }

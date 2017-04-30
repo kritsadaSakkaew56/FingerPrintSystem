@@ -91,12 +91,12 @@
 
                         </li>
 
-                        <li>
+<%--                        <li>
                             <a class="active" href="../Driver/default.aspx" runat="server" id="ChangePassword">
                                 <i class="fa fa-unlock-alt"></i>
                                 <span>Change Password</span>
                             </a>
-                        </li>
+                        </li>--%>
 
                         <li>
                             <a class="active" href="../Login.aspx">

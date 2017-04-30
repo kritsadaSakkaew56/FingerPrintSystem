@@ -13,12 +13,21 @@ namespace FingerPrintSystem.WebUI.Driver {
     public partial class _default {
         
         /// <summary>
-        /// labdrivername control.
+        /// labdlogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labdrivername;
+        protected global::System.Web.UI.WebControls.Label labdlogin;
+        
+        /// <summary>
+        /// labdatetimelogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labdatetimelogin;
     }
 }

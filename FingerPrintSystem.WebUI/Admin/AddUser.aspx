@@ -91,7 +91,7 @@
         <ContentTemplate>
             <section class="panel">
                 <header class="panel-heading" style="background-color: #F5DEB3">
-                    <h4>User</h4>
+                    <h4>User(ข้อมูลของเด็กนักเรียน)</h4>
                 </header>
             </section>
 
@@ -112,21 +112,22 @@
                             CssClass="table table-bordered table-striped table-hover"
                             Style="max-width: 100%">
                             <Columns>
-                                 <asp:BoundField HeaderText="Username" DataField="Username" SortExpression="Username" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
+                                <asp:BoundField HeaderText="Username" DataField="Username" SortExpression="Username" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
                                 <asp:BoundField HeaderText="เลขประจำตัว" DataField="id" SortExpression="id" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
                                 <asp:BoundField HeaderText="ชื่อ-นามสกุล" DataField="fullName" SortExpression="fullName" />
                                 <asp:BoundField HeaderText="โรงเรียน" DataField="detailaddress" SortExpression="detailaddress" />
                                 <asp:BoundField HeaderText="ผู้ปกครอง" DataField="fullnameparent" SortExpression="fullnameparent" />
                                 <asp:BoundField HeaderText="เบอร์โทรศัพท์" DataField="tel" SortExpression="tel" />
-                                <%--  <asp:TemplateField HeaderText="การใช้งาน" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                <asp:TemplateField HeaderText="การใช้งาน" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                         <asp:checkbox ID="chkactiveuser" runat="server" Enabled="false"></asp:checkbox>
+                                        <asp:CheckBox ID="chkActive" runat="server" Enabled="false"></asp:CheckBox>
                                     </ItemTemplate>
-                                </asp:TemplateField>--%>
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ดำเนินการ" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="btnEdit" runat="server" Width="25%" Height="20" meta:resourcekey="btnEdit" CssClass="btn btn-primary btn-xs" OnClick="btnEdit_Click"><i class="fa fa-pencil"></i></asp:LinkButton>
-                                        <asp:LinkButton ID="btnDeleteuser" runat="server" Width="25%" Height="20" meta:resourcekey="btnDeleteuser" CssClass="btn btn-danger btn-xs" OnClick="btnDeleteuser_Click"><i class="fa fa-trash-o "></i></asp:LinkButton>
+                                        <asp:LinkButton ID="btnEdit" runat="server" meta:resourcekey="btnEdit" CssClass="btn btn-primary btn-xs" OnClick="btnEdit_Click"><i class="fa fa-pencil"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="bthgooglemap" runat="server" meta:resourcekey="btnEdit" CssClass="btn btn-info btn-xs"><i class="fa fa-google-plus"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="btnDeleteuser" runat="server" meta:resourcekey="btnDeleteuser" CssClass="btn btn-danger btn-xs" OnClick="btnDeleteuser_Click"><i class="fa fa-trash-o "></i></asp:LinkButton>
 
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -139,7 +140,44 @@
             <hr />
             <section class="panel">
                 <header class="panel-heading" style="background-color: #F5DEB3">
-                    <h4>Driver</h4>
+                    <h4>School Address (ที่อยู่โรงเรียน)</h4>
+                </header>
+            </section>
+            <div class="row">
+                <div class="panel-body form-horizontal">
+                    <div class="panel-body">
+                        <asp:GridView
+                            ID="gvschooladdress" runat="server"
+                            DataKeyNames="school_id"
+                            AutoGenerateColumns="false"
+                            AllowSorting="false"
+                            OnRowDataBound="gvschooladdress_RowDataBound"
+                            OnSorting="gvschooladdress_Sorting"
+                            EmptyDataText="------ ไม่พบข้อมูล ------"
+                            EmptyDataRowStyle-HorizontalAlign="Center"
+                            HeaderStyle-BackColor="#FFECCD"
+                            CssClass="table table-bordered table-striped table-hover"
+                            Style="max-width: 100%">
+                            <Columns>
+                                <asp:BoundField HeaderText="ชื่อโรงเรียน" DataField="detailaddress" SortExpression="detailaddress" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
+                                 <asp:BoundField HeaderText="ที่อยู่" DataField="address" SortExpression="address" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
+                                <asp:TemplateField HeaderText="ดำเนินการ" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btnEditschool" runat="server"  meta:resourcekey="btnEditschool" CssClass="btn btn-info btn-xs" ><i class="fa fa fa-google-plus"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="btnDeletschool" runat="server"  meta:resourcekey="btnDeletschool" CssClass="btn btn-danger btn-xs" OnClick="btnDeletschool_Click" ><i class="fa fa-trash-o "></i></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                        <uc1:PagingControl ID="PagingControl2" runat="server" />
+                       <asp:LinkButton runat="server" ID="bthgoogledriver" CssClass="btn btn-primary" Width="150" Height="40" OnClick="bthgoogledriver_Click"><i class="fa fa-plus-circle "></i>เพิ่มที่อยู่โรงเรียน</asp:LinkButton>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <section class="panel">
+                <header class="panel-heading" style="background-color: #F5DEB3">
+                    <h4>Driver (ข้อมูลคนขับรถรับส่ง)</h4>
                 </header>
             </section>
             <div class="row">
@@ -171,9 +209,9 @@
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
-                        <uc1:PagingControl ID="PagingControl2" runat="server" />
+                        <uc1:PagingControl ID="PagingControl3" runat="server" />
                         <asp:LinkButton runat="server" ID="btnadddriver" CssClass="btn btn-primary" Width="150" Height="40" OnClick="btnadddriver_Click"><i class="fa fa-plus-circle "></i>เพิ่มคนขับรถ</asp:LinkButton>
-                        <asp:LinkButton runat="server" ID="bthgoogledriver" CssClass="btn btn-primary" Width="150" Height="40" OnClick="bthgoogledriver_Click"><i class="fa fa-plus-circle "></i>เพิ่มที่อยู่โรงเรียน</asp:LinkButton>
+<%--                        <asp:LinkButton runat="server" ID="bthgoogledriver" CssClass="btn btn-primary" Width="150" Height="40" OnClick="bthgoogledriver_Click"><i class="fa fa-plus-circle "></i>เพิ่มที่อยู่โรงเรียน</asp:LinkButton>--%>
                     </div>
                 </div>
             </div>
@@ -231,6 +269,7 @@
                 <asp:Button ID="bthRegistersave" runat="server" Text="Save" Class="btn btn-warning" OnClick="bthRegistersave_Click" Width="250" Height="40" />
             </div>
 
+
         </ContentTemplate>
 
     </asp:UpdatePanel>
@@ -239,7 +278,7 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">ข้อมูลเด็กนักเรียน</h4>
+                    <h4 class="modal-title">แก้ไขข้อมูลเด็กนักเรียน</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -283,8 +322,9 @@
                             </p>
 
                             <p>
-                                <%--<asp:TextBox ID="txtshcool" runat="server" Font-Size="Small"></asp:TextBox>--%>
-                                <asp:DropDownList ID="ddlschool" runat="server" Font-Size="Small" Width="170px"></asp:DropDownList>
+                                <asp:TextBox ID="txtshcool" runat="server" Font-Size="Small" Enabled="false"></asp:TextBox>
+                                <asp:DropDownList ID="ddlschool" runat="server" Font-Size="Small" Width="170px" AutoPostBack="true" OnSelectedIndexChanged="ddlschool_SelectedIndexChanged"></asp:DropDownList>
+
                             </p>
 
                             <p>
@@ -397,6 +437,24 @@
                     <div class="modal-footer">
                         <asp:LinkButton runat="server" ID="bthdeleteokdriver" CssClass="btn btn-info" OnClick="bthdeleteokdriver_Click"> OK</asp:LinkButton>
                         <asp:LinkButton runat="server" ID="bthdeleteclosedriver" CssClass="btn btn-info"> Close</asp:LinkButton>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="modal fade" id="myModaldeleteschool" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">ลบข้อมูล</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>ต้องการที่จะลบข้อมูลโรงเรียนหรือไม่</h5>
+                    <div class="modal-footer">
+                        <asp:LinkButton runat="server" ID="bthdeletokeschool" CssClass="btn btn-info" OnClick="bthdeletokeschool_Click" > OK</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bthdeletcloseschool" CssClass="btn btn-info"> Close</asp:LinkButton>
 
                     </div>
                 </div>

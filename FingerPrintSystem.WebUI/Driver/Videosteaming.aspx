@@ -13,6 +13,7 @@
 
     <div class="row">
         <div class="col-sm-12">
+            <h5>บริเวณข้างนอกรถรับส่ง</h5>
             <img src="~/Images/logo.png"
                 id="imgphoto1"
                 alt="vote up"
@@ -23,6 +24,7 @@
     <br />
     <div class="row">
         <div class="col-sm-12">
+             <h5>บริเวณข้างในรถรับส่ง</h5>
             <img src="~/Images/logo.png"
                 id="imgphoto2"
                 alt="vote up"

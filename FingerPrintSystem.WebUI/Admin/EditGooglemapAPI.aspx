@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegisterGooglemap.aspx.cs" Inherits="FingerPrintSystem.WebUI.User.RegisterGooglemap" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditGooglemapAPI.aspx.cs" Inherits="FingerPrintSystem.WebUI.Admin.EditGooglemapAPI" %>
 
 <!DOCTYPE html>
 
@@ -52,18 +52,28 @@
         <br />
         <br />
         <br />
+
         <div class="row">
+
             <section class="panel">
                 <div class="form-group form-horizontal col-md-12">
                     <div class="col-lg-12">
                         <header class="panel-heading" style="background-color: #F5DEB3">
-                            <h4>ขั้นตอนที่ 2 >>> เพิ่มที่อยู่ปัจจุบัน</h4>
+                            <%--<h4>แก้ไขที่อยู่ปัจจุบัน</h4>--%>
+                            <asp:Label runat="server" ID="labaddressfullname" Text="แก้ไขที่อยู่ปัจจุบัน" Font-Size="Larger"></asp:Label>
                         </header>
                     </div>
                 </div>
             </section>
         </div>
-
+        <div class="row">
+            <div class="form-group form-horizontal col-md-8">
+                <div class="col-lg-4">
+                     <asp:LinkButton runat="server" ID="bthback" CssClass="btn btn-warning"  Width="250" Height="40" OnClick="bthback_Click"  ><i class="fa fa-backward "></i>กลับไปยัง Add User</asp:LinkButton>
+                    <%--<asp:Button ID="bthback" runat="server" Text="Back" Class="btn btn-warning" Width="250" Height="40" />--%>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-4">
@@ -76,7 +86,7 @@
         <div class="row">
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-4">
-                    <asp:TextBox ID="txtcomment" TextMode="MultiLine" placeholder="ระบุที่อยู่ของท่าน (บ้านเลขที่ หมู่บ้าน ตำบล อำเภอ จังหวัด รหัสไปรษณีย์ ) " Height="55px" Width="950" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtcomment" TextMode="MultiLine" placeholder="ระบุที่อยู่เพิ่มเติม" Height="55px" Width="950" runat="server"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -113,8 +123,7 @@
             <div class="form-group form-horizontal col-md-8">
                 <div class="col-lg-4">
                     <%--<asp:LinkButton runat="server" ID="bthSave" class="btn btn-danger" Width="150" Height="40" OnClick="bthSave_Click">Save</asp:LinkButton>--%>
-
-                    <asp:Button ID="bthsave" runat="server" Text="Next" Class="btn btn-warning" Width="250" Height="40" OnClick="bthsave_Click" />
+                    <asp:Button ID="bthsave" runat="server" Text="Save" Class="btn btn-warning" Width="250" Height="40" OnClick="bthsave_Click" />
                 </div>
             </div>
         </div>

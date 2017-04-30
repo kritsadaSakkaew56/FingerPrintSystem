@@ -43,6 +43,24 @@ namespace FingerPrintSystem.DataAccess
             return db.ExecuteDataSet("sp_User_Scan_Result_SelectPaging_ByIDMember", param);
 
         }
+        public DataSet GetUserScanResultByIDDatetime(int memberuserid , int roundscan, string datetime, int pageNum, int pageSize, string sortField, string sortOrder)
+        {
+
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@memberid", memberuserid));
+            param.Add(new SqlParameter("@roundscan", roundscan));
+            param.Add(new SqlParameter("@datetime", datetime));
+
+
+            param.Add(new SqlParameter("@PageNum", pageNum));
+            param.Add(new SqlParameter("@PageSize", pageSize));
+            param.Add(new SqlParameter("@SortField", sortField));
+            param.Add(new SqlParameter("@SortOrder", sortOrder));
+
+            return db.ExecuteDataSet("sp_User_Scan_Result_SelectPaging_ByDatetime", param);
+
+        }
         public DataSet GetUserScanResult(int pageNum, int pageSize, string sortField, string sortOrder)
         {
 

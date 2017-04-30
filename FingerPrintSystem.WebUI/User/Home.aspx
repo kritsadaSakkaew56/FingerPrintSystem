@@ -3,8 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/main.css" rel="stylesheet" />
+   <%-- <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet" />--%>
     <script src="../js/jquery-ui-1.8.1.custom.min.js"></script>
 
     <!-- Custom styles for this template -->
@@ -109,7 +109,7 @@
                 latlng(lat, lng); // Google map api ตำแหน่งจองรถรับส่ง
 
             }
-
+            debugger;
             if (message.destinationName == topictemp) {
                 // ทำการแสดงค่าใน labelTemp
                 var label = document.getElementById("<%=labc.ClientID %>");
@@ -118,7 +118,7 @@
 
             }
         };
-
+        debugger;
         // function Google map api ตำแหน่งจองรถรับส่ง
         var latlng = function (lat, lng) {
 
@@ -258,113 +258,130 @@
         }
 
     </script>
-
-
-    <div class="panel">
-        <header class="panel-heading" style="background-color: #F5DEB3">
-            <asp:Label runat="server" Text="ข้อมูล" Font-Size="X-Large" ForeColor="Black"></asp:Label>
-        </header>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xl-6">
+    <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
+    <asp:Timer ID="UpdateTimer" runat="server" Interval="1000" OnTick="UpdateTimer_Tick"></asp:Timer>
+    <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Conditional">
+        <ContentTemplate>
+            <div class="panel">
+                <header class="panel-heading" style="background-color: #F5DEB3">
+                    <asp:Label runat="server" Text="ข้อมูลของเด็กนักเรียน" Font-Size="X-Large" ForeColor="Black"></asp:Label>
+                </header>
+            </div>
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <div>
-                            <article class="statistic-box yellow">
+                    <div class="col-xl-6">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div>
+                                    <article class="statistic-box yellow">
 
-                                <br />
-                                <p>
-                                    <asp:Image runat="server" ID="Imgstudent" ControlStyle-Height="175" ControlStyle-Width="175" />
-                                </p>
-                                <p>
-                                    <asp:Label runat="server" Text="เลขที่:" Font-Size="Large" ForeColor="Black"></asp:Label>
-                                    <asp:Label runat="server" ID="labid" Font-Bold="true" Font-Size="Large" ForeColor="Black"></asp:Label>
-                                </p>
+                                        <br />
+                                        <p>
+                                            <asp:Image runat="server" ID="Imgstudent" ControlStyle-Height="175" ControlStyle-Width="175" />
+                                        </p>
+                                        <p>
+                                            <asp:Label runat="server" Text="เลขที่:" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                            <asp:Label runat="server" ID="labid" Font-Bold="true" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                        </p>
 
-                                <p>
-                                    <asp:Label runat="server" Text="ชื่อ-นามสกุล:" Font-Size="Large" ForeColor="Black"></asp:Label>
-                                    <asp:Label runat="server" ID="labfullname" Font-Bold="true" Font-Size="Large" ForeColor="Black"></asp:Label>
-                                </p>
-                                <p>
-                                    <asp:Label runat="server" Text="โรงเรียน:" Font-Size="Large" ForeColor="Black"></asp:Label>
-                                    <asp:Label runat="server" ID="labschool" Font-Bold="true" Font-Size="Large" ForeColor="Black"></asp:Label>
-                                </p>
-                                <br />
-                                <br />
-                            </article>
+                                        <p>
+                                            <asp:Label runat="server" Text="ชื่อ-นามสกุล:" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                            <asp:Label runat="server" ID="labfullname" Font-Bold="true" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                        </p>
+                                        <p>
+                                            <asp:Label runat="server" Text="โรงเรียน:" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                            <asp:Label runat="server" ID="labschool" Font-Bold="true" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                        </p>
+                                        <br />
+                                        <br />
+                                    </article>
+
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <article class="statistic-box yellow">
+                                    <div>
+                                        <br />
+                                        <p>
+
+                                            <asp:Label runat="server" Text="เที่ยวรถรับส่ง:" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                            <asp:Label runat="server" ID="labroundscan" Width="180px" Height="25px" Font-Bold="true" ForeColor="Black" Font-Size="Large"></asp:Label>
+
+                                        </p>
+                                        <p>
+                                            <asp:Label runat="server" Text="ขึ้นรถรับส่ง:" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                            <asp:Label runat="server" ID="labstatusup" Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="Black"></asp:Label>
+                                        </p>
+                                        <p>
+
+                                            <asp:Label runat="server" Text="ลงรถรับส่ง:" Font-Size="Large" ForeColor="Black"></asp:Label>
+                                            <asp:Label runat="server" ID="labstatusdown" Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="Black"></asp:Label>
+
+                                        </p>
+                                        
+                                    </div>
+                                </article>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <article class="statistic-box yellow">
+                                    <div>
+                                        <br />
+                                        <p>
+
+                                            <asp:Image runat="server" ControlStyle-Height="60" ControlStyle-Width="60" ImageUrl="~/Images/temp.png" />
+                                            <asp:Label runat="server" ID="labstatustemp" Font-Bold="true" Font-Size="Medium" ForeColor="Black" Text="อุณหภูมิบนรถ"></asp:Label>
+
+                                        </p>
+                                        <p>
+                                            <asp:Label runat="server" ID="labc" Font-Bold="true" Font-Size="X-Large" ForeColor="Black"></asp:Label>
+                                            <asp:HiddenField ID="hfvaluetemp" runat="server" />
+                                            <asp:Label runat="server" Font-Bold="true" Font-Size="X-Large" ForeColor="Black" Text="องศาเซลเซียส"  ></asp:Label>
+                                            <%--<asp:Image runat="server" ControlStyle-Height="25" ControlStyle-Width="25" ImageUrl="~/Images/celcius-icon.png" />--%>
+                                        </p>
+                                    </div>
+                                    <br />
+
+                                </article>
+                            </div>
+                            <div class="col-sm-12">
+                                <article class="statistic-box yellow">
+                                    <div>
+                                        <br />
+                                        <br />
+                                        <p>
+
+                                            <asp:ImageButton runat="server" ID="imgyoutube" ImageUrl="~/Images/YouTube.png" ToolTip="Submit" Width="130" Height="85" OnClick="imgyoutube_Click" />
+                                            <asp:Label runat="server" Text="Video Steaming" Font-Size="Small"></asp:Label>
+                                        </p>
+
+                                    </div>
+                                    <br />
+                                    <br />
+                                </article>
+                            </div>
 
                         </div>
 
-                    </div>
-                    <div class="col-sm-6">
-                        <article class="statistic-box yellow">
-                            <div>
-                                <br />
-                                <p>
-                                    <asp:Label runat="server" Text="ขึ้นรถรับส่ง:" Font-Size="Large" ForeColor="Black"></asp:Label>
-                                    <asp:Label runat="server" ID="labstatusup" Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="Black"></asp:Label>
-                                </p>
-                                <p>
-
-                                    <asp:Label runat="server" Text="ลงรถรับส่ง:" Font-Size="Large" ForeColor="Black"></asp:Label>
-                                    <asp:Label runat="server" ID="labstatusdown" Width="180px" Height="25px" Font-Bold="true" BackColor="#FF3333" ForeColor="Black"></asp:Label>
-
-                                </p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <article class="statistic-box yellow">
-                            <div>
-                                <br />
-                                <p>
-                                    <asp:Image runat="server" ControlStyle-Height="60" ControlStyle-Width="60" ImageUrl="~/Images/sensor-icon-temp.png" />
-
-                                </p>
-                                <p>
-                                    <asp:Label runat="server" ID="labc" Font-Bold="true" Font-Size="X-Large" ForeColor="Black"></asp:Label>
-                                    <asp:HiddenField ID="hfvaluetemp" runat="server" />
-                                    <asp:Label runat="server" Font-Bold="true" Font-Size="X-Large" ForeColor="Black" Text="องศาเซลเซียส"></asp:Label>
-                                    <%--<asp:Image runat="server" ControlStyle-Height="25" ControlStyle-Width="25" ImageUrl="~/Images/celcius-icon.png" />--%>
-                                </p>
-                            </div>
-                            <br />
-
-                        </article>
-                    </div>
-                    <div class="col-sm-12">
-                        <article class="statistic-box yellow">
-                            <div>
-                                <br />
-                                <br />
-                                <p>
-
-                                    <asp:ImageButton runat="server" ID="imgyoutube" ImageUrl="~/Images/YouTube.png" ToolTip="Submit" Width="130" Height="85" OnClick="imgyoutube_Click" />
-                                    <asp:Label runat="server" Text="Video Steaming" Font-Size="Small"></asp:Label>
-                                </p>
-
-                            </div>
-                            <br />
-                            <br />
-                        </article>
                     </div>
 
                 </div>
 
             </div>
-
+        </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="UpdateTimer" EventName="Tick" />
+        </Triggers>
+    </asp:UpdatePanel>
+    <div class="row">
+        <div class="col-md-10">
+            <asp:Label runat="server" Text="แผนที่" Font-Size="Large" ForeColor="Black"></asp:Label>
         </div>
-        <div class="row">
-            <div class="col-md-10">
-                <asp:Label runat="server" Text="แผนที่" Font-Size="Large" ForeColor="Black"></asp:Label>
-            </div>
-        </div>
-        <div class="row">
-
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
             <div id="dvMap" style="width: 100%; height: 300px; border: solid 1px black; float: left"></div>
-
         </div>
     </div>
 

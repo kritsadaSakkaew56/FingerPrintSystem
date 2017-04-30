@@ -92,19 +92,19 @@
 
                         </li>
 
-                        <li>
+                        <%--<li>
                             <a class="active" href="../User/Home.aspx" id="changepassword" runat="server">
                                 <i class="fa fa-unlock-alt"></i>
                                 <span>Change Password</span>
                             </a>
-                        </li>
+                        </li>--%>
                         <%--<li>
                             <a class="active" href="../Driver/DriverLogin.aspx">
                                 <i class="fa fa-user"></i>
                                 <span>FingerPrintScan</span>
                             </a>
                         </li>--%>
-                         <%-- <li>
+                        <%-- <li>
                             <a class="active" href="../User/Home.aspx">
                                 <i class="fa fa-th-list"></i>
                                 <span>Data</span>
@@ -116,6 +116,18 @@
                                 <span>Photo</span>
                             </a>
                         </li>--%>
+                         <li>
+                            <a class="active" href="#" id="home" runat="server">
+                                <i class="fa fa-home"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="active" href="#" id="scanlist" runat="server">
+                                <i class="fa fa-th-list"></i>
+                                <span>Scan List</span>
+                            </a>
+                        </li>
 
                         <li>
                             <a class="active" href="../Login.aspx">
@@ -161,10 +173,10 @@
         <script src="../js/jquery.customSelect.min.js"></script>
         <script src="../js/respond.min.js"></script>
 
-         <!--right slidebar-->
+        <!--right slidebar-->
         <script src="../js/slidebars.min.js"></script>
 
-       <!--common script for all pages-->
+        <!--common script for all pages-->
         <script src="../js/common-scripts.js"></script>
 
 

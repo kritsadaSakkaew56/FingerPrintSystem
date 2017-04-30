@@ -92,12 +92,12 @@
 
                         </li>
 
-                        <li>
+                      <%--  <li>
                             <a class="active" href="../Driver/default.aspx" id="changepassword" runat="server">
                                 <i class="fa fa-unlock-alt"></i>
                                 <span>Change Password</span>
                             </a>
-                        </li>
+                        </li>--%>
                         <li>
                             <a class="active" href="../Driver/FingerPrintscan.aspx" id="fingerprintscan" runat="server">
                                 <i class="fa fa-user"></i>

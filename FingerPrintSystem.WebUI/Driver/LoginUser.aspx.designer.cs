@@ -13,39 +13,39 @@ namespace FingerPrintSystem.WebUI.Driver {
     public partial class LoginUser {
         
         /// <summary>
-        /// txtusername control.
+        /// scMain control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtusername;
+        protected global::System.Web.UI.ScriptManager scMain;
         
         /// <summary>
-        /// txtpassword control.
+        /// updResult control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtpassword;
+        protected global::System.Web.UI.UpdatePanel updResult;
         
         /// <summary>
-        /// txtusername_password control.
+        /// gvuser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtusername_password;
+        protected global::System.Web.UI.WebControls.GridView gvuser;
         
         /// <summary>
-        /// bthlogin control.
+        /// PagingControl1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bthlogin;
+        protected global::FingerPrintSystem.WebUI.UserControls.PagingControl PagingControl1;
     }
 }

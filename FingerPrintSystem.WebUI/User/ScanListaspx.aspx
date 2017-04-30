@@ -1,16 +1,14 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Admin.Master" AutoEventWireup="true" CodeBehind="Member.aspx.cs" Inherits="FingerPrintSystem.WebUI.Member.Member" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/User.Master" AutoEventWireup="true" CodeBehind="ScanListaspx.aspx.cs" Inherits="FingerPrintSystem.WebUI.User.ScanListaspx" %>
 
-<%@ MasterType VirtualPath="~/Master/Admin.Master" %>
 <%@ Register Src="~/UserControls/PagingControl.ascx" TagPrefix="uc1" TagName="PagingControl" %>
 <%@ Register Src="~/UserControls/DatePickerControl.ascx" TagPrefix="uc1" TagName="DatePickerControl" %>
 
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <asp:ScriptManager ID="scMain" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel runat="server" ID="updResult">
         <ContentTemplate>
@@ -31,40 +29,33 @@
                     <h4>Scan List (ข้อมูลย้อนหลังการสแกนลายนิ้วมือของเด็กนักเรียนในแต่ละวัน)</h4>
                 </header>
             </section>
-       
-                <div class="row">
-                    <div class=" form-group form-horizontal col-lg-12">
-                        <uc1:DatePickerControl runat="server" ID="DatePickerControl" CssClass="form-control input-sm" />
 
-                    </div>
-
-                    <div class=" form-group form-horizontal col-lg-12">
-                        <label class="control-label">ค้นหาชื่อ :</label>
-                        <asp:TextBox runat="server" ID="txtfullname" Width="45%" Height="35"></asp:TextBox>
-                    </div>
-
-
-                    <div class="form-group form-horizontal col-lg-12">
-                        <label class="control-label">เลือกเที่ยวรถรับส่ง :</label>
-                        <asp:DropDownList ID="DropDownList1" runat="server" Width="40%" Height="35" AutoPostBack="false">
-                            <asp:ListItem Value="0" Text="เลือกการสแกนเที่ยวรถรับส่ง"></asp:ListItem>
-                            <asp:ListItem Value="1" Text="การเดินทางจาก บ้าน >>> โรงเรียน"></asp:ListItem>
-                            <asp:ListItem Value="2" Text="การเดินทางจาก โรงเรียน >>> บ้าน"></asp:ListItem>
-                        </asp:DropDownList>
-                        <asp:LinkButton runat="server" ID="btnSearch" CssClass="btn btn-primary" OnClick="btnSearch_Click"><i class="fa fa-search"></i> ค้นหา</asp:LinkButton>
-                        <asp:LinkButton runat="server" ID="bthDelete" CssClass="btn btn-danger" OnClick="bthDelete_Click"><i class="fa fa-minus-circle"></i> ลบ</asp:LinkButton>
-                    </div>
+            <div class="row">
+                <div class=" form-group form-horizontal col-lg-12">
+                    <uc1:DatePickerControl runat="server" ID="DatePickerControl" cssclass="form-control input-sm" />
 
                 </div>
-    
+                <div class="form-group form-horizontal col-lg-12">
+                    <label class="control-label">เลือกเที่ยวรถรับส่ง :</label>
+                    <asp:DropDownList ID="DropDownList1" runat="server" Width="40%" Height="35" AutoPostBack="false">
+                        <asp:ListItem Value="0" Text="เลือกการสแกนเที่ยวรถรับส่ง"></asp:ListItem>
+                        <asp:ListItem Value="1" Text="การเดินทางจาก บ้าน >>> โรงเรียน"></asp:ListItem>
+                        <asp:ListItem Value="2" Text="การเดินทางจาก โรงเรียน >>> บ้าน"></asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:LinkButton runat="server" ID="btnSearch" CssClass="btn btn-primary" OnClick="btnSearch_Click"><i class="fa fa-search"></i> ค้นหา</asp:LinkButton>
+                </div>
+
+            </div>
+
             <hr />
 
             <div class="row">
                 <div class="panel-body form-horizontal">
                     <div class="panel-body">
-                        <uc1:PagingControl ID="PagingControl1" runat="server" />
+
                         <asp:GridView
                             ID="gvMember" runat="server"
+                            Font-Size="Medium"
                             DataKeyNames="user_result_id"
                             AutoGenerateColumns="false"
                             AllowSorting="false"
@@ -77,11 +68,7 @@
                             Style="max-width: 100%">
 
                             <Columns>
-                                <asp:TemplateField HeaderText="เลือก" ItemStyle-Height="5" ItemStyle-HorizontalAlign="center">
-                                    <ItemTemplate>
-                                        <asp:CheckBox runat="server" ID="chkSelect" Enabled="true" Checked="false" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+
                                 <asp:BoundField HeaderText="เลขประจำตัว" DataField="id" SortExpression="id" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
                                 <asp:BoundField HeaderText="ชื่อ-นามสกุล" DataField="fullName" SortExpression="fullName" />
 
@@ -99,20 +86,13 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:BoundField HeaderText="วันที่บันทึก" DataField="datetime" SortExpression="datetime" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
-                                <%--<asp:TemplateField HeaderText="ดำเนินการ" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">--%>
-                                <%--<ItemTemplate>--%>
-                                <%--<asp:LinkButton ID="btnEdit" runat="server" Width="25%" Height="20" meta:resourcekey="btnEdit" CssClass="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></asp:LinkButton>--%>
-                                <%--<asp:LinkButton ID="btnDelete" runat="server" Width="25%" Height="20" meta:resourcekey="btnDelete" CssClass="btn btn-danger btn-xs" CommandName="Delete"><i class="fa fa-trash-o "></i></asp:LinkButton>--%>
-                                <%--<asp:LinkButton ID="bthScantest" runat="server" Width="25%" Height="20" meta:resourcekey="bthScantest" CssClass="btn btn-success btn-xs" OnClick="bthScantest_Click"><i class="fa fa-search"></i></asp:LinkButton>--%>
-                                <%--</ItemTemplate>--%>
-                                <%--  </asp:TemplateField>--%>
+
                             </Columns>
                         </asp:GridView>
+                        <uc1:PagingControl ID="PagingControl1" runat="server" />
                     </div>
                 </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-
-
 </asp:Content>

@@ -22,6 +22,8 @@ namespace FingerPrintSystem.WebUI.Driver
     {
         MqttClient client = new MqttClient("m12.cloudmqtt.com", 29315, true, null, null, MqttSslProtocols.TLSv1_2);
         public static bool Timer;
+        public static string datetimeup;
+        public static string datetimedown;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
@@ -128,7 +130,7 @@ namespace FingerPrintSystem.WebUI.Driver
                 string noteup = drv["noteup"].ToString();
                 if (drv["datetime_up"].ToString() == "ยังไม่ได้สแกน")
                 {
-                    lalScanup.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");         //สีแดง
+                    lalScanup.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333"); //สีแดง
 
                 }
                 else if (noteup == "1")
@@ -140,7 +142,7 @@ namespace FingerPrintSystem.WebUI.Driver
                 else
                 {
                     lalScanup.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900"); // สีเขียว
-
+                    datetimeup = "ok";
                 }
                 //..........................................................................................//
                 string notedown = drv["notedown"].ToString();
@@ -157,9 +159,16 @@ namespace FingerPrintSystem.WebUI.Driver
                 else
                 {
                     lalScandown.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900"); // สีเขียว
-
+                    datetimedown = "ok";
                 }
 
+                //.......................................................................................//
+                if (roundscan.datetimeup == "ok" && roundscan.datetimedown == "ok")
+                {
+                    bthnote.Visible = false;
+                    datetimeup = "";
+                    datetimedown = "";
+                }
               
                
 
@@ -173,8 +182,6 @@ namespace FingerPrintSystem.WebUI.Driver
             if (e.CommandName == "memberuserid")
             {
                 string ID = e.CommandArgument.ToString();
-
-
 
             }
         }

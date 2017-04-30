@@ -15,6 +15,8 @@ namespace FingerPrintSystem.WebUI.Admin
             {
                 if (this.DecryptQueryString("adminid") != null)
                 {
+                    labdlogin.Text = "ยินดีต้อนรับเข้าสู่ระบบสำหรับผู้ดูแลระบบเว็บไซต์";
+                    labdatetimelogin.Text = DateTime.Now.ToString("dd MMMM yyyy เวลา HH:mm:ss");
                     string data = DecryptQueryString("adminid").ToString();
                 }
                 else
@@ -23,6 +25,33 @@ namespace FingerPrintSystem.WebUI.Admin
                     Response.Redirect("../login.aspx");
 
                 }
+            }
+
+
+        }
+        private string datetime()
+        {
+
+
+            DateTime DtNow = new DateTime();
+            DtNow = DateTime.Now;
+            int day = Convert.ToInt32(DtNow.ToString("dd"));
+            int Mounth = Convert.ToInt32(DtNow.ToString("MM"));
+            int year = Convert.ToInt32(DtNow.ToString("yyyy"));
+
+            int HH = Convert.ToInt32(DtNow.ToString("HH"));
+            int mm = Convert.ToInt32(DtNow.ToString("mm"));
+            int ss = Convert.ToInt32(DtNow.ToString("ss"));
+
+            if (Mounth <= 9)
+            {
+                string cMounth = "0" + Mounth;
+                return day + "-" + cMounth + "-" + year + " เวลา " + HH + ":" + mm + ":" + ss;
+            }
+            else
+            {
+                string cMounth = Mounth.ToString();
+                return day + "-" + cMounth + "-" + year + " เวลา " + HH + ":" + mm + ":" + ss;
             }
 
 

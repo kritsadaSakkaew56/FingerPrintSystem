@@ -115,7 +115,9 @@
   <ItemGroup>
     <Content Include="Admin\AddUser.aspx" />
     <Content Include="Admin\default.aspx" />
+    <Content Include="Admin\EditGooglemapAPI.aspx" />
     <Content Include="Admin\GooglemapAPI.aspx" />
+    <Content Include="Admin\SchoolAddress.aspx" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\Checkbox _Styles.css" />
     <Content Include="css\circle-buttons.css" />
@@ -149,10 +151,12 @@
     <Content Include="Images\HomeFingerprint.png" />
     <Content Include="Images\HomeGPS.png" />
     <Content Include="Images\logo1.png" />
+    <Content Include="Images\profile.png" />
     <Content Include="Images\school-bus.png" />
     <Content Include="Images\sensor-icon-temp.png" />
     <Content Include="Images\smalllogo.png" />
     <Content Include="Images\success.png" />
+    <Content Include="Images\temp.png" />
     <Content Include="Images\true.png" />
     <Content Include="Images\YouTube.png" />
     <Content Include="img\player-controls.png" />
@@ -305,6 +309,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="UserControls\PagingControl.ascx" />
+    <Content Include="User\ScanListaspx.aspx" />
     <Content Include="User\Video.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -325,12 +330,26 @@
     <Compile Include="Admin\default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\EditGooglemapAPI.aspx.cs">
+      <DependentUpon>EditGooglemapAPI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditGooglemapAPI.aspx.designer.cs">
+      <DependentUpon>EditGooglemapAPI.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\GooglemapAPI.aspx.cs">
       <DependentUpon>GooglemapAPI.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\GooglemapAPI.aspx.designer.cs">
       <DependentUpon>GooglemapAPI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SchoolAddress.aspx.cs">
+      <DependentUpon>SchoolAddress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SchoolAddress.aspx.designer.cs">
+      <DependentUpon>SchoolAddress.aspx</DependentUpon>
     </Compile>
     <Compile Include="Driver\Checkscan.aspx.cs">
       <DependentUpon>Checkscan.aspx</DependentUpon>
@@ -508,6 +527,13 @@
     </Compile>
     <Compile Include="UserControls\PagingControl.ascx.designer.cs">
       <DependentUpon>PagingControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User\ScanListaspx.aspx.cs">
+      <DependentUpon>ScanListaspx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\ScanListaspx.aspx.designer.cs">
+      <DependentUpon>ScanListaspx.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\Video.aspx.cs">
       <DependentUpon>Video.aspx</DependentUpon>

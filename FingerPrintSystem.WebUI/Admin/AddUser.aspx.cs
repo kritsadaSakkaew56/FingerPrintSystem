@@ -32,6 +32,7 @@ namespace FingerPrintSystem.WebUI.Admin
 
                 this.BindDataUser();
                 this.BindDataDriver();
+                this.BindDataSchoolAddress();
                 disshowregisterdriver();
             }
 
@@ -58,27 +59,29 @@ namespace FingerPrintSystem.WebUI.Admin
          
 
         }
+        private void BindDataSchoolAddress()
+        {
+
+            DataSet ds = new UserAddressDAO().GetUserAddress(PagingControl1.CurrentPageIndex, PagingControl1.PageSize, this.SortColumn, this.SortOrder);
+            PagingControl2.RecordCount = (int)ds.Tables[1].Rows[0][0];
+            gvschooladdress.DataSource = ds.Tables[0];
+            gvschooladdress.DataBind();
+
+        }
         private void BindDataDriver()
         {
 
 
             DataSet ds = new DriverDAO().GetDriver(PagingControl1.CurrentPageIndex, PagingControl1.PageSize, this.SortColumn, this.SortOrder);
-            PagingControl2.RecordCount = (int)ds.Tables[1].Rows[0][0];
+            PagingControl3.RecordCount = (int)ds.Tables[1].Rows[0][0];
             gvdriver.DataSource = ds.Tables[0];
             gvdriver.DataBind();
 
 
 
         }
-        protected void gvdriver_Sorting(object sender, GridViewSortEventArgs e)
-        {
-
-
-        }
-        protected void gvuser_Sorting(object sender, GridViewSortEventArgs e)
-        {
-
-        }
+       
+       
         protected void gvdriver_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -102,18 +105,54 @@ namespace FingerPrintSystem.WebUI.Admin
                 DataRowView drv = (DataRowView)e.Row.DataItem;
                 LinkButton bthedit = (LinkButton)e.Row.FindControl("btnEdit");
                 LinkButton bthdelete = (LinkButton)e.Row.FindControl("btnDeleteuser");
+                LinkButton bthgooglemap = (LinkButton)e.Row.FindControl("bthgooglemap");
+                CheckBox chkActive = (CheckBox)e.Row.FindControl("chkActive");
 
+                if (drv["is_active"].ToString().Length > 0)
+                {
+                    chkActive.Checked = (bool)drv["is_active"];
+                }
 
-
-
+    
                 string memberuserid = drv["member_id"].ToString();
                 string memberadmin = ViewState["member_admin_id"].ToString();
 
                 bthedit.PostBackUrl = this.EncryptQueryString("userid=" + memberuserid + "&adminid=" + memberadmin);
                 bthdelete.PostBackUrl = this.EncryptQueryString("userid=" + memberuserid + "&adminid=" + memberadmin);
+                bthgooglemap.PostBackUrl= ("../Admin/EditGooglemapAPI.aspx" + this.EncryptQueryString("userid=" + memberuserid + "&adminid=" + memberadmin));
             }
         }
 
+        protected void gvschooladdress_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                DataRowView drv = (DataRowView)e.Row.DataItem;
+                LinkButton bthedit = (LinkButton)e.Row.FindControl("btnEditschool");
+                LinkButton bthdelete = (LinkButton)e.Row.FindControl("btnDeletschool");
+
+                string schoolid = drv["school_id"].ToString();
+                string memberadmin = ViewState["member_admin_id"].ToString();
+
+                bthedit.PostBackUrl = ("../Admin/EditGooglemapAPI.aspx" + this.EncryptQueryString("schoolid=" + schoolid + "&adminid=" + memberadmin));
+                bthdelete.PostBackUrl = this.EncryptQueryString("schoolid=" + schoolid + "&adminid=" + memberadmin);
+            }
+
+        }
+
+        protected void gvschooladdress_Sorting(object sender, GridViewSortEventArgs e)
+        {
+
+        }
+        protected void gvdriver_Sorting(object sender, GridViewSortEventArgs e)
+        {
+
+
+        }
+        protected void gvuser_Sorting(object sender, GridViewSortEventArgs e)
+        {
+
+        }
         private void BindDataschool()
         {
 
@@ -133,12 +172,14 @@ namespace FingerPrintSystem.WebUI.Admin
         {
            
             int memberuserid = Convert.ToInt32(this.DecryptQueryString("userid").ToString());
-            DataTable dt = new UserDAO().GetUserByMember(memberuserid);
+            DataTable dt = new UserDAO().GetUserSelectJointbSchooladdress_ByIDMember(memberuserid);
+         
 
             if (dt.Rows.Count > 0)
             {
                 txtid.Text = dt.Rows[0]["id"].ToString();
                 txtfullname.Text = dt.Rows[0]["fullname"].ToString();
+                txtshcool.Text = dt.Rows[0]["detailaddress"].ToString();
                 BindDataschool();
                 txtfullnameparent.Text = dt.Rows[0]["fullnameparent"].ToString();
                 txttel.Text = dt.Rows[0]["tel"].ToString();
@@ -155,14 +196,20 @@ namespace FingerPrintSystem.WebUI.Admin
         {
             int memberuserid = Convert.ToInt32(this.DecryptQueryString("userid").ToString());
             UserDAO user = new UserDAO();
-            user.UpdateUserByMember(memberuserid,Convert.ToInt32(ddlschool.Text.Trim()), txtid.Text.Trim(), txtfullname.Text.Trim(), txtfullnameparent.Text.Trim(),
-                                    txttel.Text.Trim(), txtemail.Text.Trim());
+            DataTable dt = new SchoolAddressDAO().GetSchoolAddressByDetailaddress(txtshcool.Text.Trim());
+
+            if (dt.Rows.Count > 0)
+            {
+                int schoolid =Convert.ToInt32(dt.Rows[0]["school_id"].ToString());
+                user.UpdateUserByMember(memberuserid, schoolid, txtid.Text.Trim(), txtfullname.Text.Trim(), txtfullnameparent.Text.Trim(),
+                                        txttel.Text.Trim(), txtemail.Text.Trim());
 
 
-            BindDataUser();
-
+                BindDataUser();
+            }
 
         }
+
        
         protected void btnDeleteuser_Click(object sender, EventArgs e)
         {
@@ -179,6 +226,7 @@ namespace FingerPrintSystem.WebUI.Admin
 
 
         }
+        
         protected void btnEditdriver_Click(object sender, EventArgs e)
         {
   
@@ -218,6 +266,25 @@ namespace FingerPrintSystem.WebUI.Admin
             DriverDAO Driver = new DriverDAO();
             Driver.DeleteDriverByMember(memberdriver);
             BindDataDriver();
+        }
+
+
+        protected void btnDeletschool_Click(object sender, EventArgs e)
+        {
+
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModaldeleteschool", "$('#myModaldeleteschool').modal();", true);
+
+
+        }
+        protected void bthdeletokeschool_Click(object sender, EventArgs e)
+        {
+
+            int schoolid = Convert.ToInt32(this.DecryptQueryString("schoolid").ToString());
+            SchoolAddressDAO SchoolAddress = new SchoolAddressDAO();
+            SchoolAddress.DeleteSchoolAddress(schoolid);
+            BindDataSchoolAddress();
+
+
         }
         private void claerregisterdriver()
 
@@ -335,5 +402,15 @@ namespace FingerPrintSystem.WebUI.Admin
 
 
         }
+
+        protected void ddlschool_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            txtshcool.Text = ddlschool.SelectedItem.Text;
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModaledituser", "$('#myModaledituser').modal();", true);
+
+        }
+
+       
     }
 }

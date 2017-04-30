@@ -31,6 +31,33 @@ namespace FingerPrintSystem.WebUI.User {
         protected global::System.Web.UI.WebControls.Repeater rptMarkers;
         
         /// <summary>
+        /// ScriptManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager;
+        
+        /// <summary>
+        /// UpdateTimer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer UpdateTimer;
+        
+        /// <summary>
+        /// UpdatePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel;
+        
+        /// <summary>
         /// Imgstudent control.
         /// </summary>
         /// <remarks>
@@ -67,6 +94,15 @@ namespace FingerPrintSystem.WebUI.User {
         protected global::System.Web.UI.WebControls.Label labschool;
         
         /// <summary>
+        /// labroundscan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labroundscan;
+        
+        /// <summary>
         /// labstatusup control.
         /// </summary>
         /// <remarks>
@@ -83,6 +119,15 @@ namespace FingerPrintSystem.WebUI.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labstatusdown;
+        
+        /// <summary>
+        /// labstatustemp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labstatustemp;
         
         /// <summary>
         /// labc control.

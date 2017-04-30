@@ -108,7 +108,7 @@
                         <li>
                             <a class="active" href="~/Driver/Schoolgohome.aspx" id="childuser" runat="server">
                                 <i class="fa fa-th-list"></i>
-                                <span>List scan</span>
+                                <span>Scan List</span>
                             </a>
                         </li>
                         <%--<li>

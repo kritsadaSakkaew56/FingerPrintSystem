@@ -15,6 +15,8 @@ namespace FingerPrintSystem.WebUI.Driver
             {
                 if (this.DecryptQueryString("driverid") != null)
                 {
+                    labdlogin.Text = "ยินดีต้อนรับเข้าสู่ระบบ";
+                    labdatetimelogin.Text = DateTime.Now.ToString("dd MMMM yyyy เวลา HH:mm:ss");
                     string data = DecryptQueryString("driverid").ToString();
                 }
                 else

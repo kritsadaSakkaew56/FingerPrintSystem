@@ -6,13 +6,15 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <section class="panel">
-        <header class="panel-heading" style="background-color: #F5DEB3">
-         
-                <h4>ยินดีต้อนรับเข้าสู่ระบบ </h4>
-       
-                <asp:Label runat="server" ID="labdrivername" Font-Size="X-Large"></asp:Label>
-            
-        </header>
+        <section class="panel">
+            <header class="panel-heading" style="background-color: #F5DEB3">
+                <asp:Label runat="server" ID="labdlogin" Font-Size="Larger"></asp:Label>
+            </header>
+            <header class="panel-heading" style="background-color: #F5DEB3">
+                <asp:Label runat="server" ID="labdatetimelogin" Font-Size="Larger"></asp:Label>
+            </header>
+        </section>
+        <asp:Image runat="server" ImageUrl="~/Images/profile.png" Width="85%" Height="80%" />
     </section>
 
 </asp:Content>

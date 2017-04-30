@@ -16,7 +16,7 @@ namespace FingerPrintSystem.WebUI.Master
             int userid = Convert.ToInt32(page.DecryptQueryString("userid"));
             int driverid = Convert.ToInt32(page.DecryptQueryString("driverid"));
 
-            changepassword.Attributes["href"] = ResolveUrl("../Driver/default.aspx" + page.EncryptQueryString("driverid=" + driverid));
+            //changepassword.Attributes["href"] = ResolveUrl("../Driver/default.aspx" + page.EncryptQueryString("driverid=" + driverid));
             fingerprintscan.Attributes["href"] = ResolveUrl("../Driver/FingerPrintscan.aspx" + page.EncryptQueryString("driverid=" + driverid));
             // fingerprintscan.Attributes["href"] = ResolveUrl("../Driver/FingerPrintscan.aspx" + page.EncryptQueryString("userid=" + userid + "&driverid=" + driverid));
             childuser.Attributes["href"] = ResolveUrl("../Driver/roundscan.aspx" + page.EncryptQueryString("driverid=" + driverid));

@@ -49,13 +49,13 @@ namespace FingerPrintSystem.WebUI.Admin {
         protected global::FingerPrintSystem.WebUI.UserControls.PagingControl PagingControl1;
         
         /// <summary>
-        /// gvdriver control.
+        /// gvschooladdress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvdriver;
+        protected global::System.Web.UI.WebControls.GridView gvschooladdress;
         
         /// <summary>
         /// PagingControl2 control.
@@ -67,15 +67,6 @@ namespace FingerPrintSystem.WebUI.Admin {
         protected global::FingerPrintSystem.WebUI.UserControls.PagingControl PagingControl2;
         
         /// <summary>
-        /// btnadddriver control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnadddriver;
-        
-        /// <summary>
         /// bthgoogledriver control.
         /// </summary>
         /// <remarks>
@@ -83,6 +74,33 @@ namespace FingerPrintSystem.WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton bthgoogledriver;
+        
+        /// <summary>
+        /// gvdriver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvdriver;
+        
+        /// <summary>
+        /// PagingControl3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::FingerPrintSystem.WebUI.UserControls.PagingControl PagingControl3;
+        
+        /// <summary>
+        /// btnadddriver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnadddriver;
         
         /// <summary>
         /// txtusername control.
@@ -182,6 +200,15 @@ namespace FingerPrintSystem.WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtfullname;
+        
+        /// <summary>
+        /// txtshcool control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtshcool;
         
         /// <summary>
         /// ddlschool control.
@@ -326,6 +353,24 @@ namespace FingerPrintSystem.WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton bthdeleteclosedriver;
+        
+        /// <summary>
+        /// bthdeletokeschool control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bthdeletokeschool;
+        
+        /// <summary>
+        /// bthdeletcloseschool control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bthdeletcloseschool;
         
         /// <summary>
         /// imgsuccess control.

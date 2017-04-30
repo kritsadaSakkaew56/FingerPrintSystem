@@ -14,7 +14,7 @@ namespace FingerPrintSystem.WebUI.Master
             PageBase page = new PageBase();
             int userid = Convert.ToInt32(page.DecryptQueryString("iduser"));
 
-            ChangePassword.Attributes["href"] = ResolveUrl("../Driver/default.aspx"+ page.EncryptQueryString("userid="+ userid));
+            //ChangePassword.Attributes["href"] = ResolveUrl("../Driver/default.aspx"+ page.EncryptQueryString("userid="+ userid));
 
                
         }
