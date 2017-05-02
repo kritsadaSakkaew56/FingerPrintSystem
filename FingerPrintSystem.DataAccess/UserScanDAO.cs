@@ -11,14 +11,21 @@ namespace FingerPrintSystem.DataAccess
 {
    public class UserScanDAO
     {
-        public string AddUserScanByIDMember(int memberuserid, string Fingerprintid,string datetimeup,string datetimedown,string fullnamedriver)
+        public string AddUserScanByIDMember(int memberuserid,string datetimeup,string datetimedown,
+                                            int roundscan,int noteup,int notedown,string datetime,
+                                            bool activescan,int checkscan, string fullnamedriver)
         {
             DatabaseHelper db = new DatabaseHelper();
             List<SqlParameter> param = new List<SqlParameter>();
             param.Add(new SqlParameter("@memberuserid", memberuserid));
-            param.Add(new SqlParameter("@Fingerprintid", Fingerprintid));
             param.Add(new SqlParameter("@datetimeup", datetimeup));
             param.Add(new SqlParameter("@datetimedown", datetimedown));
+            param.Add(new SqlParameter("@roundscan", roundscan));
+            param.Add(new SqlParameter("@noteup", notedown));
+            param.Add(new SqlParameter("@notedown", notedown));
+            param.Add(new SqlParameter("@datetime", datetime));
+            param.Add(new SqlParameter("@activescan", activescan));
+            param.Add(new SqlParameter("@checkscan", checkscan));
             param.Add(new SqlParameter("@fullnamedriver", fullnamedriver));
 
             return db.ExecuteScalar("sp_User_Scan_Insert_ByIDMember",param).ToString();
@@ -55,41 +62,35 @@ namespace FingerPrintSystem.DataAccess
             return db.ExecuteDataSet("sp_User_Scan_SelectJoin_tbuser");
           
         }
-        public DataTable GetUserScanJoin_tbUserByfullnamedriver(string fullnamedriver)
+        public DataTable GetUserScanJoin_tbUserByfullnamedriver(string fullnamedriver,bool activescan)
         {
 
             DatabaseHelper db = new DatabaseHelper();
             List<SqlParameter> param = new List<SqlParameter>();
             param.Add(new SqlParameter("@fullnamedriver", fullnamedriver));
+            param.Add(new SqlParameter("@activescan", activescan));
+       
 
             return db.ExecuteDataTable("sp_User_Scan_SelectJoin_tbuser_Byfullnamedriver", param);
 
 
         }
-        public void UpdateUserScanByFingerprintid_Down(string fingerprintid,string datetimedown)
+        public DataTable GetUserScanJoin_tbUserBySuccess(string fullnamedriver, bool activescan,int roundscan)
         {
+
             DatabaseHelper db = new DatabaseHelper();
             List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@fullnamedriver", fullnamedriver));
+            param.Add(new SqlParameter("@activescan", activescan));
+            param.Add(new SqlParameter("@roundscan", roundscan));
 
-            param.Add(new SqlParameter("@fingerprintid", fingerprintid));
-            param.Add(new SqlParameter("@datetimedown", datetimedown));
+            return db.ExecuteDataTable("sp_User_Scan_SelectJoin_tbuser_BySuccess", param);
 
-            db.ExecuteNonQuery("sp_User_Scan_Update_ByFingerprintid_Down", param);
 
         }
 
-        public void UpdateUserScanByFingerprintid_Up(string fingerprintid, string datetimeup)
-        {
-            DatabaseHelper db = new DatabaseHelper();
-            List<SqlParameter> param = new List<SqlParameter>();
-
-            param.Add(new SqlParameter("@fingerprintid", fingerprintid));
-            param.Add(new SqlParameter("@datetimeup", datetimeup));
-
-            db.ExecuteNonQuery("sp_User_Scan_Update_ByFingerprintid_Up", param);
-
-        }
-        public void UpdateUserScanByMember(int memberuserid ,string datetimeup , string datetimedown)
+        public void UpdateUserScanByMember(int memberuserid ,string datetimeup , string datetimedown,
+                                           string fullnamedriver,bool activescan,int checkscan,string activedate)
         {
 
 
@@ -99,8 +100,43 @@ namespace FingerPrintSystem.DataAccess
             param.Add(new SqlParameter("@memberuserid", memberuserid));
             param.Add(new SqlParameter("@datetimeup", datetimeup));
             param.Add(new SqlParameter("@datetimedown", datetimedown));
+            param.Add(new SqlParameter("@fullnamedriver", fullnamedriver));
+            param.Add(new SqlParameter("@activescan", activescan));
+            param.Add(new SqlParameter("@checkscan", checkscan));
+            param.Add(new SqlParameter("@activedate", activedate));
 
             db.ExecuteNonQuery("sp_User_Scan_Update_ByMember", param);
+
+
+        }
+        public void UpdateUserScanByIDMemberReset(int memberuserid, string datetimeup, string datetimedown)
+        {
+
+
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@memberuserid", memberuserid));
+            param.Add(new SqlParameter("@datetimeup", datetimeup));
+            param.Add(new SqlParameter("@datetimedown", datetimedown));
+   
+
+            db.ExecuteNonQuery("sp_User_Scan_Update_ByIDMemberReset", param);
+
+
+        }
+        public void UpdateUserScanByActivescan(int memberuserid, bool activescan)
+        {
+
+
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@memberuserid", memberuserid));
+            param.Add(new SqlParameter("@activescan", activescan));
+
+
+            db.ExecuteNonQuery("sp_User_Scan_Update_ByActivescan", param);
 
 
         }

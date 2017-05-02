@@ -34,12 +34,20 @@ namespace FingerPrintSystem.WebUI.Driver
 
 
                 }
+               
                 this.BindDataUser();
             }
-           
+       
 
+            PagingControl1.CurrentPageIndexChanged += PagingControl1_CurrentPageIndexChanged;
 
         }
+
+        private void PagingControl1_CurrentPageIndexChanged(object sender, EventArgs e)
+        {
+            this.BindDataUser();
+        }
+
         private void BindDataUser()
         {
 
@@ -59,13 +67,13 @@ namespace FingerPrintSystem.WebUI.Driver
                 CheckBox chkActive = (CheckBox)e.Row.FindControl("chkActive");
                 LinkButton bthscan = (LinkButton)e.Row.FindControl("bthscan");
 
-                if (drv["is_active"].ToString().Length > 0)
+                if (drv["activescan"].ToString().Length > 0)
                 {
-                    chkActive.Checked = (bool)drv["is_active"];
-                    if((bool)drv["is_active"]==true)
+                    chkActive.Checked = (bool)drv["activescan"];
+                    if(drv["checkscan"].ToString() == "0")
                     {
 
-                        bthscan.Visible = false;
+                        bthscan.Visible = true;
 
                     }
                 }

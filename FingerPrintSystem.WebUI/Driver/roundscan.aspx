@@ -222,15 +222,15 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ดำเนินการ" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="bthdetial" runat="server" Width="25%" Height="20" meta:resourcekey="bthScandetail" CssClass="btn btn-success btn-xs"
+                                        
+                                            <asp:LinkButton ID="bthdetial" runat="server" Width="25%" Height="20" meta:resourcekey="bthScandetail" CssClass="btn btn-success btn-xs"
                                             CommandName="memberuserid"
                                             CommandArgument='<%#Eval("member_id")%>'
                                             OnClick="bthdetial_Click"><i class="fa fa-search"></i></asp:LinkButton>
                                         <asp:LinkButton ID="bthreset" runat="server" Width="25%" Height="20" meta:resourcekey="bthreset" CssClass="btn btn-info btn-xs" OnClick="btnreset_Click"><i class="fa   fa-mail-reply" "></i></asp:LinkButton>
                                         <asp:LinkButton ID="bthnote" runat="server" Width="25%" Height="20" meta:resourcekey="bthnote" CssClass="btn btn-warning btn-xs" OnClick="bthnote_Click"><i class="fa  fa-star"></i></asp:LinkButton>
-
-
-
+                                    
+                                       
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

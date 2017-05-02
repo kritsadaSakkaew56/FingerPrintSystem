@@ -86,6 +86,12 @@
             display: inline-flex;
         }
     </style>
+    <style type="text/css">
+        .BigCheckBox input {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
     <asp:ScriptManager ID="scMain" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel runat="server" ID="updResult">
         <ContentTemplate>
@@ -113,14 +119,20 @@
                             Style="max-width: 100%">
                             <Columns>
                                 <asp:BoundField HeaderText="Username" DataField="Username" SortExpression="Username" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
-                                <asp:BoundField HeaderText="เลขประจำตัว" DataField="id" SortExpression="id" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
+                                <%--<asp:BoundField HeaderText="เลขประจำตัว" DataField="id" SortExpression="id" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />--%>
                                 <asp:BoundField HeaderText="ชื่อ-นามสกุล" DataField="fullName" SortExpression="fullName" />
-                                <asp:BoundField HeaderText="โรงเรียน" DataField="detailaddress" SortExpression="detailaddress" />
+                                <%--<asp:BoundField HeaderText="โรงเรียน" DataField="detailaddress" SortExpression="detailaddress" />--%>
                                 <asp:BoundField HeaderText="ผู้ปกครอง" DataField="fullnameparent" SortExpression="fullnameparent" />
                                 <asp:BoundField HeaderText="เบอร์โทรศัพท์" DataField="tel" SortExpression="tel" />
-                                <asp:TemplateField HeaderText="การใช้งาน" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                <%--<asp:BoundField HeaderText="E-mail" DataField="email" SortExpression="email" />--%>
+                                <asp:TemplateField HeaderText="การใช้งานระบบ" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:CheckBox ID="chkActive" runat="server" Enabled="false"></asp:CheckBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="การใช้งานสแกน" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <asp:CheckBox ID="chkActivescan" runat="server" Enabled="false"></asp:CheckBox>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ดำเนินการ" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
@@ -160,17 +172,17 @@
                             Style="max-width: 100%">
                             <Columns>
                                 <asp:BoundField HeaderText="ชื่อโรงเรียน" DataField="detailaddress" SortExpression="detailaddress" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
-                                 <asp:BoundField HeaderText="ที่อยู่" DataField="address" SortExpression="address" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
+                                <asp:BoundField HeaderText="ที่อยู่" DataField="address" SortExpression="address" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
                                 <asp:TemplateField HeaderText="ดำเนินการ" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="btnEditschool" runat="server"  meta:resourcekey="btnEditschool" CssClass="btn btn-info btn-xs" ><i class="fa fa fa-google-plus"></i></asp:LinkButton>
-                                        <asp:LinkButton ID="btnDeletschool" runat="server"  meta:resourcekey="btnDeletschool" CssClass="btn btn-danger btn-xs" OnClick="btnDeletschool_Click" ><i class="fa fa-trash-o "></i></asp:LinkButton>
+                                        <asp:LinkButton ID="btnEditschool" runat="server" meta:resourcekey="btnEditschool" CssClass="btn btn-info btn-xs"><i class="fa fa fa-google-plus"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="btnDeletschool" runat="server" meta:resourcekey="btnDeletschool" CssClass="btn btn-danger btn-xs" OnClick="btnDeletschool_Click"><i class="fa fa-trash-o "></i></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
                         <uc1:PagingControl ID="PagingControl2" runat="server" />
-                       <asp:LinkButton runat="server" ID="bthgoogledriver" CssClass="btn btn-primary" Width="150" Height="40" OnClick="bthgoogledriver_Click"><i class="fa fa-plus-circle "></i>เพิ่มที่อยู่โรงเรียน</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bthgoogledriver" CssClass="btn btn-primary" Width="150" Height="40" OnClick="bthgoogledriver_Click"><i class="fa fa-plus-circle "></i>เพิ่มที่อยู่โรงเรียน</asp:LinkButton>
                     </div>
                 </div>
             </div>
@@ -211,7 +223,7 @@
                         </asp:GridView>
                         <uc1:PagingControl ID="PagingControl3" runat="server" />
                         <asp:LinkButton runat="server" ID="btnadddriver" CssClass="btn btn-primary" Width="150" Height="40" OnClick="btnadddriver_Click"><i class="fa fa-plus-circle "></i>เพิ่มคนขับรถ</asp:LinkButton>
-<%--                        <asp:LinkButton runat="server" ID="bthgoogledriver" CssClass="btn btn-primary" Width="150" Height="40" OnClick="bthgoogledriver_Click"><i class="fa fa-plus-circle "></i>เพิ่มที่อยู่โรงเรียน</asp:LinkButton>--%>
+                        <%--                        <asp:LinkButton runat="server" ID="bthgoogledriver" CssClass="btn btn-primary" Width="150" Height="40" OnClick="bthgoogledriver_Click"><i class="fa fa-plus-circle "></i>เพิ่มที่อยู่โรงเรียน</asp:LinkButton>--%>
                     </div>
                 </div>
             </div>
@@ -295,7 +307,8 @@
                             <p>
                                 <asp:Label runat="server" Text="โรงเรียน:" Font-Size="Larger"></asp:Label>
                             </p>
-
+                            <br />
+                          
                             <p>
                                 <asp:Label runat="server" Text="ชื่อผู้ปกครอง:" Font-Size="Larger"></asp:Label>
                             </p>
@@ -307,11 +320,18 @@
                             <p>
                                 <asp:Label runat="server" Text="E-Mail:" Font-Size="Larger"></asp:Label>
                             </p>
-                            <%--<p>
-                                        <asp:Label runat="server" Text="การใช้งาน" Font-Size="Larger"></asp:Label>
-                                    </p>--%>
+                            <br />
+                            <br />
+                            <p>
+                                <asp:Label runat="server" Text="การใช้งานระบบ:" Font-Size="Larger"></asp:Label>
+                            </p>
+                            <br />
+                            <p>
+                                <asp:Label runat="server" Text="การใช้งานสแกน:" Font-Size="Larger"></asp:Label>
+                            </p>
                         </div>
-                        <div class="col-sm-4">
+
+                        <div class="col-sm-8">
 
                             <p>
                                 <asp:TextBox ID="txtid" runat="server" Font-Size="Small"></asp:TextBox>
@@ -326,7 +346,8 @@
                                 <asp:DropDownList ID="ddlschool" runat="server" Font-Size="Small" Width="170px" AutoPostBack="true" OnSelectedIndexChanged="ddlschool_SelectedIndexChanged"></asp:DropDownList>
 
                             </p>
-
+                      
+                            <br />
                             <p>
                                 <asp:TextBox ID="txtfullnameparent" runat="server" Font-Size="Small"></asp:TextBox>
                             </p>
@@ -338,9 +359,18 @@
                             <p>
                                 <asp:TextBox ID="txtemail" runat="server" Font-Size="Small"></asp:TextBox>
                             </p>
-                            <%-- <p>
-                                        <asp:checkbox ID="chkactive" runat="server" Font-Size="Small"></asp:checkbox>
-                                    </p>--%>
+                            <br />
+                            <p>
+                                <asp:CheckBox ID="chkactive" runat="server" Font-Size="Small" CssClass="BigCheckBox"></asp:CheckBox>
+                            </p>
+                            <br />
+
+                            <p>
+                                <asp:CheckBox ID="chkactivescan" runat="server" Font-Size="Small" CssClass="BigCheckBox"></asp:CheckBox>
+                                <asp:Image runat="server" ID="imgcheckscan" Visible="false" />
+                                <asp:Label runat="server" ID="labcheckscan" Font-Size="Small" Text="รอลงทะเบียนสแกน" Visible="false"></asp:Label>
+
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -443,7 +473,7 @@
             </div>
         </div>
     </div>
-     <div class="modal fade" id="myModaldeleteschool" role="dialog">
+    <div class="modal fade" id="myModaldeleteschool" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -453,7 +483,7 @@
                 <div class="modal-body">
                     <h5>ต้องการที่จะลบข้อมูลโรงเรียนหรือไม่</h5>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bthdeletokeschool" CssClass="btn btn-info" OnClick="bthdeletokeschool_Click" > OK</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bthdeletokeschool" CssClass="btn btn-info" OnClick="bthdeletokeschool_Click"> OK</asp:LinkButton>
                         <asp:LinkButton runat="server" ID="bthdeletcloseschool" CssClass="btn btn-info"> Close</asp:LinkButton>
 
                     </div>

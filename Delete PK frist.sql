@@ -1,1 +1,6 @@
+delete from tb_user DBCC CHECKIDENT(tb_user,reseed,0)
+delete from tb_user_address DBCC CHECKIDENT(tb_user_address,reseed,0)
+delete from tb_user_scan DBCC CHECKIDENT(tb_user_scan,reseed,0)
 delete from tb_user_scan_result DBCC CHECKIDENT(tb_user_scan_result,reseed,0)
+delete from tb_member DBCC CHECKIDENT(tb_member,reseed,0)
+delete from tb_driver DBCC CHECKIDENT(tb_driver,reseed,0)

@@ -51,6 +51,9 @@ namespace FingerPrintSystem.WebUI.User
 
                 int memberid = Int32.Parse(ViewState["memberUser_id"].ToString());
                 UserAddressDAO User = new UserAddressDAO();
+                MemberDAO member = new MemberDAO();
+
+                member.UpdateMemberByRegister(memberid, 2);
                 User.AddUserAddress(memberid, latitude.Text.Trim(), longitude.Text.Trim(), address.Text.Trim(), txtcomment.Text.Trim());
                 Response.Redirect("../User/RegisterFingerPrint.aspx" + this.EncryptQueryString("userid=" + memberid));
 

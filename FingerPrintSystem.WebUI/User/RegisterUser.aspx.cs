@@ -22,10 +22,11 @@ namespace FingerPrintSystem.WebUI.User
         {
             if (!IsPostBack)
             {
-                BindDataschool();
+              BindDataschool();
 
 
             }
+           
 
 
         }
@@ -144,13 +145,13 @@ namespace FingerPrintSystem.WebUI.User
         {
   
             MemberDAO member = new MemberDAO();
-            int memberid = Convert.ToInt32(member.AddMember(txtusername.Text.Trim(), Encrypt(txtpassword.Text.Trim()),"User",false));
+            int memberid = Convert.ToInt32(member.AddMember(txtusername.Text.Trim(), Encrypt(txtpassword.Text.Trim()),"User",1,false));
 
 
             switch (memberid)
             {
                 case -1:
-                    labusername.Text = "Username ใช้ไม่ได้";
+                    labusername.Text = "Can not use Username ";
 
                     laberroe.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");
                     laberroe.Text = "กรุณา Upload รูปประจำตัว";

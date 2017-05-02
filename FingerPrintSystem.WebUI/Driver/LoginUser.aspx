@@ -11,17 +11,18 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="scMain" runat="server"></asp:ScriptManager>
-    <asp:UpdatePanel runat="server" ID="updResult">
+    <asp:UpdatePanel runat="server" ID="updResult" UpdateMode="Conditional">
         <ContentTemplate>
             <section class="panel">
                 <header class="panel-heading" style="background-color: #F5DEB3">
-                    <h4>Fingerprintscan (ลงทะเบีนนสแกนลายนิ้วมือ)</h4>
+                    <h4>Fingerprintscan (ลงทะเบียนสแกนลายนิ้วมือ)</h4>
                 </header>
             </section>
 
             <div class="row">
                 <div class="panel-body form-horizontal">
                     <div class="panel-body">
+                        
                         <asp:GridView
                             ID="gvuser" runat="server"
                             DataKeyNames="user_id"
@@ -46,8 +47,8 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ลงทะเบียน" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="bthscan" runat="server" Width="75%" Height="30" meta:resourcekey="bthscan" CssClass="btn btn-primary btn-xs" CommandName="memberuserid" CommandArgument='<%#Eval("member_id")%>'><i class="glyphicon glyphicon-floppy-disk"></i>Add</asp:LinkButton>
-                                         <%-- <asp:LinkButton ID="bthdetial" runat="server"  meta:resourcekey="bthScandetail" CssClass="btn btn-success btn-xs" ><i class="fa fa-search"></i></asp:LinkButton>--%>
+                                        <asp:LinkButton ID="bthscan" runat="server" Width="75%" Height="30" meta:resourcekey="bthscan" Visible="false" CssClass="btn btn-primary btn-xs" CommandName="memberuserid" CommandArgument='<%#Eval("member_id")%>'><i class="glyphicon glyphicon-floppy-disk"></i>Add</asp:LinkButton>
+                                        <%-- <asp:LinkButton ID="bthdetial" runat="server"  meta:resourcekey="bthScandetail" CssClass="btn btn-success btn-xs" ><i class="fa fa-search"></i></asp:LinkButton>--%>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

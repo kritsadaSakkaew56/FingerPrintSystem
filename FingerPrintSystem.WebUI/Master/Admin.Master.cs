@@ -16,7 +16,7 @@ namespace FingerPrintSystem.WebUI.Master
 
             childuser.Attributes["href"] = ResolveUrl("../Admin/Member.aspx" + page.EncryptQueryString("adminid=" + adminid));
             adduser.Attributes["href"] = ResolveUrl("../Admin/AddUser.aspx" + page.EncryptQueryString("adminid=" + adminid));
-
+            //isactive.Attributes["href"] = ResolveUrl("../Admin/Active.aspx" + page.EncryptQueryString("adminid=" + adminid));
         }
     }
 }

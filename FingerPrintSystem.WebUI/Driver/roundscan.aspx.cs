@@ -22,8 +22,7 @@ namespace FingerPrintSystem.WebUI.Driver
     {
         MqttClient client = new MqttClient("m12.cloudmqtt.com", 29315, true, null, null, MqttSslProtocols.TLSv1_2);
         public static bool Timer;
-        public static string datetimeup;
-        public static string datetimedown;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
@@ -39,6 +38,7 @@ namespace FingerPrintSystem.WebUI.Driver
                     Response.Redirect("../login.aspx");
 
                 }
+               
 
                 UpdatePanel_DropDownList1.Update();
                 BinddataDropDownList1();
@@ -142,7 +142,7 @@ namespace FingerPrintSystem.WebUI.Driver
                 else
                 {
                     lalScanup.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900"); // สีเขียว
-                    datetimeup = "ok";
+                   
                 }
                 //..........................................................................................//
                 string notedown = drv["notedown"].ToString();
@@ -159,18 +159,18 @@ namespace FingerPrintSystem.WebUI.Driver
                 else
                 {
                     lalScandown.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900"); // สีเขียว
-                    datetimedown = "ok";
+                   
                 }
 
                 //.......................................................................................//
-                if (roundscan.datetimeup == "ok" && roundscan.datetimedown == "ok")
+                if (drv["datetime_up"].ToString() != "ยังไม่ได้สแกน" && drv["datetime_down"].ToString() != "ยังไม่ได้สแกน")
                 {
                     bthnote.Visible = false;
-                    datetimeup = "";
-                    datetimedown = "";
+                   
                 }
               
-               
+
+
 
             }
             
@@ -237,7 +237,7 @@ namespace FingerPrintSystem.WebUI.Driver
         }
        
 
-        SubscribeDAO Subscribe = new SubscribeDAO();
+        //SubscribeDAO Subscribe = new SubscribeDAO();
         PublishDAO Publish = new PublishDAO();
         DriverDAO Driver = new DriverDAO();
         UserScanResultDAO UserscanResult = new UserScanResultDAO();
@@ -275,7 +275,7 @@ namespace FingerPrintSystem.WebUI.Driver
                     UserscanResult.AddUserScanResultByIDMember(Memberuserid, datetimeup, datetimedown, fullnamedriver, roundscan,datetime1());
 
             
-                    UserScan.UpdateUserScanByMember(Memberuserid, "ยังไม่ได้สแกน", "ยังไม่ได้สแกน"); // Reset
+                    UserScan.UpdateUserScanByIDMemberReset(Memberuserid, "ยังไม่ได้สแกน", "ยังไม่ได้สแกน"); // Reset
 
                 }
 
@@ -338,7 +338,7 @@ namespace FingerPrintSystem.WebUI.Driver
                             Timer = true;
                             //.......... update รอบเที่ยวไป-กลับของรถรับส่งที่คนขับรถเลือกมา...................//
                             string fullnamedriver = dtdriverid.Rows[0]["fullname"].ToString();
-                            DataTable dt = new UserScanDAO().GetUserScanJoin_tbUserByfullnamedriver(fullnamedriver); // เช็คชื่อคนขับรถรับส่งที่จะให้สแกน
+                            DataTable dt = new UserScanDAO().GetUserScanJoin_tbUserByfullnamedriver(fullnamedriver,true); // เช็คชื่อคนขับรถรับส่งที่จะให้สแกน
 
                         //เพิ่มสถานะเที่ยวรถรับส่งที่คนขับรถเลือกเข้ามา
                             foreach (DataRow row in dt.Rows)
@@ -349,14 +349,15 @@ namespace FingerPrintSystem.WebUI.Driver
                                 UserScan.UpdateUserScanByMember_Roundscan(memberuserid,Convert.ToInt32(DropDownList1.SelectedValue));
                             }
 
-
-                            DropDownList1.Visible = false;
+                        ViewState["roundscan"] = DropDownList1.SelectedValue;
+                        DropDownList1.Visible = false;
                             bthcheck.Visible = false;
                             labround.Visible = false;
                             labchk.Visible = false;
                             imgchk.Visible = false;
                             UpdatePanel_DropDownList2.Update();
                             Binddatascan(DropDownList1.SelectedItem.Text.Trim());
+                            
                         }
 
                 }
@@ -386,14 +387,15 @@ namespace FingerPrintSystem.WebUI.Driver
         {
 
             int Memberdriverid = Convert.ToInt32(ViewState["member_driver_id"].ToString());
+            int roundscan = Convert.ToInt32(ViewState["roundscan"].ToString());
             DataTable dtdriverid = new DriverDAO().GetDriverByIDMember(Memberdriverid);
-
+            
 
 
             if (dtdriverid.Rows.Count > 0)
             {
                 string fullnamedriver = dtdriverid.Rows[0]["fullname"].ToString();
-                DataTable dt = new UserScanDAO().GetUserScanJoin_tbUserByfullnamedriver(fullnamedriver); // เช็คชื่อคนขับรถรับส่งที่จะให้สแกน
+                DataTable dt = new UserScanDAO().GetUserScanJoin_tbUserBySuccess(fullnamedriver,true,roundscan); // เช็คชื่อคนขับรถรับส่งที่จะให้สแกน
                
 
                 gvMember.DataSource = dt;
@@ -404,25 +406,28 @@ namespace FingerPrintSystem.WebUI.Driver
         }
         private void UpdateUserScanByMemberid(string trunscan, string topicsearch) // สถานะการสแกน
         {
+
             client.ProtocolVersion = MqttProtocolVersion.Version_3_1;
-            client.Connect(Guid.NewGuid().ToString(),
-                          "fjhgvxul",
-                          "cT9BYUzB5yCR",
-                          true, // will retain flag
-                          MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE,// will QoS
-                          true, // will flag
-                          "/test",// will topic
-                          "default", // will message
-                           true,
-                           60);
-      
+            client.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", false, 120);
+
+            //client.Connect(Guid.NewGuid().ToString(),
+            //              "fjhgvxul",
+            //              "cT9BYUzB5yCR",
+            //              true, // will retain flag
+            //              MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE,// will QoS
+            //              true, // will flag
+            //              "/test",// will topic
+            //              "default", // will message
+            //               true,
+            //               60);
+
             client.MqttMsgPublishReceived += client_MqttMsgPublishRecieved_GetSubscribe;
             // client.Subscribe(new string[] { topicup,topicdown }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE , MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE});
             client.Subscribe(new string[] { topicsearch }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
             ViewState["trunscan"] = trunscan;
             Debug.WriteLine("OnGetSubscribeUp");
+        
 
-           
 
 
         }
@@ -435,7 +440,7 @@ namespace FingerPrintSystem.WebUI.Driver
             if (trunscan == "ขึ้นรถรับส่งเด็กนักเรียน")
             {
                 string fingerprintid = Encoding.UTF8.GetString(e.Message);
-
+             
                 if (fingerprintid == "disconnect")
                 {
 
@@ -467,12 +472,12 @@ namespace FingerPrintSystem.WebUI.Driver
             if (trunscan == "ลงรถรับส่งเด็กนักเรียน")
             {
                 string fingerprintid = Encoding.UTF8.GetString(e.Message);
-
+              
                 if (fingerprintid == "disconnect")
                 {
                     Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + datetime());
                     client.Disconnect();
-
+                    Timer = true;
                 }
                 else if (fingerprintid == "fail")
                 {
@@ -511,15 +516,16 @@ namespace FingerPrintSystem.WebUI.Driver
             int mm = Convert.ToInt32(DtNow.ToString("mm"));
             int ss = Convert.ToInt32(DtNow.ToString("ss"));
 
-            if (Mounth <= 9)
+            if (Mounth <= 9 && day <= 9)
             {
                 string cMounth = "0" + Mounth;
-                return day + "-" + cMounth + "-" + year + " เวลา " + HH + ":" + mm + ":" + ss;
+                string cday = "0" + day;
+                return cday + "-" + cMounth + "-" + year + " เวลา " + HH + ":" + mm + ":" + ss;
             }
             else
             {
-                string cMounth = Mounth.ToString();
-                return day + "-" + cMounth + "-" + year + " เวลา " + HH + ":" + mm + ":" + ss;
+              
+                return day + "-" + Mounth + "-" + year + " เวลา " + HH + ":" + mm + ":" + ss;
             }
 
 
@@ -533,16 +539,18 @@ namespace FingerPrintSystem.WebUI.Driver
             int day = Convert.ToInt32(DtNow.ToString("dd"));
             int Mounth = Convert.ToInt32(DtNow.ToString("MM"));
             int year = Convert.ToInt32(DtNow.ToString("yyyy"));
+            
 
-            if (Mounth <= 9)
+            if (Mounth <= 9 && day<=9)
             {
                 string cMounth = "0" + Mounth;
-                return day + "-" + cMounth + "-" + year;
+                string cday = "0" + day;
+                return cday + "-" + cMounth + "-" + year;
             }
             else
             {
-                string cMounth = Mounth.ToString();
-                return day + "-" + cMounth + "-" + year;
+               
+                return day + "-" + Mounth + "-" + year;
             }
 
 
@@ -553,9 +561,9 @@ namespace FingerPrintSystem.WebUI.Driver
             UpdatePanel_DropDownList2.Update();
             disshowstatustrun();  // ปิดปุ่ม scanup และ scandown
             Timer = false;  // หยุดการ update ตาราง และ ปุ่ม
-            Publish.OnScan("/searching", "on");
+            Publish.OnScan("/searchingstest", "on");
             //Subscribe.UpdateUserScanByMemberid("ขึ้นรถรับส่งเด็กนักเรียน", "/chksearching");
-            UpdateUserScanByMemberid("ขึ้นรถรับส่งเด็กนักเรียน", "/chksearching");
+            UpdateUserScanByMemberid("ขึ้นรถรับส่งเด็กนักเรียน", "/chksearchingtest");
             UpdatePanel_GridView.Update();
             Showstatustrunup();
           
@@ -568,9 +576,9 @@ namespace FingerPrintSystem.WebUI.Driver
             UpdatePanel_DropDownList2.Update(); 
             disshowstatustrun(); // ปิดปุ่ม scanup และ scandown
             Timer = false; // หยุดการ update ตาราง และ ปุ่ม
-            Publish.OnScan("/searching", "on");
+            Publish.OnScan("/searchingstest", "on");
             //Subscribe.UpdateUserScanByMemberid("ลงรถรับส่งเด็กนักเรียน", "/chksearching");
-            UpdateUserScanByMemberid("ลงรถรับส่งเด็กนักเรียน", "/chksearching");
+            UpdateUserScanByMemberid("ลงรถรับส่งเด็กนักเรียน", "/chksearchingtest");
             UpdatePanel_GridView.Update();
             Showstatustrundown();
 
@@ -584,7 +592,7 @@ namespace FingerPrintSystem.WebUI.Driver
         protected void bthclose_Click(object sender, EventArgs e)
         {
             Timer = true;
-            Publish.OnScan("/chksearching", "disconnect"); // ทำการ Disconnect MQTT
+            Publish.OnScan("/chksearchingtest", "disconnect"); // ทำการ Disconnect MQTT
 
 
         }
@@ -601,7 +609,7 @@ namespace FingerPrintSystem.WebUI.Driver
                     int Memberuserid = Convert.ToInt32(gvMember.DataKeys[rowIndex].Values[0].ToString());
 
                     UserScanDAO UserScan = new UserScanDAO();
-                    UserScan.UpdateUserScanByMember(Memberuserid, "ยังไม่ได้สแกน", "ยังไม่ได้สแกน");
+                    UserScan.UpdateUserScanByIDMemberReset(Memberuserid, "ยังไม่ได้สแกน", "ยังไม่ได้สแกน");
 
                 }
 
@@ -730,56 +738,7 @@ namespace FingerPrintSystem.WebUI.Driver
 
 
         }
-        protected void bthSaveFinish_Click(object sender, EventArgs e)
-         {
-             //UpdatePanelimgsuccess.Update();
-             Disshowstatustrn_upanddown();
-             //Disable the default item.
-             DropDownList1.Items[0].Attributes["disabled"] = "disabled";
-            // DropDownList2.Items[0].Attributes["disabled"] = "disabled";
-
-
-
-             //................ ส่วนของการสแกนลายนิ้วมือจาก MQTT .............................//
-
-             SubscribeDAO Subscribe = new SubscribeDAO();
-             PublishDAO Publish = new PublishDAO();
-
-             Subscribe.UpdateUserScanByMemberid("", "/chksearching"); // Subscribe 2 Topic
-
-
-             /*if (DropDownList2.Text.Trim() == "ขึ้นรถรับส่งเด็กนักเรียน")
-                {
-
-                 //Publish.OnScanup("/searching", "up");        // สั่งเปิดสแกนลายนิ้วมือ ขึ้นรถรับส่ง
-                 //Debug.WriteLine(DropDownList2.Text.Trim());
-
-                 //Debug.WriteLine("Sleep for 2 seconds.");
-                 //Thread.Sleep(2000);
-                 //Debug.WriteLine("Sleep for 2 OK.");
-                  Subscribe.UpdateUserScanByMemberid(DropDownList2.Text.Trim(), "/chksearching"); // Subscribe 2 Topic
-
-             }
-
-                else if (DropDownList2.Text.Trim() == "ลงรถรับส่งเด็กนักเรียน")
-                {
-
-                 //Publish.OnScandown("/searchching", "down"); // สั่งเปิดสแกนลายนิ้วมือ ลงรถรับส่ง
-                 //Debug.WriteLine(DropDownList2.Text.Trim());
-
-                 //Debug.WriteLine("Sleep for 2 seconds.");
-                 //Thread.Sleep(2000);
-                 //Debug.WriteLine("Sleep for 2 OK.");
-                 Subscribe.UpdateUserScanByMemberid(DropDownList2.Text.Trim(), "/chksearching"); // Subscribe 2 Topic
-
-             }
-                else
-                {
-
-                    Debug.WriteLine("DropDowmList is null");
-                }*/
-
-         }
+        
 
       
     }

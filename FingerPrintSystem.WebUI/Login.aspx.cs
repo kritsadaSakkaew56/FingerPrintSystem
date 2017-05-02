@@ -61,6 +61,9 @@ namespace FingerPrintSystem.WebUI
                     txtusername_password.Text = "Username and/or password is incorrect.";
                     break;
                 case -2:
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalwebsite", "$('#myModalwebsite').modal();", true);
+                    break;
+                case -3:
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalFingerprint", "$('#myModalFingerprint').modal();", true);
                     break;
                 default:

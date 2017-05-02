@@ -69,11 +69,12 @@ namespace FingerPrintSystem.WebUI.Driver
         private void CheckIsactive(int memberuserid)
         {
 
-            MemberDAO Member = new MemberDAO();
-            DataTable dt = Member.GetMember(memberuserid);
+           // MemberDAO Member = new MemberDAO();
+            UserScanDAO userscan = new UserScanDAO();
+            DataTable dt = userscan.GetUserScanByIDMember(memberuserid);
             if (dt.Rows.Count > 0)
             {
-                bool isactive = (bool)dt.Rows[0]["is_active"];
+                bool isactive = (bool)dt.Rows[0]["activescan"];
                 if (isactive == true)
                 {
                     labscan.Text = "ทำการสแกนลายนิ้วมือเรียบร้อยแล้ว";
@@ -243,12 +244,13 @@ namespace FingerPrintSystem.WebUI.Driver
                         string fullnamedriver = dt.Rows[0]["fullname"].ToString();
                         status = status_fingerprint; // ส่ง ok กับ fail
                         //..................... ทำการเพิ่มลายนิ้วมือลงไป database .......................//
-                        UserScanDAO User = new UserScanDAO();
-                        User.AddUserScanByIDMember(memberuserid, "", "ยังไม่ได้สแกน", "ยังไม่ได้สแกน", fullnamedriver);
+                        UserScanDAO Userscan = new UserScanDAO();
+                        Userscan.UpdateUserScanByMember(memberuserid, "ยังไม่ได้สแกน", "ยังไม่ได้สแกน", fullnamedriver, true,1, datetime());
 
                         //.....................  เปิกการใช้งานของ user ................................//
                         MemberDAO Member = new MemberDAO();
-                        Member.UpdateMember(memberuserid, true);
+                        Member.UpdateMemberByIsactive(memberuserid, true);
+                        Member.UpdateMemberByRegister(memberuserid, 3);
                         client.Disconnect(); // Disconnect mqtt
                     }
                 }
@@ -270,7 +272,35 @@ namespace FingerPrintSystem.WebUI.Driver
 
 
         }
+        private string datetime()
+        {
 
-      
+
+            DateTime DtNow = new DateTime();
+            DtNow = DateTime.Now;
+            int day = Convert.ToInt32(DtNow.ToString("dd"));
+            int Mounth = Convert.ToInt32(DtNow.ToString("MM"));
+            int year = Convert.ToInt32(DtNow.ToString("yyyy")) - 543;
+
+            int HH = Convert.ToInt32(DtNow.ToString("HH"));
+            int mm = Convert.ToInt32(DtNow.ToString("mm"));
+            int ss = Convert.ToInt32(DtNow.ToString("ss"));
+
+            if (Mounth <= 9 && day <= 9)
+            {
+                string cMounth = "0" + Mounth;
+                string cday = "0" + day;
+                return cday + "-" + cMounth + "-" + year + " เวลา " + HH + ":" + mm + ":" + ss;
+            }
+            else
+            {
+
+                return day + "-" + Mounth + "-" + year + " เวลา " + HH + ":" + mm + ":" + ss;
+            }
+
+
+        }
+
+
     }
 }

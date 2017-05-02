@@ -46,7 +46,7 @@ namespace FingerPrintSystem.WebUI.FingerPrint
 
         }
 
-        protected void bthfinish_Click(object sender, EventArgs e)
+       /* protected void bthfinish_Click(object sender, EventArgs e)
         {
             int userscanid = Convert.ToInt32(ViewState["MemberUser_id"].ToString());
             int memberDriverid = Convert.ToInt32(ViewState["MemberDriver_id"].ToString());
@@ -74,6 +74,6 @@ namespace FingerPrintSystem.WebUI.FingerPrint
 
             Response.Redirect("../Login.aspx");
 
-        }
+        }*/
     }
 }

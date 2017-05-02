@@ -76,7 +76,7 @@
             <%-- <asp:Button ID="bthforget" runat="server" class="btn btn-lg btn-login btn-block" Text="Forget" OnClick="bthforget_Click" />--%>
             <asp:Button ID="bthregister" runat="server" class="btn btn-lg btn-login btn-block" Text="Register" OnClick="bthregister_Click" />
 
-            <div class="modal fade" id="myModalFingerprint" role="dialog">
+            <div class="modal fade" id="myModalwebsite" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
@@ -84,11 +84,29 @@
                             <h4 class="modal-title">การลงทะเบียนในระบบยังไม่สมบูรณ์</h4>
                         </div>
                         <div class="modal-body">
-                            <h5>กรุณติดต่อเจ้าหน้าหรือคนขับรถรับส่ง</h5>
+                            <h5>กรุณติดต่อเจ้าหน้าที่</h5>
 
                         </div>
                         <div class="modal-footer">
-                            <asp:LinkButton runat="server" ID="bthok" CssClass="btn btn-info" Width="200px" ForeColor="White">OK</asp:LinkButton>
+                            <%--<asp:LinkButton runat="server" ID="bthok" CssClass="btn btn-info" Width="200px" ForeColor="White">OK</asp:LinkButton>--%>
+                            <%-- <asp:LinkButton runat="server" ID="bthclse" CssClass="btn btn-info" Width="100px" ForeColor="White">CLOSE</asp:LinkButton>--%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="modal fade" id="myModalFingerprint" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">การลงทะเบียนในระบบยังไม่สมบูรณ์</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h5>กรุณติดต่อทางเจ้าหน้าที่</h5>
+
+                        </div>
+                        <div class="modal-footer">
+                            <%--<asp:LinkButton runat="server" ID="LinkButton1" CssClass="btn btn-info" Width="200px" ForeColor="White">OK</asp:LinkButton>--%>
                             <%-- <asp:LinkButton runat="server" ID="bthclse" CssClass="btn btn-info" Width="100px" ForeColor="White">CLOSE</asp:LinkButton>--%>
                         </div>
                     </div>

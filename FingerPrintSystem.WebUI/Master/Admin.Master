@@ -92,7 +92,12 @@
                             </div>
 
                         </li>
-
+                      <%--  <li>
+                            <a class="active" href="#" id="isactive" runat="server">
+                                <i class="fa fa-th-list"></i>
+                                <span>Active</span>
+                            </a>
+                        </li>--%>
                         <%--   <li>
                             <a class="active" href="../Driver/default.aspx" id="changepassword" runat="server">
                                 <i class="fa fa-unlock-alt"></i>
@@ -111,6 +116,7 @@
                                 <span>Scan List</span>
                             </a>
                         </li>
+                         
                         <%--<li>
                             <a class="active" href="~/Driver/Videosteaming.aspx" id="video" runat="server">
                                 <i class="fa fa-video-camera"></i>

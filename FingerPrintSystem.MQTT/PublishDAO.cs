@@ -31,10 +31,10 @@ namespace FingerPrintSystem.MQTT
         }
         public void OnScan(string topic, string message) // สั่งเปิดสแกนลายนิ้วมือ ขึ้นรถรับส่ง
         {
+            client.MqttMsgPublished += client_MqttMsgPublished;
             client.ProtocolVersion = MqttProtocolVersion.Version_3_1;
             client.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", true, 120);
 
-            client.MqttMsgPublished += client_MqttMsgPublished;
             ushort msgId = client.Publish(topic, // topic
                               Encoding.UTF8.GetBytes(message), // message body
                               MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, // QoS level

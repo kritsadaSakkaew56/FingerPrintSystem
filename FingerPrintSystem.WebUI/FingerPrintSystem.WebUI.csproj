@@ -113,6 +113,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Active.aspx" />
     <Content Include="Admin\AddUser.aspx" />
     <Content Include="Admin\default.aspx" />
     <Content Include="Admin\EditGooglemapAPI.aspx" />
@@ -142,7 +143,6 @@
     <Content Include="fonts\Proxima_Nova_Semibold.svg" />
     <Content Include="fonts\Proxima_Nova_Semibold_Italic.svg" />
     <Content Include="fonts\startui.svg" />
-    <Content Include="Global.asax" />
     <Content Include="Images\ajax_loader_gray_48.gif" />
     <Content Include="Images\Alert.png" />
     <Content Include="Images\beachflag.png" />
@@ -316,6 +316,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Active.aspx.cs">
+      <DependentUpon>Active.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Active.aspx.designer.cs">
+      <DependentUpon>Active.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AddUser.aspx.cs">
       <DependentUpon>AddUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -399,9 +406,6 @@
     </Compile>
     <Compile Include="FingerPrint\RegisterFingerPrintscan.aspx.designer.cs">
       <DependentUpon>RegisterFingerPrintscan.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>

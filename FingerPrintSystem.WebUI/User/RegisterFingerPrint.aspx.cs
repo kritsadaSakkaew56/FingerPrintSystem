@@ -89,10 +89,14 @@ namespace FingerPrintSystem.WebUI.User
 
                 if (status == "Driver")
                 {
-                    int memberUser = Convert.ToInt32(ViewState["memberUser_id"].ToString());
+                    int memberUserid = Convert.ToInt32(ViewState["memberUser_id"].ToString());
 
-                        Response.Redirect("../Driver/FingerPrintscan.aspx" + 
-                                        this.EncryptQueryString("userid=" + memberUser+"&driverid=" + memberid));
+     
+                    UserScanDAO userscan = new UserScanDAO();
+                    userscan.AddUserScanByIDMember(memberUserid, "ไม่ได้ลงทะบียนสแกน", "ไม่ได้ลงทะบียนสแกน",0,0,0, datetime(), false,0, "");
+
+                    Response.Redirect("../Driver/FingerPrintscan.aspx" + 
+                                        this.EncryptQueryString("userid=" + memberUserid + "&driverid=" + memberid));
 
                     //cookiesdatauseranddriver(memberUser, memberid);
 
@@ -167,6 +171,7 @@ namespace FingerPrintSystem.WebUI.User
         protected void bthfinish_Click(object sender, EventArgs e)
         {
            
+
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalSave", "$('#myModalSave').modal();", true);
            
 
@@ -178,9 +183,39 @@ namespace FingerPrintSystem.WebUI.User
             int memberUserid = Convert.ToInt32(ViewState["memberUser_id"].ToString());
 
             MemberDAO Member = new MemberDAO();
-            Member.UpdateMember(memberUserid, false);
+            UserScanDAO userscan = new UserScanDAO();
+
+            Member.UpdateMemberByIsactive(memberUserid, true);
+            userscan.AddUserScanByIDMember(memberUserid, "ไม่ได้ลงทะบียนสแกน", "ไม่ได้ลงทะบียนสแกน",0, 0, 0, datetime(), false, 0, "");
 
             Response.Redirect("../Login.aspx");
+
+        } private string datetime()
+        {
+
+
+            DateTime DtNow = new DateTime();
+            DtNow = DateTime.Now;
+            int day = Convert.ToInt32(DtNow.ToString("dd"));
+            int Mounth = Convert.ToInt32(DtNow.ToString("MM"));
+            int year = Convert.ToInt32(DtNow.ToString("yyyy")) - 543;
+
+            int HH = Convert.ToInt32(DtNow.ToString("HH"));
+            int mm = Convert.ToInt32(DtNow.ToString("mm"));
+            int ss = Convert.ToInt32(DtNow.ToString("ss"));
+
+            if (Mounth <= 9 && day <= 9)
+            {
+                string cMounth = "0" + Mounth;
+                string cday = "0" + day;
+                return cday + "-" + cMounth + "-" + year + " เวลา " + HH + ":" + mm + ":" + ss;
+            }
+            else
+            {
+
+                return day + "-" + Mounth + "-" + year + " เวลา " + HH + ":" + mm + ":" + ss;
+            }
+
 
         }
     }

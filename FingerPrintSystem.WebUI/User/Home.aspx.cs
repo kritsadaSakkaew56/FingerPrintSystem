@@ -133,18 +133,18 @@ namespace FingerPrintSystem.WebUI.User
             int memberuserid = Convert.ToInt32(ViewState["memberuser_id"].ToString());
             DataTable dt = new UserScanDAO().GetUserScanByIDMember(memberuserid);
 
-            if(dt.Rows.Count>0)
+            if (dt.Rows.Count > 0)
             {
 
                 labstatusup.Text = dt.Rows[0]["datetime_up"].ToString();
                 string noteup = dt.Rows[0]["noteup"].ToString();
 
-                 int roundscan = Convert.ToInt32( dt.Rows[0]["roundscan"].ToString());
-                if(roundscan==1)
+                int roundscan = Convert.ToInt32(dt.Rows[0]["roundscan"].ToString());
+                if (roundscan == 1)
                 {
                     labroundscan.Text = " บ้าน >>> โรงเรียน";
                 }
-                else if(roundscan == 2)
+                else if (roundscan == 2)
                 {
                     labroundscan.Text = " โรงเรียน >>> บ้าน";
                 }
@@ -154,7 +154,7 @@ namespace FingerPrintSystem.WebUI.User
                 }
 
                 //............................................................................//
-                if (labstatusup.Text=="ยังไม่ได้สแกน")
+                if (labstatusup.Text == "ยังไม่ได้สแกน" )
                 {
 
                     labstatusup.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333");// สีแดง
@@ -175,7 +175,7 @@ namespace FingerPrintSystem.WebUI.User
 
                 labstatusdown.Text = dt.Rows[0]["datetime_down"].ToString();
                 string notedown = dt.Rows[0]["notedown"].ToString();
-                if (labstatusdown.Text == "ยังไม่ได้สแกน")
+                if (labstatusdown.Text == "ยังไม่ได้สแกน" )
                 {
 
                     labstatusdown.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333"); // สีแดง

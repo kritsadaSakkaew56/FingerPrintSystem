@@ -37,25 +37,38 @@ namespace FingerPrintSystem.DataAccess
 
 
         }
-        public void UpdateMember(int MemberID,bool Isactive)
+      
+        public void UpdateMemberByIsactive(int MemberID, bool Isactive)
         {
             DatabaseHelper db = new DatabaseHelper();
             List<SqlParameter> param = new List<SqlParameter>();
 
-            param.Add(new SqlParameter("@memberuserid ", MemberID));
+            param.Add(new SqlParameter("@memberuserid", MemberID));
             param.Add(new SqlParameter("@isactive", Isactive));
 
-            db.ExecuteNonQuery("sp_Member_Update", param);
+            db.ExecuteNonQuery("sp_Member_Update_ByIsactive", param);
+
+        }
+        public void UpdateMemberByRegister(int MemberID, int register)
+        {
+            DatabaseHelper db = new DatabaseHelper();
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(new SqlParameter("@memberuserid", MemberID));
+            param.Add(new SqlParameter("@register", register));
+
+            db.ExecuteNonQuery("sp_Member_Update_Byregister", param);
 
         }
 
-        public string AddMember(string Username, string Password, string createdby,bool isactive)
+        public string AddMember(string Username, string Password, string createdby,int register, bool isactive)
         {
             DatabaseHelper db = new DatabaseHelper();
             List<SqlParameter> param = new List<SqlParameter>();
             param.Add(new SqlParameter("@username", Username));
             param.Add(new SqlParameter("@password", Password));
             param.Add(new SqlParameter("@createdby", createdby));
+            param.Add(new SqlParameter("@register", register));
             param.Add(new SqlParameter("@isactive", isactive));
 
             return db.ExecuteScalar("sp_Member_Insert", param).ToString();
