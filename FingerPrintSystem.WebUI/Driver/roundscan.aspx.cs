@@ -561,9 +561,9 @@ namespace FingerPrintSystem.WebUI.Driver
             UpdatePanel_DropDownList2.Update();
             disshowstatustrun();  // ปิดปุ่ม scanup และ scandown
             Timer = false;  // หยุดการ update ตาราง และ ปุ่ม
-            Publish.OnScan("/searchingstest", "on");
+            Publish.OnScan("/searching", "on");
             //Subscribe.UpdateUserScanByMemberid("ขึ้นรถรับส่งเด็กนักเรียน", "/chksearching");
-            UpdateUserScanByMemberid("ขึ้นรถรับส่งเด็กนักเรียน", "/chksearchingtest");
+            UpdateUserScanByMemberid("ขึ้นรถรับส่งเด็กนักเรียน", "/chksearching");
             UpdatePanel_GridView.Update();
             Showstatustrunup();
           
@@ -576,9 +576,9 @@ namespace FingerPrintSystem.WebUI.Driver
             UpdatePanel_DropDownList2.Update(); 
             disshowstatustrun(); // ปิดปุ่ม scanup และ scandown
             Timer = false; // หยุดการ update ตาราง และ ปุ่ม
-            Publish.OnScan("/searchingstest", "on");
+            Publish.OnScan("/searching", "on");
             //Subscribe.UpdateUserScanByMemberid("ลงรถรับส่งเด็กนักเรียน", "/chksearching");
-            UpdateUserScanByMemberid("ลงรถรับส่งเด็กนักเรียน", "/chksearchingtest");
+            UpdateUserScanByMemberid("ลงรถรับส่งเด็กนักเรียน", "/chksearching");
             UpdatePanel_GridView.Update();
             Showstatustrundown();
 

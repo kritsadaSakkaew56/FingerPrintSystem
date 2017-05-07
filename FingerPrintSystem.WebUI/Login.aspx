@@ -31,12 +31,12 @@
             <img src="Images/logo.png" style="margin-top: 50px; opacity: 0.7;" width="150" height="150" />
         </div>
         <form id="form1" runat="server" class="form-signin">
-            <h2 class="form-signin-heading">sign in now</h2>
+            <h2 class="form-signin-heading">Fingerprint system</h2>
             <br />
 
             <div class="row">
                 <div class="col-md-4 text-center">
-                    <h5>UserName</h5>
+                    <h5>ผู้ใช้งาน</h5>
                 </div>
                 <div class="col-md-7">
                     <asp:TextBox ID="txtUserName" runat="server" class="form-control"></asp:TextBox>
@@ -45,7 +45,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4 text-center">
-                    <h5>Password</h5>
+                    <h5>รหัสผ่าน</h5>
                 </div>
                 <div class="col-md-7 text-center">
                     <asp:TextBox ID="txtPassword" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
@@ -72,9 +72,9 @@
 
 
             <br />
-            <asp:Button ID="btnSignin" runat="server" class="btn btn-lg btn-login btn-block" OnClick="btnSignin_Click" Text="Login" />
+            <asp:Button ID="btnSignin" runat="server" class="btn btn-lg btn-login btn-block" OnClick="btnSignin_Click" Text="เข้าสู่ระบบ" />
             <%-- <asp:Button ID="bthforget" runat="server" class="btn btn-lg btn-login btn-block" Text="Forget" OnClick="bthforget_Click" />--%>
-            <asp:Button ID="bthregister" runat="server" class="btn btn-lg btn-login btn-block" Text="Register" OnClick="bthregister_Click" />
+            <asp:Button ID="bthregister" runat="server" class="btn btn-lg btn-login btn-block" Text="สมัคร" OnClick="bthregister_Click" />
 
             <div class="modal fade" id="myModalwebsite" role="dialog">
                 <div class="modal-dialog">

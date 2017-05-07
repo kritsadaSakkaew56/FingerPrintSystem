@@ -15,7 +15,7 @@
 
     <section class="panel">
         <header class="panel-heading" style="background-color: #F5DEB3">
-            <h4>ขั้นตอนที่ 3 >>> สแกนลายนิ้วมือ </h4>
+            <h4>ขั้นตอนที่ 3 >>> ลงทะเบียนลายนิ้วมือ </h4>
         </header>
     </section>
 
@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <hr />
-                    <asp:CheckBox ID="chkscan" Text="ทำการสแกนลายนิ้วมือ " runat="server" AutoPostBack="true" Font-Size="Larger" OnCheckedChanged="chkscan_CheckedChanged" />
+                    <asp:CheckBox ID="chkscan" Text="ทำการลงทะเบียนลายนิ้วมือ " runat="server" AutoPostBack="true" Font-Size="Larger" OnCheckedChanged="chkscan_CheckedChanged" />
                     <hr />
                 </div>
             </div>
@@ -70,7 +70,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <hr />
-                    <asp:CheckBox ID="chknoscan" Text="ยังไม่ทำการสแกนลายนิ้วมือ" runat="server" AutoPostBack="true" Font-Size="Larger" OnCheckedChanged="chknoscan_CheckedChanged" />
+                    <asp:CheckBox ID="chknoscan" Text="ยังไม่ทำการลงทะเบียนลายนิ้วมือ" runat="server" AutoPostBack="true" Font-Size="Larger" OnCheckedChanged="chknoscan_CheckedChanged" />
                     <hr />
                 </div>
                 <hr />

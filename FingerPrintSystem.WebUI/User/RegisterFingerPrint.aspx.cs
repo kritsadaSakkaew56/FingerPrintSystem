@@ -164,7 +164,11 @@ namespace FingerPrintSystem.WebUI.User
                 chkscan.Checked = false;
                 txtusername_password.Text = "";
             }
-           
+            if (chknoscan.Checked == false)
+            {
+                bthfinish.Visible = false;
+            }
+
 
         }
 

@@ -26,7 +26,7 @@
     </div>--%>
             <section class="panel">
                 <header class="panel-heading" style="background-color: #F5DEB3">
-                    <h4>Scan List (ข้อมูลย้อนหลังการสแกนลายนิ้วมือของเด็กนักเรียนในแต่ละวัน)</h4>
+                    <h4>ประวัติการสแกนลายนิ้วมือของเด็กนักเรียนในแต่ละวัน</h4>
                 </header>
             </section>
 
@@ -69,8 +69,8 @@
 
                             <Columns>
 
-                                <asp:BoundField HeaderText="เลขประจำตัว" DataField="id" SortExpression="id" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
-                                <asp:BoundField HeaderText="ชื่อ-นามสกุล" DataField="fullName" SortExpression="fullName" />
+                               <%-- <asp:BoundField HeaderText="เลขประจำตัว" DataField="id" SortExpression="id" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Center" />
+                                <asp:BoundField HeaderText="ชื่อ-นามสกุล" DataField="fullName" SortExpression="fullName" />--%>
 
                                 <asp:TemplateField HeaderText="วันที่/เวลาขึ้น" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>

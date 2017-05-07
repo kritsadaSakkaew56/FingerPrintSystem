@@ -209,6 +209,7 @@ namespace FingerPrintSystem.WebUI.Admin
                 if(checkscan =="0")
                 {
                     labcheckscan.Visible = true;
+                    chkactive.Enabled = false;
                     chkactivescan.Enabled = false;
                     imgcheckscan.ImageUrl = "~/Images/ajax_loader_gray_48.gif";
                     imgcheckscan.Visible = true;

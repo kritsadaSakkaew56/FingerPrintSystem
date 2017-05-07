@@ -119,20 +119,20 @@
                          <li>
                             <a class="active" href="#" id="home" runat="server">
                                 <i class="fa fa-home"></i>
-                                <span>Home</span>
+                                <span>ข้อมูล</span>
                             </a>
                         </li>
                         <li>
                             <a class="active" href="#" id="scanlist" runat="server">
                                 <i class="fa fa-th-list"></i>
-                                <span>Scan List</span>
+                                <span>ประวัติการสแกน</span>
                             </a>
                         </li>
 
                         <li>
                             <a class="active" href="../Login.aspx">
                                 <i class="fa fa-minus-square"></i>
-                                <span>Exit</span>
+                                <span>ออกจากระบบ</span>
                             </a>
                         </li>
 

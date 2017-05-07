@@ -143,6 +143,7 @@
     <Content Include="fonts\Proxima_Nova_Semibold.svg" />
     <Content Include="fonts\Proxima_Nova_Semibold_Italic.svg" />
     <Content Include="fonts\startui.svg" />
+    <Content Include="Global.asax" />
     <Content Include="Images\ajax_loader_gray_48.gif" />
     <Content Include="Images\Alert.png" />
     <Content Include="Images\beachflag.png" />
@@ -406,6 +407,9 @@
     </Compile>
     <Compile Include="FingerPrint\RegisterFingerPrintscan.aspx.designer.cs">
       <DependentUpon>RegisterFingerPrintscan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>

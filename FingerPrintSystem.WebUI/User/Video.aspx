@@ -9,7 +9,7 @@
   
         <section class="panel">
             <header class="panel-heading" style="background-color: #F5DEB3">
-                <h4>ภาพถ่ายบริเวณรถรับส่งเด็กนักเรียน</h4>
+                <h4>วิดีโอสตรีมบนรถรับส่งเด็กนักเรียน</h4>
             </header>
         </section>
 
