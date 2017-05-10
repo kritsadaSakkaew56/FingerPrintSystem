@@ -510,7 +510,7 @@ namespace FingerPrintSystem.WebUI.Driver
             DtNow = DateTime.Now;
             int day = Convert.ToInt32(DtNow.ToString("dd"));
             int Mounth = Convert.ToInt32(DtNow.ToString("MM"));
-            int year = Convert.ToInt32(DtNow.ToString("yyyy"))-543;
+            int year = Convert.ToInt32(DtNow.ToString("yyyy"));
 
             int HH = Convert.ToInt32(DtNow.ToString("HH"));
             int mm = Convert.ToInt32(DtNow.ToString("mm"));

@@ -135,10 +135,10 @@
                         <div class="col-sm-6 ">
 
                             <%--<asp:DropDownList ID="DropDownList2" runat="server" Width="60%" Height="35" AutoPostBack="false" Visible="false"></asp:DropDownList>--%>
-                            <asp:Button runat="server" ID="bthscanup" class="btn btn-circle-lg btn-success" Text="Scanup" OnClick="bthscanup_Click" Font-Size="Medium" Visible="false" />
-                            <asp:Button runat="server" ID="bthscandown" class="btn btn-circle-lg btn-success" Text="Scandown" OnClick="bthscandown_Click" Font-Size="Medium" Visible="false" />
+                            <asp:Button runat="server" ID="bthscanup" class="btn btn-circle-lg btn-success" Text="สแกนขึ้น" OnClick="bthscanup_Click" Font-Size="Medium" Visible="false" />
+                            <asp:Button runat="server" ID="bthscandown" class="btn btn-circle-lg btn-success" Text="สแกนลง" OnClick="bthscandown_Click" Font-Size="Medium" Visible="false" />
                             <asp:LinkButton runat="server" ID="bthclose" class="btn btn-circle-lg btn-info" Font-Size="Medium" OnClick="bthclose_Click" Visible="false"><i class="glyphicon glyphicon-remove"></i>เริ่มใหม่</asp:LinkButton>
-                            <asp:Button runat="server" ID="bthreset" class="btn btn-circle-lg btn-danger" Text="Reset" OnClick="bthreset_Click" Font-Size="Medium" Visible="false" />
+                            <asp:Button runat="server" ID="bthreset" class="btn btn-circle-lg btn-danger" Text="รีเซ็ต" OnClick="bthreset_Click" Font-Size="Medium" Visible="false" />
 
                             <%--<asp:Button runat="server" ID="bthstop" class="btn btn-circle-lg btn-danger" Text="Stopscan" OnClick="bthstop_Click" Font-Size="Medium" Visible="false" />--%>
                             <%--<asp:LinkButton runat="server" ID="bthSaveFinish" class="btn btn-primary btn-md" OnClick="bthSaveFinish_Click" Visible="false"><i class="glyphicon glyphicon-ok-sign"></i>ตกลง</asp:LinkButton>--%>

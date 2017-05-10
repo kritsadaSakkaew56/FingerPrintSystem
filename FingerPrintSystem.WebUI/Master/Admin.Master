@@ -107,13 +107,13 @@
                         <li>
                             <a class="active" href="~/Admin/AddUser.aspx" id="adduser" runat="server">
                                 <i class="fa fa-user"></i>
-                                <span>Add User</span>
+                                <span>สมาชิก</span>
                             </a>
                         </li>
                         <li>
                             <a class="active" href="~/Driver/Schoolgohome.aspx" id="childuser" runat="server">
                                 <i class="fa fa-th-list"></i>
-                                <span>Scan List</span>
+                                <span>ประวัติสแกน</span>
                             </a>
                         </li>
                          
@@ -127,7 +127,7 @@
                         <li>
                             <a class="active" href="../Login.aspx">
                                 <i class="fa fa-minus-square"></i>
-                                <span>Exit</span>
+                                <span>ออกจากระบบ</span>
                             </a>
                         </li>
 
