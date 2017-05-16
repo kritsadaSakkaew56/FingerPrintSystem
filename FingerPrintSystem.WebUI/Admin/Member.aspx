@@ -28,7 +28,7 @@
     </div>--%>
             <section class="panel">
                 <header class="panel-heading" style="background-color: #F5DEB3">
-                    <h4>Scan List (ข้อมูลย้อนหลังการสแกนลายนิ้วมือของเด็กนักเรียนในแต่ละวัน)</h4>
+                    <h4>ประวัติสแกน(ข้อมูลย้อนหลังการสแกนลายนิ้วมือของเด็กนักเรียนในแต่ละวัน)</h4>
                 </header>
             </section>
        
