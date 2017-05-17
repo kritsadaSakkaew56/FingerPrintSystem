@@ -290,7 +290,7 @@
                                 <asp:Label runat="server" Text="เบอร์โทรศัพท์:" Font-Size="Medium"></asp:Label>
                             </p>
                             <p>
-                                <asp:Label runat="server" Text="E-Mail:" Font-Size="Medium"></asp:Label>
+                                <asp:Label runat="server" Text="อีเมล์:" Font-Size="Medium"></asp:Label>
                             </p>
 
 
