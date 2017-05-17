@@ -275,7 +275,7 @@
                         <div class="col-sm-3">
 
                             <p>
-                                <asp:Label runat="server" Text="เลขที่:" Font-Size="Medium"></asp:Label>
+                                <asp:Label runat="server" Text="เลขประจำตัว:" Font-Size="Medium"></asp:Label>
                             </p>
                             <p>
                                 <asp:Label runat="server" Text="ชื่อ-นามสกุล:" Font-Size="Medium"></asp:Label>
