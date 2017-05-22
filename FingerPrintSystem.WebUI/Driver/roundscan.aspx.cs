@@ -20,7 +20,7 @@ namespace FingerPrintSystem.WebUI.Driver
 {
     public partial class roundscan : PageBase
     {
-        MqttClient client = new MqttClient("m12.cloudmqtt.com", 29315, true, null, null, MqttSslProtocols.TLSv1_2);
+        MqttClient client_scan = new MqttClient("m12.cloudmqtt.com", 29315, true, null, null, MqttSslProtocols.TLSv1_2);
         public static bool Timer;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -407,23 +407,14 @@ namespace FingerPrintSystem.WebUI.Driver
         private void UpdateUserScanByMemberid(string trunscan, string topicsearch) // สถานะการสแกน
         {
 
-            client.ProtocolVersion = MqttProtocolVersion.Version_3_1;
-            client.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", false, 120);
+            client_scan.ProtocolVersion = MqttProtocolVersion.Version_3_1;
+            client_scan.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", false, 120);
 
-            //client.Connect(Guid.NewGuid().ToString(),
-            //              "fjhgvxul",
-            //              "cT9BYUzB5yCR",
-            //              true, // will retain flag
-            //              MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE,// will QoS
-            //              true, // will flag
-            //              "/test",// will topic
-            //              "default", // will message
-            //               true,
-            //               60);
 
-            client.MqttMsgPublishReceived += client_MqttMsgPublishRecieved_GetSubscribe;
+
+            client_scan.MqttMsgPublishReceived += client_MqttMsgPublishRecieved_GetSubscribe;
             // client.Subscribe(new string[] { topicup,topicdown }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE , MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE});
-            client.Subscribe(new string[] { topicsearch }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            client_scan.Subscribe(new string[] { topicsearch }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
             ViewState["trunscan"] = trunscan;
             Debug.WriteLine("OnGetSubscribeUp");
         
@@ -445,13 +436,13 @@ namespace FingerPrintSystem.WebUI.Driver
                 {
 
                     Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + datetime());
-                    client.Disconnect();
+                    client_scan.Disconnect();
 
                 }
                 else if(fingerprintid=="fail")
                 {
                     Debug.WriteLine("Disconnect");
-                    client.Disconnect();
+                    client_scan.Disconnect();
                     Timer = true;
 
                 }
@@ -464,7 +455,7 @@ namespace FingerPrintSystem.WebUI.Driver
                     
                     //userscan.UpdateUserScanByFingerprintid_Up(fingerprintid, DateTime.Now.ToString("dd-MM-yyyy เวลา HH:mm:ss"));
                     Debug.WriteLine("OKScanup");
-                    client.Disconnect();
+                    client_scan.Disconnect();
                     Timer = true;
                 }
             }
@@ -476,13 +467,13 @@ namespace FingerPrintSystem.WebUI.Driver
                 if (fingerprintid == "disconnect")
                 {
                     Debug.WriteLine("Received = " + fingerprintid + "\ron topic = " + e.Topic + "\rtrunscan = " + trunscan + datetime());
-                    client.Disconnect();
+                    client_scan.Disconnect();
                     Timer = true;
                 }
                 else if (fingerprintid == "fail")
                 {
                     Debug.WriteLine("Disconnect");
-                    client.Disconnect();
+                    client_scan.Disconnect();
                     Timer = true;
 
                 }
@@ -496,7 +487,7 @@ namespace FingerPrintSystem.WebUI.Driver
                     //userscan.UpdateUserScanByFingerprintid_Down(fingerprintid, DateTime.Now.ToString("dd-MM-yyyy เวลา HH:mm:ss"));
 
                     Debug.WriteLine("OKScanDown");
-                    client.Disconnect();
+                    client_scan.Disconnect();
                     Timer = true;
                 }
             }
@@ -592,8 +583,8 @@ namespace FingerPrintSystem.WebUI.Driver
         protected void bthclose_Click(object sender, EventArgs e)
         {
             Timer = true;
-            Publish.OnScan("/chksearchingtest", "disconnect"); // ทำการ Disconnect MQTT
-
+            Publish.OnScan("/chksearching", "disconnect"); // ทำการ Disconnect MQTT
+            Publish.OnDisconnect("/searching", "disconnect"); // ทำการ Disconnect MQTT
 
         }
         protected void bthreset_Click(object sender, EventArgs e)

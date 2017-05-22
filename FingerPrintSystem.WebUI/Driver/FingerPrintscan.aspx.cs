@@ -20,7 +20,7 @@ namespace FingerPrintSystem.WebUI.Driver
     public partial class FingerPrintscan : PageBase
     {
      
-        MqttClient client = new MqttClient("m12.cloudmqtt.com", 29315, true, null, null, MqttSslProtocols.TLSv1_2);
+        MqttClient client_Addscan = new MqttClient("m12.cloudmqtt.com", 29315, true, null, null, MqttSslProtocols.TLSv1_2);
         public static string status;
       
         protected void Page_Load(object sender, EventArgs e)
@@ -154,8 +154,9 @@ namespace FingerPrintSystem.WebUI.Driver
 
             status = "fail";
             PublishDAO Publish = new PublishDAO();
-            Publish.OnScanInputFingerprint("/chkregister", "disconnect"); // สั่งปิดสแกน
-
+          
+            Publish.OnDisconnect("/register", "disconnect"); //-------- สั่งปิดสแกน
+            Publish.OnScanInputFingerprint("/chkregister", "disconnect"); //----- สั่ง close MQTT
         }
         public void CheckStatus()
         {
@@ -175,13 +176,13 @@ namespace FingerPrintSystem.WebUI.Driver
                     status = "null";
                 }
 
-                else if (FingerPrintscan.status == "fail")
+                else if (FingerPrintscan.status =="fail")
                 {
                     //................................. fail ...........................//
                     bthSaveFinish.Visible = true;
                     Imgfingerprint.ImageUrl = "~/Images/false.png";
                     detialstatustrunfail();
-                    // Disshowstatustrn_scan();
+                 
 
 
                 }
@@ -208,11 +209,11 @@ namespace FingerPrintSystem.WebUI.Driver
         private void AddUserScanByIDMember(int memberuserid, int memberdriverid, string topic)// เพิ่มลายนิ้วมือลงไปใน database
         {
 
-            client.ProtocolVersion = MqttProtocolVersion.Version_3_1;
-            client.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", false, 120);
+            client_Addscan.ProtocolVersion = MqttProtocolVersion.Version_3_1;
+            client_Addscan.Connect(Guid.NewGuid().ToString(), "fjhgvxul", "cT9BYUzB5yCR", false, 120);
 
-            client.MqttMsgPublishReceived += client_MqttMsgPublishRecieved;
-            client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            client_Addscan.MqttMsgPublishReceived += client_MqttMsgPublishRecieved;
+            client_Addscan.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
             ViewState["topicmessage"] = topic;
             Debug.WriteLine("OnAddSubscribe");
 
@@ -238,8 +239,6 @@ namespace FingerPrintSystem.WebUI.Driver
                     
                     if (dt.Rows.Count > 0)
                     {
-
-
                         Debug.WriteLine("Received = " + Encoding.UTF8.GetString(e.Message) + "\ron topic = " + e.Topic + "\rMemberuserid = " + memberuserid);
                         string fullnamedriver = dt.Rows[0]["fullname"].ToString();
                         status = status_fingerprint; // ส่ง ok กับ fail
@@ -251,19 +250,19 @@ namespace FingerPrintSystem.WebUI.Driver
                         MemberDAO Member = new MemberDAO();
                         Member.UpdateMemberByIsactive(memberuserid, true);
                         Member.UpdateMemberByRegister(memberuserid, 3);
-                        client.Disconnect(); // Disconnect mqtt
+                        client_Addscan.Disconnect(); // Disconnect mqtt
                     }
                 }
                 else if (status_fingerprint == "fail")
                 {
                     status = status_fingerprint; // ส่ง ok กับ fail
-                    client.Disconnect();
+                    client_Addscan.Disconnect();
 
                 }
                 else if(status_fingerprint == "disconnect")
                 {
 
-                    client.Disconnect();
+                    client_Addscan.Disconnect();
 
                 }
 
