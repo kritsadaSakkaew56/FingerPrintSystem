@@ -103,11 +103,14 @@ namespace FingerPrintSystem.WebUI.Driver
         {
             imgsuccess.Visible = true;
             labsuccess.Visible = true;
+            Imgfingerscan.Visible = true;
             labsuccess.Text = "กรุณาสแกนลายนิ้วมือ";
             imgsuccess.ImageUrl = "~/Images/success.png";
         }
         private void detialstatustrunfail()
+
         {
+            Imgfingerscan.Visible = false;
             imgsuccess.Visible = true;
             labsuccess.Visible = true;
             bthSaveFinish.Visible = true;
@@ -118,13 +121,14 @@ namespace FingerPrintSystem.WebUI.Driver
         }
         private void disshowstatustrun()
         {
-            bthclose.Visible = true; //แสดงปุ่ม เริ่มใหม่
+           // bthclose.Visible = true; //แสดงปุ่ม เริ่มใหม่
             bthSaveFinish.Visible = false;
-
+            imgsuccess.Visible = true;
+            labsuccess.Visible = true;
         }
         private void Disshowstatustrn_scan()
         {
-
+            Imgfingerscan.Visible = false;
             imgsuccess.Visible = false;
             labsuccess.Visible = false;
             bthclose.Visible = false; //แสดงปุ่ม เริ่มใหม่
@@ -155,7 +159,7 @@ namespace FingerPrintSystem.WebUI.Driver
             status = "fail";
             PublishDAO Publish = new PublishDAO();
           
-            Publish.OnDisconnect("/register", "disconnect"); //-------- สั่งปิดสแกน
+           // Publish.OnDisconnect("/register", "disconnect"); //-------- สั่งปิดสแกน
             Publish.OnScanInputFingerprint("/chkregister", "disconnect"); //----- สั่ง close MQTT
         }
         public void CheckStatus()

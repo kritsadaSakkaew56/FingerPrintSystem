@@ -53,8 +53,8 @@
                 <div class="col-sm-5">
 
                     <p>
-                        <asp:Button runat="server" OnClick="bthSaveFinish_Click" ID="bthSaveFinish" class="btn btn-warning btn-circle btn-Xl " Text="Scan" Visible="true" />
-                        <asp:Button runat="server" OnClick="bthclose_Click" ID="bthclose" class="btn btn-info btn-circle btn-Xl " Text="default" Visible="false" />
+                        <asp:Button runat="server" OnClick="bthSaveFinish_Click" ID="bthSaveFinish" class="btn btn-warning btn-circle btn-Xl " Text="สแกน" Visible="true" />
+                        <asp:Button runat="server" OnClick="bthclose_Click" ID="bthclose" class="btn btn-info btn-circle btn-Xl " Text="เริ่มใหม่" Visible="false" />
                     </p>
                     <p>
                         <asp:Label ID="lblStatus" runat="server" Text=""></asp:Label>
@@ -68,8 +68,16 @@
                                 Please Wait...
                             </ProgressTemplate>
                         </asp:UpdateProgress>
+                        <div class="row">
+
+                              <asp:Image ID="Imgfingerscan" ImageUrl="~/Images/HomeFingerprint.png" runat="server" Width="175" Height="175" Visible="false" />
+                        </div>
+                       <div class="row">
                         <asp:Image ID="imgsuccess" ImageUrl="~/Images/success.png" runat="server" Width="30" Height="30" Visible="false" />
                         <asp:Label ID="labsuccess" runat="server" Font-Size="Medium" Visible="false"></asp:Label>
+
+                       </div>
+                     
                         <%--  <asp:Image ID="imgProgress" ImageUrl="~/Images/ajax_loader_gray_48.gif" runat="server" Visible="false" />
                             <asp:Label ID="labplase" runat="server" Text=" Please Wait..." Visible="false"></asp:Label>--%>
                     </p>

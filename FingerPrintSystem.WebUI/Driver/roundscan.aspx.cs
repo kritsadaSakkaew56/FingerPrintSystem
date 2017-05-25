@@ -221,7 +221,7 @@ namespace FingerPrintSystem.WebUI.Driver
         }
         private void disshowstatustrun()
         {
-            bthclose.Visible = true; //แสดงปุ่ม เริ่มใหม่
+            //bthclose.Visible = true; //แสดงปุ่ม เริ่มใหม่
             bthscanup.Visible = false;
             bthscandown.Visible = false;
             bthreset.Visible = false;
@@ -583,8 +583,9 @@ namespace FingerPrintSystem.WebUI.Driver
         protected void bthclose_Click(object sender, EventArgs e)
         {
             Timer = true;
+        
             Publish.OnScan("/chksearching", "disconnect"); // ทำการ Disconnect MQTT
-            Publish.OnDisconnect("/searching", "disconnect"); // ทำการ Disconnect MQTT
+           // Publish.OnDisconnect("/register", "disconnect"); // ทำการ Disconnect MQTT
 
         }
         protected void bthreset_Click(object sender, EventArgs e)

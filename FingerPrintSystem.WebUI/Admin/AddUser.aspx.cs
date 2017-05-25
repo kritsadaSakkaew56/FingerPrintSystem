@@ -104,12 +104,19 @@ namespace FingerPrintSystem.WebUI.Admin
                 LinkButton bthedit = (LinkButton)e.Row.FindControl("btnEdit");
                 LinkButton bthdelete = (LinkButton)e.Row.FindControl("btnDeleteuser");
                 LinkButton bthgooglemap = (LinkButton)e.Row.FindControl("bthgooglemap");
-                CheckBox chkActive = (CheckBox)e.Row.FindControl("chkActive");
+                //CheckBox chkActive = (CheckBox)e.Row.FindControl("chkActive");
                 CheckBox chkActivescan = (CheckBox)e.Row.FindControl("chkActivescan");
 
-                if (drv["is_active"].ToString().Length > 0 && drv["activescan"].ToString().Length > 0)
+                //if (drv["is_active"].ToString().Length > 0 && drv["activescan"].ToString().Length > 0)
+                //{
+                //    chkActive.Checked = (bool)drv["is_active"];
+                //    chkActivescan.Checked = (bool)drv["activescan"];
+                //}
+
+
+                if (drv["activescan"].ToString().Length > 0)
                 {
-                    chkActive.Checked = (bool)drv["is_active"];
+                   
                     chkActivescan.Checked = (bool)drv["activescan"];
                 }
 
@@ -209,20 +216,20 @@ namespace FingerPrintSystem.WebUI.Admin
                 if(checkscan =="0")
                 {
                     labcheckscan.Visible = true;
-                    chkactive.Enabled = false;
+                  //  chkactive.Enabled = false;
                     chkactivescan.Enabled = false;
                     imgcheckscan.ImageUrl = "~/Images/ajax_loader_gray_48.gif";
                     imgcheckscan.Visible = true;
                     imgcheckscan.Width = 20;
                     imgcheckscan.Height = 20;
-                    chkactive.Checked = (bool)dtmember.Rows[0]["is_active"];
+                   // chkactive.Checked = (bool)dtmember.Rows[0]["is_active"];
                     chkactivescan.Checked = (bool)dtuserscan.Rows[0]["activescan"];
 
                 }
                 else if(checkscan == "1")
                 {
 
-                    chkactive.Checked = (bool)dtmember.Rows[0]["is_active"];
+                    //chkactive.Checked = (bool)dtmember.Rows[0]["is_active"];
                     chkactivescan.Checked = (bool)dtuserscan.Rows[0]["activescan"];
 
                 }
@@ -251,19 +258,19 @@ namespace FingerPrintSystem.WebUI.Admin
 
                 user.UpdateUserByMember(memberuserid, schoolid, txtid.Text.Trim(), txtfullname.Text.Trim(), txtfullnameparent.Text.Trim(),
                                         txttel.Text.Trim(), txtemail.Text.Trim());
-                if(chkactive.Checked==false)
-                {
-                    member.UpdateMemberByIsactive(memberuserid, chkactive.Checked);
-                    userscan.UpdateUserScanByActivescan(memberuserid, false);
-                }
-                else
-                {
-                    member.UpdateMemberByIsactive(memberuserid, chkactive.Checked);
-                    userscan.UpdateUserScanByActivescan(memberuserid, chkactivescan.Checked);
+                //if(chkactive.Checked==false)
+                //{
+                //    member.UpdateMemberByIsactive(memberuserid, chkactive.Checked);
+                //    userscan.UpdateUserScanByActivescan(memberuserid, false);
+                //}
+                //else
+                //{
+                //    member.UpdateMemberByIsactive(memberuserid, chkactive.Checked);
+                //    userscan.UpdateUserScanByActivescan(memberuserid, chkactivescan.Checked);
 
 
-                }
-              
+                //}
+                userscan.UpdateUserScanByActivescan(memberuserid, chkactivescan.Checked);
 
                 BindDataUser();
             }

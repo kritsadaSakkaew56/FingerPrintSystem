@@ -35,21 +35,34 @@ namespace FingerPrintSystem.WebUI.User
                
                 if (datatemp != "")
                 {
-                    if (Convert.ToInt32(datatemp) >= 40)
-                    {
-                        labc.Text = datatemp;
-                        labstatustemp.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333"); //สีแดง
-                    }
-                    else if (Convert.ToInt32(datatemp) >= 30)
-                    {
+                    //if (Convert.ToInt32(datatemp) >= 40)
+                    //{
+                    //    labc.Text = datatemp;
+                    //    labstatustemp.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333"); //สีแดง
+                    //}
 
+                    //else if (Convert.ToInt32(datatemp) >= 30)
+                    //{
+
+                    //    labc.Text = datatemp;
+                    //    labstatustemp.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF9900"); // สีส้ม
+                    //}
+                    //else
+                    //{
+                    //    labc.Text = datatemp;
+                    //    labstatustemp.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900"); // สีเขียว
+                    //}
+
+                    if(Convert.ToInt32(datatemp) >= 22 && Convert.ToInt32(datatemp) <= 32)
+                    {
                         labc.Text = datatemp;
-                        labstatustemp.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF9900"); // สีส้ม
+                        labstatustemp.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900"); // สีเขียว
                     }
                     else
                     {
                         labc.Text = datatemp;
-                        labstatustemp.BackColor = System.Drawing.ColorTranslator.FromHtml("#009900"); // สีเขียว
+                        labstatustemp.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF3333"); //สีแดง
+
                     }
                 }
                 UpdateTimer.Enabled = true;

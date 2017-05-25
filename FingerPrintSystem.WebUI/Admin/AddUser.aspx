@@ -125,11 +125,11 @@
                                 <asp:BoundField HeaderText="ผู้ปกครอง" DataField="fullnameparent" SortExpression="fullnameparent" />
                                 <asp:BoundField HeaderText="เบอร์โทรศัพท์" DataField="tel" SortExpression="tel" />
                                 <%--<asp:BoundField HeaderText="E-mail" DataField="email" SortExpression="email" />--%>
-                                <asp:TemplateField HeaderText="การใช้งานระบบ" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                               <%-- <asp:TemplateField HeaderText="การใช้งานระบบ" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:CheckBox ID="chkActive" runat="server" Enabled="false"></asp:CheckBox>
                                     </ItemTemplate>
-                                </asp:TemplateField>
+                                </asp:TemplateField>--%>
                                 <asp:TemplateField HeaderText="การใช้งานสแกน" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:CheckBox ID="chkActivescan" runat="server" Enabled="false"></asp:CheckBox>
@@ -322,10 +322,10 @@
                             </p>
                             <br />
                             <br />
-                            <p>
+                           <%-- <p>
                                 <asp:Label runat="server" Text="การใช้งานระบบ:" Font-Size="Larger"></asp:Label>
                             </p>
-                            <br />
+                            <br />--%>
                             <p>
                                 <asp:Label runat="server" Text="การใช้งานสแกน:" Font-Size="Larger"></asp:Label>
                             </p>
@@ -359,10 +359,10 @@
                             <p>
                                 <asp:TextBox ID="txtemail" runat="server" Font-Size="Small"></asp:TextBox>
                             </p>
-                            <br />
+                           <%-- <br />
                             <p>
                                 <asp:CheckBox ID="chkactive" runat="server" Font-Size="Small" CssClass="BigCheckBox"></asp:CheckBox>
-                            </p>
+                            </p>--%>
                             <br />
 
                             <p>
